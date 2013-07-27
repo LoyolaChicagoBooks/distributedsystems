@@ -1,22 +1,47 @@
-.. Distributed Systems documentation master file, created by
-   sphinx-quickstart on Fri Jul 26 22:37:00 2013.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
 
 Welcome to COMP 339/439, Distributed Systems
 ===============================================
 
-Contents:
+.. warning::
+
+   This course is still being migrated to Sphinx. Nothing you see or read here will be official
+   until August 15, 2013.
+
+Table of Contents
+-------------------------
 
 .. toctree::
    :maxdepth: 2
 
+   
    intro
+   issues
+   dvcs
+   networking
+   concurrency
+   messagequeues
+   filesystems
+   dns
+   directories
+   mpi
+   corba
+   rest
+   nosql
+
+
+Legacy Content
+-------------------
+
+.. toctree::
+   :maxdepth: 2
+
    syllabus
+   lectures
    
 
+
 Indices and tables
-==================
+----------------------
 
 * :ref:`genindex`
 * :ref:`modindex`

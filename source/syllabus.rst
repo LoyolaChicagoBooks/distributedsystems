@@ -1,8 +1,11 @@
 Syllabus
 ==============
 
+Welcome to COMP 339-439/Distributed Systems.
 
-Welcome to COMP 339-439/Distributed Systems
+.. warning::
+
+   This syllabus is in draft status. Nothing here will be official until well after August 15, 2013.
 
 Synopsis
 --------
