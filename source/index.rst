@@ -1,6 +1,9 @@
 
-Welcome to COMP 339/439, Distributed Systems
+Welcome to Distributed Systems
 ===============================================
+
+You have reached the home of Distributed Systems (COMP 339-439) at Loyola University Chicago in
+the Computer Science Department. This course is normally taught by George K. Thiruvathukal.
 
 .. warning::
 
