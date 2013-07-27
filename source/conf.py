@@ -101,7 +101,7 @@ html_theme = 'bootstrap'
 #html_theme_options = {}
 html_theme_options = {
     # Navigation bar title. (Default: ``project`` value)
-    'navbar_title': "Distributed Systems",
+    'navbar_title': "COMP 339-439",
 
     # Global TOC depth for "site" navbar tab. (Default: 1)
     # Switching to -1 shows all levels.
