@@ -1,0 +1,15 @@
+# The get-examples.py uses this file to pull down source code examples for our book from
+# various sources. These will be cached in the examples subdirectory.
+# The script is re-entrant and can be used to pull down updates
+#
+# HPC-style examples (George and Konstantin)
+#
+hg,integration,ssh://hg@bitbucket.org/loyolachicagocs_plsystems/integration-scala
+hg,lcs-systolicarray,ssh://hg@bitbucket.org/loyolachicagocs_plsystems/lcs-systolicarray-scala
+
+# Student-contributed
+#hg,predatorprey,ssh://hg@bitbucket.org/loyolachicagocs_plsystems/predatorprey-scala-eclipse
+
+git,primenumbers-spray,git@github.com:webservices-cs-luc-edu/primenumbers-spray-scala.git
+
+hg,hpjpc,ssh://hg@bitbucket.org/loyolachicagocs_books/hpjpc-source-java
