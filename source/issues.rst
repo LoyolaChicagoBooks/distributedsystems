@@ -26,24 +26,24 @@ Application examples
 - Airline reservation system
 - Banking system
 
-What is the largest distributed system?
 
 
-A Distributed System
-----------------------------------------------------------
+.. figure:: figures/issues/issues-3.png
+   :scale: 60%
 
-Missing Figure
+   A Distributed System
+
+.. figure:: figures/issues/issues-4.png
+   :scale: 60%
+
+   A Centralized Multi-User System
 
 
-A Centralized Multi-user System
-----------------------------------------------------------
+.. figure:: figures/issues/issues-5.png
+   :scale: 60%
 
-Missing Figure
+   An Application Example
 
-An Application Example
-----------------------------------------------------------
-
-Missing Figure
 
 Advantages of Distributed Systems vs. Centralized
 ----------------------------------------------------------
@@ -137,16 +137,16 @@ Data
 Resources Must be Managed
 ----------------------------------------------------------
 
-Missing Figure
+.. figure:: figures/issues/issues-11.png
+   :scale: 60%
 
-Mechanisms for Resource Sharing
-----------------------------------------------------------
+   Resources Must Be Managed
 
-E.g., Client-Server Model (most widely used)
+.. figure:: figures/issues/issues-12.png
+   :scale: 60%
 
-Missing Figure: Consider improving this figure to illustrate that the
-server provides the client an actual, meaningful service, e.g. get a 
-stock quote.
+   Client-Server Model for Resource Sharing
+
 
 Openness
 ----------------------------------------------------------
@@ -179,10 +179,11 @@ Concurrency
 - Many users simultaneously invoke commands or applications (e.g., Netscape..)
 - Many server processes run concurrently, each responding to  different client request, e.g., File Server
 
-Opportunities for Concurrency
-----------------------------------------------------------
 
-Missing Figure
+.. figure:: figures/issues/issues-16.png
+   :scale: 60%
+
+   Opportunities for Concurrency
 
 
 Scalability
@@ -309,143 +310,193 @@ Asynchronous or non-blocking
 
 Types of Communication
 ----------------------------------------------------------
-Client-Server
-Group Multicast
-Function Shipping
 
-Performance of distributed systems depends critically on communication performance
-We will study the software components involved in communication
+- Client-Server
+- Group Multicast
+- Function Shipping
 
-Client-Server Communication
-----------------------------------------------------------
+- Performance of distributed systems depends critically on communication performance
 
-Client sends request to server process
-Server executes the request
-Server transmits a reply and data 
-e.g., file servers, web server...
+- We will study the software components involved in communication
 
 Client-Server Communication
 ----------------------------------------------------------
 
-Message Passing Operations
-send
-receive
-Remote Procedure Call (RPC)
-hides communication behind procedure call abstraction
-e.g., read(fp,buffer,….)
-Files reside with the server, thus there will be communication between client and server to satisfy this request
+- Client sends request to server process
+- Server executes the request
+- Server transmits a reply and data, e.g., file servers, web server...
+
+.. figure:: figures/issues/issues-29.png
+   :scale: 60%
+
+   Client-Server Communication
+
+
+Client-Server Communication
+----------------------------------------------------------
+
+- Message Passing Operations
+
+  - send
+  - receive
+
+- Remote Procedure Call (RPC)
+
+  - hides communication behind procedure call abstraction
+  - e.g., read(fp,buffer,….)
+  - Files reside with the server, thus there will be communication between client and server to satisfy this request
 
 Group Multicast
 ----------------------------------------------------------
 
-A very important primitive for distributed systems
-Target of a message is a group of processes
-e.g., chat room, I sending a message to class list, video conference
-Where is multicast useful?
-Locating objects - client multicasts a message to many servers; server that can satisfy request responds
-Fault-tolerance - more than one server does a job; even if one fails, results still available
-Multiple updates
-Hardware support may or may not be available
-if no hardware support, each recipient is sent a message
+- A very important primitive for distributed systems
 
-Group Multicast
-----------------------------------------------------------
+- Target of a message is a group of processes
 
-Missing Figure
+  - e.g., chat room, I sending a message to class list, video conference
+
+- Where is multicast useful?
+
+  - Locating objects - client multicasts a message to many servers; server that can satisfy request responds
+  - Fault-tolerance - more than one server does a job; even if one fails, results still available
+  - Multiple updates
+
+- Hardware support may or may not be available
+
+  - if no hardware support, each recipient is sent a message
+
+.. figure:: figures/issues/issues-32.png
+   :scale: 60%
+
+   Group Multicast
+
 
 Software Structure
 ----------------------------------------------------------
 
+- In a centralized system, O/S manages resources and provides essential services
 
-In a centralized system, O/S manages resources and provides essential services
-Basic resource management
-memory allocation and protection
-process creation and processor scheduling
-peripheral device handling
-User and application services
-user authentication and access control (e.g., login)
-file management and access facilities
-clock facilities
+- Basic resource management
+
+  - memory allocation and protection
+  - process creation and processor scheduling
+  - peripheral device handling
+
+- User and application services
+
+  - user authentication and access control (e.g., login)
+  - file management and access facilities
+  - clock facilities
 
 Distributed System Software Structure
 ----------------------------------------------------------
 
-It must be easy to add new services (flexibility, extensibility, openness requirements)
-Kernel is normally restricted to
-memory allocation
-process creation and scheduling
-interposes communication
-peripheral device handling
-E.g., Microkernels - represent light weight O/S, most services provided as applications on top of microkernels
-Distributed System Software Structure
-----------------------------------------------------------
+- It must be easy to add new services (flexibility, extensibility, openness requirements)
 
-Missing FIgure
+- Kernel is normally restricted to
+
+  - memory allocation
+  - process creation and scheduling
+  - interposes communication
+  - peripheral device handling
+
+- E.g., Microkernels - represent light weight O/S, most services provided as applications on top of microkernels
+
+.. figure:: figures/issues/issues-35.png
+   :scale: 60%
+
+   Distributed System Software Structure
 
 
 Consistency Management
 ----------------------------------------------------------
 
-When do consistency problems arise? 
-concurrency
-sharing data
-caching
-Why cache data?
-for performance, scalability
-How?
-Subsequent requests (many of them) need not go over the NETWORK to SERVERS
-better utilized servers, network  and better response
-Caching is normally transparent, but creates consistency problems
+- When do consistency problems arise? 
+
+  - concurrency
+  - sharing data
+  - caching
+
+- Why cache data?
+
+  - for performance, scalability
+
+- How?
+
+  - Subsequent requests (many of them) need not go over the NETWORK to SERVERS
+  - better utilized servers, network  and better response
+
+- Caching is normally transparent, but creates consistency problems
 
 Caching
 ----------------------------------------------------------
 
+- Suppose your program (pseudocode) adds numbers stored in a file as follows (assume each number is 4 bytes::
 
-Suppose your program adds numbers stored in a file as follows (assume each number is 4 bytes:
-for I= 1, 1000
-	tmp = read next number from file
-	sum = sum + tmp
-end for
+   for I= 1, 1000
+	  tmp = read next number from file
+	  sum = sum + tmp
+   end for
 
-Consistency
-----------------------------------------------------------
+- With no caching, each read will go over the network, which will send a new 4 byte number. Assuming 1 millisecond (ms) to get a number, requres a total of 1s to get all of the numbers.
 
-Update consistency
-when multiple processes access and update data concurrently
-effect should be such that all processes sharing data see the same values (consistent image)
-E.g., sharing data in a database
-Replication consistency
-when data replicated and once process updates it
-All other processes should see the updated data immediately
-e.g., replicated files, electronic bulletin board
+- With caching, assuming 1000 byte pages, 249 of the 250 reads will be local requests (from the cache). 
+
 
 Consistency
 ----------------------------------------------------------
 
-Cache consistency
-When data (normally at different levels of granularity, such as pages, disk blocks, files…) is cached and updates by one process, it must be invalidated or updated by others
-When and how depends on the consistency models used
+- Update consistency
+
+  - when multiple processes access and update data concurrently
+  - effect should be such that all processes sharing data see the same values (consistent image)
+  - E.g., sharing data in a database
+
+- Replication consistency
+
+  - when data replicated and once process updates it
+  - All other processes should see the updated data immediately
+  - e.g., replicated files, electronic bulletin board
+
+- Cache consistency
+
+  - When data (normally at different levels of granularity, such as pages, disk blocks, files…) is cached and updates by one process, it must be invalidated or updated by others
+  - When and how depends on the consistency models used
 
 Workload Allocation
 ----------------------------------------------------------
 
-In distributed systems many resources (e.g., other workstations, servers etc.) may be available for “computing”
-Capacity and size of memory of a workstation or server may determine what applications may are able to run
-Parts of applications may be run on different workstations for parallelism (e.g., compiling different files of the same program)
-Some workstations or servers may have special hardware to do certain types of applications fast (e.g., video compression)
-Idle workstations may be utilized for better performance and utilization
+- In distributed systems many resources (e.g., other workstations, servers etc.) may be available for “computing”
+
+- Capacity and size of memory of a workstation or server may determine what applications may are able to run
+
+- Parts of applications may be run on different workstations for parallelism (e.g., compiling different files of the same program)
+
+- Some workstations or servers may have special hardware to do certain types of applications fast (e.g., video compression)
+
+- Idle workstations may be utilized for better performance and utilization
 
 Processor Pool Model
-----------------------------------------------------------
+-----------------------------
+
+In a processor pool model, processes are allocated to processors for their lifetime (e.g the
+Amoeba research O/S supports this concept).
+
+.. figure:: figures/issues/issues-41.png
+   :scale: 60%
+
+   Processor Pool Model
 
 Quality-of-Service
 ----------------------------------------------------------
 
-What is quality of service?
-refers to performance and other service expectations of a client or an application - e.g., 
-Performance
-Reliability and availability
-security
-In newer application “best performance” may not be enough as Qos
-Examples:  video
+Quality of Service (a.k.a. QoS) refers to performance and other service expectations of a client or an application.
 
+  - Performance
+  - Reliability and availability
+  - security
+
+Examples where this is important.
+
+  - Voice over IP (VOIP) and telephony
+  - Video (e.g. Netflix and friends)
