@@ -96,8 +96,7 @@ Disadvantages of Distributed Systems
 
 Software
 
-- Little software exists compared to PCs (for example) but the 
-situation is improving with the cloud.
+- Little software exists compared to PCs (for example) but the situation is improving with the cloud.
 
 Networking
 
@@ -223,7 +222,7 @@ Transparency "is the concealment from the user of the separation of components o
 
 Examples
 
-- Access Transparency - enables local and remote objects to be accessed using identical operations (e.g., read file..)
+- Access Transparency - enables local and remote objects to be accessed using identical operations (e g., read file..)
 - Location transparency - location of resources is hidden
 - Migration transparency - resources can move without changing names
 - Replication Transparency - users cannot tell how many copies exist
@@ -233,7 +232,7 @@ Examples
 
 Are there any forms of transparency that distributed systems researchers haven't already thought of?
 
- Design Issues and Goals  - Requirements
+ Design Issues and Goals , Requirements
 ----------------------------------------------------------
 
 - Openness
