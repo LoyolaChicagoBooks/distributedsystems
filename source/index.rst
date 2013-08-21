@@ -17,9 +17,10 @@ Table of Contents
    :maxdepth: 2
 
    
-   intro
+   syllabus
    issues
    dvcs
+   ci
    networking
    concurrency
    messagequeues
@@ -38,7 +39,6 @@ Legacy Content
 .. toctree::
    :maxdepth: 2
 
-   syllabus
    lectures
    
 

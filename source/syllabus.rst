@@ -19,7 +19,8 @@ will be explored, e.g. DNS, CORBA, Java RMI, SOAP (XML-based RPCs),
 Message Passing Interface, and Globus. My version of this course also
 aims to introduce students to research methods and has a substantial
 written and oral communication component.
- There is a substantial software development component in this course.
+
+There is a substantial software development component in this course.
 You are expected to be fluent in a modern object-oriented language (e.g.
 Java, C#, C++, or Python). Java and XML will be presented at times
 during lectures. You are expected to learn this material while doing the
@@ -49,17 +50,15 @@ In any event, this course has significant architecture, design, systems,
 and technical demands. You will likely need to supplement your knowledge
 to flourish in the course.
 
-Required Textbook
------------------
+Recommended Reading (not required in any way)
+--------------------------------------------------
 
-*Distributed Systems: Concepts and Design (3rd or 4th Edition) by George
+*Distributed Systems: Concepts and Design (3rd or 4th Edition ok) by George
 Coulouris (Author), Jean Dollimore (Author), Tim Kindberg (Author)*
 
 Hardcover: 672 pages
 
 Publisher: Addison-Wesley Pub Co; 3rd edition (August 11, 2000)
-
-**
 
 *ISBN: 0201619180*
 
