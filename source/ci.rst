@@ -65,3 +65,35 @@ Continuous Integration Products / Vendors
 - Eclipse Foundation - Hudson
 - Many in-house / script based systems
 
+
+Continuous Integration and the Key Characteristics of Distributed Systems
+-------------------------------------------------------------------------
+
+- Openness 
+	- Several, including TFS and Team City, and any FOSS system allows for scripting, plugins, and expansion.
+	- Some are more "canned" solutions like Team City, others are fully customizable like TFS
+	- Most have a "free as in beer" mode that begins to cost money in wider deployments
+	- Some of the FOSS alternatives can be a challenge to configure
+- Concurrency
+	- Continuous integration systems typically allow for replication and parallelism at the level of the build controller and in build nodes
+	- When the cloud is used, resources consumption and cost can be flexible.
+	- Supporting CI for 100s of developers can require a large amount of compute and I/O resources. These systems definitely have to scale.
+- Scalability
+	- Some systems are able to scale to the range of 10s of build nodes and controllers, most systems can scale to 100s
+	- See http://tfs.visualstudio.com. This is a system that Microsoft has built that scales to the cloud level. You pay a subscription and use fee to use this.
+- Fault Tolerance
+	- Fault tolerance exists on several levels
+	- First is the build controller. Typically a primary / secondary replication system is employed.
+		- Issues of network partitioning aren't usually handled, just single-multi node failures
+	- Second is the build node. The build controller will periodically poll build nodes to test their connectivity. If one node is lost, it is taken out of the pool. Any pending builds on such a system can be re-queued by the developer or automatically by the build controller
+	- Source control and Artifact DB - these usually exist on systems with redundant and fast disk arrays that maintain daily backups. These systems can usually handle single hardware failures and continue to operate.
+- Transparency
+	- To the developer, the only thing that exists is the source control system and the build controller.
+	- The build controller manages a queue of "builds" that a developer monitors.
+	- Whether there are 10s of build nodes or 100s, the developer is not aware of this detail or aware of where the build occurs.
+		- transparency of location
+		- transparency of scale
+
+
+
+
