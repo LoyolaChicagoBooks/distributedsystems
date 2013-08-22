@@ -49,7 +49,7 @@ What are the Bits and Pieces of Continuous Integration?
 
 
 .. figure:: figures/ci/ci_system.jpg
-   :scale: 60 %
+   :scale: 60%
 
    A Possible Corporate Deployment of a Continuous Integration System
 
@@ -94,6 +94,31 @@ Continuous Integration and the Key Characteristics of Distributed Systems
 		- transparency of location
 		- transparency of scale
 
+
+Case Study - My Simple CI System
+--------------------------------
+
+The Front Page of Team City
+---------------------------
+- Build definitions for my active projects
+- Several Windows and Linux software projects
+
+.. figure:: figures/ci/front_page.jpg
+   :scale: 5%
+
+   The Front Page of Team City
+
+
+Build Nodes
+-----------
+- 3 Build Nodes
+	- Two Linux nodes
+	- One Windows nodes
+	- Supports the development of Windows and Linux software
+
+
+.. figure:: figures/ci/build_nodes.jpg
+   :scale: 5%
 
 
 
