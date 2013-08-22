@@ -10,8 +10,8 @@ What Does Continuous Integration Do?
 - Can perform scheduled test or production environment deployments.
 
 
-How Often Continuous Integration is Run
----------------------------------------
+How Often is Continuous Integration Run?
+----------------------------------------
 
 - Continuous Integration can be run as:
 	- Batches - once one build and verification is complete, another immediately starts (grouping more than once change, potentially)
@@ -19,8 +19,8 @@ How Often Continuous Integration is Run
 	- Iteration builds - every day, every week, or some other short period, a distributable product with an installer or package is created. This can be used for manual testing by a test team or by customers.
 
 
-What are the Bits and Pieces of Continuous Integration
-------------------------------------------------------
+What are the Bits and Pieces of Continuous Integration?
+-------------------------------------------------------
 
 - Build Controllers:
 	- A service that coordinates build requests and build operations
