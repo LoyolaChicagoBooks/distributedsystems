@@ -48,6 +48,11 @@ What are the Bits and Pieces of Continuous Integration?
 	- Many continuous integration products are capable of running in the cloud with dynamic resource utilization for the build nodes. Both Team City and Team Foundation Server are well known for this
 
 
+.. figure:: figures/ci/ci_system.jpg
+   :scale: 60 %
+
+   A Possible Corporate Deployment of a Continuous Integration System
+
 Continuous Integration Products / Vendors
 -----------------------------------------
 
