@@ -10,6 +10,6 @@ hg,lcs-systolicarray,ssh://hg@bitbucket.org/loyolachicagocs_plsystems/lcs-systol
 # Student-contributed
 #hg,predatorprey,ssh://hg@bitbucket.org/loyolachicagocs_plsystems/predatorprey-scala-eclipse
 
-git,primenumbers-spray,git@github.com:webservices-cs-luc-edu/primenumbers-spray-scala.git
+#git,primenumbers-spray,git@github.com:webservices-cs-luc-edu/primenumbers-spray-scala.git
 
 hg,hpjpc,ssh://hg@bitbucket.org/loyolachicagocs_books/hpjpc-source-java

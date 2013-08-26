@@ -5,74 +5,65 @@ Welcome to COMP 339-439/Distributed Systems.
 
 .. warning::
 
-   This syllabus is in draft status. Nothing here will be official until well after August 15, 2013.
+   This syllabus should be mostly finalized by the time class meets on Monday, 26 August 2013.
+   If any changes are made after this date, it will not affect the grading scheme and overall
+   expectations of the course.
 
 Synopsis
 --------
 
 This course is designed as a modern discussion of distributed computing
 systems, which represents one of the most important areas in academic
-and business computing today. Topics covered include distributed
-computing, interactive services, collaborative computing, and
-peer-to-peer sharing. Various distributed frameworks and technologies
+and business computing today. When you hear about *emerging* ideas, e.g.
+service-oriented architecture and cloud computing, you are essentially
+hearing about distributed systems by any other name.
+
+In this offering, we'll explore (through lecture and class projects) 
+current topics in distributed computing:  interactive services, collaborative computing,
+peer-to-peer, grids, platforms and infrastructure as services (PaaS and IaaS),
+cloud computing, etc.
+
+Various influential (and historical) distributed frameworks and technologies
 will be explored, e.g. DNS, CORBA, Java RMI, SOAP (XML-based RPCs),
 Message Passing Interface, and Globus. My version of this course also
 aims to introduce students to research methods and has a substantial
 written and oral communication component.
 
-There is a substantial software development component in this course.
-You are expected to be fluent in a modern object-oriented language (e.g.
-Java, C#, C++, or Python). Java and XML will be presented at times
-during lectures. You are expected to learn this material while doing the
-warm-up programming exercises.
+This offering will have a substantial technical component **and** a substantial
+scientific/technical writing component, leading to a substantial *team* project.
 
 Prerequisites
 -------------
 
-Computer Science 271 (recursion and list/tree structures) knowledge will
-be assumed for every student, including you. In particular you should
-have deep knowledge of the following topics:
+Students in this course are expected to have the *minimum* of exposure
+to data structures and algorithms (COMP 271) or equivalent work experience
+(three years in a job with computer science and software development requirements).
+You may be asked to provide a sample of your work if you are lacking in
+prerequisite background.
 
--  Core Data Structures: lists, trees, and maps. If you do not know
-   these ideas from COMP 271 or equivalent, you will have a tough time
-   in this course.
--  Object-Oriented Thinking: classes, objects, and the distinction
-   between the two of of utmost importance. Knowledge of design
-   patterns, while helpful, will be introduced as needed during the
-   course.
+Systems programming (COMP 264), object-oriented programming (COMP 413),
+and operating systems (COMP 374) are all strongly recommended but are not
+required.
 
-Computer Science 313 (for design patterns knowledge) is required but
-students who have strong background in data structures and/or prior
-working knowledge of design patterns/object-oriented development may
-continue in this course.
+Recommended Textbook
+-----------------------
 
-In any event, this course has significant architecture, design, systems,
-and technical demands. You will likely need to supplement your knowledge
-to flourish in the course.
+There are no *required* textbooks for this course. The hope is that you can learn 
+everything you need to know through our lecture notes, supplemental readings (papers
+and web resources), and various open source projects that employ distributed design
+principles.
 
-Recommended Reading (not required in any way)
---------------------------------------------------
+*Distributed Systems: Concepts and Design* by George Coulouris, Jean Dollimore, Tim Kindberg*
 
-*Distributed Systems: Concepts and Design (3rd or 4th Edition ok) by George
-Coulouris (Author), Jean Dollimore (Author), Tim Kindberg (Author)*
+*Distributed Systems: Principles and Paradigms* by Andrew S. Tanenbaum and Maarten van Steen
 
-Hardcover: 672 pages
+.. warning::
 
-Publisher: Addison-Wesley Pub Co; 3rd edition (August 11, 2000)
+   We repeat: It is not required to own either or both of these books. You may even be able to borrow
+   them from Loyola University Chicago's library or the Chicago Public Library. In an effort to keep
+   college affordable to all students, I am mostly phasing out required textbooks as of Fall 2013. 
+   The eventual goal is to have a robust online course, similar to what we have done for COMP 170.
 
-*ISBN: 0201619180*
-
-Alternate Textbook
-------------------
-
-*Distributed Systems: Principles and Paradigms*, 2nd Ed, 2007, Format:
-Cloth, 704 pp
-Authors: Maarten Van Steen, Andrew S. Tanenbaum
-Publisher: Prentice Hall
-ISBN: 10:0132392275
-
-For this class, it is acceptable to purchase a used or older edition of
-the textbook(s). You will need the book to understand the lectures.
 
 Course Requirements and Grade Breakdown
 ---------------------------------------
@@ -80,110 +71,61 @@ Course Requirements and Grade Breakdown
 This is subject to revision through the first week of classes only but
 the percentages are unlikely to change significantly.
 
--  Design/Programming Assignments (10%)
--  Participation (10%)
--  Quiz-Exams (30%)
-
--  Significant Project (50%)
+-  Warm-up Distributed Programming Assignments (25%)
+-  Participation in Piazza Group (15%)
+-  Quizzes (20%)
+-  Written Lecture on a Distributed Topic (20%)
+-  Group Project (20%)
 
 The following is an explanation of the course breakdown:
-
--  *Design/Programming Assignments* will involve working with XML and/or
-   other programming languages and sometimes design tools (e.g. schema
-   editors). This semester, all assignments may be done as a group of up
-   to 3 people. In many cases, this might end up being your group for
-   the semester project as well. Homework will be graded by a check-off
-   process, meaning it is recorded as pass/fail. There will also be an
-   expectation of weekly presentations about the homework, both in terms
-   of strategies for solving the assignment and actual solutions.
--  *Quiz-Exams *\ will take on a new level of importance in the coming
-   term. Quizzes will be used to determine whether you are keeping
-   abreast of the lecture, reading, and assignments. While a mere 10% of
-   your grade is at stake for each exam, you can expect these exams to
-   be challenging if you are not staying on top of everything that is
-   assigned. 
--  *Participation* will be determined based on your involvement in the
-   class in concrete ways. For me, there are multiple ways I can measure
-   your participation. The first is to be active in in-class discussions
-   and make occasional presentations in class. Ideally, I expect every
-   student to speak at least 1-3 times a semester, especially when it
-   comes to the discussion of assignments. The second is to be active in
-   the class discussion group. I'm particularly fond of participation
-   that sheds new insight on material that we might not be able to cover
-   in class and postings that are aimed at helping others.
--  *Projects *\ are obviously an important component of this course. I
-   will be unveiling details about this during the 2nd week of classes.
-   You should start thinking of potential ideas for projects and begin
-   making acquaintances with others with the hope of forming a small
-   team. Groups of 3 or fewer may propose a project idea at any time.
-   Stay tuned for details.
 
 Submitting Homework and Projects
 --------------------------------
 
-We will be using publicly available solutions for submitting XML and
-other programming materials, including your project materials. So you
-will not submit your code on Blackboard, which is not suitable for
-submitting programming assignments in my experience.
-
-For homework assignments, you are encouraged to use a solution that
-allows you to keep your homework solution
-completely \ *private*. `BitBucket  <http://bitbucket.org/>`_\ is an
-excellent solution for this and allows you not only to keep your source
-code on the site but also additional material, e.g. documentation (wiki
-pages), etc., which normally accompanies a strong homework and/or
-project submission.
-
-For projects, you may use a public-hosting solution, especially if you
-are considering the idea of working according to free/open source
-principles. BitBucket is also a strong solution for publicly-hosted
-projects. We also tend to be particularly fond of \ `Google
-Code <http://code.google.com/hosting>`_ but will not limit you to this
-way of thinking/expression. Regardless of what solution you choose,
-every project is expected to maintain a source code repository and have
-a public presence of one form or another and share it with the professor
-(me). Consider using \ `Google Sites <http://sites.google.com/>`_ for a
-basic web presence as well.
-
-We will be discussing this issue in the first week of class. There is a
-possibility that we'll have to tweak this section of the syllabus a bit
-to find the "sweet spot" so to speak.
+All homework will be submitted using Bitbucket (bitbucket.org). In addition, for the team
+project, you must not only use bitbucket.org but there must be evidence of weekly progress to
+complete your project. This will be determined by looking at the commit logs of each team member.
+Details will be presented during class as we get closer to starting the project.
 
 Attendance Policy
 -----------------
 
-I do not take attendance in class.
-
-Attendance, however, is strongly encouraged. If you plan to miss class,
-it is ok to let me know but, more importantly, please make sure you
-speak with at least one other person in class to find out anything you
-might have missed. Significant absences from class may hurt your
-participation grade.
+I do not take attendance in class. Significant absence from class, especially without any 
+notification, will result in a zero grade for participation. If you anticipate a significant
+number of absences, I encourage you to consider dropping this course now and finding an alternative
+that better suits your schedule.
 
 Late Work Policy
 ----------------
 
-Beginning this term, late work will be accepted but at a slight penalty.
-This penalty is best illustrated by example (A becomes A-, A- becomes
-B+, B+ becomes B, etc.) Effectively, it's a one-stop penalty. The
-assignment will be graded as if you had completed it on time, after
-which the deduction will be applied. 
+Late work is accepted but will carry a 20% penalty. Yes, this means that the highest grade you
+can earn for late work is a B. Owing to the nature of this semester's offering, where we will be 
+building up to a massive group project, it is crucial that work be completed on time. 
 
-Late work will not be accepted for assignment N once assignment N+1's
-due date has arrived. This means, in practice, that a zero will be
-recorded for this assignment.
+.. warning::
+
+   You are strongly encouraged to find a partner for pair programming, especially on the 
+   warm-up assignments. Unlike other classes you may have taken, the focus is not only on individual
+   celebrity but also on what you can accomplish as a group.
+
+Our course embraces the trend of the industry where people have to learn to work with others and be productive in team situations. The team project is not an afterthought. It is deeply integrated into the social fabric of the course and will be an experience that you hopefully remember fondly when you are no longer a student but working on real-world problem solving in the future.
+
 
 Quiz/Exam Attendance Policy
 ---------------------------
 
-Quiz absences require advance notification and/or appropriate
-documentation (e.g. doctor's note or documentation from Wellness
-Center).
+An unexcused absence results in a zero for the missed quiz. 
 
-Failure to comply with this policy results in a zero. 
+An excused absence will only be granted for medical reasons or family emergencies. You may be asked to furnish evidence if either of these situations applies.
+
+In the case of an excused absence, you must make up the quiz within one week. I will rarely make a quiz available early, owing to the fact that I do not always have the quiz ready until just a few days before the scheduled quiz date.
+
+All quizzes are open notes and code. We will discuss the restrictions on computer usage in more detail as the first quiz date approaches.
 
 Academic Integrity Policy
 -------------------------
 
-Link to the university web site goes here.
+In general, we observe the College of Arts and Sciences integrity policy found at http://www.luc.edu/cas/pdfs/CAS_Academic_Integrity_Statement_December_07.pdf.
+
+You will be asked to sign your exam to indicate your intent to abide by these terms. More important than any terms and conditions is your own personal ethics. Please don't ruin your future by doing something that you know isn't right. We want to keep Distributed Systems fun for all.
 
