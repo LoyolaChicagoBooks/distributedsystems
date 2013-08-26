@@ -9,6 +9,25 @@ Welcome to COMP 339-439/Distributed Systems.
    If any changes are made after this date, it will not affect the grading scheme and overall
    expectations of the course.
 
+Instructors
+-------------
+
+| George K. Thiruvathukal (primary instructor)
+| Professor of Computer Science
+| http://thiruvathukal.com
+
+| Joseph Kaylor (co-instructor)
+| Professional in Residence
+| http://joekaylor.net
+
+Please view our web pages for contact information.
+
+Additional Sites
+-----------------------
+
+| Sakai Gradebook, https://sakai.luc.edu/portal/site/COMP_339_001_5132_1136
+| Piazza (see Sakai for link to join)
+
 Synopsis
 --------
 
