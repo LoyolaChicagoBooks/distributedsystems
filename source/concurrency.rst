@@ -107,7 +107,51 @@ Common Data Structures in Concurrent Programming
 	- Bound buffers are used to make sure that when one thread is producing work for a second thread, that if one thread is faster or slower than the other, that they appropriately wait to some extent for each other.
 
 
-		
-	
+Design Considerations
+---------------------
+
+- Threading requires the support of the operating system - a threading library / package is needed
+	- In Windows, this is a part of the Windows SDK and .NET Framework
+	- In Linux and Mac OSX, PThreads provides threading
+- Thread usage and creation
+	- Threads can be started and stopped on demand or a thread pool can be used
+	- Starting threads dynamically:
+		- Has some cost associated with asking the OS to create and schedule the thread
+		- It can be architecturally challenging to maintain an appropriate number of threads across software components
+		- This is overall the most simple approach
+	- Thread Pools
+		- The number of threads can be defined at compile time or when the program is first launched
+		- Instead of creating a new thread, the program acquires a thread and passes a function pointer to the thread to execute
+		- When the given task is completed, the thread is returned to the pool.
+		- This approach does not have the overhead of creating / destroying threads as threads are reused.
+		- This approach often requires library support or some additional code.
+- The total number of threads
+	- Having several hundred threads on a system with an order of magnitude fewer cores can cause you to run into trouble.
+	- If a majority of those threads are runnable, then the program will spend most of its time context switching between those threads rather than actually getting work done.
+	- If such a system is dynamically starting and stopping threads, then the program will most likely spend most of its time creating and destroying threads.
+
+
+Kernel Threads vs User Mode Threads
+-----------------------------------
+
+- There are two types of threads:
+	- Kernel Threads
+		-Supported by modern operating systems
+		-Scheduled by the operating system
+	- User Threads
+		-Supported by almost everything
+		-Scheduled by the process
+- Context switching:
+	- Kernel threads have a higher overhead because the scheduler must be invoked and there might be a time lag before a runnable thread is actually executed.
+	- Kernel threads often perform very well because the operating system has more information about the resource state of the computer and can make better global scheduling decisions than can a program
+	- User-mode threads can context switch with fewer overall operations, but scheduling them is guess-work.
+	- User mode threads can be created more rapidly because new stacks and scheduler entries do not need to be created by the operating system
+- Where are user-mode threads used?
+	- In systems without kernel mode threads
+	- When the number of threads a system needs is in the hundreds or thousands (user-mode threads scale better in these scenarios)
+- Where are kernel-mode threads used?
+	- When the number of threads is not very high (less than 10 per core)
+	- When blocking calls are involved (user-mode thread libraries usually have separate I/O libraries)
+
 
 
