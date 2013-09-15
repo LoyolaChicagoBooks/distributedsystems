@@ -56,10 +56,18 @@ Common Threading Use Cases
 	- An algorithm is designed to solve some small part or subproblem of a larger problem
 	- To the extent that the subproblems are not inter-dependent, they can be executed in parallel
 	- Multiple threads can work against a common task queue.
+
+	.. figure:: figures/concurrency/parallel_threads.png
+	   :align: center
+	   :alt: Pipeline Thread Model
+
 - Pipeline processing:
 	- An algorithm must be executed in several stages that depend upon each other.
 	- For example if there are three stages, then three threads can be launched for each of the stages. As the first thread completes some part of the total work, it can pass it to a queue for the second stage to be processed by the second thread. At this time, the first thread and second thread can work on their own stages in parallel. The same continues to the third thread for the third stage of computation.
 
+	.. figure:: figures/concurrency/pipeline_threads.png
+	   :align: center
+	   :alt: Pipeline Thread Model
 
 Mutual Exclusion
 ----------------
