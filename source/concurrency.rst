@@ -42,7 +42,7 @@ What are Processes, Threads?
 
 	.. figure:: figures/concurrency/memory_layout_multithreaded.png
 	   :align: center
-	   :alt: Process Memory Layout
+	   :alt: Threaded Memory Layout
 
 
 Common Threading Use Cases
@@ -55,7 +55,7 @@ Common Threading Use Cases
 
 	.. figure:: figures/concurrency/client_server.png
 	   :align: center
-	   :alt: Pipeline Thread Model
+	   :alt: Client-Server Thread Model
 
 - Parallel computation:
 	- An algorithm is designed to solve some small part or subproblem of a larger problem
@@ -64,7 +64,7 @@ Common Threading Use Cases
 
 	.. figure:: figures/concurrency/parallel_threads.png
 	   :align: center
-	   :alt: Pipeline Thread Model
+	   :alt: Parallel Thread Model
 
 - Pipeline processing:
 	- An algorithm must be executed in several stages that depend upon each other.
@@ -129,7 +129,7 @@ Common Data Structures in Concurrent Programming
 
 	.. figure:: figures/concurrency/bound_buffer.png
 	   :align: center
-	   :alt: Pipeline Thread Model
+	   :alt: Bound Buffer
 
 
 Design Considerations
@@ -166,6 +166,12 @@ Kernel Threads vs User Mode Threads
 	- User Threads
 		-Supported by almost everything
 		-Scheduled by the process
+
+	.. figure:: figures/concurrency/kernel_user_threads.png
+	   :align: center
+	   :alt: Kernel and User Mode Threads
+
+
 - Context switching:
 	- Kernel threads have a higher overhead because the scheduler must be invoked and there might be a time lag before a runnable thread is actually executed.
 	- Kernel threads often perform very well because the operating system has more information about the resource state of the computer and can make better global scheduling decisions than can a program
