@@ -27,6 +27,10 @@ What are Processes, Threads?
 	- An exclusive virtual address space
 	- Sandboxing from other process except to the extent that the process participates in IPC
 
+	.. figure:: figures/concurrency/memory_layout.png
+	   :align: center
+	   :alt: Process Memory Layout
+
 - Threads:
 	- Threads can be thought of (and are often referred to as) lightweight processes
 	- Provide multiple threads of control
@@ -35,6 +39,10 @@ What are Processes, Threads?
 	- One parent process, the virtual address space is shared across processes
 	- Each thread runs sequentially
 	- In a given process with N threads, 0-i threads may be blocked, and 0-k threads are runnable or running.
+
+	.. figure:: figures/concurrency/memory_layout_multithreaded.png
+	   :align: center
+	   :alt: Process Memory Layout
 
 
 Common Threading Use Cases
