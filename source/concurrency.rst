@@ -52,6 +52,11 @@ Common Threading Use Cases
 	- One thread listens on a network socket for clients
 	- When a client connects, a new thread is spawned to handle the request. This permits several clients to connect to the file server at one time because each request is handled by a separate thread of execution.
 	- To send the file data, two threads can be used the first can read from the file on disk and the second can write the read buffers to the socket. 
+
+	.. figure:: figures/concurrency/client_server.png
+	   :align: center
+	   :alt: Pipeline Thread Model
+
 - Parallel computation:
 	- An algorithm is designed to solve some small part or subproblem of a larger problem
 	- To the extent that the subproblems are not inter-dependent, they can be executed in parallel
