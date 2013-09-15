@@ -127,6 +127,10 @@ Common Data Structures in Concurrent Programming
 	- Dequeue() - dequeues an item from the data structure. If there are zero items in the queue, Dequeue() will block until another thread enqueues an item in the data structure
 	- Bound buffers are used to make sure that when one thread is producing work for a second thread, that if one thread is faster or slower than the other, that they appropriately wait to some extent for each other.
 
+	.. figure:: figures/concurrency/bound_buffer.png
+	   :align: center
+	   :alt: Pipeline Thread Model
+
 
 Design Considerations
 ---------------------
