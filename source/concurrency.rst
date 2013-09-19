@@ -116,6 +116,18 @@ Tools for Achieving Mutual Exclusion
 	- Mutual Exclusion - http://osdi.cs.courseclouds.com/html/mutualexclusion.html
 	- Deadlock - http://osdi.cs.courseclouds.com/html/deadlock.html
 
+Mutex Example
+-----------------
+
+This code example shows how to implement a classic mutex, a.k.a. a Lock, in Java:
+
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/thread/Lock.java
+   :start-after: begin-class-Lock
+   :end-before: end-class-Lock
+   :linenos:
+
+
+
 Common Data Structures in Concurrent Programming
 ------------------------------------------------
 
