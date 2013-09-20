@@ -57,6 +57,14 @@ Common Threading Use Cases
 	   :align: center
 	   :alt: Client-Server Thread Model
 
+- Example Client-Server - a TCP echo server
+
+.. literalinclude:: ../examples/systems-code-samples/threads/threads/TcpServer.cs
+   :start-after: begin-class-TcpServer
+   :end-before: end-class-TcpServer
+   :linenos:
+
+
 - Parallel computation:
 	- An algorithm is designed to solve some small part or subproblem of a larger problem
 	- To the extent that the subproblems are not inter-dependent, they can be executed in parallel
@@ -66,6 +74,14 @@ Common Threading Use Cases
 	   :align: center
 	   :alt: Parallel Thread Model
 
+- Example Parallel Computation - factoring an integer
+
+.. literalinclude:: ../examples/systems-code-samples/threads/threads/ParallelComputation.cs
+   :start-after: begin-class-ParallelComputation
+   :end-before: end-class-ParallelComputation
+   :linenos:
+
+
 - Pipeline processing:
 	- An algorithm must be executed in several stages that depend upon each other.
 	- For example if there are three stages, then three threads can be launched for each of the stages. As the first thread completes some part of the total work, it can pass it to a queue for the second stage to be processed by the second thread. At this time, the first thread and second thread can work on their own stages in parallel. The same continues to the third thread for the third stage of computation.
@@ -73,6 +89,14 @@ Common Threading Use Cases
 	.. figure:: figures/concurrency/pipeline_threads.png
 	   :align: center
 	   :alt: Pipeline Thread Model
+
+- Example Pipeline Processing - file compression
+
+.. literalinclude:: ../examples/systems-code-samples/threads/threads/PipelineComputation.cs
+   :start-after: begin-class-PipelineComputation
+   :end-before: end-class-PipelineComputation
+   :linenos:
+
 
 Mutual Exclusion
 ----------------
@@ -143,6 +167,7 @@ Common Data Structures in Concurrent Programming
 	   :align: center
 	   :alt: Bound Buffer
 
+- Example Bound Buffer
 
 .. literalinclude:: ../examples/systems-code-samples/threads/threads/BoundBuffer.cs
    :start-after: begin-class-BoundBuffer
