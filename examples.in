@@ -13,3 +13,6 @@ hg,lcs-systolicarray,ssh://hg@bitbucket.org/loyolachicagocs_plsystems/lcs-systol
 #git,primenumbers-spray,git@github.com:webservices-cs-luc-edu/primenumbers-spray-scala.git
 
 hg,hpjpc,ssh://hg@bitbucket.org/loyolachicagocs_books/hpjpc-source-java
+
+hg,systems-code-samples,ssh://hg@bitbucket.org/loyolachicagocs_books/systems-code-samples
+
