@@ -144,6 +144,12 @@ Common Data Structures in Concurrent Programming
 	   :alt: Bound Buffer
 
 
+.. literalinclude:: ../examples/systems-code-samples/threads/threads/BoundBuffer.cs
+   :start-after: begin-class-BoundBuffer
+   :end-before: end-class-BoundBuffer
+   :linenos:
+
+
 Design Considerations
 ---------------------
 
