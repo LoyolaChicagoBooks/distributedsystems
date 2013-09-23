@@ -195,6 +195,51 @@ processing can continue.
    :linenos:
 
 
+Deadlock - a classic problem
+----------------------------------
+
+A classic problem in computer science and one that is often studied in operating systems
+to show the hazards of working with shared, synchronized state, is the *dining philosophers problem*.
+We won't describe the entire problem here but you can read http://en.wikipedia.org/wiki/Dining_philosophers_problem.
+
+our "solution" has the following design:
+
+- Fork: A class to represent the forks shared by adjacent philosophers at the table.
+
+- Diner0: A class used to represent a philosopher. The philosopher does three things a philosopher normally does: think(), sleep(), and eat().
+
+- Diners0: A class used to represent all of the diners seated at the table with their shared forks. This is where the concurrency takes place.
+
+Fork 
+-----
+
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/Fork.java
+   :start-after: begin-class-Fork
+   :end-before: end-class-Fork
+   :linenos:
+
+Diner0
+--------
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/Diner0.java
+   :start-after: begin-class-Diner0
+   :end-before: end-class-Diner0
+   :linenos:
+
+Diners0
+--------
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/Diners0.java
+   :start-after: begin-class-Diners0
+   :end-before: end-class-Diners0
+   :linenos:
+
+
+Diners1 - eliminating deadlock with resource enumeration
+------------------------------------------------------------
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/Diners1.java
+   :start-after: begin-fork-ordering
+   :end-before: end-fork-ordering
+   :linenos:
+
 Common Data Structures in Concurrent Programming
 ------------------------------------------------
 
