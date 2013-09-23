@@ -92,6 +92,7 @@ Common Threading Use Cases
 
 - Example Pipeline Processing - file compression
 
+
 .. literalinclude:: ../examples/systems-code-samples/threads/threads/PipelineComputation.cs
    :start-after: begin-class-PipelineComputation
    :end-before: end-class-PipelineComputation
@@ -108,7 +109,6 @@ Common Threading Use Cases
 
 
 - Helper class - ThreadedList
-
 
 .. literalinclude:: ../examples/systems-code-samples/threads/threads/ThreadedList.cs
    :start-after: begin-class-ThreadedList
