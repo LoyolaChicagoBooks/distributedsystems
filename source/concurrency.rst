@@ -97,12 +97,17 @@ Common Threading Use Cases
    :end-before: end-class-PipelineComputation
    :linenos:
 
+
 - Example Pipeline Processing - a more concise and language friendly file compression
+
 
 .. literalinclude:: ../examples/systems-code-samples/threads/threads/ConcisePipelineComputation.cs
    :start-after: begin-class-ConcisePipelineComputation
    :end-after: end-class-ConcisePipelineComputation
    :linenos:
+
+
+- Helper class - ThreadedList
 
 
 .. literalinclude:: ../examples/systems-code-samples/threads/threads/ThreadedList.cs
