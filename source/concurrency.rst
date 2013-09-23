@@ -104,7 +104,7 @@ Common Threading Use Cases
 
 .. literalinclude:: ../examples/systems-code-samples/threads/threads/ConcisePipelineComputation.cs
    :start-after: begin-class-ConcisePipelineComputation
-   :end-after: end-class-ConcisePipelineComputation
+   :end-before: end-class-ConcisePipelineComputation
    :linenos:
 
 
@@ -112,7 +112,7 @@ Common Threading Use Cases
 
 .. literalinclude:: ../examples/systems-code-samples/threads/threads/ThreadedList.cs
    :start-after: begin-class-ThreadedList
-   :end-after: end-class-ThreadedList
+   :end-before: end-class-ThreadedList
    :linenos:
 
 
