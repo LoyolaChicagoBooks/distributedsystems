@@ -159,16 +159,40 @@ Tools for Achieving Mutual Exclusion
 	- Mutual Exclusion - http://osdi.cs.courseclouds.com/html/mutualexclusion.html
 	- Deadlock - http://osdi.cs.courseclouds.com/html/deadlock.html
 
-Mutex Example
------------------
+Mutex Example/Java
+--------------------
 
-This code example shows how to implement a classic mutex, a.k.a. a Lock, in Java:
+This code example shows how to implement a classic mutex, a.k.a. a Lock, in Java.
+
+These examples come from http://hpjpc.googlecode.com by Christopher and Thiruvathukal.
 
 .. literalinclude:: ../examples/hpjpc/src/info/jhpc/thread/Lock.java
    :start-after: begin-class-Lock
    :end-before: end-class-Lock
    :linenos:
 
+Semaphore Example
+-------------------
+
+This shows how to implement a counting semaphore in the Java programming language.
+
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/thread/Semaphore.java
+   :start-after: begin-class-Semaphore
+   :end-before: end-class-Semaphore
+   :linenos:
+
+
+Barrier
+-------------
+
+This shows how to implement a barrier, which is a synchronization mechanism for awaiting
+a specified number of threads before processing can continue. Once all threads have arrived, 
+processing can continue.
+
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/thread/SimpleBarrier.java
+   :start-after: begin-class-SimpleBarrier
+   :end-before: end-class-SimpleBarrier
+   :linenos:
 
 
 Common Data Structures in Concurrent Programming
