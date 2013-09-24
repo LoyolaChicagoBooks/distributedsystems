@@ -74,6 +74,10 @@ Common Threading Use Cases
 	   :align: center
 	   :alt: Parallel Thread Model
 
+.. warning:: 
+
+   The focus of this course is on *distributed* (not *parallel*) systems. Nevertheless, you may find that you want to take advantage of parallel computing in your work. We encourage you to read Christopher and Thiruvathukal, http://hpjpc.googlecode.com, which contains many examples of parallel algorithms in Java. You may also find Läufer, Lewis, and Thiruvathukal's Scala workshop tutorial helpful. See http://scalaworkshop.cs.luc.edu. 
+
 - Example Parallel Computation - factoring an integer
 
 .. literalinclude:: ../examples/systems-code-samples/threads/threads/ParallelComputation.cs
