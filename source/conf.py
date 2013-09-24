@@ -140,6 +140,8 @@ html_theme_options = {
     #
     # Note that this is served off CDN, so won't be available offline.
     'bootswatch_theme': "united",
+
+    'bootstrap_version' : "2"
 }
 
 html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
