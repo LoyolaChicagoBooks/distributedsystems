@@ -315,5 +315,59 @@ Kernel Threads vs User Mode Threads
 	- When the number of threads is not very high (less than 10 per core)
 	- When blocking calls are involved (user-mode thread libraries usually have separate I/O libraries)
 
+Concurrent File Copy Example
+--------------------------------
 
+- FileCopy0: The sequential version
+- FileCopy1: The concurrent version
+
+Sequential File Copy
+------------------------------------------
+
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/FileCopy0.java
+   :start-after: begin-class-FileCopy0
+   :end-before: end-class-FileCopy0
+   :linenos:
+
+Concurrent File Copy Organization
+------------------------------------------
+
+Quick overview of the various classes:
+
+- Pool: Maintains a list of buffers that can be used for allocating/freeing blocks of data without triggering new (or dispose) repeatedly.
+- Buffer: Used as a shared object for reading and writing blocks of data (via the FileCopyReader1 and FileCopyWriter1 classes)
+- BufferQueue: Used to queue up blocks as they are read or written. This allows for varying speeds of reader and writer, subject to the number of blocks available in the Pool.
+- FileCopyReader1: Used to run the reader thread.
+- FileCopyWriter1: Used to run the writer thread.
+- FileCopy1: Used to act as a drop in replacement for FileCopy0. Sets up the reader and writer threads and then joins with both when the reading/writing are completed.
+
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/FileCopy1.java
+   :start-after: begin-class-FileCopy1
+   :end-before: end-class-FileCopy1
+   :linenos:
+
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/FileCopyReader1.java
+   :start-after: begin-class-FileCopyReader1
+   :end-before: end-class-FileCopyReader1
+   :linenos:
+
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/FileCopyWriter1.java
+   :start-after: begin-class-FileCopyWriter1
+   :end-before: end-class-FileCopyWriter1
+   :linenos:
+
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/Buffer.java
+   :start-after: begin-class-Buffer
+   :end-before: end-class-Buffer
+   :linenos:
+
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/BufferQueue.java
+   :start-after: begin-class-BufferQueue
+   :end-before: end-class-BufferQueue
+   :linenos:
+
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/Pool.java
+   :start-after: begin-class-Pool
+   :end-before: end-class-Pool
+   :linenos:
 
