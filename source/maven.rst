@@ -15,7 +15,8 @@ Creating a Maven Project from Scratch
 
 - The following command will invoke maven, fetch some initial dependencies, and list a set of archetypes that are available. If you press 'enter' at the first question, you will create a default Java desktop application. Maven will ask you to fill out some identifying information for your project (such as a project name, group name, etc…).
 
-::
+.. code-block:: c
+
 	$ mvn archetype:generate
 
 
@@ -34,7 +35,8 @@ Generating an Eclipse Project from a Maven Project
 
 - This command will generate the necessary Eclipse project files
 
-::
+.. code-block:: c
+
 	$ mvn eclipse:eclipse
 
 
@@ -45,14 +47,14 @@ Configuring Eclipse
 - The created project should open in eclipse, but it is possible you might run into some problems.
 
 - Often, you may see an error related to M2_REPO not begin defined. To fix this
-	# Right click on your project in the Package Explorer
-	# click on Properties in the context menu
-	# click on the Libraries tab
-	# click on the "Add Variable" button
-	# click "Configure Variables"
-	# click "New"
-	# Under name put M2_REPO
-	# Under Path, put your home folder and .m2/repository. On my system this is /Users/joe/.m2/repository
+	#. Right click on your project in the Package Explorer
+	#. click on Properties in the context menu
+	#. click on the Libraries tab
+	#. click on the "Add Variable" button
+	#. click "Configure Variables"
+	#. click "New"
+	#. Under name put M2_REPO
+	#. Under Path, put your home folder and .m2/repository. On my system this is /Users/joe/.m2/repository
 
 - Your project should build just fine. You are ready to develop your project.
 
@@ -62,7 +64,8 @@ Running Unit tests with Maven
 
 - Running unit tests on the command line is simple with Maven, just run the following command
 
-::
+.. code-block:: c
+
 	$ mvn test
 
 
