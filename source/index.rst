@@ -21,6 +21,7 @@ Table of Contents
    issues
    dvcs
    ci
+   maven
    networking
    concurrency
    messagequeues
