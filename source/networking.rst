@@ -32,67 +32,66 @@ Many Types of Networks
 ----------------------------------------------------------------------
 
 Physical Media
-copper wires (Ethernet, RS232-C, V.32, etc.)
-fiber optics (ATM, FDDI)
-air (IR, Radio, micro-wave)
-Speeds (link not aggregate)
-low
-modems (few k bits/sec)
-pagers
-medium
-Ethernet (10-100 Mbps)
-Token Ring (10 Mbps)
-high
-ATM (155-655 Mbps)
-Myrinet (600 Mbps)
-SONET (OC-48 - 2488 Mbps)
+	- copper wires (Ethernet, RS232-C, V.32, etc.)
+	- fiber optics (ATM, FDDI)
+	- air (IR, Radio, micro-wave)
+	- Speeds (link not aggregate)
+	- low
+		- modems (few k bits/sec)
+		- pagers
+	- medium
+		- Ethernet (10-100 Mbps)
+		- Token Ring (10 Mbps)
+	- high
+		- ATM (155-655 Mbps)
+		- Myrinet (600 Mbps)
+		- SONET (OC-48 - 2488 Mbps)
 
 Many Types of Networks
 ----------------------------------------------------------------------
 
-Local Area Networks
-Relatively high-speed (oh yeah!)
-Normally single building, campus, Office
-Most of the time direct (does not mean all-to-all) connection between computers
-Low Latency
-Eg., Ethernet, FDDI, IBM Token Ring
-Wide Area Networks
-Msgs at lower speeds between systems separated by large distances
-Communication circuits connected by “Packet switching” computers, that also manage the network
-Messages are routed by “packet switches”
-E.g., ISDN, BISDN, ATM
+- Local Area Networks
+	- Relatively high-speed (oh yeah!)
+	- Normally single building, campus, Office
+	- Most of the time direct (does not mean all-to-all) connection between computers
+	- Low Latency
+	- Eg., Ethernet, FDDI, IBM Token Ring
+- Wide Area Networks
+	- Msgs at lower speeds between systems separated by large distances
+	- Communication circuits connected by “Packet switching” computers, that also manage the network
+	- Messages are routed by “packet switches”
+	- E.g., ISDN, BISDN, ATM
 
 Many Types of Networks
 ----------------------------------------------------------------------
 
-Metropolitan Area Networks (MANs)
-within cities, towns, use fiber-optics cables
-recent, to carry voice, video...
+- Metropolitan Area Networks (MANs)
+	- within cities, towns, use fiber-optics cables
+	- recent, to carry voice, video...
 
 Internetworks
 ----------------------------------------------------------------------
 
-Remember - distributed systems require extensibility
-Must be able to connect/link networks together => Internetworks
-Normally achieved by linking component networks with dedicated routers OR
-by connecting them by general purpose computers called “gateways”
-protocols that support addressing and transmission between these networks are added
-Internet is a GIANT Wide-Area-Network connecting thousands of component networks.
+- Remember - distributed systems require extensibility
+- Must be able to connect/link networks together => Internetworks
+- Normally achieved by linking component networks with dedicated routers OR
+- by connecting them by general purpose computers called “gateways”
+- protocols that support addressing and transmission between these networks are added
+- Internet is a GIANT Wide-Area-Network connecting thousands of component networks.
 
 Performance Issues
 ----------------------------------------------------------------------
 
-
-Performance parameters
-Latency - time needed to transfer an empty message between two systems - normally measures software delay and transit time
-What is software delay?
-time to access the network, I.e., put bits on the network from the time a message is sent by the application and time to retrieve the bits and supply the msg to the receiver
-software delay can be quite large because message has to go through several layers (later)
-Bandwidth (or Data Transfer Rate) seen by a message
-rate at which data is transferred over the network once the transmission started
-Network Bandwidth - Volume of traffic per unit time transferred across the network
-Quality of Service (QoS) - other guarantees such as delay and b/w guarantees, reliability and availability guarantees
-Assuming no delays due to congestion
+- Performance parameters
+	- Latency - time needed to transfer an empty message between two systems - normally measures software delay and transit time
+	- What is software delay?
+		- time to access the network, I.e., put bits on the network from the time a message is sent by the application and time to retrieve the bits and supply the msg to the receiver
+		- software delay can be quite large because message has to go through several layers (later)
+	- Bandwidth (or Data Transfer Rate) seen by a message
+		- rate at which data is transferred over the network once the transmission started
+	- Network Bandwidth - Volume of traffic per unit time transferred across the network
+	- Quality of Service (QoS) - other guarantees such as delay and b/w guarantees, reliability and availability guarantees
+	- Assuming no delays due to congestion
 
 Example- A Typical Campus Network
 ----------------------------------------------------------------------
@@ -102,16 +101,16 @@ FIGURE
 Network Topologies
 ----------------------------------------------------------------------
 
-How are the communicating objects connected
-Fully connected - link between all sites
-Partially connected
-links between subset of sites
-can be an arbitrary graph
-Hierarchical networks
-network topology looks like a tree
-internal nodes route messages between different sub-trees
-if an internal node fails, children can not communicate with each other
-star network - hierarchical network with single internal node
+- How are the communicating objects connected
+- Fully connected - link between all sites
+- Partially connected
+	- links between subset of sites
+	- can be an arbitrary graph
+- Hierarchical networks
+	- network topology looks like a tree
+	- internal nodes route messages between different sub-trees
+	- if an internal node fails, children can not communicate with each other
+	- star network - hierarchical network with single internal node
 
 Network Topologies
 ----------------------------------------------------------------------
@@ -121,109 +120,107 @@ FIGURE
 A Network is not an Island
 ----------------------------------------------------------------------
 
-Reason for networks is to share information
-must be able to communicate in a common language
-called protocols
-The nice thing about protocols is that there are so many of them!
-Protocols
-must be unambiguous and followed exactly
-rule of thumb for good protocol implementations
-be rigorous is what you generate
-be liberal in what you accept
-there are many different aspects to protocols	
-electrical through web services
+- Reason for networks is to share information
+	- must be able to communicate in a common language
+	- called protocols
+		- The nice thing about protocols is that there are so many of them!
+- Protocols
+	- must be unambiguous and followed exactly
+		- rule of thumb for good protocol implementations
+			- be rigorous is what you generate
+			- be liberal in what you accept
+	- there are many different aspects to protocols	
+		- electrical through web services
 
 Design Issues In Layers
 ----------------------------------------------------------------------
 
-Rules for data transmission (Protocol)
-full Vs. half duplex
-error control (detection, correction, etc.)
-flow control (rate matching, overuse of shared resources)
-message order (do things arrive in the same order as sent?)
-Abstractions for communications
-end points for communication
-switches, nodes, processes, threads in a process
-how are these end points named (addresses)?
-service providers and service users
-Service Primitives
-operations performed by a layer
-events and their actions
-request, indication, response, confirm
+- Rules for data transmission (Protocol)
+	- full Vs. half duplex
+	- error control (detection, correction, etc.)
+	- flow control (rate matching, overuse of shared resources)
+	- message order (do things arrive in the same order as sent?)
+- Abstractions for communications
+	- end points for communication
+		- switches, nodes, processes, threads in a process
+		- how are these end points named (addresses)?
+	- service providers and service users
+- Service Primitives
+	- operations performed by a layer
+	- events and their actions
+	- request, indication, response, confirm
 
 Protocols are divided into layers
 ----------------------------------------------------------------------
 
-ISO - seven layer reference model
-Application
-Presentation
-Session
-Transport 
-Network
-Link
-Physical
+- ISO - seven layer reference model
+	- Application
+	- Presentation
+	- Session
+	- Transport 
+	- Network
+	- Link
+	- Physical
 
-TCP/IP - four layer model
-----------------------------------------------------------------------
-
-application
-transport
-network (internet)
-link
+- TCP/IP - four layer model
+	- application
+	- transport
+	- network (internet)
+	- link
 
 
 Physical Layer
 ----------------------------------------------------------------------
 
-Goal: Raw bits over a communication channel
-Sample Issues:
-how to encode a 0 Vs. 1?
-what voltage should be used?
-how long does a bit need to be signaled?
-what does the cable, plug, antenna, etc. look like?
-Examples:
-modems
-“knock once for yes, twice for no”
-X.21
+- Goal: Raw bits over a communication channel
+- Sample Issues:
+	- how to encode a 0 Vs. 1?
+	- what voltage should be used?
+	- how long does a bit need to be signaled?
+	- what does the cable, plug, antenna, etc. look like?
+- Examples:
+	- modems
+	- “knock once for yes, twice for no”
+	- X.21
 
 Data Link Layer
 ----------------------------------------------------------------------
 
-Goal: transmit error free frames over the physical link
-Sample Issues:
-how big is a frame?
-can I detect an error in sending the frame?
-what demarks the end of the frame?
-how to control access to a shared channel?
-Examples:
-Ethernet framing
-CSMA/CD
+- Goal: transmit error free frames over the physical link
+- Sample Issues:
+	- how big is a frame?
+	- can I detect an error in sending the frame?
+	- what demarks the end of the frame?
+	- how to control access to a shared channel?
+- Examples:
+	- Ethernet framing
+	- CSMA/CD
 
 The Network Layer
 ----------------------------------------------------------------------
 
-Goal: controlling operations of the subset
-Sample Issues:
-how route packets that have to travel several hops?
-control congestion - too many messages at once
-accounting - charge for use of the network
-fragment or combine packets depending on rules of link layer
-Examples:
-IP
-X25
+- Goal: controlling operations of the subset
+- Sample Issues:
+	- how route packets that have to travel several hops?
+	- control congestion - too many messages at once
+	- accounting - charge for use of the network
+	- fragment or combine packets depending on rules of link layer
+- Examples:
+	- IP
+	- X25
 
 The Transport Layer
 ----------------------------------------------------------------------
 
-Goal: accurately transport session data in order
-end points are the sending and receiving machines
-Sample Issues:
-how to order messages and detect duplicates
-error detection (corrupt packets) and retransmission
-connectionless or connection-oriented
-Examples:
-TCP (connection-oriented)
-UDP
+- Goal: accurately transport session data in order
+	- end points are the sending and receiving machines
+- Sample Issues:
+	- how to order messages and detect duplicates
+	- error detection (corrupt packets) and retransmission
+	- connectionless or connection-oriented
+- Examples:
+	- TCP (connection-oriented)
+	- UDP
 
 The Session & Presentation Layers
 ----------------------------------------------------------------------
