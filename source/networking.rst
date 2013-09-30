@@ -294,13 +294,12 @@ Marshaling
 - For example msg -  5 smith 6 London 1934
 - In C, ``sprintf()`` (data item -> array of characters), ``sscanf()`` for opposite::
 
-.. code-block:: c
+The following shows how to marshall some data using ``sprintf()``::
 
    char *name = “smith”, place = “London”; int year = 1934
    sprintf(message, “%d %s %d %s %d”, strlen(name), name, strlen(place), place, years);
 
-
-- will marshal in the sending program
+Can you think of how to write the unmarshalling version using ``sscanf()``?
 
 Case Study: UNIX Interprocess Communication (IPC)
 ----------------------------------------------------------------------
@@ -310,6 +309,78 @@ Case Study: UNIX Interprocess Communication (IPC)
 - Communication operations based on socket pairs (sender and receiver)
 - Msgs queued at sender socket until network protocol transmits them and ack
 - Before communication can occur - recipient must BIND its socket descriptor to a socket address 
+
+
+Example - Simple TCP Messaging Framework (from HPJPC)
+----------------------------------------------------------
+
+- TCP/IP example
+- simple messaging service where the client/server exchange Message objects containing key/value
+  parameters
+- can send all primitive types or binary-encoded data
+
+- Key classes
+
+  - Message
+  - MessageClient
+  - MessageServer and MessageServerDispatcher (handles concurrent requests)
+  - MessageService interface (for building your own services)
+
+- Example Service
+
+  - DateService 
+  - DateClient
+
+
+Message class
+--------------------
+
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/message/Message.java
+   :start-after: begin-class-Message
+   :end-before: end-class-Message
+   :linenos:
+
+MessageClient class
+--------------------------
+
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/message/MessageClient.java
+   :start-after: begin-class-MessageClient
+   :end-before: end-class-MessageClient
+   :linenos:
+
+MessageServer class
+--------------------------
+
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/message/MessageServer.java
+   :start-after: begin-class-MessageServer
+   :end-before: end-class-MessageServer
+   :linenos:
+
+MessageServerDispatcher class
+------------------------------------
+
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/message/MessageServerDispatcher.java
+   :start-after: begin-class-MessageServerDispatcher
+   :end-before: end-class-MessageServerDispatcher
+   :linenos:
+
+DateService using Message Classes/Interfaces
+--------------------------------------------------
+
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/message/DateService.java
+   :start-after: begin-class-DateService-Message
+   :end-before: end-class-DateService-Message
+   :linenos:
+
+DateClient using Message Classes/Interfaces
+--------------------------------------------------
+
+.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/message/DateClient.java
+   :start-after: begin-class-DateClient-Message
+   :end-before: end-class-DateClient-Message
+   :linenos:
+
+
 
 Sockets Communication Using Datagram
 ----------------------------------------------------------------------
@@ -608,3 +679,4 @@ Performance
 FIGURE(s) that need updating.
 
 Where is the time spent? Example firefly workstation
+
