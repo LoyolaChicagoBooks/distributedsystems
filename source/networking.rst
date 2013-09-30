@@ -121,14 +121,17 @@ A Network is not an Island
 ----------------------------------------------------------------------
 
 - Reason for networks is to share information
+
 	- must be able to communicate in a common language
 	- called protocols
 		- The nice thing about protocols is that there are so many of them!
 - Protocols
+
 	- must be unambiguous and followed exactly
 		- rule of thumb for good protocol implementations
 			- be rigorous is what you generate
 			- be liberal in what you accept
+
 	- there are many different aspects to protocols	
 		- electrical through web services
 
@@ -293,8 +296,8 @@ Marshaling
 
 .. code-block:: c
 
-    char *name = “smith”, place = “London”; int year = 1934
-    sprintf(message, “%d %s %d %s %d”, strlen(name), name, strlen(place), place, years);
+   char *name = “smith”, place = “London”; int year = 1934
+   sprintf(message, “%d %s %d %s %d”, strlen(name), name, strlen(place), place, years);
 
 
 - will marshal in the sending program
@@ -311,7 +314,9 @@ Case Study: UNIX Interprocess Communication (IPC)
 Sockets Communication Using Datagram
 ----------------------------------------------------------------------
 
-- “socket” call to create and a get a descriptor- Bind call to bind socket to socket address (internet address & port number)- Send and receive calls use socket descriptor to send receive messages 
+- “socket” call to create and a get a descriptor
+- Bind call to bind socket to socket address (internet address & port number)
+- Send and receive calls use socket descriptor to send receive messages 
 - UDP, no ack
 
 FIGURE
