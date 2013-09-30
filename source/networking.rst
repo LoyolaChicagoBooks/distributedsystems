@@ -263,50 +263,56 @@ Interprocess Communication:
 Reliability
 ----------------------------------------------------------------------
 
-“Unreliable Message” - single msg sent from sender to recipient without acknowledgment  (e.g., UDP)
-Processes that use unreliable messages are responsible for enforcing correct/reliable message passing
-Reliability introduces overhead
-need to store state information at the source and destination
-transmit extra messages (e.g., ack)
-latency (for processing information related to reliability)
+- “Unreliable Message” - single msg sent from sender to recipient without acknowledgment  (e.g., UDP)
+- Processes that use unreliable messages are responsible for enforcing correct/reliable message passing
+- Reliability introduces overhead
+	- need to store state information at the source and destination
+	- transmit extra messages (e.g., ack)
+	- latency (for processing information related to reliability)
 
 Mapping Data to Messages
 ----------------------------------------------------------------------
 
-Programs have data structures 
-Messages are self-contained sequence of bytes
-=> For communication
-data structures must be flattened before sending
-rebuilt upon receipt
-Problem: How does the receiver know how the sender has flattened?
-What if sender and receiver have different representations?
-=> Follow standard (possibly external) data format - or the one which has been agreed upon between sender and receiver in advance
+- Programs have data structures 
+- Messages are self-contained sequence of bytes
+- => For communication
+	- data structures must be flattened before sending
+	- rebuilt upon receipt
+- Problem: How does the receiver know how the sender has flattened?
+- What if sender and receiver have different representations?
+- => Follow standard (possibly external) data format - or the one which has been agreed upon between sender and receiver in advance
 
 Marshaling
 ----------------------------------------------------------------------
 
-Process of taking a collection of data items and assembling them into a form for transmission
-Unmarshaling - Disassemble message upon receipt
-Normally programs supplied with standards
-For example msg -  5 smith 6 London 1934
-In C, ``sprintf()`` (data item -> array of characters), ``sscanf()`` for opposite::
+- Process of taking a collection of data items and assembling them into a form for transmission
+- Unmarshaling - Disassemble message upon receipt
+- Normally programs supplied with standards
+- For example msg -  5 smith 6 London 1934
+- In C, ``sprintf()`` (data item -> array of characters), ``sscanf()`` for opposite::
+
+.. code-block:: c
 
     char *name = “smith”, place = “London”; int year = 1934
     sprintf(message, “%d %s %d %s %d”, strlen(name), name, strlen(place), place, years);
 
-will marshal in the sending program
+
+- will marshal in the sending program
 
 Case Study: UNIX Interprocess Communication (IPC)
 ----------------------------------------------------------------------
 
-IPC provided as systems calls implemented over TCP and UDP
-Message destinations - Socket addresses (Internet address and port id)
-Communication operations based on socket pairs (sender and receiver)
-Msgs queued at sender socket until network protocol transmits them and ack
-Before communication can occur - recipient must BIND its socket descriptor to a socket address 
+- IP C provided as systems calls implemented over TCP and UDP
+- Message destinations - Socket addresses (Internet address and port id)
+- Communication operations based on socket pairs (sender and receiver)
+- Msgs queued at sender socket until network protocol transmits them and ack
+- Before communication can occur - recipient must BIND its socket descriptor to a socket address 
 
 Sockets Communication Using Datagram
 ----------------------------------------------------------------------
+
+- “socket” call to create and a get a descriptor- Bind call to bind socket to socket address (internet address & port number)- Send and receive calls use socket descriptor to send receive messages 
+- UDP, no ack
 
 FIGURE
 
@@ -315,273 +321,281 @@ Stream Communication
 
 FIGURE
 
-First need to establish a connection between sockets
-Asymmetric because one would be listening for request for connection and the other would be asking
-Once connection, data communication in both directions 
+- First need to establish a connection between sockets
+- Asymmetric because one would be listening for request for connection and the other would be asking
+- Once connection, data communication in both directions 
 
 
 Remote Procedure Call
 ----------------------------------------------------------------------
 
-Q. How do me make “distributed computing look like traditional (centralized) computing”?
-Simple idea - Can we use procedure calls? Normally,
-A calls B --> A suspended, B executes --> B returns, A executes
-Information from A (caller) to B (callee) transferred using parameters
-Somewhat easier since both caller and callee execute in the same address space
-But in Distributed systems - the callee may be on a different system
-==> Remote Procedure Call (RPC)
-NO EXPLICIT MESSAGE PASSING (which is visible to the programmer)
+- Q. How do me make “distributed computing look like traditional (centralized) computing”?
+- Simple idea - Can we use procedure calls? Normally,
+	- A calls B --> A suspended, B executes --> B returns, A executes
+	- Information from A (caller) to B (callee) transferred using parameters
+	- Somewhat easier since both caller and callee execute in the same address space
+- But in Distributed systems - the callee may be on a different system
+	- ==> Remote Procedure Call (RPC)
+	- NO EXPLICIT MESSAGE PASSING (which is visible to the programmer)
 
 Remote Procedure Call (RPC)
 ----------------------------------------------------------------------
 
-Although no message passing (at user level) - parameters must still be passed - results must still be returned!
-==> Many issues to be addressed - Look at an example to understand some issues
-count = read(fd, buf, nbytes) 
-[fd-file pointer (int), buf-array of chars, nbytes-integer)
+- Although no message passing (at user level) - parameters must still be passed - results must still be returned!
+- ==> Many issues to be addressed - Look at an example to understand some issues
+
+.. code-block:: c
+
+	count = read(fd, buf, nbytes) 
+	[fd-file pointer (int), buf-array of chars, nbytes-integer)
+
+FIGURE
 
 Observations
 ----------------------------------------------------------------------
 
-parameters (in C): call-by-reference OR call-by-value
-Value parameter (e.g., fd, nbytes) copied onto stack (original value not affected)
-Value parameter is just an initialized variable on stack for callee
-Reference parameter (array buf) is not copied --> pointer to it is passed (buf’s address)
-Original values modified
-Many options are language dependent but we will ignore them…
-How to deal with these situations?
+- parameters (in C): call-by-reference OR call-by-value
+- Value parameter (e.g., fd, nbytes) copied onto stack (original value not affected)
+- Value parameter is just an initialized variable on stack for callee
+- Reference parameter (array buf) is not copied --> pointer to it is passed (buf’s address)
+	- Original values modified
+- Many options are language dependent but we will ignore them…
+- How to deal with these situations?
 
 RPC
 ----------------------------------------------------------------------
 
-Goal: Make RPC look (as much  as possible) like local procedure call, that is,
-call should not be aware of the fact that the callee is on a different machine (or vice versa)
-Look at the read call again and various involved components
-read routine is extracted from the library by linker and inserted into application object code
-call read ---Parameter onto stack--> kernel trap --> operation --POP--> return
-programmer does not know all this
-in RPC ---> read is remote ==> no way to put parameters on stack (no shared space/memory!)
-Solution: In the library keep “client stub” which acts like “read” 
-So how does it work?
+- Goal: Make RPC look (as much  as possible) like local procedure call, that is,
+	- call should not be aware of the fact that the callee is on a different machine (or vice versa)
+- Look at the read call again and various involved components
+	- read routine is extracted from the library by linker and inserted into application object code
+	- call read ---Parameter onto stack--> kernel trap --> operation --POP--> return
+	- programmer does not know all this
+- in RPC ---> read is remote ==> no way to put parameters on stack (no shared space/memory!)
+- Solution: In the library keep “client stub” which acts like “read” 
+- So how does it work?
 
 RPC Mechanisms
 ----------------------------------------------------------------------
 
-Client-stub packs parameters
-Ships them to “server-
+- Client-stub packs parameters
+- Ships them to “server-
 
 RPC Steps
 ----------------------------------------------------------------------
 
-1. client calls client stub in normal fashion
-2. client stub builds msg and traps to kernel
-3. kernel sends msg to remote kernel
-4. remote kernel gives msg to server stub
-5. server stub unpacks parameters and calls server
-6. server processes and returns results to stub
-7. server stub packs result in msg and traps to kernel
-8. remote kernel sends msg to client kernel
-9. client kernel gives msg to client stub
-10. stub unpacks results and returns to client
+#. client calls client stub in normal fashion
+#. client stub builds msg and traps to kernel
+#. kernel sends msg to remote kernel
+#. remote kernel gives msg to server stub
+#. server stub unpacks parameters and calls server
+#. server processes and returns results to stub
+#. server stub packs result in msg and traps to kernel
+#. remote kernel sends msg to client kernel
+#. client kernel gives msg to client stub
+#. stub unpacks results and returns to client
 
 Design Issues
 ----------------------------------------------------------------------
 
-Parameter passing
+- Parameter passing
+- Binding
+- Reliability/How to handle failures
+	- messages losses
+	- client crash
+	- server crash
+- Performance and implementation issues
+- Exception handling
+- Interface definition
 
-FIGURE
+Parameter Passing
+----------------------------------------------------------------------
+- Some issues similar to messages passing
+- Example below- what if clients and servers have different representations (Little endian vs big endian)
+
+Parameter Passing
+----------------------------------------------------------------------
+- How to solve the problem?
+	- client and server know parameter type
+	- msg will have n+1 fields
+		- 1 - procedure identifier
+		- n - procedure parameters
 
 Binding
-
-FIGURE and TEXT
-
-Reliability/How to handle failures
-messages losses
-client crash
-server crash
-Performance and implementation issues
-Exception handling
-Interface definition
-Parameter Passing
-Some issues similar to messages passing
-Example below- what if clients and servers have different representations (Little endian vs big endian)
-Parameter Passing
-How to solve the problem?
-client and server know parameter type
-msg will have n+1 fields
-1 - procedure identifier
-n - procedure parameters
-Binding
-Q. How does a client locate the server?
-Hardwire?
-inflexible
-need to recompile all codes affected for any change
-Dynamic Binding
-formal specification of server
+----------------------------------------------------------------------
+- Q. How does a client locate the server?
+	- Hardwire?
+		- inflexible
+		- need to recompile all codes affected for any change
+	- Dynamic Binding
+		- formal specification of server
 
 Use of Specification
 ----------------------------------------------------------------------
 
-Input to the stub generator - produces both client and server stub
-client stub linked to client function
-server stub linked to server function
-Server exports the server interface (initialize())
-server sends msg to binder to know it is up (registration)
-server gives the binder
-name
-version number
-unique id
-handle (system dependent - IP address, Ethernet address..)
+- Input to the stub generator - produces both client and server stub
+	- client stub linked to client function
+	- server stub linked to server function
+- Server exports the server interface (initialize())
+	- server sends msg to binder to know it is up (registration)
+	- server gives the binder
+		- name
+		- version number
+		- unique id
+		- handle (system dependent - IP address, Ethernet address..)
 
 Locating the Server
 ----------------------------------------------------------------------
 
-First call to RPC of function
-Client stub sees not bound to server
-Client stub sends msg to binder to “import” interface
-If server exists, binder gives unique id and handle to client stub
-Client stub uses these for communication
-Method flexible
-can handle multiple servers with same interface
-binder can poll servers to see if up or deregister them if down for fault tolerance
-can enforce authentication 
-Disadvantage
-overhead of interface export/import
-binder may be a bottleneck in large systems
+- First call to RPC of function
+- Client stub sees not bound to server
+- Client stub sends msg to binder to “import” interface
+- If server exists, binder gives unique id and handle to client stub
+- Client stub uses these for communication
+- Method flexible
+	- can handle multiple servers with same interface
+	- binder can poll servers to see if up or deregister them if down for fault tolerance
+	- can enforce authentication 
+- Disadvantage
+	- overhead of interface export/import
+	- binder may be a bottleneck in large systems
 
 How to Handle Failures
 ----------------------------------------------------------------------
 
-Types of possible failures in RPC systems
-1. client unable to locate server
-2. request message from client to server is lost
-3. reply message from server to client is lost
-4. server crashes after receiving a request
-5. client crashes after sending a request ( ^c!!)
-Q. What are the semantics?
-Q. How close can we get to the goal of transparency?
+- Types of possible failures in RPC systems
+	#. client unable to locate server
+	#. request message from client to server is lost
+	#. reply message from server to client is lost
+	#. server crashes after receiving a request
+	#. client crashes after sending a request ( ^c!!)
+- Q. What are the semantics?
+- Q. How close can we get to the goal of transparency?
 
 Client Cannot Locate Server
 ----------------------------------------------------------------------
 
-
-Why?
-server may be down
-new version of server (using new stubs..) but older client ==> binder cannot match
-Solutions
-respond with error type “cannot locate server”
-+ simple
-- not general (what if the error code, e.g. -1, is also a result of computation?)
-raise exception
-some languages allow calling special procedures for error
-- not all languages support this
-- destroys transparency
+- Why?
+	- server may be down
+	- new version of server (using new stubs..) but older client ==> binder cannot match
+- Solutions
+	- respond with error type “cannot locate server”
+		- + simple
+		- not general (what if the error code, e.g. -1, is also a result of computation?)
+	- raise exception
+		- some languages allow calling special procedures for error
+		- not all languages support this
+		- destroys transparency
 
 Lost Request Message
 ----------------------------------------------------------------------
 
-Time Out
-Kernel starts timer when request sent
-If timer expires, resend message
-If message was lost - server cannot tell the difference
-If message lost too many times ==> “cannot locate server”
+- Time Out
+	- Kernel starts timer when request sent
+	- If timer expires, resend message
+	- If message was lost - server cannot tell the difference
+	- If message lost too many times ==> “cannot locate server”
 
 Lost Reply Message
 ----------------------------------------------------------------------
 
-More difficult to handle
-Rely on timer again?
-Problem: Client’s kernel doesn't know why no answer!
-Must distinguish between 
-request/reply got lost?
-server slow
-Why?
-some operations may be repeated without problems (e.g., reading a block from the same position in file--no side effects)
-property - “idempotent”
+- More difficult to handle
+- Rely on timer again?
+- Problem: Client’s kernel doesn't know why no answer!
+- Must distinguish between 
+	- request/reply got lost?
+	- server slow
+- Why?
+	- some operations may be repeated without problems (e.g., reading a block from the same position in file--no side effects)
+	- property - “idempotent”
 
 Lost Reply Message
 ----------------------------------------------------------------------
 
-What if request is not idempotent?
-e.g., transferring 500 thousand dollars from your account
-do it five times and you are broke!
-Sol - Client kernel uses a sequence number (needs to maintain state) for each request
-Have a bit in message to distinguish initial vs. retransmissions
+- What if request is not idempotent?
+	- e.g., transferring 500 thousand dollars from your account
+	- do it five times and you are broke!
+- Solution - Client kernel uses a sequence number (needs to maintain state) for each request
+- Have a bit in message to distinguish initial vs. retransmissions
 
 Server Crashes
 ----------------------------------------------------------------------
 
-Depends on when server crashes
-After execution
-After receiving message but BEFORE execution
-Solutions differ
+- Depends on when server crashes
+	- After execution
+	- After receiving message but BEFORE execution
+- Solutions differ
+
+FIGURE
 
 Server Crashes
 ----------------------------------------------------------------------
 
-But the client cannot tell the difference!
-Solutions?
-Wait until server reboots (or rebind)
-try operation again and keep trying until success
-“at least once semantics”
-Give up immediately and report failure
-“at most once semantics”
-Guarantee nothing
-- RPC may be tried from 0 - any no
-+ easy to implement
-But none of the above attractive
-What we want is “exactly once semantics”
-no way to insure this
+- But the client cannot tell the difference!
+- Solutions?
+	- Wait until server reboots (or rebind)
+		- try operation again and keep trying until success
+		- “at least once semantics”
+	- Give up immediately and report failure
+		- “at most once semantics”
+	- Guarantee nothing
+		- (-) RPC may be tried from 0 - any no
+		- (+) easy to implement
+	- But none of the above attractive
+	- What we want is “exactly once semantics”
+		- no way to insure this
 
 Client Crashes
 ----------------------------------------------------------------------
 
-Client sends a request and crashes
-computation active - but no parent active
-unwanted computation called “orphan”
-Orphan’s can create problems
-wasted resources
-locked files?
-client reboots - does RPC - reply from orphan comes =>confusion!
-Solutions (Extermination)
-client stub logs (on disk)  request before sending
-after reboot check log - kill any orphan
-+ simple
-- too expensive (each RPC requires disk access!)
-what if orphans do RPC => grand orphans => difficult to kill all
+- Client sends a request and crashes
+	- computation active - but no parent active
+	- unwanted computation called “orphan”
+- Orphan’s can create problems
+	- wasted resources
+	- locked files?
+	- client reboots - does RPC - reply from orphan comes =>confusion!
+- Solutions (Extermination)
+	- client stub logs (on disk)  request before sending
+	- after reboot check log - kill any orphan
+	- (+) simple
+	- (-) too expensive (each RPC requires disk access!)
+- what if orphans do RPC => grand orphans => difficult to kill all
 
 Client Crashes 
 ----------------------------------------------------------------------
 
-Reincarnation
-divide time into numbered slots (epoch)
-when client reboots, it broadcasts to all machines with new slot
-all remote computations killed
-if network partitioned, some orphans will remain - but will be detected later
-Gentle Reincarnation
-locate the owner of the orphan first
-if not found, kill computations
+- Reincarnation
+	- divide time into numbered slots (epoch)
+	- when client reboots, it broadcasts to all machines with new slot
+	- all remote computations killed
+	- if network partitioned, some orphans will remain - but will be detected later
+- Gentle Reincarnation
+	- locate the owner of the orphan first
+	- if not found, kill computations
 
 Acknowledgments
 ----------------------------------------------------------------------
 
-How to acknowledge when RPC packets are broken up?
+- How to acknowledge when RPC packets are broken up?
+
+FIGURE
 
 Flow Control
 ----------------------------------------------------------------------
 
-Network Interface Chips (NICs) can send message fast
-But receiving more difficult due to finite buffer
-Overrun can occur when
-NIC serving one packet
-another arrives
-No overrun possible in stop-and-wait (assuming single sender)
-Sender can insert gaps (assume n buffer capacity)
-send n packets
-gap
-send n packets
-Performance
-Critical Path
+- Network Interface Chips (NICs) can send message fast
+- But receiving more difficult due to finite buffer
+- Overrun can occur when
+	- NIC serving one packet
+	- another arrives
+- No overrun possible in stop-and-wait (assuming single sender)
+- Sender can insert gaps (assume n buffer capacity)
+	- send n packets
+	- gap
+	- send n packets
+- Performance
+- Critical Path
 
 Performance
 ----------------------------------------------------------------------
