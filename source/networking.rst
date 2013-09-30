@@ -225,42 +225,40 @@ The Transport Layer
 The Session & Presentation Layers
 ----------------------------------------------------------------------
 
-Goal: common services shared by several applications
-Sample Issues:
-network representation of bytes, ints, floats, etc.
-encryption?? (this point is subject to lots of debate)
-synchronization
-Examples:
-eXternal Data Representation (XDR)
+- Goal: common services shared by several applications
+- Sample Issues:
+	- network representation of bytes, ints, floats, etc.
+	- encryption?? (this point is subject to lots of debate)
+	- synchronization
+- Examples:
+	- eXternal Data Representation (XDR)
 
 Application Layer
 ----------------------------------------------------------------------
 
-Goal: common types of exchanges standardized
-Sample Issues:
-when sending email, what demarks the subject field
-how to represent cursor movement in a terminal
-Examples:
-Simple Mail Transport Protocol (SMTP)
-File Transfer Protocol (FTP)
-Hyper-Text Transport Protocol (HTTP)
-Simple Network Management Protocol (SNMP)
-Network File System (NFS)
-Network Time Protocol (NTP)
-Net News Transport Protocol (NNTP)
-X (X Window Protocol)
-
+- Goal: common types of exchanges standardized
+- Sample Issues:
+	- when sending email, what demarks the subject field
+	- how to represent cursor movement in a terminal
+- Examples:
+	- Simple Mail Transport Protocol (SMTP)
+	- File Transfer Protocol (FTP)
+	- Hyper-Text Transport Protocol (HTTP)
+	- Simple Network Management Protocol (SNMP)
+	- Network File System (NFS)
+	- Network Time Protocol (NTP)
+	- Net News Transport Protocol (NNTP)
+	- X (X Window Protocol)
 
 Interprocess Communication:
 ----------------------------------------------------------------------
 
-Sockets & RPC
-Basic operations
-Send
-Receiver
-Synchronize
-=> Send must specify destination
-=> Clients need to know an identifier for communicating with another process (e.g., server)
+- Sockets & RPC (Basic operations)
+	- Send
+	- Receiver
+	- Synchronize
+	- => Send must specify destination
+	- => Clients need to know an identifier for communicating with another process (e.g., server)
 
 Reliability
 ----------------------------------------------------------------------
