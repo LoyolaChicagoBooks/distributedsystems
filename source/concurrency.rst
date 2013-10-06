@@ -244,6 +244,124 @@ Diners1 - eliminating deadlock with resource enumeration
    :end-before: end-fork-ordering
    :linenos:
 
+Execution - With Deadlock
+------------------------------------------------
+
+If you have Java and Gradle installed on your computer, you can try these out!
+
+Make sure you have the HPJPC source code::
+
+   hg clone https://bitbucket.org/loyolachicagocs_books/hpjpc-source-java
+
+The following Gradle task in ``build.gradle`` shows how to run Diners0's ``main()`` method:
+
+.. literalinclude:: ../examples/hpjpc/build.gradle
+   :start-after: begin-task-Diners0
+   :end-before: end-task-Diners0
+   :linenos:
+
+
+To build::
+
+   gradle build
+
+To run::
+
+   gradle Diners0
+
+If you run this, you will notice that deadlock ensues fairly quick. The diners get 
+into a state where they are waiting on each others' forks in a cycle::
+
+	$ gradle Diners0
+	:compileJava UP-TO-DATE
+	:processResources UP-TO-DATE
+	:classes UP-TO-DATE
+	:Diners0
+	tet4t 023et 12ett 0et40 e134e
+	et340 12ett 12ett 123et e1340
+	0234e e23e4 1tt40 t23et ett40
+	t23et 1ett0 12et0 t23et 1tt40
+	1t34e 12et0 1et40 12e30 t234e
+	12e30 1et40 tetet et3t4 1t3e4
+	1e240 1tte4 12tt0 t2ete t2tt0
+	11e3t et3t0 t234e e1340 11t40
+	1t340 0e24e tttet tt34e 12e3t
+	1t24e 0t3e4 tet4e 12340 12340
+	12340 12340 12340 12340 12340
+	12340 12340 12340 12340 12340
+	12340 12340 12340 12340 12340
+	12340 12340 12340 12340 12340
+	12340 12340 12340 12340 12340
+	12340 12340 12340 12340 12340
+	12340 12340 12340 12340 12340
+	12340 12340 12340 12340 12340
+	12340 12340 12340 12340 12340
+	12340 12340 12340 12340 12340
+	12340 12340 12340 12340 12340
+	12340 12340 12340 12340 12340
+	12340 12340 12340 12340 12340
+	12340 12340 12340 12340 12340
+	12340 12340 12340 12340 12340
+
+
+Deadlock-Free Version
+------------------------------------------------
+
+Diners1 has a similar Gradle task:
+
+.. literalinclude:: ../examples/hpjpc/build.gradle
+   :start-after: begin-task-Diners1
+   :end-before: end-task-Diners1
+   :linenos:
+
+
+Run::
+
+    gradle Diners1
+
+Output::
+
+	$ gradle Diners1
+	:compileJava UP-TO-DATE
+	:processResources UP-TO-DATE
+	:classes UP-TO-DATE
+	:Diners1
+	ttttt 1t240 t2et4 1et4t tt2e4
+	1e2et 1et4t e13e0 tt3e4 ettt0
+	t2te0 0e24e 1ettt e1e3t t1te4
+	0tt4e 1etet e13tt tt24e 1t3et
+	tettt 0ttet ete3t tt33e 0et4e
+	1ete0 01t3t 0tt3e 1e240 te2te
+	e1et0 1e2et 02e3e t1t3t 1t3tt
+	02ete 1et4t e13et et33t 02tte
+	1ett0 et3t0 ete30 t2e3e et3e0
+	0et4e ettt0 0e2e4 01t4e 1e2et
+	...
+	12e30 tet3e 1etet 0ttt0 0etet
+	1et4t e2tt4 tt3e4 0t3et 12et0
+	1ett0 e1tet 12e30 1tttt etet0
+	tettt 1e2t0 0t3e4 tettt ttttt
+	023e4 ttttt 023e4 1e2d0 e13d0
+	02ed4 e2edt 1etd0 et3d0 1tedt
+	02ede 0etde 1etd0 t2tdt t2ede
+	01tde et2d0 112dt tedde tedd4
+	tedde 02dd0 1edd0 etdd0 1tddt
+	1eddt 1eddt 01dde 0tdd0 t2dde
+	t2ddt eddd4 tddde tddd4 tdddt
+	0ddde eddd0 tdddt 0ddde eddd0
+	tddd4 eddd0 0ddde 0ddde eddd0
+	eddd0 0ddde 0ddde tddd4 0dddt
+	eddd0 tddd4 1dddd 0dddd 1dddd
+	tdddd tdddd ddddd
+	BUILD SUCCESSFUL
+
+	Total time: 18.426 secs
+
+The diners, as desired, end up finishing their meal after some time.
+
+We assume they have moved over to the bar or found a nice place to have dessert.
+
+
 Common Data Structures in Concurrent Programming
 ------------------------------------------------
 
