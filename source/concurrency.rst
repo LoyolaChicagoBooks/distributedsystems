@@ -493,3 +493,22 @@ Quick overview of the various classes:
    :end-before: end-class-Pool
    :linenos:
 
+Execution
+---------------
+
+You can run FileCopy0 and FileCopy1 by using the corresponding Gradle tasks.
+
+
+.. literalinclude:: ../examples/hpjpc/build.gradle
+   :start-after: begin-task-FileCopy0
+   :end-before: end-task-FileCopy0
+   :linenos:
+
+As shown, there are two properties you can set: ``fc0_src`` and ``fc0_dest``::
+
+   gradle FileCopy0 -Pfc0_src=inputFile -Pfc0_dest=outputFile
+
+You can also run FileCopy1 (the same parameter names are used)::
+
+   gradle FileCopy1 -Pfc0_src=inputFile -Pfc0_dest=outputFile
+
