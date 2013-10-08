@@ -24,6 +24,7 @@ Table of Contents
    maven
    networking
    concurrency
+   sphinx
    messagequeues
    filesystems
    dns
