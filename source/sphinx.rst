@@ -50,3 +50,13 @@ Setting up Sphinx - Windows
 The Sphinx documentation is a great resource for installing on Windows. You can find it here - http://sphinx-doc.org/latest/install.html
 
 
+Authoring in Sphinx
+-------------------
+
+An excellent way to learn Sphinx is to look at existing documents. The concurrently lecture has several example usages of reST: http://distributed.cs.luc.edu/html/_sources/concurrency.txt. The entire source repository for the distributed systems lecture notes is available on BitBucket here - https://bitbucket.org/loyolachicagocs_books/distributedsystems. You can download the source, and see an entire working example.
+
+
+
+
+
+
