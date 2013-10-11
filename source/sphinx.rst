@@ -17,6 +17,14 @@ About Sphinx
 
 Sphinx makes use of Restructured Text. A great explanation of reST can be found on WikiPedia here: http://en.wikipedia.org/wiki/ReStructuredText. Essentially restructured text allows the user to write text in plain ASCII using ASCII representations of common formatting such as underlines, bullets, numbered lists, and others. Sphinx can take this restructured text and translate it into a document that has the same kind of formatting but in a way that is native to that document format.
 
+
+Additional Resources
+--------------------
+ #. http://sphinx-doc.org/rest.html
+ #. http://sphinx-doc.org/tutorial.html
+ #. http://pythonhosted.org/an_example_pypi_project/sphinx.html
+
+
 Setting up Sphinx - Ubuntu Linux
 --------------------------------
 
