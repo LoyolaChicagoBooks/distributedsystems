@@ -26,7 +26,7 @@ Table of Contents
    concurrency
    sphinx
    messagequeues
-   filesystems
+   storage
    dns
    directories
    mpi
