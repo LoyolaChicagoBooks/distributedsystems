@@ -181,9 +181,9 @@ Inodes - Indirect Blocks
 
 -  This approach is used by ext2 / ext3 / ext4 in Linux.
 
-	.. figure:: figures/storage/ext2-inode.*
-	   :align: center
-	   :alt: image
+.. figure:: figures/storage/ext2-inode.*
+   :align: center
+   :alt: image
 
 
 Block Caches
@@ -605,15 +605,17 @@ SUN NFS - Implementation
 	- maintains table with one entry for each open file
 	- entry called v-node (indicates  whether local or remote)
 	- v-node points to I-node (for local files) and r-node (for remote files)
+
  - Typical Operation
 	- Read 
 		- locate v-node
 		- determine local or remote
 		- transfer occurs in 8K (normally) byte blocks
-			- automatic prefetching (read-ahead) of next block
+		- automatic prefetching (read-ahead) of next block
 	- Write
 		- writes not immediately written to server
 		- 8K bytes collected before writing
+
  - Caching
 	- server caches (to reduce disk accesses)
 	- client maintains cache for
