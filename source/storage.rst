@@ -22,7 +22,7 @@ How Do We Evaluate Storage Systems?
 
 
 Storage Devices
----------------
+===============
 
 -  Types of permanent devices:
 
@@ -127,7 +127,7 @@ RAID - 5
 
 
 Local Storage
--------------
+=============
  - At the basis of almost any distributed system are the factors involved in local storage systems.
  - The problems presented in local storage are simpler and less composed than in their distributed counter-parts.
 
@@ -181,7 +181,7 @@ Inodes - Indirect Blocks
 
 -  This approach is used by ext2 / ext3 / ext4 in Linux.
 
-	.. figure:: figures/storage/Ext2-inode.gif
+	.. figure:: figures/storage/ext2-inode.*
 	   :align: center
 	   :alt: image
 
@@ -242,7 +242,7 @@ Folders and Path Traversal
    cross into different filesystems.
 
 
-	.. figure:: figures/storage/path_traversal.png
+	.. figure:: figures/storage/path_traversal.*
 	   :align: center
 	   :alt: image
 
@@ -297,4 +297,201 @@ Virtual Filesystems and Stacking
    to be transparently overlaid.
 
 
+Distributed Filesystems
+=======================
 
+ - Flat file service
+	- implements operations on the contents of file
+	- UFID (Unique File Ids) used to refer to files
+	- new UFID assigned when file created
+ - Directory  service
+	- provides mapping between text names and UFIDs
+	- Functions to create, update.. directories
+ - Client module
+	- runs on client computer
+	- provides APIs to access files
+	- holds information about network location of file server and directory server 
+	- sometimes caching at client
+
+
+File Service Model
+------------------
+
+ - Upload/download model
+	- read/write file operations
+	- entire file transferred to client
+	- requires space on client
+	- Products like SkyDrive and DropBox work like this
+ - Remote Access Interface
+	- large number of operations 
+		- seek, changing file attributes, read/write part of file…
+		- does not require space (as much) on client
+
+
+Directory Service
+-----------------
+
+ - Key issue for distributed file system
+	- whether all clients have the same VIEW of the directory hierarchy
+
+
+Naming Transparency
+-------------------
+ - Location Transparency
+	- path names give no hint as to where the files are located
+  	- e.g., /server1/dir1/dir2/X indicates X located on server1 but NOT where server1 is located
+	- Problems? If X needs to be moved to another server (e.g., due to space) - say server2 - programs with strings built in will not work!
+ - Location Independence
+	- files can be moved without changing their names
+ - Three common approaches to file and directory naming
+	- Machine + path naming, such as /machine/path or machine:path (location dependent)
+	- Mounting remote file systems onto the local file hierarchy (location dependent)
+	- A single name space that looks the same on all machines (location independent)
+
+File Sharing Semantics
+----------------------
+
+- When files are shared (and one or more write) what are the semantics?
+
+
+UNIX Semantics
+--------------
+
+ - A read is always provided with the last write (system enforces absolute time ordering)
+ - UNIX semantic can be achieved by
+	- read/write going to server
+	- no caching of files
+	- sequential processing by server
+	- BUT in distributed systems, this may perform poorly!
+ - How to improve performance?
+	- requires caching
+ - Modify Semantics?
+	- “changes to an open file are initially visible only to the process that modified the file. When file closes, changed become visible to others”
+	- Called Session Semantics
+
+More Semantics
+--------------
+
+ - Q What is the result of multiple (simultaneous) updates of cached file?
+	#. final result depends on who closed last!
+	#. one of the results, but which one it is can not be specified (easier to implement)
+ - Immutable Files
+	- can only create and read files
+	- can replace existing file atomically
+	- to modify a file, create new one and replace
+	- what if two try to replace the same file?
+	- what if one is reading while another tries to replace?
+
+
+Distributed File System Implementation
+--------------------------------------
+
+ - Need to understand file usage (so that)
+	- implement common operations well
+	- achieve efficiency
+ - Satyanarayan (CMU) of file usage pattern on UNIX
+
+
+System Structure
+----------------
+
+ - How should the system be organized?
+	- are clients and server different?
+	- how are file and directory services organized?
+	- caching/no caching
+		- server
+		- client
+	- how are updates handled?
+	- sharing semantics?
+	- stateful versus stateless
+
+
+Directory Service
+-----------------
+- Separate
+	- (-) requires going to directory servers to map symbolic names onto binary names
+	- (+) functions are unrelated (e.g., implement DOS directory server and UNIX server- both use same file server
+	- (+) simpler
+	- requires more communication
+- Lookup
+
+Stateless versus Stateful
+-------------------------
+ - Stateless advantages
+	- Fault tolerance
+	- No OPEN/CLOSE calls needed
+	- No server space wasted on tables
+	- No limits on number of open files
+	- No problem if client crashes
+ - For example,
+	- each request self contained
+	- if server crashes - no information lost 
+
+
+Caching
+-------
+ - One of the most important design considerations
+	- impacts performance
+	- If caching  --  how should it be done?
+
+
+Caching - Server
+----------------
+ - Server Disk
+	- (+) most space
+	- (+) one copy of each file
+	- (+) no consistency problem
+	- (-) performance
+		- each access requires disk access --> server memory --> network --> client memory
+ - Server Memory
+	- keep MRU files in server’s memory
+	- If request satisfied from cache ==> no disk transfer BUT still network transfer
+	- Q. Unit of caching? Whole files
+		- (+) high speed transfer
+		- (-) too much memory
+	- Blocks  + better use of space
+	- Q. What to replace when cache full?
+		- LRU
+
+
+Caching - Client
+----------------
+ - Client Caching
+ - Disk 
+	- slower
+	- more space
+ - Memory
+	- less space
+	- faster
+ - Where to cache?
+ - User Address Space
+	- cache managed by system call library
+	- library keeps most heavily used files
+	- when process exits - written back to server
+	- (+) simple
+	- (+) low overhead
+	- (-) effective if file repeatedly used
+ - Kernel
+	- (-) kernel needed in all cases )even for a cache hit)
+	- (+) cache survives beyond process ( e.g., two pass compiler - file from first pass available in cache)
+	- (+) kernel free of file system 
+	- (+) more flexible
+	- little control over memory space allocation
+		- e.g., virtual memory may result in disk operation even if cache hit
+
+
+Client - Cache Consistency
+--------------------------
+
+client caching introduces inconsistency
+one or more writers and multiple readers
+Write-thru
+similar to between processor cache and memory
+when a block modified - immediately sent to server (also kept in cache)
+problem
+client on machine 1 reds file
+modify file (server updated)
+client on machine 2 reads and modifies files
+server updated
+another client on machine 1 reads file
+gets local copy (which is stale)
