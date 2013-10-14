@@ -78,6 +78,7 @@ If you are working with a *copy* or *clone* of https://bitbucket.org/loyolachica
 In this example, there is the following line that checks (my setup) for the presence of a Python virtual environment.
 
 ::
+
 	[ -f ~/.env/sphinx/bin/activate ] && . ~/.env/sphinx/bin/activate
 
 What this achieves is to give you your own Python interpreter and set of libraries and Python tools if the virtualenv can be successfully activated.
@@ -94,7 +95,7 @@ First, ensure the ``virtualenv`` command is present::
 
 	$ pip install virtualenv
 
-Create the virtualenv. It can be anywhere you like, but I keep all of my virtualenv instances in the ~/.env directory (.env in my home folder). You can put it anywhere you like:
+Create the virtualenv. It can be anywhere you like, but I keep all of my virtualenv instances in the ~/.env directory (.env in my home folder). You can put it anywhere you like::
 
 	$ virtualenv ~/.env/sphinx
 
@@ -113,6 +114,8 @@ Activate the virtualenv::
 	(sphinx)imac-g5:~ gkt$ 
 
 Install the ``sphinx`` and ``sphinx_bootstrap_theme``. Both of these are needed to rebuild the course notes.
+
+::
 
 	$ pip install sphinx sphinx_bootstrap_theme
 
