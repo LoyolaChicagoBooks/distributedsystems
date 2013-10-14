@@ -483,15 +483,146 @@ Caching - Client
 Client - Cache Consistency
 --------------------------
 
-client caching introduces inconsistency
-one or more writers and multiple readers
-Write-thru
-similar to between processor cache and memory
-when a block modified - immediately sent to server (also kept in cache)
-problem
-client on machine 1 reds file
-modify file (server updated)
-client on machine 2 reads and modifies files
-server updated
-another client on machine 1 reads file
-gets local copy (which is stale)
+ - client caching introduces inconsistency
+	- one or more writers and multiple readers
+ - Write-thru
+	- similar to between processor cache and memory
+	- when a block modified - immediately sent to server (also kept in cache)
+ - problem
+	- client on machine 1 reds file
+		- modify file (server updated)
+	- client on machine 2 reads and modifies files
+		- server updated
+	- another client on machine 1 reads file
+		- gets local copy (which is stale)
+ - solution: write-thru
+	- cache manager checks with the server before providing file to client
+	- If local copy upto-date
+		- provide to client
+	- Else get from server
+	- RPC for check is not as expensive as file access
+ - Performance problems
+	- read is fine
+	- each write generates network traffic (very expensive)
+	- compromise - periodic updates (say 30 sec) of writes
+	- collected and sent to server
+	- eliminates writing of many scratch files completely (which otherwise would be written)
+ - Note- semantics have changed for delayed writes
+
+
+Client - Cache Consistency - Other Options
+------------------------------------------
+
+ - Write-on-Close
+	- session semantics
+	- wait (delay - say 30 sec) after close to see if file deleted
+		- in that case write eliminated
+ - Centralized Control
+	- File server keeps track of who has file and in what mode
+	- if new request for read - server checks to see if file opened read/write
+	- if read  - grant request
+	- if write - deny request
+	- when file closed - inform others
+	- Many variations possible
+
+
+Replication
+-----------
+ - Multiple copies of files for
+	- increased reliability so no data is lost
+	- increased availability when one server is down
+	- improved performance through division of load
+
+
+Replication - Update Protocols
+------------------------------
+
+ - send update to each file in sequence
+	- problem - if process updating crashes in the middle ==> inconsistent copies
+ - Primary Copy Replication
+	- one server designed as primary 
+	- primary updated (changes made locally by primary server)
+	- primary server updates secondary copies
+	- reads can be done from any copy
+	- to guard against primary copy failure
+		- updates first stored on stable storage
+	- But if primary copy down - No update can be made!!
+
+
+Replication - Voting Algorithm
+------------------------------
+
+ - Requires clients to acquire permission of multiple servers before reading/writing file
+ - File replicated on N servers - to update client needs to contact  majority , N/2 + 1 servers
+ - File changed and new version no assigned
+ - To read - client contacts N/2 + 1 servers
+	- will always get the latest version       
+
+
+Replication - General Quorum Algorithm
+--------------------------------------
+
+ - No of replicas - N
+ - Read Quorum - Nr
+ - Write Quorum - Nw
+ - Constraints  Nr + Nw > N
+ - Read/write requires participation of the corresponding quorum 
+
+
+Case Study - SUN NFS
+====================
+
+ - NFS - Network File System
+	- designed to allow an arbitrary collection of clients and servers to share a common file system
+ - Design Goals
+	- heterogeneity
+	- access transparency
+	- local and remote accesses look the same - e.g., normal UNIX system calls
+	- failure transparency
+	- stateless
+	- idempotent
+	- performance transparency
+	- client caching
+	- server caching
+ - Location Transparency
+	- client establishes file name space by adding remote file systems to local name space
+	- file system exported by servers (node holding it)
+	- file system remote-mounted by  client
+ - Not Supported in Design Goals
+	- Replication transparency
+		- separate service for replication (NIS)
+	- Concurrency
+		- Naïve locking
+	- Scalability
+		- limited
+		- originally designed to support 5-10 clients
+
+
+SUN NFS - Implementation
+------------------------
+
+ - VFS Layer
+	- maintains table with one entry for each open file
+	- entry called v-node (indicates  whether local or remote)
+	- v-node points to I-node (for local files) and r-node (for remote files)
+ - Typical Operation
+	- Read 
+		- locate v-node
+		- determine local or remote
+		- transfer occurs in 8K (normally) byte blocks
+			- automatic prefetching (read-ahead) of next block
+	- Write
+		- writes not immediately written to server
+		- 8K bytes collected before writing
+ - Caching
+	- server caches (to reduce disk accesses)
+	- client maintains cache for
+		- for file attributes (I-nodes)
+		- for file data
+	- cache block consistency problems
+		- with each cache block is a timer
+		- entry discarded when timer expired
+		- when file opened- server checked for last modification of file
+	- UNIX semantics not completely enforced
+
+
