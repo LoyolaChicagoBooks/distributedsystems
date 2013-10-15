@@ -45,7 +45,7 @@ Storage and Failure
 -  An excellent paper about hard disk failure rates at Google is
    available here:
 
--  http://labs.google.com/papers/disk_failures.pdf
+-  https://www.usenix.org/legacy/event/fast07/tech/full_papers/pinheiro/pinheiro.pdf
 
 -  At Google, the failure rates of disks of a given age are:
 

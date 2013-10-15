@@ -1,8 +1,6 @@
 Directories and LDAP
 ===================================
 
-
-
 What is a Directory?
 ------------------------------------
 
@@ -20,7 +18,8 @@ What is NOT a Directory?
 
 - Database: more costly, heavy-duty transaction support, frequent writes
 - File system: allows partial retrieval, random access of data
-- Web servers: delivers big image files, provides web application development platform
+- Web servers: delivers big image files, provides web application development 
+  platform
 - FTP servers: can't do search, not attribute-based information model
 - DNS servers: not extensible, no updates
 
@@ -55,7 +54,6 @@ Directory Services and Organizations
 
 The Nerve Center of an Organization's Infrastructure?
 
-
 - Naming: who/what are there?
 - Location: where are they?
 - Security: protect against unauthorized access and tempering
@@ -67,11 +65,15 @@ So what is LDAP, exactly?
 ------------------------------------
 
 - LDAP: Lightweight Directory Access Protocol
-- PrecededbythetwoX.500-related protocols: DAS, DIXIE (front ends)
-- "Lightweight":simplifiedencoding methods, runs directly on commonly available TCP/IP
-- "Heavyweight":X.500DAPuses complex encoding methods, runs on rare OSI network protocol stack
-- Simplified implementation of clients and servers by eliminating infrequent and redundant DAP features/operations
-- Data elements represented as simple text strings, while messages wrapped in binary encoding for efficiency
+- Preceded by the two X.500-related protocols: DAS, DIXIE (front ends)
+- "Lightweight": simplified encoding methods, runs directly on commonly 
+  available TCP/IP
+- "Heavyweight":X.500DAPuses complex encoding methods, runs on rare OSI 
+  network protocol stack
+- Simplified implementation of clients and servers by eliminating infrequent
+  and redundant DAP features/operations
+- Data elements represented as simple text strings, while messages wrapped in 
+  binary encoding for efficiency
 - Uses a subset of the X.500 encoding rules to further simplify implementation
 - Simplified transport: no need for OSI, runs directly over TCP.
 - Supports both IPv4 and IPv6.
@@ -90,16 +92,21 @@ SLAPD: Stand-alone LDAP Daemon
 - Support for both IPv4 and IPv6
 - Simple Authentication and Security Layer
 - Transport Layer Security through SSL
-- Generic modules API: covers development for front-end communication with LDAP client, and back-end database operations with Perl, Shell, SQL, TCL, and Python
+- Generic modules API: covers development for front-end communication with
+  LDAP client, and back-end database operations with Perl, Shell, SQL, TCL, 
+  and Python
 
 SLAPD: Continued
 -------------------------------------
 
-- Access control based on LDAP authorization information, IP address, domain name, etc.
+- Access control based on LDAP authorization information, IP address, domain
+  name, etc.
 - Support for Unicode and language tags
 - Choice of various backend databases
-- A multi-threaded slapd process can handle all incoming requests => reduced system overhead => higher performance
-- Replication of data using single-master multiple-slave scheme for high-volume environments
+- A multi-threaded **slapd** process can handle all incoming requests => reduced 
+  system overhead => higher performance
+- Replication of data using single-master multiple-slave scheme for 
+  high-volume environments
 - Highly configurable via a single configuration file that "does it all"
 
 LDAP Client-Server Exchange Protocol
@@ -110,28 +117,38 @@ FIGURE
 Example LDAP Usage
 ------------------------------------
 
-- Adirectoryservicethatenablesa user to locate remote resources ANYWHERE on a distributed network.
-- Adynamicsystemthat provides/fetches resources based on individual user's queries.
-- Amodelthatwouldutilizeand manage the existing system in a more organized way.
-- Examples:"OmniPrint"servicefrom anywhere on the network, location and availability of a coffeemaker!
+- A directory service that enables a user to locate remote resources ANYWHERE 
+  on a distributed network.
+- A dynamic system that provides/fetches resources based on individual user's
+  queries.
+- A model that would utilize and manage the existing system in a more 
+  organized way.
+- Examples:"OmniPrint" service from anywhere on the network, location and 
+  availability of a coffeemaker!
 - A robust and extensible client-server model
-- Application needs: data elements, service performance (latency, throughput, e.g., 480K searches per hour)
-- User needs: accuracy, privacy, up-to-date, completeness, security, balance for all users
+- Application needs: data elements, service performance (latency, throughput, 
+  e.g., 480K searches per hour)
+- User needs: accuracy, privacy, up-to-date, completeness, security, balance
+  for all users
 - Extensibility: Must be able to extend to distributed and replicated models
 - Platforms supported: Should accommodate heterogeneous platforms
 
 Schemas
 -------------------------------------
 - Similar to databases, needed for integrity and quality
-- Asetofrulesthatdetermineswhat can be stored in a directory service
-- Asetofrulesthatdefineshow directory servers and clients should treat information during a directory operation
-- Eachentity(called"attribute")has its own object identifier ("oid")
-- Reduceunnecessarydataduplication resulted from some directory- enabled applications
+- A set of rules that determines what can be stored in a directory service
+- A set of rules that defines how directory servers and clients should treat
+  information during a directory operation
+- Each entity (called "attribute") has its own object identifier (called an
+  *oid*)
+- Reduce unnecessary data duplication resulted from some directory-enabled 
+  applications
 
 attributes and objectclasses
 -------------------------------------
 
-The following shows how to create your own schema in LDAP (for our example fictitious domain)::
+The following shows how to create your own schema in LDAP (for our example
+fictitious domain)::
 
 	description ATTRIBUTE ::= {
 	  WITH SYNTAX DirectoryString {1024}
@@ -147,19 +164,32 @@ The following shows how to create your own schema in LDAP (for our example ficti
 	  requires ipaddress
 	  allows cn, connectionSpeed
 
+Note: the term objectclass is not the same terminology from object-oriented
+programming. In LDAP, an objectclass defines a schema-aware data object but
+does not define methods (functions) as in OOP.
 
 Namespaces
 ---------------------------------------
 
-- Means by which information in the directory will be named and referenced, similar to a pointer or label (or index).
-- Namespace can be of any topology, e.g. tree, star, triangular, or linear. LDAP supports trees innately.
+- Means by which information in the directory will be named and referenced, 
+  similar to a pointer or label (or index).
+- Namespace can be of any topology, e.g. tree, star, triangular, or linear. 
+  LDAP supports trees innately.
 - Concept of DN and its components: CN, C, ST, L, O, OU, STREET, DC, UID
-- Naming scheme could be internet-based or traditional, based on organizational needs
+- Naming scheme could be internet-based or traditional, based on 
+  organizational needs
 
-    - LDAP Naming (a so-called distinguished name) ou=cpdc,ou=ece,ou=northwestern,ou=edu, c=evanston,st=illinois,c=us
-    - Traditional (Internet-style) naming: CPDC.ECE.McCormick.Northwestern.Evanston.IL.US
+Here's an example of a DN::
 
-hg LDAP Tree Topology
+  ou=cpdc,ou=ece,ou=northwestern,ou=edu, c=evanston,st=illinois,c=us
+
+Traditional (Internet-style) naming::
+
+  CPDC.ECE.McCormick.Northwestern.Evanston.IL.US
+
+Which is better?
+
+LDAP Tree Topology
 ----------------------
 
 FIGURE to show the distinguished name concept.
@@ -200,16 +230,26 @@ LDIF Example
     homeDirectory: /homes/users/lt412-p3
     gecos: LT 412 P3 Lab
 
+
+.. todo::
+
+   Replication and standby serving with **slurpd**.
+   
 Acknowledgements
 ------------------------------------
 
-The notes in this lecture are based on a presentation co-authored with Dr. Thiruvathukal's former students in Distributed Systems (at Northwestern University), `Steve Chiu <http://www2.cose.isu.edu/~chiustev/>`_ and `Jay Pisharath <http://cucis.ece.northwestern.edu/members/jay/>`_.
+The notes in this lecture are based on a presentation co-authored with 
+Dr. Thiruvathukal's former students in Distributed Systems (at Northwestern
+University), `Steve Chiu <http://www2.cose.isu.edu/~chiustev/>`_ and 
+`Jay Pisharath <http://cucis.ece.northwestern.edu/members/jay/>`_.
 
 References
 ----------------
 
 - http://openldap.org
 
-- T. Howes et. al., Understanding and Deploying LDAP Directory Services, MacMillan Technical Publishing, 1999
+- T. Howes et. al., *Understanding and Deploying LDAP Directory Services*, 
+  MacMillan Technical Publishing, 1999
 
-- LDAP bindings are provided in many languages, such as Python and Java. OpenLDAP provides C bindings.
+- LDAP bindings are provided in many languages, such as Python and Java. 
+  OpenLDAP provides C bindings.
