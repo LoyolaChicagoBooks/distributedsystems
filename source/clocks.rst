@@ -147,16 +147,28 @@ Vector Clocks
 - Rules of Vector Clocks:
 	- A vector clock :math:`VC(a)` is assigned to an event a
 	- If :math:`VC(a) < VC(b)` for events a and b, then event a is known to causally precede b.
-- Each Process :math:`Pi` maintains a vector :math:`VCi` with the following properties:
+- Each Process :math:`P_i` maintains a vector :math:`VC_i` with the following properties:
+	- :math:`VC_i[i]` is the number of events that have occurred so far at :math:`P_i`. i.e. :math:`VC_i[i]` is the local logical clock at process :math:`P_i`
+	- If :math:`VC_i[j] = k` then :math:`P_i` knows that :math:`k` events have occurred at :math:`P_j`. It is thus :math:`P_i`'s knowledge of the local time at :math:`P_j`
 
 
+Implementing Vector Clocks
+--------------------------
+
+- The first property of the vector clock is accomplished by incrementing :math:`VC_i[i]` at each new event that happens at process :math:`P_i`
+- The second property is accomplished by the following steps:
+	#. Before executing any event (sending a message or some internal event), :math:`P_i` executes :math:`VC_i[i]` <- :math:`VC_i[i] + 1`
+	#. When process :math:`P_i` sends a message :math:`m` to :math:`P_j`, it sets m's (vector) timestamp :math:`ts(m) = VC_i`
+	#. Upon receiving a message :math:`m`, process :math:`P_j` adjusts its own vector by setting :math:`VC_j[k]` <- :math:`max( VC_j[k], ts(m)[k] )` for each k.
 
 
+So... What Did We Get Out of All of This?
+-----------------------------------------
 
+- We can say if an event :math:`a` has a timestamp :math:`ts(a)`, then :math:`ts(a)[i]-1` denotes the number of events processed at :math:`P_i` that causally precede :math:`a`
+- This means that when :math:`P_j` receives a message from :math:`P_i` with timestamp :math:`ts(m)`, it knows about the number of events that occured at :math:`P_i` that causally preceded the sending of :math:`m`
+- Even more importantly, :math:`P_j` has been told how many events in **other** processes have taken place before :math:`P_i` sent message :math:`m`.
+- So, this means we could achieve a very important capability in a distributed system: we can ensure that a message is delivered only if all messages that causally precede it have also been received as well.
 
-
-
-
-
-
+- We can use this capability to build a truly distributed dataflow graph with dependencies without having a centralized coordinating process.
 
