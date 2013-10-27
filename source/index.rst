@@ -27,6 +27,7 @@ Table of Contents
    sphinx
    messagequeues
    storage
+   clocks
    dns
    directories
    mpi
