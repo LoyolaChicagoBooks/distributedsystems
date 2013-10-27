@@ -56,3 +56,33 @@ Physical Clocks - Multiple Systems
 - To solve this problem, clock synchronization algorithms are necessary.
 
 
+
+Clock Synchronization
+------------------------------------
+
+- The common approach to time synchronization has been to have many computers make use of a time server.
+- Typically the time server is equipped with special hardware that provides a more accurate time than does a cheaper computer timer
+- The challenge with this approach is that there is a delay in the transmission from the time server to the client receiving the time update.
+- This delay is not constant for all requests. Some request may be faster and others slower.
+- So how do we solve this problem?
+
+
+.. figure:: figures/clocks/ntp_request_response.jpg
+
+
+- The relative time correction C can be calculated as:
+
+
+.. math:: 
+
+	C = \frac{(T2 - T1) + (T3 - T4)}{2}
+
+
+- The way this works is that the client sends a packet with T1 recorded to the time server. The time server will record the receipt time of the packet T2. When the response is sent, the time server will write its current time T3 to the response. When the client receives the response packet, it will record T4 from its local clock. 
+- When the value of C is worked out, the client can correct its local clock
+- The client must be careful. If the value of C is positive, then C can be added to the software clock
+- If the value of C is negative, then the client must artificially decrease the amount of milliseconds added to its software clock each tick until the offset is cleared.
+- It is always inadvisable to cause the clock to go backwards. Most software that relies on time will not react well to this.
+
+
+
