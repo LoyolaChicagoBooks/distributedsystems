@@ -41,5 +41,18 @@ Physical Clocks
 Physical Clocks - Multiple Systems
 ------------------------------------
 
+- Unfortunately, it is impossible for each machined quartz crystal in every computer timer to be exactly the same. These differences create clock skew.
+- For example, if a timer interrupts 60 times per second, it should generate 216,000 ticks per hour.
+- In practice, the real number of ticks is typically between 215,998 and 216,002 per hour. This means that we aren’t actually getting precisely 60 ticks per second.
+- We can say that a timer is within specification if there is some constant p such that:
+
+.. math::
+
+	1 - p <= \frac{dC}{dT} <= 1 + p
+
+
+- The constant p is the maximum drift rate of the timer.
+- On any two given computers, the drift rate will likely differ.
+- To solve this problem, clock synchronization algorithms are necessary.
 
 
