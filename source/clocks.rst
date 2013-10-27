@@ -75,10 +75,10 @@ Clock Synchronization
 
 .. math:: 
 
-	C = \frac{(T2 - T1) + (T3 - T4)}{2}
+	C = \frac{(T_2 - T_1) + (T_3 - T_4)}{2}
 
 
-- The way this works is that the client sends a packet with T1 recorded to the time server. The time server will record the receipt time of the packet T2. When the response is sent, the time server will write its current time T3 to the response. When the client receives the response packet, it will record T4 from its local clock. 
+- The way this works is that the client sends a packet with :math:`T_1` recorded to the time server. The time server will record the receipt time of the packet :math:`T_2`. When the response is sent, the time server will write its current time :math:`T_3` to the response. When the client receives the response packet, it will record :math:`T_4` from its local clock. 
 - When the value of C is worked out, the client can correct its local clock
 - The client must be careful. If the value of C is positive, then C can be added to the software clock
 - If the value of C is negative, then the client must artificially decrease the amount of milliseconds added to its software clock each tick until the offset is cleared.
@@ -105,12 +105,12 @@ Lamport’s Logical Clocks
 - If two processes do not interact, it is not necessary that their clocks be synchronized because the lack of synchronization would not be observable and thus not cause problems.
 - It is not important that all processes agree on what the actual time is, but that they agree on the order in which events occur.
 - Rules of Lamport’s Logical Clocks:
-	- Defines a relationship called “happens-before”. a -> is read as “a happens before b”
-	- if a and b are events in the same process and a occurs before b, then a -> b is true.
-	- if a is the event of a message being sent by one process and b is the event of the message being received by another process, then a -> b is true
-	- “happens-before” is transitive, meaning if a -> b and b -> c, then a -> c
-	- if a -> b happens between two process, and events x and y occur on another set of processes and these two sets of processes don’t exchange messages then:
-		- we cannot say whether x -> y or y -> x from the perspective of the first set of processes
+	- Defines a relationship called “happens-before”. :math:`a` -> :math:`b` is read as “a happens before b”
+	- if :math:`a` and :math:`b` are events in the same process and :math:`a` occurs before :math:`b`, then :math:`a` -> :math:`b` is true.
+	- if :math:`a` is the event of a message being sent by one process and :math:`b` is the event of the message being received by another process, then :math:`a` -> :math:`b` is true
+	- “happens-before” is transitive, meaning if :math:`a` -> :math:`b` and :math:`b` -> :math:`c`, then :math:`a` -> :math:`c`
+	- if :math:`a` -> :math:`b` happens between two process, and events :math:`x` and :math:`y` occur on another set of processes and these two sets of processes don’t exchange messages then:
+		- we cannot say whether :math:`x` -> :math:`y` or :math:`y` -> :math:`x` from the perspective of the first set of processes
 
 
 Implementing Lamport’s Logical Clocks
@@ -126,15 +126,36 @@ Implementing Lamport’s Logical Clocks
 Limitations of Lamport’s Logical Clocks
 ---------------------------------------
 
-- Lamport’s logical clocks lead to a situation where all events in a distributed system are totally ordered. That is, if a -> b, then we can say C(a) < C(b).
-- Unfortunately, with Lamport’s clocks, nothing can be said about the actual time of a and b. If the logical clock says a -> b, that does not mean in reality that a actually happened before b in terms of real time.
+- Lamport’s logical clocks lead to a situation where all events in a distributed system are totally ordered. That is, if :math:`a` -> :math:`b`, then we can say :math:`C(a) < C(b)`.
+- Unfortunately, with Lamport’s clocks, nothing can be said about the actual time of a and b. If the logical clock says :math:`a` -> :math:`b`, that does not mean in reality that a actually happened before b in terms of real time.
 
 .. figure:: figures/clocks/lamport_limitations.jpg
 
-	From this diagram, we can see that m1 -> m3. We also know that C(m1) < C(m3). We can see that m2 -> m3 and that C(m2) < C(m3). What we cannot tell here is whether m1 or m2 caused m3 to be sent.
+	From this diagram, we can see that :math:`m_1 -> m_3`. We also know that :math:`C(m_1) < C(m_3)`. We can see that :math:`m_2 -> m_3` and that :math:`C(m_2) < C(m_3)`. What we cannot tell here is whether :math:`m_1` or :math:`m_2` caused :math:`m_3` to be sent.
 
 
 - The problem with Lamport clocks is that they do not capture causality.
+- If we know that a -> c and b -> c we cannot say which action initiated c.
+- This kind of information can be important when trying to replay events in a distributed system (such as when trying to recover after a crash).
+- The theory goes that if one node goes down, if we know the causal relationships between messages, then we can replay those messages and respect the causal relationship to get that node back up to the state it needs to be in.
+
+
+Vector Clocks
+-------------
+
+- Vector clocks allow causality to be captured
+- Rules of Vector Clocks:
+	- A vector clock :math:`VC(a)` is assigned to an event a
+	- If :math:`VC(a) < VC(b)` for events a and b, then event a is known to causally precede b.
+- Each Process :math:`Pi` maintains a vector :math:`VCi` with the following properties:
+
+
+
+
+
+
+
+
 
 
 
