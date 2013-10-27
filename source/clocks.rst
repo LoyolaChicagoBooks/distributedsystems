@@ -85,4 +85,57 @@ Clock Synchronization
 - It is always inadvisable to cause the clock to go backwards. Most software that relies on time will not react well to this.
 
 
+Clocks Synchronization and Reliability
+--------------------------------------
+
+- Always remember: the goal of clock synchronization is to minimize the difference between the accepted actual time and the time on a given client machine
+- When this is achieved, it can be said that in a given set of computers that synchronize that their clocks are more closely in sync.
+- Even in this case of more accurate and more often corrected for clocks, developers of distributed systems should still be wary of relying on local clock time.
+- Because there are corrections going on, the time recorded for an event might have actually happened at a different time on another computer because of differing drift rates of those computer timers.
+- Because we have correction of time does not mean that all machines agree on time, it just means they are much closer to each other on average.
+- For some distributed systems, this may be sufficient, for others it may not be.
+
+
+Lamport’s Logical Clocks
+------------------------
+
+- An important paper to read - “Time, clocks, and the ordering of events in a distributed system” by Lamport (1978).
+- This paper can be looked up on scholar.google.com
+- The important contribution of Lamport is that in a distributed system, clocks need not be synchronized absolutely. 
+- If two processes do not interact, it is not necessary that their clocks be synchronized because the lack of synchronization would not be observable and thus not cause problems.
+- It is not important that all processes agree on what the actual time is, but that they agree on the order in which events occur.
+- Rules of Lamport’s Logical Clocks:
+	- Defines a relationship called “happens-before”. a -> is read as “a happens before b”
+	- if a and b are events in the same process and a occurs before b, then a -> b is true.
+	- if a is the event of a message being sent by one process and b is the event of the message being received by another process, then a -> b is true
+	- “happens-before” is transitive, meaning if a -> b and b -> c, then a -> c
+	- if a -> b happens between two process, and events x and y occur on another set of processes and these two sets of processes don’t exchange messages then:
+		- we cannot say whether x -> y or y -> x from the perspective of the first set of processes
+
+
+Implementing Lamport’s Logical Clocks
+-------------------------------------
+
+- When a message is transmitted from P1 to P2, P1 will encode the send time into the message.
+- When P2 receives the message, it will record the time of receipt
+- If P2 discovers that the time of receipt is before the send time, P2 will update its software clock to be one greater than the send time (1 milli second at least)
+- If the time at P2 is already greater than the send time, then no action is required for P2
+- With these actions the “happens-before” relationship of the message being sent and received is preserved.
+
+
+Limitations of Lamport’s Logical Clocks
+---------------------------------------
+
+- Lamport’s logical clocks lead to a situation where all events in a distributed system are totally ordered. That is, if a -> b, then we can say C(a) < C(b).
+- Unfortunately, with Lamport’s clocks, nothing can be said about the actual time of a and b. If the logical clock says a -> b, that does not mean in reality that a actually happened before b in terms of real time.
+
+.. figure:: figures/clocks/lamport_limitations.jpg
+
+	From this diagram, we can see that m1 -> m3. We also know that C(m1) < C(m3). We can see that m2 -> m3 and that C(m2) < C(m3). What we cannot tell here is whether m1 or m2 caused m3 to be sent.
+
+
+- The problem with Lamport clocks is that they do not capture causality.
+
+
+
 
