@@ -266,7 +266,7 @@ Interprocess Communication:
 Reliability
 ----------------------------------------------------------------------
 
-- “Unreliable Message” - single msg sent from sender to recipient without acknowledgment  (e.g., UDP)
+- "Unreliable Message" - single msg sent from sender to recipient without acknowledgment  (e.g., UDP)
 - Processes that use unreliable messages are responsible for enforcing correct/reliable message passing
 - Reliability introduces overhead
 	- need to store state information at the source and destination
