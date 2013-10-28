@@ -13,9 +13,9 @@ What is Time? Some Physics
 	- We now know that simultaneity is a relative concept. Two events A and B occurring simultaneously in one reference frame may appear to be ordered A then B in another frame and B then A in yet another reference frame. 
 	- All of this is true without invalidating the observations our causal relationships observed in any reference frame.
 
-.. figure:: figures/clocks/Relativity_of_Simultaneity.svg
+.. figure:: figures/clocks/Relativity_of_Simultaneity.*
    
-   Two events in space-time. The green observer sees A and B happening at the same time since the two events happen on the same X time plane for A. For the red observer, B is encountered first, then A second. For the blue observer A happens first, and B second. (Image taken from http://commons.wikipedia.org/wiki/File:Relativity_of_Simultaneity.svg under the Creative Commons License.)
+   Two events in space-time. The green observer sees A and B happening at the same time since the two events happen on the same X time plane for A. For the red observer, B is encountered first, then A second. For the blue observer A happens first, and B second. (Image taken from http://commons.wikipedia.org/wiki/File:Relativity_of_Simultaneity.* under the Creative Commons License.)
 
 
 Time and Computation
