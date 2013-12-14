@@ -1,0 +1,2 @@
+To generate the document, run make html in the root directory
+To view the document, open ./build/html/index.html in your browser after generating

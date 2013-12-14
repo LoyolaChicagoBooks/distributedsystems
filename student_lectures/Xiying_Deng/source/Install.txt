@@ -1,0 +1,38 @@
+Setting up Gluster - Ubuntu
+=================================
+
+Download and install the packages
+-----------------------------------
+
+Run the following command to download and install packages:
+ #. wget -nd -nc -r -A.deb http://download.gluster.org/pub/gluster/glusterfs/LATEST/Ubuntu/12.04/glusterfs_3.3.0-1_amd64.deb
+ #. dpkg -i glusterfs_3.3.0-1_amd64.deb
+
+Install for other systems
+---------------------------
+- Please refer to http://gluster.org/community/documentation/index.php/Getting_started_install
+
+Configure
+-----------
+- Please refer to http://gluster.org/community/documentation/index.php/Getting_started_configure
+
+How to Create a Storage Volume and Mount on Clients
+-------------------------------------------------------
+
+- Create a volume and specify export protocols
+	- Create Volume
+		- Enter Volume name
+		- Select Volume type
+		- Select Transport type
+		- Select Storage Servers
+		- Select export protocols
+		- Click Create Volume
+	- Specify export protocols
+		- GlusterFS Native: For Linux only
+		- NFS: For Linux or Unix
+		- CIFS: For Windows
+
+- Mount created volume on clients
+	- First install the GlusterFS client module on each client
+	- Then as a root user, run the following command:
+		mount -t glusterfs [StorageNodeIP]:[VolumeName] -tcp [mountpoint]

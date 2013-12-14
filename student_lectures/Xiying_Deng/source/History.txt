@@ -1,0 +1,66 @@
+The History and Future of GlusterFS
+=====================================
+
+History
+---------
+- Phases
+ #. Lego Kit for Storage
+	- Create a global namespace
+	- Versions 1.x - 2.x
+		- Hand-crafted volume definition files
+		- Simple configuration files
+ #. Repeatability of Use Cases
+	- Community-led
+	- Version 3.0
+		- Adding, removing features
+	- Version 3.1
+		- Adding, removing volumes w/glustered
+	- Version 3.2
+		- Native NFS server
+		- Marker framework
+		- Geo-replication
+
+- Gluster Production Deployments
+	- BOX
+	- NTT
+	- SAMSUNG
+	- PODIO
+	- Cornell University
+	- Stanford University
+	- Deutsche Bank
+
+- GlusterFS 3.3
+	- New features
+		- Unified File and Object access
+		- Hadoop/HDFS compatibility
+	- New volume type
+		- Replicated + striped + distributed volumes
+	- Enhancements to Distributed volumes
+		- Rebalance can migrate open files
+		- Remove-brick can migrate data to remaining bricks
+	- Enhancements to replicated volumes
+		- Change replica count on an active volume
+		- add replication to distribute-only volumes
+		- Much faster self-healing for large files
+
+Future
+------------
+- Planning for GlusterFS 3.5
+	- Core Features
+		- AFR_CLI_enhancements
+		- Better peer identification
+		- Better ssl
+		- Exposing volume capabilities
+		- File snapshot
+		- Object count
+		- On-wire compression and decompression
+		- Prevent NFS restart on volume change
+		- Quota scalability
+		- SELinux integration
+		- Multi-Node test suite
+
+- Technology Integrations
+	- GlusterFS used as VM storage system
+	- Shared storage ISOs and appliances
+	- Goal: The standard for cloud storage
+

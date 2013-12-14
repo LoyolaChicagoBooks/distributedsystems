@@ -1,0 +1,38 @@
+Architecture
+================
+
+Overview
+----------
+- Multiprotocol Client Support
+- Clustered Storage Building Blocks
+- Flexible Back-end
+
+High Availability with GlusterFS
+-----------------------------------
+- No Single Point Of Failure(SPOF)
+	- File can be mirrored 2 times or more
+	- Self-healing
+
+GlusterFS Architecture
+--------------------------
+- Network Switches
+- 2 x EdgeNode
+	- 2 CPU 6 core
+	- 48GB RAM
+	- 6 x HDD 600GB 15K(Raid1)
+- 2 x Backup Node/Admin
+	- 2 CPU 6 core
+	- 32GB RAM
+	- 6 x HDD 600GB 15K(Raid1)
+- 3 to n x GlusterFS Server
+	- 2 CPU 6 core
+	- 32GB RAM
+	- 12 x HDD 1TB 7.5K
+
+Disaster Recovery Architecture
+--------------------------------
+- Asynchronous replication with Gluster Geo-Replication Incremental replication from one site to another
+	- Primary site
+	- Secondary site
+	- Racks
+ 

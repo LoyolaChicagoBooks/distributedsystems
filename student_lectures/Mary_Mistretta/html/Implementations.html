@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Implementations &mdash; Mary&#39;s Sphinx 1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Mary&#39;s Sphinx 1 documentation" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../../index.html">Mary&#39;s Sphinx 1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="implementations">
+<h1>Implementations<a class="headerlink" href="#implementations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="apache-cassandra">
+<h2>Apache Cassandra<a class="headerlink" href="#apache-cassandra" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>This is an open source distributed database management system.  It can handle large amounts of data and provides high availability without a single point of failure.  The system places a high value on performance.</li>
+<li>Rows are organized into tables.  Tables can also be altered at runtime.  However, there is no support for joins or subqueries.</li>
+<li>Column indexes with log-structures updates, support for denormalization and materialized views. Powerful Built in caching.</li>
+<li>The system is proven to work.  It is used in netflix, eBay, Twitter, Reddit, and more. The largest use has over 300TB of data in 400 machines.</li>
+<li>The main features of Apache Cassandra are: Fault tolerance, performance, decentralized, durable, control, elasticity, and professional support.</li>
+</ul>
+</div>
+<div class="section" id="mainline-dht">
+<h2>Mainline DHT<a class="headerlink" href="#mainline-dht" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Mainline DHT is teh DHT used by BitTorrent clients to find peers.  It was designed for decentralized peer-to-peer networks.  The decentralization allows for more resistance to a denial of service attack (proper internet use).</li>
+<li>The DHT stores resource locations around the network allowing for quick and easy lookup.  This method makes it a perfect technology to use in peer-to-peer systems.</li>
+</ul>
+</div>
+<div class="section" id="can-content-addressable-network">
+<h2>CAN (Content Addressable Network)<a class="headerlink" href="#can-content-addressable-network" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>This infrastructure provides hash table functionality on a large scale.  It is a distributed and decentralized peer-to-peer structure.</li>
+<li>It is designed to be scalable, fault tolerant, and self-organizing.  It uses a Catersian coordinate system for virtual addresses.  Each node maintains a routing table holding the IP address and coordinate of each of its neighbors.</li>
+<li>This structure can perform node joining and departing.</li>
+</ul>
+</div>
+<div class="section" id="baton-overlay">
+<h2>BATON Overlay<a class="headerlink" href="#baton-overlay" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>BATON: BAlances Tree Overlay Network is a distributed tree structure for peer-to-peer systems. It supports range search by organizing peers in a tree structure. The systems keeps the tree balanced similarly to AVL trees.</li>
+<li>Because of the tree structure BATON has a quick search of O(log N).</li>
+<li>It is a binary tree structure with links to child and parents nodes.  BATON does support node joining and leaving. The tree automatically restructures itself when it detects an inbalance.</li>
+</ul>
+</div>
+<div class="section" id="tutorial">
+<h2>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>UTorrent is a small BitTorrent client. It uses a DHT and is very simple to use.</li>
+<li><strong>*Please note Loyola blocks some of this software if it is detected on your machine.  I do not recommend using it while connected to Loyola&#8217;s Network*</strong>.</li>
+</ul>
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../../genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="../../py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="../../search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Implementations</a><ul>
+<li><a class="reference internal" href="#apache-cassandra">Apache Cassandra</a></li>
+<li><a class="reference internal" href="#mainline-dht">Mainline DHT</a></li>
+<li><a class="reference internal" href="#can-content-addressable-network">CAN (Content Addressable Network)</a></li>
+<li><a class="reference internal" href="#baton-overlay">BATON Overlay</a></li>
+<li><a class="reference internal" href="#tutorial">Tutorial</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/Distributed-Hash-Tables/source/Implementations.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../../index.html">Mary&#39;s Sphinx 1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Mary Mistretta.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

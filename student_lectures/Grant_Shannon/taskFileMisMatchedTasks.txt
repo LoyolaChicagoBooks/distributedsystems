@@ -1,0 +1,10 @@
+T1:sleep 2
+T2:sum 10000
+T3:sleep 1
+T4: 5000000
+T5:sum 234
+T6:sum 1000000
+T7:sleep 6
+T8:sleep 5
+
+T1:T2:(T3|T4):T5:T6:(T7|T8)
