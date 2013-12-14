@@ -1,0 +1,44 @@
+Distributed Storage
+======================================
+
+Distributed Storage - Options
+---------------------------------
+- Ceph: a software platform which is designed to present object, block and file storage from a single distributed computer cluster.
+- GlusterFS
+- Sheepdog: a distributed object storage system for volume and containerservices and manages the disks and nodes intelligently.
+- GPFS: the Genaral Parallel File System is a high performance, shared-disk file system developed by IBM.
+
+Distributed Storage - GlusterFS
+-----------------------------------
+GlusterFS is a clustered file-system capable of scaling to several peta-bytes. GlusterFS is very easy to understand and configure. All data is stored in volumes which consist of bricks. Bricks are basically directories stored on nodes. Each node can have many bricks. It aggregates various storage bricks over Infiniband RDMA or TCP/IP interconnect into one large parallel network file system. Storage bricks can be made of any commodity hardware such as x86_64 servers with SATA-II RAID and Infiniband HBA. 
+
+The translators build blocks for GlusterFS process. It is based on translators in GNU HURD. This kind of translators can be stacked together to achieve desired functionality, and can be loaded on client or server stacks.
+
+The volumes have many features. The distributed files are across various bricks of the volume, and the directories are present on all bricks of the volume. Moreover, the volumes have good replication features. First, it creates synchronous copes of all directory and file updates. Second, it provides high availability of data when node failures occur. Third, there is transaction driven for ensuring consistency. Also, files are striped into chunks and placed in various bricks, and chunks help maintain offset consistency. There are all kinds of replicates such as distributed Replicate, striped Replicate and distributed Striped Replicate.
+
+GlusterFS with OpenStack
+----------------------------
+The OpenStack is the Open Source Cloud Mission which is to produce the ubiquitous Open Source Cloud Computing platform that will meet the needs of public and private clouds regardless of size, by being simple to implement and massively scalable.
+GlusterFS is one of the supported back-ends in OpenStack Block Storage(Cinder). It now supports the three primary modes of storage for OpenStack: file, block and object.
+
+- Access Mechanisms
+	- FUSE
+	- NFS
+	- SMB
+	- libgfapi
+	- ReST
+		- HTTP End Users
+		- OpenStack Object API
+		- Account Server
+		- Swift-Proxy
+		- Auth System
+		- Object Server
+		- Container Server
+	- HDFS
+- Interface Possibilities
+	- Files
+	- Blocks
+	- Objects
+	- Transports
+	- Back ends
+

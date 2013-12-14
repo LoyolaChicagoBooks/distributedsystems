@@ -1,0 +1,8 @@
+module GreetingsApp
+{
+    interface Greetings
+    {
+        string expressGreetings();
+        oneway void shutdown();
+    };
+};

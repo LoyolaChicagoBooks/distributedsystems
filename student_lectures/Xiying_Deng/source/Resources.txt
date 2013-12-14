@@ -1,0 +1,6 @@
+Resources
+============
+- http://www.gluster.org/
+- http://www.slideshare.net/
+- http://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fricky-tan.googlecode.com%2Fsvn-history%2Fr56%2Ftrunk%2FAn_Introduction_To_Gluster_ArchitectureV7_110708.pdf&ei=katuUqf0GoSL2wXJ9YHgDw&usg=AFQjCNEGsKDZIOoagLOZsMhArnYuoMOlFw&sig2=ueUCv8aLUfTjH9oVv8WqNw&bvm=bv.55123115,d.b2I&cad=rja
+- http://en.wikipedia.org/wiki/Gluster

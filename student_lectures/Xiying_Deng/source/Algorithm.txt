@@ -1,0 +1,52 @@
+The Elastic Hashing Algorithm
+===================================
+- In centralized metadata systems, the treatment of metadata impacts the ability to scale most. In a scale-out system like GlusterFS, to ensure that all data can be efficiently located and retrieved, the elastic hashing algorithm is used.
+
+Centralized Metadata Systems
+------------------------------
+In centralized metadata systems, the centralized server uses a central metadata index contains the names and associated physical locations of all files. 
+This kind of system has two serious flaws:
+	- A performance bottleneck: All attempts to write a file result in a write to the metadata server, and all attempts to read a file result in a query to metadata server. As a result, with the number of files and file operations increases, the metadata server becomes a performance chokepoint. This results that the capacity does not scale linearly with number of disks, and the performance does not scale linearly with number of nodes. There are several situations that can rise serious scaling issures. For example, the number of files increase, or the number of file operations increases. The number of disks increase or the number of storage systems increase can also cause such issues. As the average file size dereases, the ratio of metadata to data increases, and this can leads to the average size of the files decreasing, which can also results in serious scaling issues.
+	- A single point of failure: a single point of failure may be a more serious issue. If the metadata server goes offline, all operations essentially cease. If metadata server is corrupted or lost, data is lost as well.
+
+.. figure:: figures/figure3.png
+        :align: center
+        :width: 600px
+        :alt: Figure 03
+Distributed Metadata Systems
+------------------------------
+In the distributed metadata systems, the index of location metadata is spread among a large number of storage systems. The distributed metadata approach would appear on the surface to address the shortcomings of the centralized approach. This approach avoids some of the problems of centralized approach such as single point of failure. However, it also has two flaws:
+	- Performance overhead: Because various distributed systems try to stay in sync with data via the use of various locking and synching mechanisms, there is considerable performance overhead. 
+	- Corruption issues: Although the loss or corruption of one distributed node will not break down the entire system, it may corrupt the entire system. Assume in the worst possible scenario, the apparently-successful updates to file data and metadata to separate locations, and this will cause corruption issues, and the concurrency of metadata is the main challenge.
+
+.. figure:: figures/figure4.png
+        :align: center
+        :width: 600px
+        :alt: Figure 04
+
+No Metadata Model
+--------------------
+An algorithmic approach-Elastic Hashing Algorithm is a no metadata model. The two metadata systems introduced above introduces both performance and reliability issues mainly because they separates data from location metadata. Therefore, Gluster uses the Elastic Hashing Algorithm which does not separate metadata from data, and does not rely on any separate metadata server, whether centralized and distributed.
+
+The goal of the Elastic Hashing Algorithm is to systematically locate files based solely on their names. Knowing nothing but the path name and file name, the access to a file in GlusterFS performs a mathematical operation that calculates the file location. Therefore, there is no need to separate location metadata from data because the location is determined independently.
+
+The algorithmic approach means Gluster is faster and achieves true linear scaling for distributed deployments.
+
+- How does the Elastic Hashing Algorithm work?
+
+	- A "alphabet" algorithm to locate files
+		- Assign files to physical disks alphabetically based on name
+		- All relevant elements of the system know the algorithm
+		- By applying the algorithm, any element can know the file's location
+	- The use of hashing
+		- Gluster's Elastic Hashing Algorithm is based on the Davies-Meyer hashing algorithm
+		- Each given pathname/filename results in a unique number	- Making the hashing algorithm "elastic"
+		- Setting up a very large number of vitual volumes
+		- Using the hashing algorithm to assign files to virtual volumes
+		- Using a separate process to assign virtual volumes to multiple physical devices
+
+.. figure:: figures/figure2.png
+        :align: center
+        :width: 600px
+        :alt: Figure 02
+

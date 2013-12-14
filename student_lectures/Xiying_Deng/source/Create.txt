@@ -1,0 +1,26 @@
+How to Create a Storage Volume and Mount on Clients
+=====================================================
+
+Create a volume and specify export protocols
+-----------------------------------------------
+- Create Volume
+	- Enter Volume name
+	- Select Volume type
+		- None
+		- Mirror
+		- Stripe
+	- Select Transport type
+	- Select Storage Servers
+	- Select export protocols
+	- Click Create Volume
+- Specify export protocols
+	- GlusterFS Native: For Linux only
+	- NFS: For Linux or Unix
+	- CIFS: For Windows
+
+Mount created volume on clients
+--------------------------------
+- First install the GlusterFS client module on each client
+- Then as a root user, run the following command:
+	mount -t glusterfs [StorageNodeIP]:[VolumeName] -tcp [mountpoint]
+

@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>What are Distributed Hash Tables? &mdash; Mary&#39;s Sphinx 1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Mary&#39;s Sphinx 1 documentation" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../../index.html">Mary&#39;s Sphinx 1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="what-are-distributed-hash-tables">
+<h1>What are Distributed Hash Tables?<a class="headerlink" href="#what-are-distributed-hash-tables" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overall">
+<h2>Overall<a class="headerlink" href="#overall" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Lookup system that is similar to a standard hash table.</li>
+<li>Distribute data over peer to peer networks to quickly find any item and form data storage responsibility</li>
+<li>Nodes can retrieve the values.</li>
+<li>Because responsibility is distributed among the notdes, things can change with minimal disruption.</li>
+<li>Scales very well.</li>
+</ul>
+</div>
+<div class="section" id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Autonomony and Decentralization.</li>
+<li>Fault Tolerance.</li>
+<li>Scalability (up to millions of nodes).</li>
+</ul>
+</div>
+<div class="section" id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Foundation of an abstract keyspace (160-bit strings).</li>
+<li>Keyspace partitioning: splits ownership of space among the nodes.</li>
+<li>Overlay network: connects the nodes.</li>
+</ul>
+</div>
+<div class="section" id="keyspace-partitioning">
+<h2>Keyspace Partitioning<a class="headerlink" href="#keyspace-partitioning" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Map keys to nodes.</li>
+<li>Each node has an identifier key.</li>
+<li>Most DHTs use consistent hashing: allows for adding and removing nodes with less impact</li>
+<li>Locality-preserving hashing: similar keys assigned to similar objects</li>
+</ul>
+</div>
+<div class="section" id="overlay-network">
+<h2>Overlay Network<a class="headerlink" href="#overlay-network" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Each node has links to other nodes which form the network.</li>
+<li>Network Topology.</li>
+<li>Key-based routing.</li>
+<li>Worst case route.</li>
+</ul>
+</div>
+<div class="section" id="algorithms-for-overlay-networks">
+<h2>Algorithms for Overlay Networks<a class="headerlink" href="#algorithms-for-overlay-networks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Overlay multicast.</li>
+<li>Range queries.</li>
+<li>Collect Statistics.</li>
+</ul>
+</div>
+<div class="section" id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>place a picture here.</li>
+</ul>
+</div>
+<div class="section" id="what-are-dhts-good-at">
+<h2>What are DHTs good at?<a class="headerlink" href="#what-are-dhts-good-at" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Very scalable because they can automatically distribute things to new nodes.</li>
+<li>Designed to prevent node failure.  Data is automatically moved away from a failed node.</li>
+<li>They have no need for a central server because they are self organizing.</li>
+</ul>
+</div>
+<div class="section" id="what-are-dhts-bad-at">
+<h2>What are DHTs bad at?<a class="headerlink" href="#what-are-dhts-bad-at" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Searching: due to their hash algorithm, similar data can be at different nodes.  <a href="#id1"><span class="problematic" id="id2">**</span></a><a href="#id3"><span class="problematic" id="id4">**</span></a>This is not the same as a DHT lookup.</li>
+<li>Security: data integrity is hard to verify and secure routing is a problem.</li>
+</ul>
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../../genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="../../py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="../../search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">What are Distributed Hash Tables?</a><ul>
+<li><a class="reference internal" href="#overall">Overall</a></li>
+<li><a class="reference internal" href="#properties">Properties</a></li>
+<li><a class="reference internal" href="#structure">Structure</a></li>
+<li><a class="reference internal" href="#keyspace-partitioning">Keyspace Partitioning</a></li>
+<li><a class="reference internal" href="#overlay-network">Overlay Network</a></li>
+<li><a class="reference internal" href="#algorithms-for-overlay-networks">Algorithms for Overlay Networks</a></li>
+<li><a class="reference internal" href="#architecture">Architecture</a></li>
+<li><a class="reference internal" href="#what-are-dhts-good-at">What are DHTs good at?</a></li>
+<li><a class="reference internal" href="#what-are-dhts-bad-at">What are DHTs bad at?</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/Distributed-Hash-Tables/source/What are Distributed Hash tables.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../../index.html">Mary&#39;s Sphinx 1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Mary Mistretta.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>
