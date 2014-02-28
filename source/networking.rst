@@ -4,11 +4,16 @@ Networking Primer
 - Introduction to networks
 - Protocols and Layers
 - Interprocess Communication
+
   - Sockets
   - RPC
 
 - Network Case Studies (Ethernet, ATM)
 - Protocol Case Studies (TCP/IP, Client-Server)
+
+Additional reading:
+
+- See http://intronetworks.cs.luc.edu/html by our colleague, Dr. Peter Dordal.
 
 Networks
 ----------------------------------------------------------------------

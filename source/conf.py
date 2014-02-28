@@ -111,6 +111,9 @@ html_theme_options = {
     # be in the form [(name, page), ..]
     'navbar_links': [('Index', 'genindex')],
 
+    # This is for prev/next functionality
+    'navbar_sidebarrel': True,
+
     # Include hidden TOCs in Site navbar?
     #
     # Note: If this is "false", you cannot have mixed ``:hidden:`` and
@@ -141,7 +144,7 @@ html_theme_options = {
     # Note that this is served off CDN, so won't be available offline.
     'bootswatch_theme': "united",
 
-    'bootstrap_version' : "2"
+    'bootstrap_version' : "3"
 }
 
 html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
