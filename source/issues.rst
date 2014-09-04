@@ -17,16 +17,21 @@ Distributed systems
 
 - Department computing cluster
 - Corporate systems
+- Cloud systems (e.g. Google, Microsoft, etc.)
 
 Application examples
 
 - Email
 - News
-- Multimedia information systems- video conferencing
+- Multimedia information systems - video conferencing
 - Airline reservation system
 - Banking system
+- File downloads (BitTorrent)
+- Messaging
 
 
+Illustration
+----------------
 
 .. figure:: figures/issues/issues-3.jpg
    :scale: 60 %
@@ -51,13 +56,15 @@ Advantages of Distributed Systems vs. Centralized
 
 Economics
 
-- Microprocessors have better price/performance than mainframes
+- Commodity microprocessors have better price/performance than mainframes
 
 Speed
 
-- Collective power of large number of systems
+- Collective power of large number of systems is potentially infinite
 
 Geographic and Responsibility Distribution
+
+- Can provide better speed in geographic regions by not going over slower transoceanic cables
 
 Reliability
 
@@ -104,7 +111,11 @@ Networking
 
 Security
 
-- Data may be accessed by unauthorized users
+- Data may be accessed by unauthorized users through network interfaces
+
+Privacy
+
+- Data may be accessed securely but without the owner's consent (significant issue in modern systems)
 
 Key Characteristics
 ----------------------------------------------------------
@@ -116,7 +127,6 @@ Key Characteristics
 - Fault Tolerance (Reliability)
 - Transparency
 
-
 Resource Sharing
 ----------------------------------------------------------
 
@@ -124,11 +134,11 @@ Share hardware, software, data and information
 
 Hardware Devices
 
-- printers, disks, memory
+- printers, disks, memory, sensors
 
 Software Sharing
 
-- compilers, libraries, toolkits
+- compilers, libraries, toolkits, computational kernels
 
 Data
 
@@ -165,11 +175,13 @@ Mainly achieved using published interfaces, standardization
 Open Distributed Systems
 ----------------------------------------------------------
 
-- Are characterized by the fact that their key interfaces are published
+Are characterized by the fact that their key interfaces are published
 
-- Based on the provision of a uniform interprocess communication mechanism and published interfaces for access to shared resources
+- e.g., HTTP Protocol, https://www.ietf.org/rfc/rfc2616.txt
 
-- Can be constructed from heterogeneous hardware and software.
+Based on the provision of a uniform interprocess communication mechanism and published interfaces for access to shared resources
+
+Can be constructed from heterogeneous hardware and software.
 
 Concurrency
 ----------------------------------------------------------
@@ -228,12 +240,11 @@ Examples
 - Replication Transparency - users cannot tell how many copies exist
 - Concurrency Transparency - multiple users can hare resources automatically
 - Parallelism Transparency - activities can happen in parallel without user knowing about it 
-- Failure Transparency - concealment of 
+- Failure Transparency - concealment of faults
 
-Are there any forms of transparency that distributed systems researchers haven't already thought of?
 
- Design Issues and Goals , Requirements
-----------------------------------------------------------
+Design Issues
+----------------
 
 - Openness
 - Resource Sharing
@@ -492,11 +503,11 @@ Quality-of-Service
 
 Quality of Service (a.k.a. QoS) refers to performance and other service expectations of a client or an application.
 
-  - Performance
-  - Reliability and availability
-  - security
+- Performance
+- Reliability and availability
+- security
 
 Examples where this is important.
 
-  - Voice over IP (VOIP) and telephony
-  - Video (e.g. Netflix and friends)
+- Voice over IP (VOIP) and telephony
+- Video (e.g. Netflix and friends)
