@@ -7,8 +7,8 @@ the Computer Science Department. This course is normally taught by George K. Thi
 
 .. warning::
 
-   This course is still being migrated to Sphinx. Nothing you see or read here will be official
-   until August 15, 2013.
+   These notes are still being written, so expect a few rough edges. But we're
+   getting closer!
 
 Table of Contents
 -------------------------
@@ -17,19 +17,16 @@ Table of Contents
    :maxdepth: 2
 
    
-   syllabus
    issues
-   dvcs
-   ci
-   maven
    networking
    concurrency
-   sphinx
-   messagequeues
    storage
+   directories
+   ci
+   maven
+   sphinx
    clocks
    dns
-   directories
    mpi
    corba
    rest
