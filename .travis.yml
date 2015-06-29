@@ -1,0 +1,14 @@
+language: python
+python:
+- '3.4'
+install:
+- sudo apt-get update -qq
+- sudo apt-get install -qq help2man texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texinfo mercurial
+- pip install sphinx
+- pip install sphinx_bootstrap_theme
+script:
+- ./pull-examples.sh
+- GH_USER=LoyolaChicagoBooks GH_REPO=distributedsystems "./gh-pages.sh"
+env:
+  global:
+    secure: "BB4l1BHrhfVybHxOdX2ivBb87p1DfrpsyfLTv16OL63qOKIBb98eoiGKK/VmpBSOVDJHHtaMQhROARDTHLnWTslvQcz/y/kXMRYQUc/vRdVuJUWra78bEQ1owq1Ij+Z7l/Fd9k33DqVdt06QYOI8X3FTqqHTbpoKMrv2mFs5O9M="
