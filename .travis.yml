@@ -11,4 +11,4 @@ script:
 - GH_USER=LoyolaChicagoBooks GH_REPO=distributedsystems "./gh-pages.sh"
 env:
   global:
-    secure: "BB4l1BHrhfVybHxOdX2ivBb87p1DfrpsyfLTv16OL63qOKIBb98eoiGKK/VmpBSOVDJHHtaMQhROARDTHLnWTslvQcz/y/kXMRYQUc/vRdVuJUWra78bEQ1owq1Ij+Z7l/Fd9k33DqVdt06QYOI8X3FTqqHTbpoKMrv2mFs5O9M="
+    secure: "DNfQsosCIhRerk/X392/V9wUCYMj/2YxxmJTKQi9HGd0qBOaqWdujM3eJV+Dhp+s+UErWv9+ifQhd9/xAG302z1I5zg3KIiZdBew00wyIbykhXUQHnqZGiZPP7U9QOke9EPShzF4a+QzzgMeNDT+0lcatOUNwg9wmeP6KzdngNQ="
