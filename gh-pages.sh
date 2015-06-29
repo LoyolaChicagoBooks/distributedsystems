@@ -5,9 +5,9 @@ git config --global user.name "George K. Thiruvathukal"
 git remote add deploy "https://$GH_TOKEN@github.com/$GH_USER/$GH_REPO.git"
 git fetch deploy
 git reset deploy/gh-pages
-git checkout master source Makefile build-handbook.sh
+git checkout master source Makefile build.sh
 rm -rf build
-./build-handbook.sh
+./build.sh
 mkdir -p download
 mv -fv build/html/* ./
 mv -fv build/latex/*.pdf ./download/
