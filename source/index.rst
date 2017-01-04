@@ -23,8 +23,6 @@ Table of Contents
    storage
    directories
    ci
-   maven
-   sphinx
    clocks
    dns
    mpi
