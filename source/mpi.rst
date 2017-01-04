@@ -12,6 +12,7 @@ Lecture Code
 
 `MPI Code Samples <code/mpi>`_
 
+
 What is MPI?
 ------------
 
@@ -31,7 +32,7 @@ What is MPI?
 
 
 Uses of MPI
-------------
+~~~~~~~~~~~
 
 - MPI is helpful whenever you need several workstations (or clusters) to work together efficiently and effectively.
 
@@ -39,8 +40,7 @@ Uses of MPI
 
 
 Parallel Computing
-------------------
-
+~~~~~~~~~~~~~~~~~~
 
 - Parallel computing is a form of computation in which multiple calculations are done at the same time.
 
@@ -54,7 +54,7 @@ Parallel Computing
 
 
 Monte Carlo Simulations
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 - Briefly, Monte Carlo computations are computations that rely on random simulations that are done repeatably to derive probablities.
 
@@ -65,15 +65,14 @@ Monte Carlo Simulations
 - However, MPI would allow us to scale up the number of simulations we do. For example, we could throw 1000 darts at a board, but our results would be much more accurate if we threw 1000 darts at 10 different boards. With MPI we can do that: each operation is done on a different process and in parallel. The results can then be compiled and are much closer.
 
 
-
 The MPI Programming Model
-===========================
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Now that you see that MPI has uses and benefits, let us talk briefly on the nitty-gritty details of how an implementation of MPI
 looks and works. All implementations of MPI should have the following capabilities.
 
 Multiple Processes - Ranks
----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 As mentioned above, MPI works on multiple processes, that is multiple computers in a workstation or cluster all working together (or all on one machine).
 In MPI, each process is assigned a Rank. Rank is used to split up the work and allow communication between the processes and also
@@ -106,7 +105,7 @@ In this way we only have to write the program once, and then the processes will 
 Each process is running the same program, but is working on different parts of it. We will look back at the Summation problem later on.
 
 Writing a Simple MPI Program
------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 In order to write your own MPI programs you will need an Implementation of MPI for the language you wish to code in.
 
@@ -215,7 +214,7 @@ Note: In our examples we only launched processes from our local computer, but th
 
 
 Communication is Key
-======================
+--------------------
 
 Our Hello World program is technically an MPI program, but there was no actual communication between the different processes. Let's remedy that.
 
@@ -223,7 +222,7 @@ MPI allows two major types of communication: Point to Point and Collectives. Bef
 
 
 The Communicator
------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 The Communicator is crucial to MPI projects. 
 The Communicator is what allows the different processes to, well, communicate with eachother. 
@@ -239,7 +238,7 @@ You will notice all of our code uses the world communicator for sending and rece
 
 
 Point to Point
----------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Point to Point communication is the most basic. This is simply when the processes communicate on a one to one basis. Rank 0 talks to
 Rank 1, Rank 1 talks to Rank 2 etc. or even more simply Rank 0 talks to Rank 1 and Rank 1 talks to Rank 0. Point to Point can have its
@@ -410,7 +409,7 @@ output:
 
 
 Collective
--------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 The other type of communication we can do is Collective, that is all the processes communicate with each other in one way or another.
 You could probably do all of your coding in Point to Point Communication, but this would get messy pretty quickly. Here are two reasons
@@ -728,7 +727,7 @@ with size 100 and 5 processes
 
 
 MPI and Distributed Topics
-===========================
+--------------------------
 
 General Points
 ~~~~~~~~~~~~~~~

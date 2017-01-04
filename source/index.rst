@@ -28,6 +28,7 @@ Table of Contents
    clocks
    dns
    mpi
+   smtp
    corba
    rest
    nosql

@@ -11,4 +11,4 @@ make html
 rm -rf build/html/code
 mkdir -p build/html/code
 
-cp -Rv source/code build/html/code
+cp -Rv source/code build/html
