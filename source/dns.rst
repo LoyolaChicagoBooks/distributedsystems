@@ -51,12 +51,23 @@ Name Servers
 Resolving Addresses
 -------------------
 
-.. figure:: figures/dns/resolution.png
-
 
  - DNS resolvers perform recursive queries in the hierarchal internet database to resolve these addresses.
  - This kind of recursive query can put a very intense load on hosts that are responsible for records closer to the root. To solve this problem, a caching solution is needed.
  - Nearly all ISPs provide a DNS server that contains a few hours old cache of a large portion of the internet’s DNS records. This cache gets partially invalidated every few hours. This is why when a DNS record is updated on the internet, it can take several hours to propagate through the entire internet.
+ - Additionally, most operating systems will locally cache DNS query results for at least several minutes or more.
+
+
+.. figure:: figures/dns/resolution.png
+
+
+Enabling Distribution and Load Balancing
+----------------------------------------
+
+ - It is possible to configure regional DNS records. This allows an Internet visible web service to be physically hosted around the world and to have DNS queries be resolved to the closest physical server.
+ - Additionally, more than one IP address can be configured for a name record to point to. The DNS server, resolver, and caching mechanisms can randomly pick among the addresses sent back. This depends somewhat on client implementations for correctness.
+ - Failover MX records. When registering a mail exchanger for a site, it is possible to register multiple mail exchangers for the site with different priorities. Often, larger organizations will have one onsite SMTP server and one offsite SMTP server to allow for better uptime.
+
 
 
 Credits
