@@ -39,6 +39,26 @@ DNS and Its Hierarchies
 .. figure:: figures/dns/dns_hierarchy.png
 
 
+Name Servers
+------------
+
+ - The DNS system is a distributed database system.
+ - Each node in the database is a name server.
+ - Each domain has at least one authoritative DNS server that publishes information about the domain and the name servers of any domains subordinate to it.
+ - The top of the hierarchy is served by the root name servers. These servers manage the TLDs
+
+
+Resolving Addresses
+-------------------
+
+.. figure:: figures/dns/resolution.png
+
+
+ - DNS resolvers perform recursive queries in the hierarchal internet database to resolve these addresses.
+ - This kind of recursive query can put a very intense load on hosts that are responsible for records closer to the root. To solve this problem, a caching solution is needed.
+ - Nearly all ISPs provide a DNS server that contains a few hours old cache of a large portion of the internet’s DNS records. This cache gets partially invalidated every few hours. This is why when a DNS record is updated on the internet, it can take several hours to propagate through the entire internet.
+
+
 Credits
 --------
  - Information for this lecture was drawn from:
