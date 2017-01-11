@@ -24,6 +24,7 @@ Table of Contents
    directories
    ci
    clocks
+   trans
    dns
    mpi
    smtp
