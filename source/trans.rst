@@ -95,6 +95,12 @@ Distributed Commit Algorithms
 2PC - Two Phase Commit
 ----------------------
 
- - 
+ - The workflow of a Two Phase Commit:
+
+.. figure:: figures/trans/2PCWorkflow.JPG
+	:align: center
+	:height: 500px
+
+
 
 
