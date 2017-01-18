@@ -3,30 +3,12 @@ Syllabus
 
 Welcome to COMP 339-439/Distributed Systems.
 
-.. warning::
-
-   This syllabus should be mostly finalized by the time class meets on Monday, 26 August 2013.
-   If any changes are made after this date, it will not affect the grading scheme and overall
-   expectations of the course.
-
 Instructors
 -------------
 
-| George K. Thiruvathukal (primary instructor)
-| Professor of Computer Science
-| http://thiruvathukal.com
+| Sarah Kaylor
+| http://www.sarahkaylor.com
 
-| Joseph Kaylor (co-instructor)
-| Professional in Residence
-| http://joekaylor.net
-
-Please view our web pages for contact information.
-
-Additional Sites
------------------------
-
-| Sakai Gradebook, https://sakai.luc.edu/portal/site/COMP_339_001_5132_1136
-| Piazza (see Sakai for link to join)
 
 Synopsis
 --------
@@ -42,27 +24,19 @@ current topics in distributed computing:  interactive services, collaborative co
 peer-to-peer, grids, platforms and infrastructure as services (PaaS and IaaS),
 cloud computing, etc.
 
-Various influential (and historical) distributed frameworks and technologies
-will be explored, e.g. DNS, CORBA, Java RMI, SOAP (XML-based RPCs),
-Message Passing Interface, and Globus. My version of this course also
-aims to introduce students to research methods and has a substantial
-written and oral communication component.
+In this course we will work on projects centered around realistic business use cases.
 
-This offering will have a substantial technical component **and** a substantial
-scientific/technical writing component, leading to a substantial *team* project.
 
 Prerequisites
 -------------
 
-Students in this course are expected to have the *minimum* of exposure
-to data structures and algorithms (COMP 271) or equivalent work experience
-(three years in a job with computer science and software development requirements).
-You may be asked to provide a sample of your work if you are lacking in
-prerequisite background.
+Students in this course are expected to have a *minimum* of the following from their undergraduate experience:
 
-Systems programming (COMP 264), object-oriented programming (COMP 413),
-and operating systems (COMP 374) are all strongly recommended but are not
-required.
+- Operating Systems
+- Data Structures
+- Algorithms
+- Competence in a high level programming language: Java, C#, or C++
+
 
 Recommended Textbook
 -----------------------
@@ -72,79 +46,66 @@ everything you need to know through our lecture notes, supplemental readings (pa
 and web resources), and various open source projects that employ distributed design
 principles.
 
-*Distributed Systems: Concepts and Design* by George Coulouris, Jean Dollimore, Tim Kindberg*
+*Distributed Systems: Concepts and Design* by George Coulouris, Jean Dollimore, Tim Kindberg
 
 *Distributed Systems: Principles and Paradigms* by Andrew S. Tanenbaum and Maarten van Steen
 
-.. warning::
-
-   We repeat: It is not required to own either or both of these books. You may even be able to borrow
-   them from Loyola University Chicago's library or the Chicago Public Library. In an effort to keep
-   college affordable to all students, I am mostly phasing out required textbooks as of Fall 2013. 
-   The eventual goal is to have a robust online course, similar to what we have done for COMP 170.
+*Distributed Database Systems: 2nd edition or newer* by M. Tamer Osu and Patrick Valduriez
 
 
-Course Requirements and Grade Breakdown
----------------------------------------
+Class Assignments
+-----------------
+This class is a project oriented class. There will be no exams and no final. There will be no groups for these projects. All work will be individual.
 
-This is subject to revision through the first week of classes only but
-the percentages are unlikely to change significantly.
 
--  Warm-up Distributed Programming Assignments (25%)
--  Participation in Piazza Group (15%)
--  Quizzes (20%)
--  Written Lecture on a Distributed Topic (20%)
--  Group Project (20%)
+Homework #1 Due Feb 15th
+~~~~~~~~~~~~~~~~~~~~~~~~
+ - You will write a web application that works with an existing 3rd application framework and 3rd party data storage system.
+ - For example:
+	- An ASP.NET web application hosted in IIS with a SQL server database
+	- A PHP web application hosted in Apache with a MySQL database
+	- A RESTful web service that uses a MongoDB database
+ - This system will involve one application host and one database host
+ - This application should include basic CRUD (Create, Read, Update, Delete) operations
 
-The following is an explanation of the course breakdown:
 
-Submitting Homework and Projects
---------------------------------
+Homework #2 Due March 15th
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+ - You will develop a client application that will put a very high load on the application built in Homework #1
+ - Your goal should be to submit 100s - 1000s of requests per second to the application.
+ - You will write a 4-5 page paper analyzing how your web application performs and where performance and reliability issues arise.
+ - You will present this paper in class
 
-All homework will be submitted using Bitbucket (bitbucket.org). In addition, for the team
-project, you must not only use bitbucket.org but there must be evidence of weekly progress to
-complete your project. This will be determined by looking at the commit logs of each team member.
-Details will be presented during class as we get closer to starting the project.
+
+Homework #3 Due April 15th
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+ - You will improve your application from Homework #1 to be a distributed system
+ - Some suggested approaches include:
+	- Database sharding
+	- Database replication
+	- Network load balancing
+	- Introducing Hadoop into your application
+	- Introducing MPI or Microsoft HPC into your application
+ - You will re-run your benchmark from Homework #2
+ - You will write a 4-5 page paper detailing how you were able to get better performance and reliability.
+ - You will present this paper before class.
+
 
 Attendance Policy
 -----------------
 
-I do not take attendance in class. Significant absence from class, especially without any 
-notification, will result in a zero grade for participation. If you anticipate a significant
-number of absences, I encourage you to consider dropping this course now and finding an alternative
-that better suits your schedule.
+I do not take attendance in class. If you anticipate a significant number of absences, I encourage you to consider dropping this course now and finding an alternative that better suits your schedule.
+
+We will spend time in class discussing and working on homework and with the lecture material. Coming to class will help you to get the best grade.
 
 Late Work Policy
 ----------------
 
-Late work is accepted but will carry a 20% penalty. Yes, this means that the highest grade you
-can earn for late work is a B. Owing to the nature of this semester's offering, where we will be 
-building up to a massive group project, it is crucial that work be completed on time. 
+Late submissions are accepted with a 20% grade penalty per week the assignment is late. Deadlines are strict.
 
-.. warning::
-
-   You are strongly encouraged to find a partner for pair programming, especially on the 
-   warm-up assignments. Unlike other classes you may have taken, the focus is not only on individual
-   celebrity but also on what you can accomplish as a group.
-
-Our course embraces the trend of the industry where people have to learn to work with others and be productive in team situations. The team project is not an afterthought. It is deeply integrated into the social fabric of the course and will be an experience that you hopefully remember fondly when you are no longer a student but working on real-world problem solving in the future.
-
-
-Quiz/Exam Attendance Policy
----------------------------
-
-An unexcused absence results in a zero for the missed quiz. 
-
-An excused absence will only be granted for medical reasons or family emergencies. You may be asked to furnish evidence if either of these situations applies.
-
-In the case of an excused absence, you must make up the quiz within one week. I will rarely make a quiz available early, owing to the fact that I do not always have the quiz ready until just a few days before the scheduled quiz date.
-
-All quizzes are open notes and code. We will discuss the restrictions on computer usage in more detail as the first quiz date approaches.
 
 Academic Integrity Policy
 -------------------------
 
 In general, we observe the College of Arts and Sciences integrity policy found at http://www.luc.edu/cas/pdfs/CAS_Academic_Integrity_Statement_December_07.pdf.
-
-You will be asked to sign your exam to indicate your intent to abide by these terms. More important than any terms and conditions is your own personal ethics. Please don't ruin your future by doing something that you know isn't right. We want to keep Distributed Systems fun for all.
 
