@@ -58,39 +58,6 @@ Class Assignments
 This class is a project oriented class. There will be no exams and no final. There will be no groups for these projects. All work will be individual.
 
 
-Homework #1 Due Feb 15th
-~~~~~~~~~~~~~~~~~~~~~~~~
- - You will write a web application that works with an existing 3rd application framework and 3rd party data storage system.
- - For example:
-	- An ASP.NET web application hosted in IIS with a SQL server database
-	- A PHP web application hosted in Apache with a MySQL database
-	- A RESTful web service that uses a MongoDB database
- - This system will involve one application host and one database host
- - This application should include basic CRUD (Create, Read, Update, Delete) operations
-
-
-Homework #2 Due March 15th
-~~~~~~~~~~~~~~~~~~~~~~~~~~
- - You will develop a client application that will put a very high load on the application built in Homework #1
- - Your goal should be to submit 100s - 1000s of requests per second to the application.
- - You will write a 4-5 page paper analyzing how your web application performs and where performance and reliability issues arise.
- - You will present this paper in class
-
-
-Homework #3 Due April 15th
-~~~~~~~~~~~~~~~~~~~~~~~~~~
- - You will improve your application from Homework #1 to be a distributed system
- - Some suggested approaches include:
-	- Database sharding
-	- Database replication
-	- Network load balancing
-	- Introducing Hadoop into your application
-	- Introducing MPI or Microsoft HPC into your application
- - You will re-run your benchmark from Homework #2
- - You will write a 4-5 page paper detailing how you were able to get better performance and reliability.
- - You will present this paper before class.
-
-
 Attendance Policy
 -----------------
 

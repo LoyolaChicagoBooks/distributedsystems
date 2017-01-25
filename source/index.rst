@@ -11,6 +11,9 @@ Table of Contents
    :maxdepth: 2
 
    syllabus   
+   homework1
+   homework2
+   homework3
    issues
    networking
    concurrency
