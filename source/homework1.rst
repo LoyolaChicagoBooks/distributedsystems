@@ -17,8 +17,15 @@ An example of how to get started with Java and Linux
 
 Getting your software ready:
 
-1. Install maven, jdk8, and git (apt-get install openjdk-8-jdk maven git)
-2. Install Eclipse Neon (Version: Neon.2 Release (4.6.2)) (can be downloaded from eclipse.org
+1. Install maven, jdk8, git, and mysql 
+
+::
+
+	apt-get update && apt-get install openjdk-8-jdk maven git mysql-server mysql-workbench mysql-client mysql-utilities
+
+
+
+2. Install Eclipse Neon (Version: Neon.2 Release (4.6.2)) (can be downloaded from eclipse.org)
 
 Creating a basic web service with Maven
 
@@ -33,6 +40,11 @@ Creating a basic web service with Maven
 
 5. In Eclipse, go to File->Import. Then open the Maven folder, and select "Existing maven projects". Browse to the folder that was just created in #4 and open the project
 6. If you launch the project in the debugger and browse to http://localhost:8080/myapp/myresource you’ll be able to see the object represented by the source file MyResource.java
+
+
+
+Working with an example
+-----------------------
 
 If you’d like to see the code for a simple web service app, just clone the git repository found here: https://github.com/sarahkaylor/DistRestSample
 
