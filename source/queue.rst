@@ -83,6 +83,39 @@ A simple Hello World with Rabbit MQ
 * Overall, this kind of code is fairly simple
 
 
+
+Example using MSMQ
+------------------
+
+* Sending a simple message
+
+::
+
+	Message recoverableMessage = new Message();
+	recoverableMessage.Body = "Sample Recoverable Message";
+	recoverableMessage.Recoverable = true;
+	MessageQueue msgQ = new MessageQueue(@".\$private\Orders");
+	msgQ.Send(recoverableMessage);
+
+
+
+* Sending and receiving a message using transactions:
+
+::
+
+	MessageQueueTransaction msgTx = new MessageQueueTransaction();
+	MessageQueue msgQ = new MessageQueue(@".\private$\Orders");
+
+	msgTx.Begin();
+	msgQ.Send("This is a transactional message!",msgTx);
+	msgTx.Commit();
+
+	msgTx.Begin();
+	Message msg;
+	msg = msgQ.Receive(msgTx);
+	msgTx.Commit();
+
+
 Using Distributed Queues in Distributed software
 ------------------------------------------------
 
@@ -93,6 +126,15 @@ Using Distributed Queues in Distributed software
 	* If the job processor dequeues a job and crashes while processing it, the client will not know for sure that the job was completed.
 	* If the job processor simply leaves the job in the queue while processing, you cannot guarantee that another job processor won’t redundantly perform the work itself.
 	* If there are more transactions within a system (such as from another database), there may not be a more global transaction to make the entire job atomic.
+
+* Typically you can perform updates in distributed queues, or you can use a second queue to mark an item as in-progress. Different queues in the distributed queue can indirectly model a state machine that a item that is being processed will transition through.
+
+
+* Another category of problems in terms of scalability is relying on FIFO ordering in the queue. If several items in the queue must be processed in-order and you rely on the queue to provide that order, you’ll run into trouble.
+
+	* The recommended approach would be to put any kind of ordering dependency into your queued item as a part of its structure rather than relying on the queue to do the ordering.
+	* Often, to scale up, distributed queues need several processors on several hosts to consume from the queue. In parallel situations like this, it is impossible to coordinate order except as a part of application logic.
+	* A good article about this - https://content.pivotal.io/blog/continuous-integration-scaling-to-74-000-builds-per-day-with-travis-ci-rabbitmq
 
 
 
