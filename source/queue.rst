@@ -116,6 +116,10 @@ Example using MSMQ
 	msgTx.Commit();
 
 
+
+* Another important advantage with MSMQ is that it can participate in a distributed transaction via the DTC service in Windows.
+
+
 Using Distributed Queues in Distributed software
 ------------------------------------------------
 
