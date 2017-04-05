@@ -1,8 +1,8 @@
 
-Homework #3 Due April 15th
+Homework #3 Due April 25th
 ==========================
 
- - You will improve your application from Homework #1 to be a distributed system
+ - You will improve your application from Homework #2 to be a distributed system
  - Some suggested approaches include:
 	- Database sharding
 	- Database replication
@@ -11,4 +11,4 @@ Homework #3 Due April 15th
 	- Introducing MPI or Microsoft HPC into your application
  - You will re-run your benchmark from Homework #2
  - You will write a 4-5 page paper detailing how you were able to get better performance and reliability.
- - You will present this paper before class.
+ - Presentations will be in class on April 25th and May 3rd. You should be prepared to discuss your paper and demonstrate your distributed approach in class.
