@@ -2,6 +2,7 @@ Networking Primer
 =================
 
 Overview
+-------------------
 
 - Introduction to networks
 - Protocols and Layers
@@ -41,13 +42,15 @@ Infrastructure is required at various levels
 - Interfaces
 - Software components at various levels: protocol managers, network managers
 
-The entire collection of the above is a \"communication system\".
+The entire collection of the above is a "communication system".
 
 Many Types of Networks
 ----------------------
 
-Physical Media - copper wires (Ethernet, RS232-C, V.32, etc.) - fiber
-optics (ATM, FDDI) - air (IR, Radio, micro-wave)
+Physical Media
+- copper wires (Ethernet, RS232-C, V.32, etc.)
+- fiber optics (ATM, FDDI)
+- air (IR, Radio, micro-wave)
 
 Relative Speeds
 ---------------
@@ -121,27 +124,28 @@ What is software delay?
 
 Example: Campus Network
 -----------------------
-
-Need figure
+![University of Michigan Network](networking/umich-network.png)
 
 Network Topologies
 ------------------
 
 How are the communicating objects connected
 
-- Fully connected - link between all sites
-- Partially connected: links between subset of sites or be an
-  arbitrary graph
-
-Hierarchical networks - network topology looks like a tree - internal
-nodes route messages between different sub-trees - if an internal node
-fails, children can not communicate with each other - star network -
-hierarchical network with single internal node
+- Fully connected
+  - link between all sites
+- Partially connected
+  - links between subset of sites 
+  - be an arbitrary graph
+- Hierarchical networks
+  - network topology looks like a tree
+  - internal nodes route messages between different sub-trees
+  - if an internal node fails, children can not communicate with each other
+  - star network - hierarchical network with single internal node
 
 Network Topologies
 ------------------
 
-Figure
+![Internet Map](networking/1024px-Internet_map_1024.jpg)
 
 A Network is not an Island
 --------------------------
@@ -153,6 +157,7 @@ Reason for networks is to share information
 - The nice thing about protocols is that there are so many of them!
 
 Protocols
+----------------
 
 - must be unambiguous and followed exactly
 - rule of thumb: be rigorous is what you generate, be liberal in what you accept
@@ -163,7 +168,7 @@ Design Issues In Layers
 
 Rules for data transmission (Protocol)
 
-- full Vs. half duplex
+- full vs. half duplex
 - error control (detection, correction, etc.)
 - flow control (rate matching, overuse of shared resources)
 - message order (do things arrive in the same order as sent?)
@@ -201,6 +206,12 @@ TCP/IP - four layer model
 - network (internet)
 - link
 
+Physical Layer - 0 and 1
+--------------------------
+
+![Square Wave](https://upload.wikimedia.org/wikipedia/commons/f/f8/SquareWave.gif "Sqaure Wave")
+
+
 Physical Layer
 --------------
 
@@ -216,9 +227,11 @@ Sample Issues
 Examples
 
 - modems
-- \"knock once for yes, twice for no\"
+- "knock once for yes, twice for no"
 - X.21
 
+Physical Layer
+----------------------
 
 Many Types of Networks
 ======================
@@ -227,7 +240,9 @@ Local Area Networks
 
 -   Relatively high-speed (oh yeah!)
 -   Normally single building, campus, Office
--   Most of the time direct (does not mean all-to-all) connection between computers
+-   Most of the time direct (does not mean all-to-all) 
+
+connection between computers
 -   Low Latency
 -   Eg., Ethernet, FDDI, IBM Token Ring
 
@@ -250,232 +265,149 @@ Internetworks
 
 - Remember - distributed systems require extensibility
 - Must be able to connect/link networks together =\> Internetworks
-- Normally achieved by linking component networks with dedicated
-  routers OR
+- Normally achieved by linking component networks with dedicated routers OR
 - by connecting them by general purpose computers called "gateways"
-- protocols that support addressing and transmission between these
-  networks are added
-- Internet is a GIANT Wide-Area-Network connecting thousands of
-  component networks.
+- protocols that support addressing and transmission between these networks are added
+- Internet is a GIANT Wide-Area-Network connecting thousands of component networks.
 
-Example- A Typical Campus Network
-=================================
 
-FIGURE
 
-Protocols are divided into layers
-=================================
-
-- 
-
-  ISO - seven layer reference model
-
-  :   -   Application
-      -   Presentation
-      -   Session
-      -   Transport
-      -   Network
-      -   Link
-      -   Physical
-
-- 
-
-  TCP/IP - four layer model
-
-  :   -   application
-      -   transport
-      -   network (internet)
-      -   link
-
-Physical Layer
-==============
-
-- Goal: Raw bits over a communication channel
-- 
-
-  Sample Issues:
-
-  :   -   how to encode a 0 Vs. 1?
-      -   what voltage should be used?
-      -   how long does a bit need to be signaled?
-      -   what does the cable, plug, antenna, etc. look like?
-
-- 
-
-  Examples:
-
-  :   -   modems
-      -   "knock once for yes, twice for no"
-      -   X.21
 
 Data Link Layer
 ===============
 
-- Goal: transmit error free frames over the physical link
-- 
+Goal: transmit error free frames over the physical link 
 
-  Sample Issues:
+Sample Issues:
 
-  :   -   how big is a frame?
-      -   can I detect an error in sending the frame?
-      -   what demarks the end of the frame?
-      -   how to control access to a shared channel?
+-   how big is a frame?
+-   can I detect an error in sending the frame?
+-   what demarks the end of the frame?
+-   how to control access to a shared channel?
 
-- 
+Examples:
 
-  Examples:
-
-  :   -   Ethernet framing
-      -   CSMA/CD
+-   Ethernet framing
+-   CSMA/CD
 
 The Network Layer
 =================
 
-- Goal: controlling operations of the subset
-- 
+Goal: controlling operations of the subset
 
-  Sample Issues:
+Sample Issues:
+- how route packets that have to travel several hops?
+- control congestion - too many messages at once
+- accounting - charge for use of the network
+- fragment or combine packets depending on rules of link layer
 
-  :   -   how route packets that have to travel several hops?
-      -   control congestion - too many messages at once
-      -   accounting - charge for use of the network
-      -   fragment or combine packets depending on rules of link layer
-
-- 
-
-  Examples:
-
-  :   -   IP
-      -   X25
+Examples:
+- IP
+- X.25
 
 The Transport Layer
 ===================
 
-- 
+Goal: accurately transport session data in order
 
-  Goal: accurately transport session data in order
+-   end points are the sending and receiving machines
 
-  :   -   end points are the sending and receiving machines
+Sample Issues:
 
-- 
+-   how to order messages and detect duplicates
+-   error detection (corrupt packets) and retransmission
+-   connectionless or connection-oriented
 
-  Sample Issues:
+Examples:
 
-  :   -   how to order messages and detect duplicates
-      -   error detection (corrupt packets) and retransmission
-      -   connectionless or connection-oriented
-
-- 
-
-  Examples:
-
-  :   -   TCP (connection-oriented)
-      -   UDP
+-   TCP (connection-oriented)
+-   UDP
 
 The Session & Presentation Layers
 =================================
 
-- Goal: common services shared by several applications
-- 
+Goal: common services shared by several applications
 
-  Sample Issues:
+Sample Issues:
+-   network representation of bytes, ints, floats, etc.
+-   encryption?? (this point is subject to lots of debate)
+-   synchronization
 
-  :   -   network representation of bytes, ints, floats, etc.
-      -   encryption?? (this point is subject to lots of debate)
-      -   synchronization
+Examples:
 
-- 
-
-  Examples:
-
-  :   -   eXternal Data Representation (XDR)
+-   eXternal Data Representation (XDR)
 
 Application Layer
 =================
 
-- Goal: common types of exchanges standardized
-- 
+Goal: common types of exchanges standardized
 
-  Sample Issues:
+Sample Issues:
 
-  :   -   when sending email, what demarks the subject field
-      -   how to represent cursor movement in a terminal
+-   when sending email, what demarks the subject field
+-   how to represent cursor movement in a terminal
 
-- 
+Examples:
 
-  Examples:
-
-  :   -   Simple Mail Transport Protocol (SMTP)
-      -   File Transfer Protocol (FTP)
-      -   Hyper-Text Transport Protocol (HTTP)
-      -   Simple Network Management Protocol (SNMP)
-      -   Network File System (NFS)
-      -   Network Time Protocol (NTP)
-      -   Net News Transport Protocol (NNTP)
-      -   X (X Window Protocol)
+-   Simple Mail Transport Protocol (SMTP)
+-   File Transfer Protocol (FTP)
+-   Hyper-Text Transport Protocol (HTTP)
+-   Simple Network Management Protocol (SNMP)
+-   Network File System (NFS)
+-   Network Time Protocol (NTP)
+-   Net News Transport Protocol (NNTP)
+-   X (X Window Protocol)
 
 Interprocess Communication:
 ===========================
 
-- 
+Sockets & RPC (Basic operations)
 
-  Sockets & RPC (Basic operations)
-
-  :   -   Send
-      -   Receiver
-      -   Synchronize
-      -   =\> Send must specify destination
-      -   =\> Clients need to know an identifier for communicating
-          with another process (e.g., server)
+-   Send
+-   Receiver
+-   Synchronize
+-   =\> Send must specify destination
+-   =\> Clients need to know an identifier for communicating with another process (e.g., server)
 
 Reliability
 ===========
 
-- \"Unreliable Message\" - single msg sent from sender to recipient
-  without acknowledgment (e.g., UDP)
-- Processes that use unreliable messages are responsible for enforcing
-  correct/reliable message passing
-- 
-
-  Reliability introduces overhead
-
-  :   -   need to store state information at the source and
-          destination
-      -   transmit extra messages (e.g., ack)
-      -   latency (for processing information related to reliability)
+- "Unreliable Message" - single msg sent from sender to recipient without acknowledgment (e.g., UDP)
+- Processes that use unreliable messages are responsible for enforcing correct/reliable message passing
+- Reliability introduces overhead
+  - need to store state information at the source and destination
+  - transmit extra messages (e.g., ack)
+  - latency (for processing information related to reliability)
 
 Mapping Data to Messages
 ========================
 
 - Programs have data structures
 - Messages are self-contained sequence of bytes
-- 
-
-  =\> For communication
-
-  :   -   data structures must be flattened before sending
-      -   rebuilt upon receipt
-
+- =\> For communication
+  - data structures must be flattened before sending
+  - rebuilt upon receipt
 - Problem: How does the receiver know how the sender has flattened?
 - What if sender and receiver have different representations?
-- =\> Follow standard (possibly external) data format - or the one
-  which has been agreed upon between sender and receiver in advance
+- =\> Follow standard (possibly external) data format - or the one which has been agreed upon between sender and receiver in advance
 
 Marshaling
 ==========
 
-- Process of taking a collection of data items and assembling them
-  into a form for transmission
+- Process of taking a collection of data items and assembling them into a form for transmission
 - Unmarshaling - Disassemble message upon receipt
 - Normally programs supplied with standards
 - For example msg - 5 smith 6 London 1934
-- In C, `sprintf()` (data item -\> array of characters), `sscanf()`
-  for opposite:
+- In C, `sprintf()` (data item -\> array of characters), `sscanf()` for opposite:
 
 The following shows how to marshall some data using `sprintf()`:
 
-  char *name = “smith”, place = “London”; int year = 1934
+```c
+  char *name = “smith”;
+  char *place = “London”;
+  int year = 1934;
   sprintf(message, “%d %s %d %s %d”, strlen(name), name, strlen(place), place, years);
+```
 
 Can you think of how to write the unmarshalling version using
 `sscanf()`?
@@ -484,20 +416,16 @@ Case Study: UNIX Interprocess Communication (IPC)
 =================================================
 
 - IP C provided as systems calls implemented over TCP and UDP
-- Message destinations - Socket addresses (Internet address and port
-  id)
+- Message destinations - Socket addresses (Internet address and port id)
 - Communication operations based on socket pairs (sender and receiver)
-- Msgs queued at sender socket until network protocol transmits them
-  and ack
-- Before communication can occur - recipient must BIND its socket
-  descriptor to a socket address
+- Msgs queued at sender socket until network protocol transmits them and ack
+- Before communication can occur - recipient must BIND its socket descriptor to a socket address
 
 Example - Simple TCP Messaging Framework (from HPJPC)
 =====================================================
 
 - TCP/IP example
-- simple messaging service where the client/server exchange Message
-  objects containing key/value parameters
+- simple messaging service where the client/server exchange Message objects containing key/value parameters
 - can send all primitive types or binary-encoded data
 - Key classes
   -   Message
@@ -509,47 +437,24 @@ Example - Simple TCP Messaging Framework (from HPJPC)
   -   DateService
   -   DateClient
 
-Message class
-=============
+Example: Simple Key-Value Messaging
+-------------------------------------
 
-::: {.literalinclude start-after="begin-class-Message" end-before="end-class-Message" linenos=""}
-../examples/hpjpc/src/info/jhpc/message/Message.java
-:::
+An example we presented as part of the book, High-Performance Java Platform Computing, published by Sun Microsystems Press.
 
-MessageClient class
-===================
+The code for this entire example appears in the 
+[src/info/jhpc/message](https://github.com/LoyolaChicagoCode/hpjpc-source-java/tree/master/src/info/jhpc/message) package at GitHub.
 
-::: {.literalinclude start-after="begin-class-MessageClient" end-before="end-class-MessageClient" linenos=""}
-../examples/hpjpc/src/info/jhpc/message/MessageClient.java
-:::
 
-MessageServer class
-===================
+Example: Components
+---------------------
 
-::: {.literalinclude start-after="begin-class-MessageServer" end-before="end-class-MessageServer" linenos=""}
-../examples/hpjpc/src/info/jhpc/message/MessageServer.java
-:::
+- MessageServer: The server side
+- MessageClient: The client side
+- MessageServerDispatcher: Used to handle incoming messages
+- DateService: Concrete example to use message server to get time of day
+- DateClient: Concrete example of a client (to DateService)
 
-MessageServerDispatcher class
-=============================
-
-::: {.literalinclude start-after="begin-class-MessageServerDispatcher" end-before="end-class-MessageServerDispatcher" linenos=""}
-../examples/hpjpc/src/info/jhpc/message/MessageServerDispatcher.java
-:::
-
-DateService using Message Classes/Interfaces
-============================================
-
-::: {.literalinclude start-after="begin-class-DateService-Message" end-before="end-class-DateService-Message" linenos=""}
-../examples/hpjpc/src/info/jhpc/textbook/message/DateService.java
-:::
-
-DateClient using Message Classes/Interfaces
-===========================================
-
-::: {.literalinclude start-after="begin-class-DateClient-Message" end-before="end-class-DateClient-Message" linenos=""}
-../examples/hpjpc/src/info/jhpc/textbook/message/DateClient.java
-:::
 
 Sockets Communication Using Datagram
 ====================================
@@ -561,12 +466,9 @@ Sockets Communication Using Datagram
   messages
 - UDP, no ack
 
-FIGURE
 
 Stream Communication
 ====================
-
-FIGURE
 
 - First need to establish a connection between sockets
 - Asymmetric because one would be listening for request for connection
@@ -576,55 +478,46 @@ FIGURE
 Remote Procedure Call
 =====================
 
-- Q.  How do me make "distributed computing look like traditional
-      (centralized) computing"?
+- Question: How do me make "distributed computing look like traditional (centralized) computing"?
 
-- 
+- Simple idea - Can we use procedure calls? Normally,
+  - A calls B \--\> A suspended, B executes \--\> B returns, A executes
+  - Information from A (caller) to B (callee) transferred using parameters
+  - Somewhat easier since both caller and callee execute in the same address space
 
-  Simple idea - Can we use procedure calls? Normally,
+- But in Distributed systems - the callee may be on a different system
+  - ==\> Remote Procedure Call (RPC)
+  - Does not rely on *explicit message passing*!
 
-  :   -   A calls B \--\> A suspended, B executes \--\> B returns, A
-          executes
-      -   Information from A (caller) to B (callee) transferred using
-          parameters
-      -   Somewhat easier since both caller and callee execute in the
-          same address space
+Remote Procedure Call (Figure)
+--------------------------------
 
-- 
-
-  But in Distributed systems - the callee may be on a different system
-
-  :   -   ==\> Remote Procedure Call (RPC)
-      -   NO EXPLICIT MESSAGE PASSING (which is visible to the
-          programmer)
+![RPC](networking/rpc-overview.png)
 
 Remote Procedure Call (RPC)
-===========================
+------------------------------
 
-- Although no message passing (at user level) - parameters must still
-  be passed - results must still be returned!
-- ==\> Many issues to be addressed - Look at an example to understand
-  some issues
+- Although no message passing (at user level) - parameters must still be passed - results must still be returned!
+- ==\> Many issues to be addressed - Look at an example to understand some issues
 
-``` {.sourceCode .c}
+```c
 count = read(fd, buf, nbytes) 
-[fd-file pointer (int), buf-array of chars, nbytes-integer)
 ```
 
-FIGURE
+In the above:
+- fd: file handle (int)
+- buf: array of bytes
+- nbyes: number of bytes
 
 Observations
-============
+---------------------
 
 - parameters (in C): call-by-reference OR call-by-value
 - Value parameter (e.g., fd, nbytes) copied onto stack (original value
   not affected)
 - Value parameter is just an initialized variable on stack for callee
-- 
-
-  Reference parameter (array buf) is not copied \--\> pointer to it is passed (buf's address)
-
-  :   -   Original values modified
+- Reference parameter (array buf) is not copied \--\> pointer to it is passed (buf's address)
+  - Original values modified
 
 - Many options are language dependent but we will ignore them...
 - How to deal with these situations?
@@ -632,12 +525,9 @@ Observations
 RPC
 ===
 
-- 
+Goal: Make RPC look (as much as possible) like local procedure call, that is,
 
-  Goal: Make RPC look (as much as possible) like local procedure call, that is,
-
-  :   -   call should not be aware of the fact that the callee is on a
-          different machine (or vice versa)
+-   call should not be aware of the fact that the callee is on a different machine (or vice versa)
 
 - 
 
