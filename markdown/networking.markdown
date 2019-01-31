@@ -2,7 +2,6 @@
 
 ## Overview
 
-
 - Introduction to networks
 - Protocols and Layers
 - Interprocess Communication
@@ -12,6 +11,7 @@
 ## References
 
 - Tanenbaum, *Computer Networks, 5th Edition*, Prentice Hall PTR
+- Coulouris, Dollimore, and Kindberg, Introduction to Distributed Systems, 3rd Edition
 - Dordal, Peter L., Introduction to Computer Networks Open Source
   Book, <http://intronetworks.cs.luc.edu/html>.
 

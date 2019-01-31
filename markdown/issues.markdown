@@ -1,8 +1,6 @@
-Introduction and Issues
-=======================
+# Introduction and Issues
 
-What is a distributed system?
------------------------------
+## What is a distributed system?
 
 "A collection of autonomous computers linked by a network with software
 designed to produce an integrated facility"
@@ -10,14 +8,13 @@ designed to produce an integrated facility"
 "A collection of independent computers that appear to the users of the
 system as a single computer"
 
-Examples
---------
+## Examples
 
 Distributed systems
 
 -   Department computing cluster
 -   Corporate systems
--   Cloud systems (e.g. Google, Microsoft, etc.)
+-   Cloud systems (e.g. Google, Microsoft, etc.)
 
 Application examples
 
@@ -28,18 +25,21 @@ Application examples
 -   Banking system
 -   File downloads (BitTorrent)
 -   Messaging
+-   Blockchains
 
-Illustration
-------------
+## Example: Distributed System
 
 ![A Distributed System](figures/issues/issues-3.jpg)
 
+## Example: Centralized System
+
 ![A Centralized Multi-User System](figures/issues/issues-4.jpg)
+
+## Example: Application of Distributed System
 
 ![An Application Example](figures/issues/issues-5.jpg)
 
-Advantages of Distributed Systems vs. Centralized
--------------------------------------------------
+## Advantages of Distributed Systems vs. Centralized
 
 Economics
 
@@ -63,8 +63,7 @@ Extensibility
 
 -   Computers and software can be added incrementally
 
-Advantages of Distributed Systems vs. Standalones
--------------------------------------------------
+## Advantages of Distributed Systems vs. Standalones
 
 Data Sharing
 
@@ -86,8 +85,7 @@ Extensibility
 
 -   Add resources and software as needed
 
-Disadvantages of Distributed Systems
-------------------------------------
+## Disadvantages of Distributed Systems
 
 Software
 
@@ -108,8 +106,7 @@ Privacy
 -   Data may be accessed securely but without the owner\'s consent
     (significant issue in modern systems)
 
-Key Characteristics
--------------------
+## Key Characteristics
 
 -   Support for resource sharing
 -   Openness
@@ -118,8 +115,7 @@ Key Characteristics
 -   Fault Tolerance (Reliability)
 -   Transparency
 
-Resource Sharing
-----------------
+## Resource Sharing
 
 Share hardware, software, data and information
 
@@ -135,16 +131,16 @@ Data
 
 -   databases, files
 
-Resources Must be Managed
--------------------------
+## Resources Must be Managed
 
 ![Resources Must Be Managed](figures/issues/issues-11.jpg)
+
+## Client-Server Model for Resource Sharing
 
 ![Client-Server Model for Resource
 Sharing](figures/issues/issues-12.jpg)
 
-Openness
---------
+## Openness
 
 Determines whether the system can be extended in various ways without
 disrupting existing system and services
@@ -162,8 +158,7 @@ Mainly achieved using published interfaces, standardization
 :   -   Great example of a distributed, standards-focused effort,
         <http://www.ietf.org/>
 
-Open Distributed Systems
-------------------------
+## Open Distributed Systems
 
 Are characterized by the fact that their key interfaces are published
 
@@ -174,8 +169,7 @@ and published interfaces for access to shared resources
 
 Can be constructed from heterogeneous hardware and software.
 
-Concurrency
------------
+## Concurrency
 
 -   In a single system several processes are interleaved
 -   In distributed systems - there are many systems with one or more
@@ -187,8 +181,7 @@ Concurrency
 
 ![Opportunities for Concurrency](figures/issues/issues-16.jpg)
 
-Scalability
------------
+## Scalability
 
 Scale of system
 
@@ -204,8 +197,7 @@ Scalability depends on all aspects
 -   Networks
 -   Storage
 
-Fault Tolerance
----------------
+## Fault Tolerance
 
 -   Ability to operate under failure(s) - possibly at a degraded
     performance level
@@ -220,8 +212,7 @@ Fault Tolerance
 -   Distributed systems, in general, provide a high(er) degree of
     availability
 
-Transparency
-------------
+## Transparency
 
 Transparency \"is the concealment from the user of the separation of
 components of a distributed system so that the system is perceived as a
@@ -240,8 +231,7 @@ Examples
     user knowing about it
 -   Failure Transparency - concealment of faults
 
-Design Issues
--------------
+## Design Issues
 
 -   Openness
 -   Resource Sharing
@@ -251,8 +241,7 @@ Design Issues
 -   Transparency
 -   High-Performance
 
-Issues arising from Distributed Systems
----------------------------------------
+## Issues arising from Distributed Systems
 
 -   Naming - How to uniquely identify resources
 -   Communication - How to exchange data and information reliably with
@@ -264,15 +253,13 @@ Issues arising from Distributed Systems
 -   Consistency Maintenance - How to keep consistency at a reasonable
     cost
 
-Naming
-------
+## Naming
 
 -   A resource must have a name (or identifier) for access
 -   Name: Can be interpreted by user, e.g., a file name
 -   Identifier - Interpreted by programs, e.g., port number
 
-Naming - Name Resolution
-------------------------
+## Naming - Name Resolution
 
 -   "resolved" when it is translated into a form to be used to invoke an
     action on the resource
@@ -283,8 +270,7 @@ Naming - Name Resolution
     -   192:130.228.6:8000
 -   Name resolution may involve several translation steps
 
-Naming - Design Considerations
-------------------------------
+## Naming - Design Considerations
 
 -   Name space for each type of resource
     -   e.g., files, ports, printers, etc.
@@ -297,8 +283,7 @@ Naming - Design Considerations
 -   Hierarchical Name Space - each part is resolved relative to current
     context, e.g., file names in UNIX
 
-Communication
--------------
+## Communication
 
 Communication is an essential part of distributed systems - e.g.,
 clients and servers must communicate for request and response
@@ -313,8 +298,7 @@ operation
 
 Asynchronous or non-blocking
 
-Types of Communication
-----------------------
+## Types of Communication
 
 -   Client-Server
 -   Group Multicast
@@ -323,8 +307,7 @@ Types of Communication
     communication performance
 -   We will study the software components involved in communication
 
-Client-Server Communication
----------------------------
+## Client-Server Communication
 
 -   Client sends request to server process
 -   Server executes the request
@@ -333,8 +316,7 @@ Client-Server Communication
 
 ![Client-Server Communication](figures/issues/issues-29.jpg)
 
-Client-Server Communication
----------------------------
+## Client-Server Communication
 
 -   Message Passing Operations
     -   send
@@ -345,8 +327,7 @@ Client-Server Communication
     -   Files reside with the server, thus there will be communication
         between client and server to satisfy this request
 
-Group Multicast
----------------
+## Group Multicast
 
 -   A very important primitive for distributed systems
 -   Target of a message is a group of processes
@@ -363,8 +344,7 @@ Group Multicast
 
 ![Group Multicast](figures/issues/issues-32.jpg)
 
-Software Structure
-------------------
+## Software Structure
 
 -   In a centralized system, O/S manages resources and provides
     essential services
@@ -377,8 +357,7 @@ Software Structure
     -   file management and access facilities
     -   clock facilities
 
-Distributed System Software Structure
--------------------------------------
+## Distributed System Software Structure
 
 -   It must be easy to add new services (flexibility, extensibility,
     openness requirements)
@@ -392,8 +371,7 @@ Distributed System Software Structure
 
 ![Distributed System Software Structure](figures/issues/issues-35.jpg)
 
-Consistency Management
-----------------------
+## Consistency Management
 
 -   When do consistency problems arise?
     -   concurrency
@@ -407,8 +385,7 @@ Consistency Management
     -   better utilized servers, network and better response
 -   Caching is normally transparent, but creates consistency problems
 
-Caching
--------
+## Caching
 
 -   Suppose your program (pseudocode) adds numbers stored in a file as
     follows (assume each number is 4 bytes:
@@ -424,8 +401,7 @@ Caching
 -   With caching, assuming 1000 byte pages, 249 of the 250 reads will be
     local requests (from the cache).
 
-Consistency
------------
+## Consistency
 
 -   Update consistency
     -   when multiple processes access and update data concurrently
@@ -442,8 +418,7 @@ Consistency
         process, it must be invalidated or updated by others
     -   When and how depends on the consistency models used
 
-Workload Allocation
--------------------
+## Workload Allocation
 
 -   In distributed systems many resources (e.g., other workstations,
     servers etc.) may be available for "computing"
@@ -456,16 +431,14 @@ Workload Allocation
 -   Idle workstations may be utilized for better performance and
     utilization
 
-Processor Pool Model
---------------------
+## Processor Pool Model
 
 In a processor pool model, processes are allocated to processors for
 their lifetime (e.g the Amoeba research O/S supports this concept).
 
 ![Processor Pool Model](figures/issues/issues-41.jpg)
 
-Quality-of-Service
-------------------
+## Quality-of-Service
 
 Quality of Service (a.k.a. QoS) refers to performance and other service
 expectations of a client or an application.
@@ -477,4 +450,4 @@ expectations of a client or an application.
 Examples where this is important.
 
 -   Voice over IP (VOIP) and telephony
--   Video (e.g. Netflix and friends)
+-   Video (e.g. Netflix and friends)
