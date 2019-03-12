@@ -1,14 +1,37 @@
+sudo: false
 language: python
 python:
 - '3.4'
-install:
-- sudo apt-get update -qq
-- sudo apt-get install -qq help2man texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texinfo mercurial
-- pip install sphinx
-- pip install sphinx_bootstrap_theme
+addons:
+  apt:
+    packages:
+    - latex-xcolor
+    - texlive-base
+    - texlive-latex-base
+    - texlive-latex-recommended
+    - texlive-fonts-recommended
+    - texlive-fonts-extra
+    - texlive-latex-extra
+    - texlive-formats-extra
+    - texlive-bibtex-extra
+    - texlive-humanities
+    - texinfo
+    - texlive-science
+    - latexmk
+    - mercurial
 script:
-- ./pull-examples.sh
-- GH_USER=LoyolaChicagoBooks GH_REPO=distributedsystems "./gh-pages.sh"
-env:
-  global:
-    secure: "DNfQsosCIhRerk/X392/V9wUCYMj/2YxxmJTKQi9HGd0qBOaqWdujM3eJV+Dhp+s+UErWv9+ifQhd9/xAG302z1I5zg3KIiZdBew00wyIbykhXUQHnqZGiZPP7U9QOke9EPShzF4a+QzzgMeNDT+0lcatOUNwg9wmeP6KzdngNQ="
+- pip install -r requirements.txt
+-  /pull-examples.sh
+- travis-sphinx build -s source
+- make latexpdf
+after_success:
+- travis-sphinx deploy --cname ds.cs.luc.edu
+deploy:
+  provider: releases
+  file_glob: true
+  file:
+    - ./**/DistributedSystems.pdf
+  skip_cleanup: true
+  on:
+    repo: LoyolaChicagoBooks/distributedsystems
+    tags: true
