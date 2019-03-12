@@ -297,12 +297,15 @@ Marshaling
 - Unmarshaling - Disassemble message upon receipt
 - Normally programs supplied with standards
 - For example msg -  5 smith 6 London 1934
-- In C, ``sprintf()`` (data item -> array of characters), ``sscanf()`` for opposite::
+- In C, ``sprintf()`` (data item -> array of characters), ``sscanf()`` for opposite:
 
-The following shows how to marshall some data using ``sprintf()``::
+The following shows how to marshall some data using ``sprintf()``
+
+::
 
    char *name = “smith”, place = “London”; int year = 1934
    sprintf(message, “%d %s %d %s %d”, strlen(name), name, strlen(place), place, years);
+
 
 Can you think of how to write the unmarshalling version using ``sscanf()``?
 

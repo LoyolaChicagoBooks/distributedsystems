@@ -66,13 +66,13 @@ Monte Carlo Simulations
 
 
 The MPI Programming Model
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now that you see that MPI has uses and benefits, let us talk briefly on the nitty-gritty details of how an implementation of MPI
 looks and works. All implementations of MPI should have the following capabilities.
 
 Multiple Processes - Ranks
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 As mentioned above, MPI works on multiple processes, that is multiple computers in a workstation or cluster all working together (or all on one machine).
 In MPI, each process is assigned a Rank. Rank is used to split up the work and allow communication between the processes and also
@@ -105,7 +105,7 @@ In this way we only have to write the program once, and then the processes will 
 Each process is running the same program, but is working on different parts of it. We will look back at the Summation problem later on.
 
 Writing a Simple MPI Program
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In order to write your own MPI programs you will need an Implementation of MPI for the language you wish to code in.
 

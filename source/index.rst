@@ -10,15 +10,12 @@ Table of Contents
 .. toctree::
    :maxdepth: 2
 
-   syllabus   
-   homework1
-   homework2
-   homework3
    issues
    networking
    concurrency
    storage
    directories
+   maven
    ci
    clocks
    trans
@@ -29,6 +26,7 @@ Table of Contents
    corba
    rest
    nosql
+   sphinx
 
 
 Indices and tables

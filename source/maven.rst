@@ -15,7 +15,7 @@ Creating a Maven Project from Scratch
 
 - The following command will invoke maven, fetch some initial dependencies, and list a set of archetypes that are available. If you press 'enter' at the first question, you will create a default Java desktop application. Maven will ask you to fill out some identifying information for your project (such as a project name, group name, etc…).
 
-.. code-block:: c
+::
 
 	$ mvn archetype:generate
 
@@ -35,7 +35,7 @@ Generating an Eclipse Project from a Maven Project
 
 - This command will generate the necessary Eclipse project files
 
-.. code-block:: c
+::
 
 	$ mvn eclipse:eclipse
 
@@ -64,7 +64,7 @@ Running Unit tests with Maven
 
 - Running unit tests on the command line is simple with Maven, just run the following command
 
-.. code-block:: c
+::
 
 	$ mvn test
 
