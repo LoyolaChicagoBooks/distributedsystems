@@ -21,7 +21,7 @@ addons:
     - mercurial
 script:
 - pip install -r requirements.txt
--  /pull-examples.sh
+- ./pull-examples.sh
 - travis-sphinx build -s source
 - make latexpdf
 after_success:
