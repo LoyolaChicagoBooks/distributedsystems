@@ -3,5 +3,5 @@
 # The script is re-entrant and can be used to pull down updates
 #
 git,hpjpc,https://github.com/LoyolaChicagoCode/hpjpc-source-java.git
-hg,systems-code-samples,https://gkthiruvathukal@bitbucket.org/loyolachicagocs_books/systems-code-samples
+git,systems-code-samples,https://github.com/LoyolaChicagoCode/systems-code-examples.git
 

@@ -18,7 +18,6 @@ addons:
     - texinfo
     - texlive-science
     - latexmk
-    - mercurial
 script:
 - pip install -r requirements.txt
 - ./pull-examples.sh
