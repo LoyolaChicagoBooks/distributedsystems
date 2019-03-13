@@ -4,8 +4,6 @@ Welcome to Distributed Systems
 
 You have reached the home of Distributed Systems (COMP 339-439) at Loyola University Chicago
 
-Table of Contents
--------------------------
 
 .. toctree::
    :maxdepth: 2
@@ -26,6 +24,19 @@ Table of Contents
    corba
    rest
    nosql
+   agents/agents
+   apache_spark/apache_spark
+   bit_torrent/bit_torrent
+   hadoop/hadoop
+   message_queues/message_queues
+   nosql_db/nosql_db
+   object_brokering/object_brokering
+   rsync/rsync
+   volunteer/volunteer
+   cloud/cloud
+   iot/iot
+   election/election
+
 
 Repository
    `github.com/LoyolaChicagoBooks/distributedsystems <https://github.com/LoyolaChicagoBooks/distributedsystems>`_
