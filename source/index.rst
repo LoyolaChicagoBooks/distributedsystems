@@ -26,7 +26,6 @@ Table of Contents
    corba
    rest
    nosql
-   sphinx
 
 
 Indices and tables
