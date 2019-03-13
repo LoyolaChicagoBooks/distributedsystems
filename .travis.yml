@@ -20,7 +20,7 @@ addons:
     - latexmk
 script:
 - pip install -r requirements.txt
-- ./pull-examples.sh
+- ./get-code-examples.sh
 - travis-sphinx build -s source
 - make latexpdf
 after_success:
