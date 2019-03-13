@@ -27,6 +27,7 @@ after_success:
 - travis-sphinx deploy --cname ds.cs.luc.edu
 deploy:
   provider: releases
+  api_key: $GH_TOKEN
   file_glob: true
   file:
     - ./**/DistributedSystems.pdf
