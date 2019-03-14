@@ -27,7 +27,7 @@ What are Processes, Threads?
 	- An exclusive virtual address space
 	- Sandboxing from other process except to the extent that the process participates in IPC
 
-	.. figure:: figures/concurrency/memory_layout.png
+	.. figure:: figures/memory_layout.png
 	   :align: center
 	   :alt: Process Memory Layout
 
@@ -40,7 +40,7 @@ What are Processes, Threads?
 	- Each thread runs sequentially
 	- In a given process with N threads, 0-i threads may be blocked, and 0-k threads are runnable or running.
 
-	.. figure:: figures/concurrency/memory_layout_multithreaded.png
+	.. figure:: figures/memory_layout_multithreaded.png
 	   :align: center
 	   :alt: Threaded Memory Layout
 
@@ -53,13 +53,13 @@ Common Threading Use Cases
 	- When a client connects, a new thread is spawned to handle the request. This permits several clients to connect to the file server at one time because each request is handled by a separate thread of execution.
 	- To send the file data, two threads can be used the first can read from the file on disk and the second can write the read buffers to the socket. 
 
-	.. figure:: figures/concurrency/client_server.png
+	.. figure:: figures/client_server.png
 	   :align: center
 	   :alt: Client-Server Thread Model
 
 - Example Client-Server - a TCP echo server
 
-.. literalinclude:: ../examples/systems-code-samples/threads/threads/TcpServer.cs
+.. literalinclude:: ../../examples/systems-code-samples/threads/threads/TcpServer.cs
    :start-after: begin-class-TcpServer
    :end-before: end-class-TcpServer
    :linenos:
@@ -70,7 +70,7 @@ Common Threading Use Cases
 	- To the extent that the subproblems are not inter-dependent, they can be executed in parallel
 	- Multiple threads can work against a common task queue.
 
-	.. figure:: figures/concurrency/parallel_threads.png
+	.. figure:: figures/parallel_threads.png
 	   :align: center
 	   :alt: Parallel Thread Model
 
@@ -80,7 +80,7 @@ Common Threading Use Cases
 
 - Example Parallel Computation - factoring an integer
 
-.. literalinclude:: ../examples/systems-code-samples/threads/threads/ParallelComputation.cs
+.. literalinclude:: ../../examples/systems-code-samples/threads/threads/ParallelComputation.cs
    :start-after: begin-class-ParallelComputation
    :end-before: end-class-ParallelComputation
    :linenos:
@@ -90,14 +90,14 @@ Common Threading Use Cases
 	- An algorithm must be executed in several stages that depend upon each other.
 	- For example if there are three stages, then three threads can be launched for each of the stages. As the first thread completes some part of the total work, it can pass it to a queue for the second stage to be processed by the second thread. At this time, the first thread and second thread can work on their own stages in parallel. The same continues to the third thread for the third stage of computation.
 
-	.. figure:: figures/concurrency/pipeline_threads.png
+	.. figure:: figures/pipeline_threads.png
 	   :align: center
 	   :alt: Pipeline Thread Model
 
 - Example Pipeline Processing - file compression
 
 
-.. literalinclude:: ../examples/systems-code-samples/threads/threads/PipelineComputation.cs
+.. literalinclude:: ../../examples/systems-code-samples/threads/threads/PipelineComputation.cs
    :start-after: begin-class-PipelineComputation
    :end-before: end-class-PipelineComputation
    :linenos:
@@ -106,7 +106,7 @@ Common Threading Use Cases
 - Example Pipeline Processing - a more concise and language friendly file compression
 
 
-.. literalinclude:: ../examples/systems-code-samples/threads/threads/ConcisePipelineComputation.cs
+.. literalinclude:: ../../examples/systems-code-samples/threads/threads/ConcisePipelineComputation.cs
    :start-after: begin-class-ConcisePipelineComputation
    :end-before: end-class-ConcisePipelineComputation
    :linenos:
@@ -114,7 +114,7 @@ Common Threading Use Cases
 
 - Helper class - ThreadedList
 
-.. literalinclude:: ../examples/systems-code-samples/threads/threads/ThreadedList.cs
+.. literalinclude:: ../../examples/systems-code-samples/threads/threads/ThreadedList.cs
    :start-after: begin-class-ThreadedList
    :end-before: end-class-ThreadedList
    :linenos:
@@ -170,7 +170,7 @@ This code example shows how to implement a classic mutex, a.k.a. a Lock, in Java
 
 These examples come from http://hpjpc.googlecode.com by Christopher and Thiruvathukal.
 
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/thread/Lock.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/thread/Lock.java
    :start-after: begin-class-Lock
    :end-before: end-class-Lock
    :linenos:
@@ -180,7 +180,7 @@ Semaphore Example
 
 This shows how to implement a counting semaphore in the Java programming language.
 
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/thread/Semaphore.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/thread/Semaphore.java
    :start-after: begin-class-Semaphore
    :end-before: end-class-Semaphore
    :linenos:
@@ -193,7 +193,7 @@ This shows how to implement a barrier, which is a synchronization mechanism for 
 a specified number of threads before processing can continue. Once all threads have arrived, 
 processing can continue.
 
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/thread/SimpleBarrier.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/thread/SimpleBarrier.java
    :start-after: begin-class-SimpleBarrier
    :end-before: end-class-SimpleBarrier
    :linenos:
@@ -217,21 +217,21 @@ our "solution" has the following design:
 Fork 
 -----
 
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/Fork.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/Fork.java
    :start-after: begin-class-Fork
    :end-before: end-class-Fork
    :linenos:
 
 Diner0
 --------
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/Diner0.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/Diner0.java
    :start-after: begin-class-Diner0
    :end-before: end-class-Diner0
    :linenos:
 
 Diners0
 --------
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/Diners0.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/Diners0.java
    :start-after: begin-class-Diners0
    :end-before: end-class-Diners0
    :linenos:
@@ -239,7 +239,7 @@ Diners0
 
 Diners1 - eliminating deadlock with resource enumeration
 ------------------------------------------------------------
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/Diners1.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/Diners1.java
    :start-after: begin-fork-ordering
    :end-before: end-fork-ordering
    :linenos:
@@ -255,7 +255,7 @@ Make sure you have the HPJPC source code::
 
 The following Gradle task in ``build.gradle`` shows how to run Diners0's ``main()`` method:
 
-.. literalinclude:: ../examples/hpjpc/build.gradle
+.. literalinclude:: ../../examples/hpjpc/build.gradle
    :start-after: begin-task-Diners0
    :end-before: end-task-Diners0
    :linenos:
@@ -309,7 +309,7 @@ Deadlock-Free Version
 
 Diners1 has a similar Gradle task:
 
-.. literalinclude:: ../examples/hpjpc/build.gradle
+.. literalinclude:: ../../examples/hpjpc/build.gradle
    :start-after: begin-task-Diners1
    :end-before: end-task-Diners1
    :linenos:
@@ -373,13 +373,13 @@ Common Data Structures in Concurrent Programming
 	- Dequeue() - dequeues an item from the data structure. If there are zero items in the queue, Dequeue() will block until another thread enqueues an item in the data structure
 	- Bound buffers are used to make sure that when one thread is producing work for a second thread, that if one thread is faster or slower than the other, that they appropriately wait to some extent for each other.
 
-	.. figure:: figures/concurrency/bound_buffer.png
+	.. figure:: figures/bound_buffer.png
 	   :align: center
 	   :alt: Bound Buffer
 
 - Example Bound Buffer
 
-.. literalinclude:: ../examples/systems-code-samples/threads/threads/BoundBuffer.cs
+.. literalinclude:: ../../examples/systems-code-samples/threads/threads/BoundBuffer.cs
    :start-after: begin-class-BoundBuffer
    :end-before: end-class-BoundBuffer
    :linenos:
@@ -420,7 +420,7 @@ Kernel Threads vs User Mode Threads
 		-Supported by almost everything
 		-Scheduled by the process
 
-	.. figure:: figures/concurrency/kernel_user_threads.png
+	.. figure:: figures/kernel_user_threads.png
 	   :align: center
 	   :alt: Kernel and User Mode Threads
 
@@ -446,7 +446,7 @@ Concurrent File Copy Example
 Sequential File Copy
 ------------------------------------------
 
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/FileCopy0.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/FileCopy0.java
    :start-after: begin-class-FileCopy0
    :end-before: end-class-FileCopy0
    :linenos:
@@ -463,32 +463,32 @@ Quick overview of the various classes:
 - FileCopyWriter1: Used to run the writer thread.
 - FileCopy1: Used to act as a drop in replacement for FileCopy0. Sets up the reader and writer threads and then joins with both when the reading/writing are completed.
 
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/FileCopy1.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/FileCopy1.java
    :start-after: begin-class-FileCopy1
    :end-before: end-class-FileCopy1
    :linenos:
 
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/FileCopyReader1.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/FileCopyReader1.java
    :start-after: begin-class-FileCopyReader1
    :end-before: end-class-FileCopyReader1
    :linenos:
 
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/FileCopyWriter1.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/FileCopyWriter1.java
    :start-after: begin-class-FileCopyWriter1
    :end-before: end-class-FileCopyWriter1
    :linenos:
 
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/Buffer.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/Buffer.java
    :start-after: begin-class-Buffer
    :end-before: end-class-Buffer
    :linenos:
 
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/BufferQueue.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/BufferQueue.java
    :start-after: begin-class-BufferQueue
    :end-before: end-class-BufferQueue
    :linenos:
 
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/chapter03/Pool.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/Pool.java
    :start-after: begin-class-Pool
    :end-before: end-class-Pool
    :linenos:
@@ -499,7 +499,7 @@ Execution
 You can run FileCopy0 and FileCopy1 by using the corresponding Gradle tasks.
 
 
-.. literalinclude:: ../examples/hpjpc/build.gradle
+.. literalinclude:: ../../examples/hpjpc/build.gradle
    :start-after: begin-task-FileCopy0
    :end-before: end-task-FileCopy0
    :linenos:

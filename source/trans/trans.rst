@@ -97,7 +97,7 @@ Distributed Commit Algorithms
 
 - The workflow of a Two Phase Commit:
 
-.. figure:: figures/trans/2PCWorkflow.JPG
+.. figure:: figures/2PCWorkflow.JPG
 	:align: center
 	:height: 500px
 
@@ -137,7 +137,7 @@ Distributed Commit Algorithms
 
 - The workflow of a three phase commit:
 
-.. figure:: figures/trans/3PCWorkflow.JPG
+.. figure:: figures/3PCWorkflow.JPG
 	:align: center
 	:height: 500px
 

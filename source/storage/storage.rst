@@ -101,7 +101,7 @@ RAID
 RAID - 0
 --------
 
-    .. figure:: figures/storage/raid_0.*
+    .. figure:: figures/raid_0.*
        :align: center
        :alt: image
 
@@ -110,7 +110,7 @@ RAID - 0
 RAID - 1
 --------
 
-    .. figure:: figures/storage/raid_1.*
+    .. figure:: figures/raid_1.*
        :align: center
        :alt: image
 
@@ -119,7 +119,7 @@ RAID - 1
 RAID - 5
 --------
 
-    .. figure:: figures/storage/raid_5.*
+    .. figure:: figures/raid_5.*
        :align: center
        :alt: image
 
@@ -181,7 +181,7 @@ Inodes - Indirect Blocks
 
 -  This approach is used by ext2 / ext3 / ext4 in Linux.
 
-.. figure:: figures/storage/ext2-inode.*
+.. figure:: figures/ext2-inode.*
    :align: center
    :alt: image
 
@@ -242,7 +242,7 @@ Folders and Path Traversal
    cross into different filesystems.
 
 
-	.. figure:: figures/storage/path_traversal.*
+	.. figure:: figures/path_traversal.*
 	   :align: center
 	   :alt: image
 

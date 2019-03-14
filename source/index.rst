@@ -8,22 +8,22 @@ You have reached the home of Distributed Systems (COMP 339-439) at Loyola Univer
 .. toctree::
    :maxdepth: 2
 
-   issues
-   networking
-   concurrency
-   storage
-   directories
-   maven
-   ci
-   clocks
-   trans
-   dns
-   queue
-   mpi
-   smtp
-   corba
-   rest
-   nosql
+   issues/issues
+   networking/networking
+   concurrency/concurrency
+   storage/storage
+   directories/directories
+   maven/maven
+   ci/ci
+   clocks/clocks
+   trans/trans
+   dns/dns
+   queue/queue
+   mpi/mpi
+   smtp/smtp
+   corba/corba
+   rest/rest
+   nosql/nosql
    agents/agents
    apache_spark/apache_spark
    bit_torrent/bit_torrent

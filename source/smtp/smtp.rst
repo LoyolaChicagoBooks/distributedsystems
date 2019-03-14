@@ -64,7 +64,7 @@ Establishing a Connection
 * Communication is similar to FTP.
 	* SMTP commands are sent as plain ASCII text over the TCP connection. 
 
-.. figure:: figures/smtp/smtpEstablishing.jpg
+.. figure:: figures/smtpEstablishing.jpg
 
 * Commands and Replies
 	* EHLO (extended hello) command includes the domain name of the sender as a parameter. Sent to greet a SMTP receiver and ask for a list of extensions it supports. 
@@ -72,7 +72,7 @@ Establishing a Connection
 	* 250 reply states successful execution of command.
 	* 221 quitting reply includes server name.
 
-.. figure:: figures/smtp/smtpConnection.jpg
+.. figure:: figures/smtpConnection.jpg
 
 * Shows some supported extensions
 	* 8BITMIME: 8-bit content transfer encoding type in MIME.
@@ -99,7 +99,7 @@ SMTP Mail Transaction Process
 	* Allows for easier security implementation
 
 	
-.. figure:: figures/smtp/smtpTransaction.jpg
+.. figure:: figures/smtpTransaction.jpg
 
 * 3 command/reply sequences
 	* Sender identified using MAIL command

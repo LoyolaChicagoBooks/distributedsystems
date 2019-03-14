@@ -33,20 +33,20 @@ Application examples
 Illustration
 ----------------
 
-.. figure:: figures/issues/issues-3.jpg
-   :scale: 60 %
+.. figure:: figures/issues-3.jpg
+   :scale: 100 %
 
    A Distributed System
 
 
-.. figure:: figures/issues/issues-4.jpg
-   :scale: 60%
+.. figure:: figures/issues-4.jpg
+   :scale: 100%
 
    A Centralized Multi-User System
 
 
-.. figure:: figures/issues/issues-5.jpg
-   :scale: 60%
+.. figure:: figures/issues-5.jpg
+   :scale: 100%
 
    An Application Example
 
@@ -147,13 +147,13 @@ Data
 Resources Must be Managed
 ----------------------------------------------------------
 
-.. figure:: figures/issues/issues-11.jpg
-   :scale: 60%
+.. figure:: figures/issues-11.jpg
+   :scale: 100%
 
    Resources Must Be Managed
 
-.. figure:: figures/issues/issues-12.jpg
-   :scale: 60%
+.. figure:: figures/issues-12.jpg
+   :scale: 100%
 
    Client-Server Model for Resource Sharing
 
@@ -192,8 +192,8 @@ Concurrency
 - Many server processes run concurrently, each responding to  different client request, e.g., File Server
 
 
-.. figure:: figures/issues/issues-16.jpg
-   :scale: 60%
+.. figure:: figures/issues-16.jpg
+   :scale: 100%
 
    Opportunities for Concurrency
 
@@ -337,8 +337,8 @@ Client-Server Communication
 - Server executes the request
 - Server transmits a reply and data, e.g., file servers, web server...
 
-.. figure:: figures/issues/issues-29.jpg
-   :scale: 60%
+.. figure:: figures/issues-29.jpg
+   :scale: 100%
 
    Client-Server Communication
 
@@ -376,8 +376,8 @@ Group Multicast
 
   - if no hardware support, each recipient is sent a message
 
-.. figure:: figures/issues/issues-32.jpg
-   :scale: 60%
+.. figure:: figures/issues-32.jpg
+   :scale: 100%
 
    Group Multicast
 
@@ -413,8 +413,8 @@ Distributed System Software Structure
 
 - E.g., Microkernels - represent light weight O/S, most services provided as applications on top of microkernels
 
-.. figure:: figures/issues/issues-35.jpg
-   :scale: 60%
+.. figure:: figures/issues-35.jpg
+   :scale: 100%
 
    Distributed System Software Structure
 
@@ -493,8 +493,8 @@ Processor Pool Model
 In a processor pool model, processes are allocated to processors for their lifetime (e.g the
 Amoeba research O/S supports this concept).
 
-.. figure:: figures/issues/issues-41.jpg
-   :scale: 60%
+.. figure:: figures/issues-41.jpg
+   :scale: 100%
 
    Processor Pool Model
 

@@ -343,7 +343,7 @@ Example - Simple TCP Messaging Framework (from HPJPC)
 Message class
 --------------------
 
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/message/Message.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/message/Message.java
    :start-after: begin-class-Message
    :end-before: end-class-Message
    :linenos:
@@ -351,7 +351,7 @@ Message class
 MessageClient class
 --------------------------
 
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/message/MessageClient.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/message/MessageClient.java
    :start-after: begin-class-MessageClient
    :end-before: end-class-MessageClient
    :linenos:
@@ -359,7 +359,7 @@ MessageClient class
 MessageServer class
 --------------------------
 
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/message/MessageServer.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/message/MessageServer.java
    :start-after: begin-class-MessageServer
    :end-before: end-class-MessageServer
    :linenos:
@@ -367,7 +367,7 @@ MessageServer class
 MessageServerDispatcher class
 ------------------------------------
 
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/message/MessageServerDispatcher.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/message/MessageServerDispatcher.java
    :start-after: begin-class-MessageServerDispatcher
    :end-before: end-class-MessageServerDispatcher
    :linenos:
@@ -375,7 +375,7 @@ MessageServerDispatcher class
 DateService using Message Classes/Interfaces
 --------------------------------------------------
 
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/message/DateService.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/message/DateService.java
    :start-after: begin-class-DateService-Message
    :end-before: end-class-DateService-Message
    :linenos:
@@ -383,7 +383,7 @@ DateService using Message Classes/Interfaces
 DateClient using Message Classes/Interfaces
 --------------------------------------------------
 
-.. literalinclude:: ../examples/hpjpc/src/info/jhpc/textbook/message/DateClient.java
+.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/message/DateClient.java
    :start-after: begin-class-DateClient-Message
    :end-before: end-class-DateClient-Message
    :linenos:

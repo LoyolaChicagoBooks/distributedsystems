@@ -36,7 +36,7 @@ Top Level Domains
 DNS and Its Hierarchies
 -----------------------
 
-.. figure:: figures/dns/dns_hierarchy.png
+.. figure:: figures/dns_hierarchy.png
 
 
 Name Servers
@@ -58,7 +58,7 @@ Resolving Addresses
  - Additionally, most operating systems will locally cache DNS query results for at least several minutes or more.
 
 
-.. figure:: figures/dns/resolution.png
+.. figure:: figures/resolution.png
 
 
 Enabling Distribution and Load Balancing
