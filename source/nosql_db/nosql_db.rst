@@ -1,4 +1,0 @@
-NoSQL databases
-====================
-
-TBA
