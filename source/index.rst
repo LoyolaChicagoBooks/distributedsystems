@@ -29,7 +29,6 @@ You have reached the home of Distributed Systems (COMP 339-439) at Loyola Univer
    bit_torrent/bit_torrent
    hadoop/hadoop
    message_queues/message_queues
-   nosql_db/nosql_db
    object_brokering/object_brokering
    rsync/rsync
    volunteer/volunteer
