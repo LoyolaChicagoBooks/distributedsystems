@@ -10,14 +10,14 @@ Overview
 -  Network Case Studies (Ethernet, ATM)
 -  Protocol Case Studies (TCP/IP, Client-Server)
 
-References
-----------
+References and Additional Reading
+---------------------------------------
 
 -  Tanenbaum, *Computer Networks, 5th Edition*, Prentice Hall PTR
 -  Coulouris, Dollimore, and Kindberg, Introduction to Distributed
    Systems, 3rd Edition
 -  Dordal, Peter L., Introduction to Computer Networks Open Source Book,
-   http://intronetworks.cs.luc.edu/html.
+   http://intronetworks.cs.luc.edu.
 
 Methods
 -------
