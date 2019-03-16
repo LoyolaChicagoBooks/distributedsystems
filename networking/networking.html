@@ -1,0 +1,1305 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Networking Primer &mdash; Distributed Systems v0.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Concurrency and Threads" href="../concurrency/concurrency.html" />
+    <link rel="prev" title="Introduction and Issues" href="../issues/issues.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Distributed Systems
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../issues/issues.html">Introduction and Issues</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Networking Primer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references-and-additional-reading">References and Additional Reading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#methods">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#networks">Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#infrastructure">Infrastructure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#many-types-of-networks">Many Types of Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#relative-speeds">Relative Speeds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#local-area-networks">Local Area Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wide-area-networks">Wide Area Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#metropolitan-area-networks-mans">Metropolitan Area Networks (MANs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#internetworks">Internetworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-issues">Performance Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-software-delay">What is software delay?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-campus-network">Example: Campus Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#network-topologies">Network Topologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#network-topologies-1">Network Topologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-network-is-not-an-island">A Network is not an Island</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#protocols">Protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#design-issues-in-layers">Design Issues In Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#protocols-are-divided-into-layers">Protocols are divided into layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#physical-layer">Physical Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#physical-layer-representing-0-and-1">Physical Layer - Representing 0 and 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#many-types-of-networks-1">Many Types of Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#local-area-networks-1">Local Area Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wide-area-networks-1">Wide Area Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wireless-networks">Wireless Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#metropolitan-area-networks">Metropolitan Area Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#many-types-of-networks-2">Many Types of Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#internetworks-1">Internetworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-link-layer">Data Link Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-network-layer">The Network Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-transport-layer">The Transport Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-session-presentation-layers">The Session &amp; Presentation Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#application-layer">Application Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interprocess-communication">Interprocess Communication:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reliability">Reliability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mapping-data-to-messages">Mapping Data to Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#marshaling">Marshaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#simple-marshalling">Simple Marshalling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#case-study-unix-interprocess-communication-ipc">Case Study: UNIX Interprocess Communication (IPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-simple-tcp-messaging-framework-from-hpjpc">Example - Simple TCP Messaging Framework (from HPJPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-simple-key-value-messaging">Example: Simple Key-Value Messaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-components">Example: Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sockets-communication-using-datagram">Sockets Communication Using Datagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#java-sdk-example-quote-server-with-datagrams">Java SDK Example / Quote Server with Datagrams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quote-server-dispatch-thread">Quote Server Dispatch Thread</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quote-client">Quote Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stream-communication">Stream Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#remote-procedure-call">Remote Procedure Call</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#remote-procedure-call-figure">Remote Procedure Call (Figure)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#remote-procedure-call-rpc">Remote Procedure Call (RPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#observations">Observations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#design-of-rpc">Design of RPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpc-mechanisms">RPC Mechanisms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpc-steps">RPC Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#design-issues">Design Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameter-passing">Parameter Passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameter-passing-1">Parameter Passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#binding">Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-of-specification">Use of Specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#locating-the-server">Locating the Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-handle-failures">How to Handle Failures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#client-cannot-locate-server">Client Cannot Locate Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lost-request-message">Lost Request Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lost-reply-message">Lost Reply Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#idempotent-property">Idempotent Property</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lost-reply-message-1">Lost Reply Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#server-crashes">Server Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#server-crashes-1">Server Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#client-crashes">Client Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#client-crashes-1">Client Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flow-control">Flow Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../concurrency/concurrency.html">Concurrency and Threads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html">Distributed Systems and Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#storage-devices">Storage Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#local-storage">Local Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#distributed-filesystems">Distributed Filesystems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#case-study-sun-nfs">Case Study - SUN NFS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../directories/directories.html">Directories and LDAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maven/maven.html">Project Build Management With Maven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ci/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clocks/clocks.html">Clocks and Synchronization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trans/trans.html">Distributed Transactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dns/dns.html">Domain Name Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queue/queue.html">Distributed Queues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mpi/mpi.html">Message Passing Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smtp/smtp.html">SMTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corba/corba.html">Object Brokers and CORBA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rest/rest.html">REST and Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nosql/nosql.html">NoSQL Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agents/agents.html">Distributed Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_spark/apache_spark.html">Apache Spark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bit_torrent/bit_torrent.html">BitTorrent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop/hadoop.html">Hadoop Distributed File System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../message_queues/message_queues.html">Message Queues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../object_brokering/object_brokering.html">Object Brokering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rsync/rsync.html">File Sychronization and rsync</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../volunteer/volunteer.html">Volunteer Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/cloud.html">Cloud Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iot/iot.html">Internet of Things and Pervasive Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../election/election.html">Election Algorithms</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Distributed Systems</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Networking Primer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/networking/networking.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="networking-primer">
+<h1>Networking Primer<a class="headerlink" href="#networking-primer" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Introduction to networks</li>
+<li>Protocols and Layers</li>
+<li>Interprocess Communication</li>
+<li>Network Case Studies (Ethernet, ATM)</li>
+<li>Protocol Case Studies (TCP/IP, Client-Server)</li>
+</ul>
+</div>
+<div class="section" id="references-and-additional-reading">
+<h2>References and Additional Reading<a class="headerlink" href="#references-and-additional-reading" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Tanenbaum, <em>Computer Networks, 5th Edition</em>, Prentice Hall PTR</li>
+<li>Coulouris, Dollimore, and Kindberg, Introduction to Distributed
+Systems, 3rd Edition</li>
+<li>Dordal, Peter L., Introduction to Computer Networks Open Source Book,
+<a class="reference external" href="http://intronetworks.cs.luc.edu">http://intronetworks.cs.luc.edu</a>.</li>
+</ul>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Sockets</li>
+<li>RPC</li>
+</ul>
+</div>
+<div class="section" id="networks">
+<h2>Networks<a class="headerlink" href="#networks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Communication between semi-autonomous computers</li>
+<li>Attached to host system by an adapter</li>
+</ul>
+</div>
+<div class="section" id="infrastructure">
+<h2>Infrastructure<a class="headerlink" href="#infrastructure" title="Permalink to this headline">¶</a></h2>
+<p>Communication networks provide an infrastructure for communication in
+distributed systems</p>
+<p>Infrastructure is required at various levels</p>
+<ul class="simple">
+<li>Cables/wires</li>
+<li>Switches</li>
+<li>Interfaces</li>
+<li>Software components at various levels: protocol managers, network
+managers</li>
+</ul>
+<p>The entire collection of the above is a “communication system”.</p>
+</div>
+<div class="section" id="many-types-of-networks">
+<h2>Many Types of Networks<a class="headerlink" href="#many-types-of-networks" title="Permalink to this headline">¶</a></h2>
+<p>Physical Media - copper wires (Ethernet, RS232-C, V.32, etc.) - fiber
+optics (ATM, FDDI) - air (IR, Radio, micro-wave)</p>
+</div>
+<div class="section" id="relative-speeds">
+<h2>Relative Speeds<a class="headerlink" href="#relative-speeds" title="Permalink to this headline">¶</a></h2>
+<p>Speeds (link not aggregate)</p>
+<ul class="simple">
+<li>low: modems and pagers</li>
+<li>medium: Ethernet and Token Ring (10M-10Gbps and beyond)</li>
+<li>high: ATM (155-655 Mbps), Myrinet (600 Mbps), SONET (OC-48 - 2488
+Mbps)</li>
+</ul>
+</div>
+<div class="section" id="local-area-networks">
+<h2>Local Area Networks<a class="headerlink" href="#local-area-networks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Relatively high-speed (oh yeah!)</li>
+<li>Normally single building, campus, Office</li>
+<li>Most of the time direct (does not mean all-to-all) connection between
+computers</li>
+<li>Low Latency</li>
+<li>Eg., Ethernet, FDDI, IBM Token Ring</li>
+</ul>
+</div>
+<div class="section" id="wide-area-networks">
+<h2>Wide Area Networks<a class="headerlink" href="#wide-area-networks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Msgs at lower speeds between systems separated by large distances</li>
+<li>Communication circuits connected by “Packet switching” computers,
+that also manage the network</li>
+<li>Messages are routed by “packet switches”</li>
+<li>E.g., ISDN, BISDN, ATM</li>
+</ul>
+</div>
+<div class="section" id="metropolitan-area-networks-mans">
+<h2>Metropolitan Area Networks (MANs)<a class="headerlink" href="#metropolitan-area-networks-mans" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>within cities, towns, use fiber-optics cables</li>
+<li>recent, to carry voice, video…</li>
+</ul>
+</div>
+<div class="section" id="internetworks">
+<h2>Internetworks<a class="headerlink" href="#internetworks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Remember - distributed systems require extensibility</li>
+<li>Must be able to connect/link networks together =&gt; Internetworks</li>
+<li>Normally achieved by linking component networks with dedicated
+routers OR</li>
+<li>by connecting them by general purpose computers called “gateways”</li>
+<li>protocols that support addressing and transmission between these
+networks are added</li>
+<li>Internet is a GIANT Wide-Area-Network connecting thousands of
+component networks.</li>
+</ul>
+</div>
+<div class="section" id="performance-issues">
+<h2>Performance Issues<a class="headerlink" href="#performance-issues" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Latency - time needed to transfer an empty message between two
+systems - normally measures software delay and transit time</li>
+<li>Bandwidth (or Data Transfer Rate): rate at which data is transferred
+over the network once the transmission started</li>
+<li>Network Bandwidth - Volume of traffic per unit time transferred
+across the network</li>
+<li>Quality of Service (QoS) - other guarantees such as delay and b/w
+guarantees, reliability and availability guarantees</li>
+<li>Assuming no delays due to congestion</li>
+</ul>
+</div>
+<div class="section" id="what-is-software-delay">
+<h2>What is software delay?<a class="headerlink" href="#what-is-software-delay" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>time to access the network, I.e., put bits on the network from the
+time a message is sent by the application and time to retrieve the
+bits and supply the msg to the receiver</li>
+<li>software delay can be quite large because message has to go through
+several layers (later)</li>
+</ul>
+</div>
+<div class="section" id="example-campus-network">
+<h2>Example: Campus Network<a class="headerlink" href="#example-campus-network" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id11">
+<img alt="University of Michigan Network" src="../_images/umich-network.png" />
+<p class="caption"><span class="caption-text">University of Michigan Network</span></p>
+</div>
+</div>
+<div class="section" id="network-topologies">
+<h2>Network Topologies<a class="headerlink" href="#network-topologies" title="Permalink to this headline">¶</a></h2>
+<p>How are the communicating objects connected</p>
+<ul class="simple">
+<li>Fully connected<ul>
+<li>link between all sites</li>
+</ul>
+</li>
+<li>Partially connected<ul>
+<li>links between subset of sites</li>
+<li>be an arbitrary graph</li>
+</ul>
+</li>
+<li>Hierarchical networks<ul>
+<li>network topology looks like a tree</li>
+<li>internal nodes route messages between different sub-trees</li>
+<li>if an internal node fails, children can not communicate with each
+other</li>
+<li>star network - hierarchical network with single internal node</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="network-topologies-1">
+<span id="id1"></span><h2>Network Topologies<a class="headerlink" href="#network-topologies-1" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id12">
+<img alt="Internet Map" src="../_images/1024px-Internet_map_1024.jpg" />
+<p class="caption"><span class="caption-text">Internet Map</span></p>
+</div>
+</div>
+<div class="section" id="a-network-is-not-an-island">
+<h2>A Network is not an Island<a class="headerlink" href="#a-network-is-not-an-island" title="Permalink to this headline">¶</a></h2>
+<p>Reason for networks is to share information</p>
+<ul class="simple">
+<li>must be able to communicate in a common language</li>
+<li>called protocols</li>
+<li>The nice thing about protocols is that there are so many of them!</li>
+</ul>
+</div>
+<div class="section" id="protocols">
+<h2>Protocols<a class="headerlink" href="#protocols" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>must be unambiguous and followed exactly</li>
+<li>rule of thumb: be rigorous is what you generate, be liberal in what
+you accept</li>
+<li>there are many different aspects to protocols: electrical through web
+services</li>
+</ul>
+</div>
+<div class="section" id="design-issues-in-layers">
+<h2>Design Issues In Layers<a class="headerlink" href="#design-issues-in-layers" title="Permalink to this headline">¶</a></h2>
+<p>Rules for data transmission (Protocol)</p>
+<ul class="simple">
+<li>full vs.&nbsp;half duplex</li>
+<li>error control (detection, correction, etc.)</li>
+<li>flow control (rate matching, overuse of shared resources)</li>
+<li>message order (do things arrive in the same order as sent?)</li>
+</ul>
+<p>Abstractions for communications</p>
+<ul class="simple">
+<li>end points for communication</li>
+<li>switches, nodes, processes, threads in a process</li>
+<li>how are these end points named (addresses)?</li>
+<li>service providers and service users</li>
+</ul>
+<p>Service Primitives</p>
+<ul class="simple">
+<li>operations performed by a layer</li>
+<li>events and their actions</li>
+<li>request, indication, response, confirm</li>
+</ul>
+</div>
+<div class="section" id="protocols-are-divided-into-layers">
+<h2>Protocols are divided into layers<a class="headerlink" href="#protocols-are-divided-into-layers" title="Permalink to this headline">¶</a></h2>
+<p>ISO - seven layer reference model</p>
+<ul class="simple">
+<li>Application</li>
+<li>Presentation</li>
+<li>Session</li>
+<li>Transport</li>
+<li>Network</li>
+<li>Link</li>
+<li>Physical</li>
+</ul>
+<p>TCP/IP - four layer model</p>
+<ul class="simple">
+<li>application</li>
+<li>transport</li>
+<li>network (internet)</li>
+<li>link</li>
+</ul>
+</div>
+<div class="section" id="physical-layer">
+<h2>Physical Layer<a class="headerlink" href="#physical-layer" title="Permalink to this headline">¶</a></h2>
+<p>Goal: Raw bits over a communication channel</p>
+<p>Sample Issues</p>
+<ul class="simple">
+<li>how to encode a 0 Vs. 1?</li>
+<li>what voltage should be used?</li>
+<li>how long does a bit need to be signaled?</li>
+<li>what does the cable, plug, antenna, etc. look like?</li>
+</ul>
+<p>Examples</p>
+<ul class="simple">
+<li>modems</li>
+<li>“knock once for yes, twice for no”</li>
+<li>X.21</li>
+</ul>
+</div>
+<div class="section" id="physical-layer-representing-0-and-1">
+<h2>Physical Layer - Representing 0 and 1<a class="headerlink" href="#physical-layer-representing-0-and-1" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id13">
+<img alt="Sqaure Wave" src="../_images/SquareWave-0.jpg" />
+<p class="caption"><span class="caption-text">Square Wave</span></p>
+</div>
+<p>A more animated version of this can be found at <a class="reference external" href="https://upload.wikimedia.org/wikipedia/commons/f/f8/SquareWave.gif">https://upload.wikimedia.org/wikipedia/commons/f/f8/SquareWave.gif</a>.</p>
+</div>
+<div class="section" id="many-types-of-networks-1">
+<span id="id2"></span><h2>Many Types of Networks<a class="headerlink" href="#many-types-of-networks-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Local Area Networks</li>
+<li>Wide Area Networks</li>
+<li>Wireless Networks</li>
+<li>Metropolitan Area Networks</li>
+</ul>
+</div>
+<div class="section" id="local-area-networks-1">
+<span id="id3"></span><h2>Local Area Networks<a class="headerlink" href="#local-area-networks-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Relatively high-speed (oh yeah!)</li>
+<li>Normally single building, campus, Office</li>
+<li>Most of the time direct (does not mean all-to-all)</li>
+</ul>
+<p>connection between computers - Low Latency - Eg., Ethernet, FDDI, IBM
+Token Ring</p>
+</div>
+<div class="section" id="wide-area-networks-1">
+<span id="id4"></span><h2>Wide Area Networks<a class="headerlink" href="#wide-area-networks-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Messages at lower speeds between systems separated by large distances</li>
+<li>Communication circuits connected by “Packet switching” computers,
+that also manage the network</li>
+<li>Messages are routed by “packet switches”</li>
+<li>E.g., ISDN, BISDN, ATM</li>
+</ul>
+</div>
+<div class="section" id="wireless-networks">
+<h2>Wireless Networks<a class="headerlink" href="#wireless-networks" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="metropolitan-area-networks">
+<h2>Metropolitan Area Networks<a class="headerlink" href="#metropolitan-area-networks" title="Permalink to this headline">¶</a></h2>
+<p>Metropolitan Area Networks (MANs) - within cities, towns, use
+fiber-optics cables - recent, to carry voice, video…</p>
+<p>Not clear whether this type of network is still relevant or just a
+special case of WANs.</p>
+</div>
+<div class="section" id="many-types-of-networks-2">
+<span id="id5"></span><h2>Many Types of Networks<a class="headerlink" href="#many-types-of-networks-2" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="internetworks-1">
+<span id="id6"></span><h2>Internetworks<a class="headerlink" href="#internetworks-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Remember - distributed systems require extensibility</li>
+<li>Must be able to connect/link networks together =&gt; Internetworks</li>
+<li>Normally achieved by linking component networks with dedicated
+routers OR</li>
+<li>by connecting them by general purpose computers called “gateways”</li>
+<li>protocols that support addressing and transmission between these
+networks are added</li>
+<li>Internet is a GIANT Wide-Area-Network connecting thousands of
+component networks.</li>
+</ul>
+</div>
+<div class="section" id="data-link-layer">
+<h2>Data Link Layer<a class="headerlink" href="#data-link-layer" title="Permalink to this headline">¶</a></h2>
+<p>Goal: transmit error free frames over the physical link</p>
+<p>Sample Issues:</p>
+<ul class="simple">
+<li>how big is a frame?</li>
+<li>can I detect an error in sending the frame?</li>
+<li>what demarks the end of the frame?</li>
+<li>how to control access to a shared channel?</li>
+</ul>
+<p>Examples:</p>
+<ul class="simple">
+<li>Ethernet framing</li>
+<li>CSMA/CD</li>
+</ul>
+</div>
+<div class="section" id="the-network-layer">
+<h2>The Network Layer<a class="headerlink" href="#the-network-layer" title="Permalink to this headline">¶</a></h2>
+<p>Goal: controlling operations of the subset</p>
+<p>Sample Issues: - how route packets that have to travel several hops? -
+control congestion - too many messages at once - accounting - charge for
+use of the network - fragment or combine packets depending on rules of
+link layer</p>
+<p>Examples: - IP - X.25</p>
+</div>
+<div class="section" id="the-transport-layer">
+<h2>The Transport Layer<a class="headerlink" href="#the-transport-layer" title="Permalink to this headline">¶</a></h2>
+<p>Goal: accurately transport session data in order</p>
+<ul class="simple">
+<li>end points are the sending and receiving machines</li>
+</ul>
+<p>Sample Issues:</p>
+<ul class="simple">
+<li>how to order messages and detect duplicates</li>
+<li>error detection (corrupt packets) and retransmission</li>
+<li>connectionless or connection-oriented</li>
+</ul>
+<p>Examples:</p>
+<ul class="simple">
+<li>TCP (connection-oriented)</li>
+<li>UDP</li>
+</ul>
+</div>
+<div class="section" id="the-session-presentation-layers">
+<h2>The Session &amp; Presentation Layers<a class="headerlink" href="#the-session-presentation-layers" title="Permalink to this headline">¶</a></h2>
+<p>Goal: common services shared by several applications</p>
+<p>Sample Issues: - network representation of bytes, ints, floats, etc. -
+encryption?? (this point is subject to lots of debate) - synchronization</p>
+<p>Examples:</p>
+<ul class="simple">
+<li>eXternal Data Representation (XDR)</li>
+</ul>
+</div>
+<div class="section" id="application-layer">
+<h2>Application Layer<a class="headerlink" href="#application-layer" title="Permalink to this headline">¶</a></h2>
+<p>Goal: common types of exchanges standardized</p>
+<p>Sample Issues:</p>
+<ul class="simple">
+<li>when sending email, what demarks the subject field</li>
+<li>how to represent cursor movement in a terminal</li>
+</ul>
+<p>Examples:</p>
+<ul class="simple">
+<li>Simple Mail Transport Protocol (SMTP)</li>
+<li>File Transfer Protocol (FTP)</li>
+<li>Hyper-Text Transport Protocol (HTTP)</li>
+<li>Simple Network Management Protocol (SNMP)</li>
+<li>Network File System (NFS)</li>
+<li>Network Time Protocol (NTP)</li>
+<li>Net News Transport Protocol (NNTP)</li>
+<li>X (X Window Protocol)</li>
+</ul>
+</div>
+<div class="section" id="interprocess-communication">
+<h2>Interprocess Communication:<a class="headerlink" href="#interprocess-communication" title="Permalink to this headline">¶</a></h2>
+<p>Sockets &amp; RPC (Basic operations)</p>
+<ul class="simple">
+<li>Send</li>
+<li>Receiver</li>
+<li>Synchronize</li>
+<li>=&gt; Send must specify destination</li>
+<li>=&gt; Clients need to know an identifier for communicating with another
+process (e.g., server)</li>
+</ul>
+</div>
+<div class="section" id="reliability">
+<h2>Reliability<a class="headerlink" href="#reliability" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>“Unreliable Message” - single msg sent from sender to recipient
+without acknowledgment (e.g., UDP)</li>
+<li>Processes that use unreliable messages are responsible for enforcing
+correct/reliable message passing</li>
+<li>Reliability introduces overhead<ul>
+<li>need to store state information at the source and destination</li>
+<li>transmit extra messages (e.g., ack)</li>
+<li>latency (for processing information related to reliability)</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="mapping-data-to-messages">
+<h2>Mapping Data to Messages<a class="headerlink" href="#mapping-data-to-messages" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Programs have data structures</li>
+<li>Messages are self-contained sequence of bytes</li>
+<li>=&gt; For communication<ul>
+<li>data structures must be flattened before sending</li>
+<li>rebuilt upon receipt</li>
+</ul>
+</li>
+<li>Problem: How does the receiver know how the sender has flattened?</li>
+<li>What if sender and receiver have different representations?</li>
+<li>=&gt; Follow standard (possibly external) data format - or the one which
+has been agreed upon between sender and receiver in advance</li>
+</ul>
+</div>
+<div class="section" id="marshaling">
+<h2>Marshaling<a class="headerlink" href="#marshaling" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Process of taking a collection of data items and assembling them into
+a form for transmission</li>
+<li>Unmarshaling - Disassemble message upon receipt</li>
+<li>Normally programs supplied with standards</li>
+<li>For example msg - 5 smith 6 London 1934</li>
+<li>In C, <code class="docutils literal notranslate"><span class="pre">sprintf()</span></code> (data item -&gt; array of characters), <code class="docutils literal notranslate"><span class="pre">sscanf()</span></code>
+for opposite:</li>
+</ul>
+</div>
+<div class="section" id="simple-marshalling">
+<h2>Simple Marshalling<a class="headerlink" href="#simple-marshalling" title="Permalink to this headline">¶</a></h2>
+<p>The following shows how to marshall some data using <code class="docutils literal notranslate"><span class="pre">sprintf()</span></code>:</p>
+<div class="code c highlight-default notranslate"><div class="highlight"><pre><span></span>char *name = “smith”;
+char *place = “London”;
+int year = 1934;
+sprintf(message, “%d %s %d %s %d”, strlen(name), name, strlen(place), place, years);
+</pre></div>
+</div>
+<p>Can you think of how to write the unmarshalling version using
+<code class="docutils literal notranslate"><span class="pre">sscanf()</span></code>?</p>
+</div>
+<div class="section" id="case-study-unix-interprocess-communication-ipc">
+<h2>Case Study: UNIX Interprocess Communication (IPC)<a class="headerlink" href="#case-study-unix-interprocess-communication-ipc" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>IP C provided as systems calls implemented over TCP and UDP</li>
+<li>Message destinations - Socket addresses (Internet address and port
+id)</li>
+<li>Communication operations based on socket pairs (sender and receiver)</li>
+<li>Msgs queued at sender socket until network protocol transmits them
+and ack</li>
+<li>Before communication can occur - recipient must BIND its socket
+descriptor to a socket address</li>
+</ul>
+</div>
+<div class="section" id="example-simple-tcp-messaging-framework-from-hpjpc">
+<h2>Example - Simple TCP Messaging Framework (from HPJPC)<a class="headerlink" href="#example-simple-tcp-messaging-framework-from-hpjpc" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>TCP/IP example</li>
+<li>simple messaging service where the client/server exchange Message
+objects containing key/value parameters</li>
+<li>can send all primitive types or binary-encoded data</li>
+<li>Key classes<ul>
+<li>Message</li>
+<li>MessageClient</li>
+<li>MessageServer and MessageServerDispatcher (handles concurrent
+requests)</li>
+<li>MessageService interface (for building your own services)</li>
+</ul>
+</li>
+<li>Example Service<ul>
+<li>DateService</li>
+<li>DateClient</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="example-simple-key-value-messaging">
+<h2>Example: Simple Key-Value Messaging<a class="headerlink" href="#example-simple-key-value-messaging" title="Permalink to this headline">¶</a></h2>
+<p>An example we presented as part of the book, High-Performance Java
+Platform Computing, published by Sun Microsystems Press.</p>
+<p>The code for this entire example appears in the
+<a class="reference external" href="https://github.com/LoyolaChicagoCode/hpjpc-source-java/tree/master/src/info/jhpc/message">src/info/jhpc/message</a>
+package at GitHub.</p>
+</div>
+<div class="section" id="example-components">
+<h2>Example: Components<a class="headerlink" href="#example-components" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>MessageServer: The server side</li>
+<li>MessageClient: The client side</li>
+<li>MessageServerDispatcher: Used to handle incoming messages</li>
+<li>DateService: Concrete example to use message server to get time of
+day</li>
+<li>DateClient: Concrete example of a client (to DateService)</li>
+</ul>
+</div>
+<div class="section" id="sockets-communication-using-datagram">
+<h2>Sockets Communication Using Datagram<a class="headerlink" href="#sockets-communication-using-datagram" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>“socket” call to create and a get a descriptor</li>
+<li>Bind call to bind socket to socket address (internet address &amp; port
+number)</li>
+<li>Send and receive calls use socket descriptor to send receive messages</li>
+<li>UDP, no ack</li>
+</ul>
+</div>
+<div class="section" id="java-sdk-example-quote-server-with-datagrams">
+<h2>Java SDK Example / Quote Server with Datagrams<a class="headerlink" href="#java-sdk-example-quote-server-with-datagrams" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>The quote server sends back a quote (not a stock quote) to the
+client. This is obtained from a file of one-line quotes.</li>
+<li>The server continuously receives datagram packets over a datagram
+socket.</li>
+<li>Each datagram packet received by the server indicates a client
+request for a quotation.</li>
+<li>When the server receives a datagram, it replies by sending a datagram
+packet that contains a one-line “quote of the moment” back to the
+client.</li>
+<li>The client application sends a single datagram packet to the server
+indicating that the client would like to receive a quote of the
+moment.</li>
+<li>The client then waits for the server to send a datagram packet in
+response. ß ## Quote Server</li>
+</ul>
+<div class="code java highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.io.</span><span class="o">*</span><span class="p">;</span>
+
+<span class="n">public</span> <span class="k">class</span> <span class="nc">QuoteServer</span> <span class="p">{</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="n">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">new</span> <span class="n">QuoteServerThread</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="quote-server-dispatch-thread">
+<h2>Quote Server Dispatch Thread<a class="headerlink" href="#quote-server-dispatch-thread" title="Permalink to this headline">¶</a></h2>
+<div class="code java highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="n">QuoteServerThread</span><span class="p">()</span> <span class="n">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+    <span class="n">this</span><span class="p">(</span><span class="s2">&quot;QuoteServer&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">public</span> <span class="n">QuoteServerThread</span><span class="p">(</span><span class="n">String</span> <span class="n">name</span><span class="p">)</span> <span class="n">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+    <span class="n">socket</span> <span class="o">=</span> <span class="n">new</span> <span class="n">DatagramSocket</span><span class="p">(</span><span class="mi">4445</span><span class="p">);</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="ow">in</span> <span class="o">=</span> <span class="n">new</span> <span class="n">BufferedReader</span><span class="p">(</span><span class="n">new</span> <span class="n">FileReader</span><span class="p">(</span><span class="s2">&quot;one-liners.txt&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="n">catch</span> <span class="p">(</span><span class="n">FileNotFoundException</span> <span class="n">e</span><span class="p">){</span>
+        <span class="n">System</span><span class="o">.</span><span class="n">err</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t open quote file.  Serving time instead.&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="quote-client">
+<h2>Quote Client<a class="headerlink" href="#quote-client" title="Permalink to this headline">¶</a></h2>
+<div class="code java highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="k">class</span> <span class="nc">QuoteClient</span> <span class="p">{</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="n">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">length</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+             <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;Usage: java QuoteClient &lt;hostname&gt;&quot;</span><span class="p">);</span>
+             <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+            <span class="o">//</span> <span class="n">get</span> <span class="n">a</span> <span class="n">datagram</span> <span class="n">socket</span>
+        <span class="n">DatagramSocket</span> <span class="n">socket</span> <span class="o">=</span> <span class="n">new</span> <span class="n">DatagramSocket</span><span class="p">();</span>
+
+            <span class="o">//</span> <span class="n">send</span> <span class="n">request</span>
+        <span class="n">byte</span><span class="p">[]</span> <span class="n">buf</span> <span class="o">=</span> <span class="n">new</span> <span class="n">byte</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+        <span class="n">InetAddress</span> <span class="n">address</span> <span class="o">=</span> <span class="n">InetAddress</span><span class="o">.</span><span class="n">getByName</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+        <span class="n">DatagramPacket</span> <span class="n">packet</span> <span class="o">=</span> <span class="n">new</span> <span class="n">DatagramPacket</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">buf</span><span class="o">.</span><span class="n">length</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="mi">4445</span><span class="p">);</span>
+        <span class="n">socket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">packet</span><span class="p">);</span>
+
+            <span class="o">//</span> <span class="n">get</span> <span class="n">response</span>
+        <span class="n">packet</span> <span class="o">=</span> <span class="n">new</span> <span class="n">DatagramPacket</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">buf</span><span class="o">.</span><span class="n">length</span><span class="p">);</span>
+        <span class="n">socket</span><span class="o">.</span><span class="n">receive</span><span class="p">(</span><span class="n">packet</span><span class="p">);</span>
+
+        <span class="o">//</span> <span class="n">display</span> <span class="n">response</span>
+        <span class="n">String</span> <span class="n">received</span> <span class="o">=</span> <span class="n">new</span> <span class="n">String</span><span class="p">(</span><span class="n">packet</span><span class="o">.</span><span class="n">getData</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">packet</span><span class="o">.</span><span class="n">getLength</span><span class="p">());</span>
+        <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;Quote of the Moment: &quot;</span> <span class="o">+</span> <span class="n">received</span><span class="p">);</span>
+
+        <span class="n">socket</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stream-communication">
+<h2>Stream Communication<a class="headerlink" href="#stream-communication" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>First need to establish a connection between sockets</li>
+<li>Asymmetric because one would be listening for request for connection
+and the other would be asking</li>
+<li>Once connection, data communication in both directions</li>
+</ul>
+</div>
+<div class="section" id="remote-procedure-call">
+<h2>Remote Procedure Call<a class="headerlink" href="#remote-procedure-call" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Question: How do me make “distributed computing look like traditional
+(centralized) computing”?</li>
+<li>Simple idea - Can we use procedure calls? Normally,<ul>
+<li>A calls B –&gt; A suspended, B executes –&gt; B returns, A executes</li>
+<li>Information from A (caller) to B (callee) transferred using
+parameters</li>
+<li>Somewhat easier since both caller and callee execute in the same
+address space</li>
+</ul>
+</li>
+<li>But in Distributed systems - the callee may be on a different system<ul>
+<li>==&gt; Remote Procedure Call (RPC)</li>
+<li>Does not rely on <em>explicit message passing</em>!</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="remote-procedure-call-figure">
+<h2>Remote Procedure Call (Figure)<a class="headerlink" href="#remote-procedure-call-figure" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id14">
+<img alt="RPC" src="../_images/rpc-overview.png" />
+<p class="caption"><span class="caption-text">RPC</span></p>
+</div>
+</div>
+<div class="section" id="remote-procedure-call-rpc">
+<h2>Remote Procedure Call (RPC)<a class="headerlink" href="#remote-procedure-call-rpc" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Although no message passing (at user level) - parameters must still
+be passed - results must still be returned!</li>
+<li>==&gt; Many issues to be addressed - Look at an example to understand
+some issues</li>
+</ul>
+<div class="code c highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">count</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">nbytes</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the above: - fd: file handle (int) - buf: array of bytes - nbyes:
+number of bytes</p>
+</div>
+<div class="section" id="observations">
+<h2>Observations<a class="headerlink" href="#observations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>parameters (in C): call-by-reference OR call-by-value</li>
+<li>Value parameter (e.g., fd, nbytes) copied onto stack (original value
+not affected)</li>
+<li>Value parameter is just an initialized variable on stack for callee</li>
+<li>Reference parameter (array buf) is not copied –&gt; pointer to it is
+passed (buf’s address)<ul>
+<li>Original values modified</li>
+</ul>
+</li>
+<li>Many options are language dependent but we will ignore them…</li>
+<li>How to deal with these situations?</li>
+</ul>
+</div>
+<div class="section" id="design-of-rpc">
+<h2>Design of RPC<a class="headerlink" href="#design-of-rpc" title="Permalink to this headline">¶</a></h2>
+<p>Goal: Make RPC look (as much as possible) like local procedure call,
+that is,</p>
+<ul class="simple">
+<li>call should not be aware of the fact that the callee is on a
+different machine (or vice versa)</li>
+<li>Look at the read call again and various involved components<ul>
+<li>read routine is extracted from the library by linker and inserted
+into application object code</li>
+<li>call read <code class="docutils literal notranslate"><span class="pre">--&gt;</span></code> Parameter onto stack <code class="docutils literal notranslate"><span class="pre">--&gt;</span></code> kernel trap <code class="docutils literal notranslate"><span class="pre">--&gt;</span></code>
+operation <code class="docutils literal notranslate"><span class="pre">--&gt;</span></code> POP <code class="docutils literal notranslate"><span class="pre">--&gt;</span></code> return</li>
+<li>programmer does not know all this</li>
+</ul>
+</li>
+<li>in RPC, read is remote, so there is no way to put parameters on stack
+(no shared space/memory!)</li>
+<li>Solution: In the library keep “client stub” which acts like “read”</li>
+<li>So how does it work?</li>
+</ul>
+</div>
+<div class="section" id="rpc-mechanisms">
+<h2>RPC Mechanisms<a class="headerlink" href="#rpc-mechanisms" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Client-stub packs parameters</li>
+<li>Ships them to “server”</li>
+</ul>
+</div>
+<div class="section" id="rpc-steps">
+<h2>RPC Steps<a class="headerlink" href="#rpc-steps" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>client calls client stub in normal fashion</li>
+<li>client stub builds msg and traps to kernel</li>
+<li>kernel sends msg to remote kernel</li>
+<li>remote kernel gives msg to server stub</li>
+<li>server stub unpacks parameters and calls server</li>
+<li>server processes and returns results to stub</li>
+<li>server stub packs result in msg and traps to kernel</li>
+<li>remote kernel sends msg to client kernel</li>
+<li>client kernel gives msg to client stub</li>
+<li>stub unpacks results and returns to client</li>
+</ol>
+</div>
+<div class="section" id="design-issues">
+<h2>Design Issues<a class="headerlink" href="#design-issues" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Parameter passing</li>
+<li>Binding</li>
+<li>Reliability/How to handle failures<ul>
+<li>messages losses</li>
+<li>client crash</li>
+<li>server crash</li>
+</ul>
+</li>
+<li>Performance and implementation issues</li>
+<li>Exception handling</li>
+<li>Interface definition</li>
+</ul>
+</div>
+<div class="section" id="parameter-passing">
+<h2>Parameter Passing<a class="headerlink" href="#parameter-passing" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Some issues similar to messages passing</li>
+<li>Example below- what if clients and servers have different
+representations (Little endian vs big endian)</li>
+</ul>
+</div>
+<div class="section" id="parameter-passing-1">
+<span id="id7"></span><h2>Parameter Passing<a class="headerlink" href="#parameter-passing-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>How to solve the problem?<ul>
+<li>client and server know parameter type</li>
+<li>msg will have n+1 fields<ul>
+<li>1 - procedure identifier</li>
+<li>n - procedure parameters</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="binding">
+<h2>Binding<a class="headerlink" href="#binding" title="Permalink to this headline">¶</a></h2>
+<ol class="upperalpha simple" start="17">
+<li>How does a client locate the server?</li>
+</ol>
+<ul class="simple">
+<li>Hardwire?<ul>
+<li>inflexible</li>
+<li>need to recompile all codes affected for any change</li>
+</ul>
+</li>
+<li>Dynamic Binding<ul>
+<li>formal specification of server</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="use-of-specification">
+<h2>Use of Specification<a class="headerlink" href="#use-of-specification" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Input to the stub generator - produces both client and server stub<ul>
+<li>client stub linked to client function</li>
+<li>server stub linked to server function</li>
+</ul>
+</li>
+<li>Server exports the server interface (initialize())<ul>
+<li>server sends msg to binder to know it is up (registration)</li>
+<li>server gives the binder <strong>name</strong>, <strong>version number</strong>, <strong>unique
+ID</strong>, <strong>handle</strong> (e.g.&nbsp;IP address)</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="locating-the-server">
+<h2>Locating the Server<a class="headerlink" href="#locating-the-server" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>First call to RPC of function</li>
+<li>Client stub sees not bound to server</li>
+<li>Client stub sends msg to binder to “import” interface</li>
+<li>If server exists, binder gives unique id and handle to client stub</li>
+<li>Client stub uses these for communication</li>
+<li>Method flexible<ul>
+<li>can handle multiple servers with same interface</li>
+<li>binder can poll servers to see if up or deregister them if down
+for fault tolerance</li>
+<li>can enforce authentication</li>
+</ul>
+</li>
+<li></li>
+<li>Disadvantage<ul>
+<li>overhead of interface export/import</li>
+<li>binder may be a bottleneck in large systems</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="how-to-handle-failures">
+<h2>How to Handle Failures<a class="headerlink" href="#how-to-handle-failures" title="Permalink to this headline">¶</a></h2>
+<p>Types of possible failures in RPC systems - client unable to locate
+server - request message from client to server is lost - reply message
+from server to client is lost - server crashes after receiving a request
+- client crashes after sending a request ( ^c!!)</p>
+<p>Questions - What are the semantics? - How close can we get to the goal
+of transparency?</p>
+</div>
+<div class="section" id="client-cannot-locate-server">
+<h2>Client Cannot Locate Server<a class="headerlink" href="#client-cannot-locate-server" title="Permalink to this headline">¶</a></h2>
+<p>Why? - server may be down - new version of server (using new stubs..)
+but older client ==&gt; binder cannot match</p>
+<p>Solutions</p>
+<ul class="simple">
+<li>respond with error type “cannot locate server”<ul>
+<li>simple</li>
+<li>not general (what if the error code, e.g.&nbsp;-1, is also a result of
+computation?)</li>
+</ul>
+</li>
+<li>raise exception<ul>
+<li>some languages allow calling special procedures for error</li>
+<li>not all languages support this</li>
+<li>destroys transparency</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="lost-request-message">
+<h2>Lost Request Message<a class="headerlink" href="#lost-request-message" title="Permalink to this headline">¶</a></h2>
+<p>Time Out</p>
+<ul class="simple">
+<li>Kernel starts timer when request sent</li>
+<li>If timer expires, resend message</li>
+<li>If message was lost - server cannot tell the difference</li>
+<li>If message lost too many times ==&gt; “cannot locate server”</li>
+</ul>
+</div>
+<div class="section" id="lost-reply-message">
+<h2>Lost Reply Message<a class="headerlink" href="#lost-reply-message" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>More difficult to handle</li>
+<li>Rely on timer again?</li>
+<li>Problem: Client’s kernel doesn’t know why no answer!</li>
+<li>Must distinguish between<ul>
+<li>request/reply got lost?</li>
+<li>server slow</li>
+</ul>
+</li>
+</ul>
+<p>Why? - some operations may be repeated without problems (e.g., reading a
+block from the same position in file–no side effects) - property -
+“idempotent”</p>
+</div>
+<div class="section" id="idempotent-property">
+<h2>Idempotent Property<a class="headerlink" href="#idempotent-property" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Idempotence is the property of certain operations in mathematics and
+computer science whereby they can be applied multiple times without
+changing the result beyond the initial application.</li>
+<li>The concept of idempotence arises in a number of places in abstract
+algebra and functional programming</li>
+<li>See <a class="reference external" href="https://en.wikipedia.org/wiki/Idempotence">Idempotence on
+Wikipedia</a>.</li>
+</ul>
+</div>
+<div class="section" id="lost-reply-message-1">
+<span id="id8"></span><h2>Lost Reply Message<a class="headerlink" href="#lost-reply-message-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>What if request is not idempotent?<ul>
+<li>e.g., transferring 500 thousand dollars from your account</li>
+<li>do it five times and you are broke!</li>
+</ul>
+</li>
+<li>Solution - Client kernel uses a sequence number (needs to maintain
+state) for each request</li>
+<li>Have a bit in message to distinguish initial vs.&nbsp;retransmissions</li>
+</ul>
+</div>
+<div class="section" id="server-crashes">
+<h2>Server Crashes<a class="headerlink" href="#server-crashes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Depends on when server crashes<ul>
+<li>After execution</li>
+<li>After receiving message but BEFORE execution</li>
+</ul>
+</li>
+<li>Solutions differ</li>
+</ul>
+</div>
+<div class="section" id="server-crashes-1">
+<span id="id9"></span><h2>Server Crashes<a class="headerlink" href="#server-crashes-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>But the client cannot tell the difference!</li>
+<li>Solutions?<ul>
+<li>Wait until server reboots (or rebind)<ul>
+<li>try operation again and keep trying until success</li>
+<li>“at least once semantics”</li>
+</ul>
+</li>
+<li>Give up immediately and report failure<ul>
+<li>“at most once semantics”</li>
+</ul>
+</li>
+<li>Guarantee nothing<ul>
+<li>(-) RPC may be tried from 0 - any no</li>
+<li>(+) easy to implement</li>
+</ul>
+</li>
+<li>But none of the above attractive</li>
+<li>What we want is “exactly once semantics”, which cannot be achieved</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="client-crashes">
+<h2>Client Crashes<a class="headerlink" href="#client-crashes" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Client sends a request and crashes</p>
+<ul class="simple">
+<li>computation active - but no parent active</li>
+<li>unwanted computation called “orphan”</li>
+</ul>
+</li>
+<li><p class="first">Orphan’s can create problems</p>
+<ul class="simple">
+<li>wasted resources</li>
+<li>locked files?</li>
+<li>client reboots - does RPC - reply from orphan comes =&gt; confusion!</li>
+</ul>
+<p>Solutions (Extermination)</p>
+<ul class="simple">
+<li>client stub logs (on disk) request before sending</li>
+<li>after reboot check log - kill any orphan</li>
+<li>(+) simple</li>
+<li>(-) too expensive (each RPC requires disk access!)</li>
+</ul>
+</li>
+<li><p class="first">what if orphans do RPC <code class="docutils literal notranslate"><span class="pre">=&gt;</span></code> grand orphans <code class="docutils literal notranslate"><span class="pre">=&gt;</span></code> difficult to kill
+all</p>
+</li>
+</ul>
+</div>
+<div class="section" id="client-crashes-1">
+<span id="id10"></span><h2>Client Crashes<a class="headerlink" href="#client-crashes-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Reincarnation<ul>
+<li>divide time into numbered slots (epoch)</li>
+<li>when client reboots, it broadcasts to all machines with new slot</li>
+<li>all remote computations killed</li>
+<li>if network partitioned, some orphans will remain - but will be
+detected later</li>
+</ul>
+</li>
+<li>Gentle Reincarnation<ul>
+<li>locate the owner of the orphan first</li>
+<li>if not found, kill computations</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="flow-control">
+<h2>Flow Control<a class="headerlink" href="#flow-control" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Network Interface Chips (NICs) can send message fast</li>
+<li>But receiving more difficult due to finite buffer</li>
+<li>Overrun can occur when<ul>
+<li>NIC serving one packet</li>
+<li>another arrives</li>
+</ul>
+</li>
+<li>No overrun possible in stop-and-wait (assuming single sender)</li>
+<li>Sender can insert gaps (assume n buffer capacity)<ul>
+<li>send n packets</li>
+<li>gap</li>
+<li>send n packets</li>
+</ul>
+</li>
+<li>Performance</li>
+<li>Critical Path</li>
+</ul>
+</div>
+<div class="section" id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p>There are many RPC implementations - <a class="reference external" href="https://www.slideshare.net/PeterREgli/sun-rpc">Sun RPC
+Tutorial</a> -
+<a class="reference external" href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlExample.html">Java/CORBA
+Tutorial</a>
+- <a class="reference external" href="https://en.wikipedia.org/wiki/Java_remote_method_invocation">Java RMI
+Tutorial</a></p>
+<p>Today there are many new ways of doing RPC, especially for web services.</p>
+<p>While the systems are more modern/hip, they still require an
+understanding of the basic underlying principles, which are unchanged.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../concurrency/concurrency.html" class="btn btn-neutral float-right" title="Concurrency and Threads" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../issues/issues.html" class="btn btn-neutral float-left" title="Introduction and Issues" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,1483 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NoSQL Databases &mdash; Distributed Systems v0.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Distributed Agents" href="../agents/agents.html" />
+    <link rel="prev" title="REST and Web Services" href="../rest/rest.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Distributed Systems
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../issues/issues.html">Introduction and Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../networking/networking.html">Networking Primer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concurrency/concurrency.html">Concurrency and Threads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html">Distributed Systems and Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#storage-devices">Storage Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#local-storage">Local Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#distributed-filesystems">Distributed Filesystems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#case-study-sun-nfs">Case Study - SUN NFS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../directories/directories.html">Directories and LDAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maven/maven.html">Project Build Management With Maven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ci/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clocks/clocks.html">Clocks and Synchronization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trans/trans.html">Distributed Transactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dns/dns.html">Domain Name Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queue/queue.html">Distributed Queues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mpi/mpi.html">Message Passing Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smtp/smtp.html">SMTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corba/corba.html">Object Brokers and CORBA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rest/rest.html">REST and Web Services</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NoSQL Databases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#couchdb">CouchDB</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#features-of-couchdb">Features of CouchDB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#acid-semantics">ACID Semantics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self-contained-data">Self-Contained Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#futon">Futon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#replicaton-and-the-replicator">Replicaton and the Replicator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#querying-couchdb-with-java">Querying CouchDB with Java</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#couchdb4j">CouchDB4J</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sessions-and-databases">Sessions and Databases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reading-documents">Reading Documents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-documents">Creating Documents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#updating-documents">Updating Documents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deleting-documents">Deleting Documents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mongodb">MongoDB</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#features-of-mongodb">Features of MongoDB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#replication-and-replica-sets">Replication and Replica Sets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#arbiters">Arbiters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#elections">Elections</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#automatic-sharding">Automatic Sharding</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sharded-clusters">Sharded Clusters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-to-mongodb">Connecting to MongoDB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crud-in-mongodb-command-prompt">CRUD in MongoDB – Command Prompt</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Creating Documents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Reading Documents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Updating Documents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Deleting Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mongodb-in-java">MongoDB in Java</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#connecting">Connecting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Reading Documents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Creating Documents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Updating Documents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Deleting Documents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">Automatic Sharding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#external-sources">External Sources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../agents/agents.html">Distributed Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_spark/apache_spark.html">Apache Spark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bit_torrent/bit_torrent.html">BitTorrent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop/hadoop.html">Hadoop Distributed File System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../message_queues/message_queues.html">Message Queues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../object_brokering/object_brokering.html">Object Brokering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rsync/rsync.html">File Sychronization and rsync</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../volunteer/volunteer.html">Volunteer Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/cloud.html">Cloud Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iot/iot.html">Internet of Things and Pervasive Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../election/election.html">Election Algorithms</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Distributed Systems</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>NoSQL Databases</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/nosql/nosql.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nosql-databases">
+<h1>NoSQL Databases<a class="headerlink" href="#nosql-databases" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Being edited.</p>
+</div>
+<p>Not long ago, most web applications did not have a large number of users accessing them daily. In those times, having 1,000 users a day was considered to be a large userbase. As time passed, and more and more users gained Internet access, the number of users for popular web applications ballooned. Some web applications and services have millions of users per day. Modern web applications also keep much more detailed records of their users and their habits.</p>
+<p>Unfortunately, traditional relational databases are not well suited to handling large amounts of data in web and business applicatons. As a result, a new type of database technology is required to handle large amounts of data efficiently, one that did not use the old relational database model. These kinds of databases either don’t use SQL at all, or if it was used, it was wrapped with other technologies to make the SQL console invisible to the user. As time progressed, many different kinds of ‘NoSQL’ databases emerged, distancing themselves from the relational database model.</p>
+<div class="section" id="couchdb">
+<h2>CouchDB<a class="headerlink" href="#couchdb" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<img alt="Apache CouchDB has started. Time to relax." src="../_images/logo_couch.jpg" />
+</div>
+<p><strong>CouchDB</strong> is a document-based NoSQL database developed by <strong>Apache</strong>.
+Once starting CouchDB, a user is presented with the message; <em>Apache CouchDB has started. Time to relax.</em></p>
+<p>This slogan emphasizes the concept of truth in advertising, as many of CouchDB’s functionalities are designed to make the developer’s life easier and allow them to be more productive.
+CouchDB’s core concepts are simple and relatively easy to understand for developers who have used other databases in the past.</p>
+<div class="section" id="features-of-couchdb">
+<h3>Features of CouchDB<a class="headerlink" href="#features-of-couchdb" title="Permalink to this headline">¶</a></h3>
+<p>CouchDB uses many languages and technologies that are already common in web development.
+It uses <strong>JSON</strong> (JavaScript Object Notation) as a means of storing data, and <strong>JavaScript</strong> as the query language.
+The queries are done with <strong>MapReduce</strong>, a model for processing big data in a distributed algorithm using a cluster.
+It also can be integrated with RESTful web services with relative ease.</p>
+<p>CouchDB has an administration panel called <strong>Futon</strong> that can be accessed with any web browser. It looks and functions similar to <strong>phpMyAdmin</strong>.</p>
+</div>
+<div class="section" id="acid-semantics">
+<h3>ACID Semantics<a class="headerlink" href="#acid-semantics" title="Permalink to this headline">¶</a></h3>
+<p>Like many other NoSQL databases, CouchDB provides eventual consistency, but it also provides <strong>ACID</strong> semantics with its file layout, a feature that is not common among NoSQL databases. ACID is an acronym which stands for Atomicity, Consistency, Isolation, Durability. It is a set of guidelines for guaranteeing that database transactions will be performed reliably. <strong>Atomicity</strong> requires that the entire transaction must not fail, therefore, if one part of the transaction fails to process, the whole transaction faile to process, and the database is left unchanged.
+<strong>Consistency</strong>, when referring to databases, is the assurance that any transaction will not violate any of the defined rules of the database.
+<strong>Isolation</strong> refers to the database’s ability to provide concurrency control, or allowing two transactions to happen at the same time without fail. <strong>Durability</strong> is the database’s ability to ensure that as soon as a transaction is committed, that it always stays committed, regardless of software or hardware failure.</p>
+<p>In CouchDB, document updates are serialized (as you will see later) with revision numbers, and it allows multiple users to read or write to the same document without being interrupted or locked out.
+For its read operations, CouchDB uses a <strong>Multi-Version Concurrency Control</strong> (MVCC) model, which shows the client a consistent state of the database throughout the operation.</p>
+</div>
+<div class="section" id="self-contained-data">
+<h3>Self-Contained Data<a class="headerlink" href="#self-contained-data" title="Permalink to this headline">¶</a></h3>
+<p>By it’s nature as a document-based database, CouchDB’s data does not depend on a schema, and is all self-contained.
+Data that is self-contained does not have any abstract references to other documents, which may appear puzzling at first.
+Abstract references, after all, are a significant part of how to model data in a relational database.
+However, relational databases depend on the designer modelling the data prior to it being used, forcing all rows to adhere to a set structure, even if that structure is flawed. Any errors or oversights in designing a relational database can be very costly later.</p>
+<p>Consider a table in a relational database that contains the following information about a person. Assume each item on the list is its own column;</p>
+<ul class="simple">
+<li>First name</li>
+<li>Middle name</li>
+<li>Last name</li>
+</ul>
+<p>On paper, this appears to be a simple way of showing a person’s name.
+However, if a person does not have a middle name, this could force someone’s middle name to be rendered as “None” or “null”.
+Consider, also, scenarios where a person may have multiple middle names. Theoretically, both middle names could be placed in the middle name field.
+But, if the middle name field is ever shortened, problems can arise. For example, “John Martin Smith” would be shown as “John M. Smith”, “Catherine Mary Louise Jones” might be shown as “Catherine M. Jones”.
+Simply choosing to render capital letters only is problematic as well, especially in cases where someone’s middle name may contain two capital letters.
+Regardless of how you would solve this problem with a relational database, the obvious problem is that not all of the data fits the structure that the developer has selected.</p>
+<p>A CouchDB document could find much easier ways around this problem. A person with no middle name does not require a middle name field at all, and a person with multiple middle names can have each of them listed in their own fields. Since CouchDB does not use a set schema, the data modelling is done after the document has been created, allowing for more flexiblity.
+Slight design alterations such as adding functionality for multiple middle names are considerably easier to do with CouchDB than they are with a relational database. An example of how to implement this will be shown below.</p>
+</div>
+<div class="section" id="futon">
+<h3>Futon<a class="headerlink" href="#futon" title="Permalink to this headline">¶</a></h3>
+<p><strong>Futon</strong> is the name of the browser-based control panel that CouchDB uses. By default, CouchDB can be accessed by entering <strong>http://127.0.0.1:5984/_utils/index.html</strong> into your web browser. Upon loading Futon, the user will be greeted by this screen.</p>
+<div class="figure align-center">
+<img alt="Futon in all of its glory." src="../_images/futon_1.jpg" />
+</div>
+<p>Underneath the Overview, you can see the a list of all the existing databases, how big they are in kilobytes, how many documents they hold, and how many times they’ve been updated. On the right side, there are links to the main page (which we are on), the configuration page, the replicator, and a status page.
+Below these, the user can see the documentation type and any diagnostics that need to be run. In this screenshot, you will notice that the installation of CouchDB needs to be verified. Upon clicking on “Verify Installation”, Futon will check your installation and make sure there are no errors in it. Doing this will also create two test databases (test_suite_db and test_suite_db2), however, we will be leaving those alone.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../_images/futon_2.jpg"><img alt="Fairly self-explanatory." src="../_images/futon_2.jpg" style="width: 600px;" /></a>
+</div>
+<p>A new database can be created by clicking on the Create Database icon above the list of databases. The user will then be presented with a small, black popup window in which they will enter the name of the database they wish to create and then click Create.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../_images/futon_3.jpg"><img alt="A fresh new database without any documents in it." src="../_images/futon_3.jpg" style="width: 600px;" /></a>
+</div>
+<p>For this example, we will make a database called “company”. In this database, we will explore the middle name dilemma that was explained earlier in this reading. To create a new document, click the button in the top left corner with the words “New Document” next to it.</p>
+<p>Once a new document is created, CouchDB will assign it an ID with the _id field, which you can change if you choose to do so. However, the document ID must be a string, and it can not be changed once the document has been saved. In these examples, I made the ID of all of the documents identical to the last names of the employees.</p>
+<p>To add more fields, click the button with a plus sign in the middle with “Add Field” next to it.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../_images/futon_4.jpg"><img alt="The employee John Martin Smith is created." src="../_images/futon_4.jpg" style="width: 600px;" /></a>
+</div>
+<p>When you create a new field, you will be given a chance to type a name and a value in. You can not assign the same name to two fields in one document. In the figure above, I created three fields, fname, mname, and lname, to represent the first name, middle name, and last name of one employee. First, I started with John Martin Smith.</p>
+<p>When you are done editing the fields, click the green circular button with a check mark to indicate you are finished for now. You can edit the text again by clicking on it. To remove a field, click on the gray and white X button on the left side of the field’s name.</p>
+<div class="figure align-center">
+<img alt="These directions are very self-explanatory, aren't they?" src="../_images/futon_5.jpg" />
+</div>
+<p>As you have undoubtedly noticed, CouchDB has made entering data with Futon very easy. Since the data structure is not yet defined, you do not need to set a value as being of any particular type.</p>
+<div class="figure align-center">
+<img alt="Futon records revisions in a generated field called _rev." src="../_images/futon_6.jpg" />
+</div>
+<p>Once you are done editing all of your fields, you may save the document by clicking Save Document. Once a document is saved, Futon adds a revision field, _rev, after the _id field, as can be seen above. You may notice that CouchDB sorts the fields alphabetically once the document is saved. The _rev field is used for replication, which will be explained in more detail later.</p>
+<div class="figure align-center">
+<img alt="Let's add an attachment!" src="../_images/futon_7.jpg" />
+</div>
+<p>Attachments may be added to documents in Futon by clicking the Upload Attachment button. Upon clicking it, a black box like the one above will appear, asking you to look for a file to attach. I decided to attach a small .png file titled ‘Awesome’.</p>
+<div class="figure align-center">
+<img alt="Attachments are in their own field called _attachments." src="../_images/futon_8.jpg" />
+</div>
+<p>After clicking Upload, the attachment will appear in the _attachments field, as can be seen above. Now, save the document and click Source to see the JSON source for your document.</p>
+<div class="figure align-center">
+<img alt="The JSON can be modified directly by double clicking on the text." src="../_images/futon_9.jpg" />
+</div>
+<p>Should you ever want to modify the JSON directly, you can do so by double clicking on the text, as the white bubble indicates. Before continuing on, I will add documents for “Catherine Mary Louise Jones”, who has two middle names, and “Jim Clark”, who has no middle name.</p>
+<div class="figure align-center">
+<img alt="../_images/futon_10.jpg" src="../_images/futon_10.jpg" />
+</div>
+<p>As you see here, Catherine Mary Louise Jones has the mname2 field to desginate the order of her two middle names. Jim Clark has no middle name, so that field is not even present in his document.</p>
+</div>
+<div class="section" id="replicaton-and-the-replicator">
+<h3>Replicaton and the Replicator<a class="headerlink" href="#replicaton-and-the-replicator" title="Permalink to this headline">¶</a></h3>
+<p>CouchDB’s replicator allows for the database to make copies of itself. Unlike MongoDB’s replication functionality, which only allows master servers to replicate to slave servers, CouchDB’s replication allows for all servers to make copies to each other. This kind of master-master replication is possible because of the way CouchDB stores revision data.
+In this way, all replication commands are essentially the same as passing several update commands to a new database.</p>
+<p>Problems can arise, however, in scenarios where two users/servers make conflicting updates. Let’s say two users (who we will unimaginatively refer to as A and B), pull _rev “1-dfdfd”. User A makes a change and commits _rev “2-aaaa”, only for User B to commit their own revision, which is in conflict with User A’s. Since User B is updating to a _rev that is no longer the current _rev, their changes are rejected.
+Depending on the application, it is reasonable to either apply User B’s revision to User A’s, or to give User B the chance to edit the document again to see the changes that User A had made before.</p>
+<p>Futon has a replicator feature, which can be seen below. Here, we are making a copy of the earlier <em>company</em> collection and replicating it to <em>corporation</em>.</p>
+<div class="figure align-center">
+<img alt="The replicator in Futon." src="../_images/futon_16.jpg" />
+</div>
+</div>
+<div class="section" id="querying-couchdb-with-java">
+<h3>Querying CouchDB with Java<a class="headerlink" href="#querying-couchdb-with-java" title="Permalink to this headline">¶</a></h3>
+<p>One of the more useful aspects of CouchDB is Apache’s choice of using JSON as the query language.
+Given that JSON is a fairly common format, a Java library will be required in order to make the most out of CouchDB. For the following examples, I chose to use <strong>Json-lib</strong>, which can be obtained either from the example projects I bundled with the reading, or on Sourceforge.
+Another Java library will be required in order to here are many different Java libraries that can be used to interface with CouchDB. There are many libraries that can communicate with CouchDB, but for these examples, I chose <strong>CouchDBJ4</strong>. There are other Java libraries such as <strong>Ektorp</strong> that can also interface with CouchDB, but they are not covered here.
+Both JSON-Lib and CouchDB4J have their own list of dependencies that are needed for both to run. Below is a list of all of the libraries that I used for the sample code;</p>
+<ul class="simple">
+<li><strong>JSON-Lib 2.4</strong></li>
+<li><strong>CouchDB4J</strong></li>
+<li><strong>EZMorph 1.0.3</strong></li>
+<li><strong>Apache HTTPCore 4.3.1</strong></li>
+</ul>
+<p>As well as the following libraries from the <strong>Apache Commons</strong>;</p>
+<ul class="simple">
+<li><strong>Collections 3.2.1</strong></li>
+<li><strong>BeanUtils Core and Collections 1.8.3</strong></li>
+<li><strong>Lang 2.6</strong>, some changes were made to Apache Commons Lang after 2.6 that do not cooperate with CouchDB4J.</li>
+<li><strong>Logging 1.1.3</strong></li>
+<li><strong>Codec 1.6</strong></li>
+<li><strong>Collections 3.2.1</strong></li>
+</ul>
+</div>
+<div class="section" id="couchdb4j">
+<h3>CouchDB4J<a class="headerlink" href="#couchdb4j" title="Permalink to this headline">¶</a></h3>
+<p><strong>CouchDB4J</strong> is an open-source Java library used to interact with CouchDB. Like many things involving CouchDB, it is very simple to operate and use.</p>
+<div class="section" id="sessions-and-databases">
+<h4>Sessions and Databases<a class="headerlink" href="#sessions-and-databases" title="Permalink to this headline">¶</a></h4>
+<p>In order to connect to CouchDB, you must create a Session object, which can be instantiated by one of three ways, depending on how the database itself is configured.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">//Six arguments.</span>
+<span class="hll"><span class="n">Session</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Session</span><span class="o">(</span><span class="n">String</span> <span class="n">host</span><span class="o">,</span> <span class="kt">int</span> <span class="n">port</span><span class="o">,</span> <span class="n">String</span> <span class="n">user</span><span class="o">,</span> <span class="n">String</span> <span class="n">pass</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">usesAuth</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">secure</span><span class="o">);</span>
+</span><span class="c1">//Four arguments.</span>
+<span class="hll"><span class="n">Session</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Session</span><span class="o">(</span><span class="n">String</span> <span class="n">host</span><span class="o">,</span> <span class="kt">int</span> <span class="n">port</span><span class="o">,</span> <span class="n">String</span> <span class="n">user</span><span class="o">,</span> <span class="n">String</span> <span class="n">pass</span><span class="o">);</span>
+</span><span class="c1">//Two arguments. If working off localhost, this should be enough.</span>
+<span class="hll"><span class="n">Session</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Session</span><span class="o">(</span><span class="n">String</span> <span class="n">host</span><span class="o">,</span> <span class="kt">int</span> <span class="n">port</span><span class="o">);</span>
+</span></pre></div>
+</div>
+<p>As can be seen, the Session object takes a maximum of six arguments; one for the host URL, port number, username, password, and two booleans for if the session will require authentication and if the connection is an SSL connection.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">CouchDB does not support SSL connections natively, if you plan on using a SSL connection, you will need a proxy.</p>
+</div>
+<p>Once you have created your Session object, you need a Database to interact with. To interact with the <em>company</em> database that was created earlier in this reading, you would call the <em>getDatabase()</em> method in the Session object to retrieve the database by name. In the following example, I am connecting to localhost with the default port number.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If you call a database that does not exist with Session.getDatabase(), you will receive an error message, but your program will not crash unless you perform an operation. So, if Database db = s.getDatabase(“company”); does not exist, an error will be printed, but the program will continue and give Database db a null value.</p>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">//Import statements.</span>
+<span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Session</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Database</span><span class="o">;</span>
+
+<span class="o">...</span> <span class="c1">//Some code here.</span>
+
+<span class="hll"><span class="n">Session</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Session</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span><span class="mi">5984</span><span class="o">);</span>
+</span><span class="hll"><span class="n">Database</span> <span class="n">db</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">getDatabase</span><span class="o">(</span><span class="s">&quot;company&quot;</span><span class="o">);</span>
+</span></pre></div>
+</div>
+<p>If, however, we decided to create a new database in Java, the last line would call a different method in the Session object. Instead of calling <em>getDatabase()</em>, we would call <em>createDatabase()</em> and insert the database name we wish to create in there, as can be seen below.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If you create a database that already exists, you will receive an error message and Database db will be assigned a null value to prevent you from writing to an existing database that you were not aware of.</p>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">//Import statements.</span>
+<span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Session</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Database</span><span class="o">;</span>
+
+<span class="o">...</span> <span class="c1">//Some code here.</span>
+
+<span class="n">Session</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Session</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span><span class="mi">5984</span><span class="o">);</span>
+<span class="hll"><span class="n">Database</span> <span class="n">db</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">createDatabase</span><span class="o">(</span><span class="s">&quot;newDB&quot;</span><span class="o">);</span>
+</span></pre></div>
+</div>
+<p>Now, let’s check Futon to see the new database that has been created by this code.</p>
+<div class="figure align-center">
+<img alt="The newDB database was just created by the above code snippet." src="../_images/futon_11.jpg" />
+</div>
+<p>Now that we know how to create and access a Database, let’s perform basic CRUD (Create, Read, Update, Delete) operations on it. The most basic of those operations is reading a document, so we will start with that. Since the <em>newDB</em> database has no contents as of this moment, we will do all of these operations on the <em>company</em> database created earlier.</p>
+<p>In CouchDB4J, there is a Document object that represents a document in CouchDB. Document objects can be retrieved from the database by their unique ID as can be seen below, where I search the database for a document with the ID “Smith”.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">//Import statements.</span>
+<span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Session</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Database</span><span class="o">;</span>
+
+<span class="o">...</span> <span class="c1">//Some code here.</span>
+
+<span class="n">Session</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Session</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span><span class="mi">5984</span><span class="o">);</span>
+<span class="n">Database</span> <span class="n">db</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">getDatabase</span><span class="o">(</span><span class="s">&quot;company&quot;</span><span class="o">);</span>
+<span class="hll">     <span class="k">try</span> <span class="o">{</span>
+</span><span class="hll">     <span class="n">Document</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="na">getDocument</span><span class="o">(</span><span class="s">&quot;Smith&quot;</span><span class="o">);</span>
+</span><span class="hll">     <span class="o">}</span>
+</span><span class="hll">     <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="hll">     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class="hll">     <span class="o">}</span>
+</span></pre></div>
+</div>
+<p>Document objects can be pulled from the database as you saw above. To prevent any possible IOException, it is advised to surround all Document calls with a try/catch clause as highlighted in the above example. Document objects are essentially wrappers for a JSONObject, and can use all of its functionalities.</p>
+</div>
+<div class="section" id="reading-documents">
+<h4>Reading Documents<a class="headerlink" href="#reading-documents" title="Permalink to this headline">¶</a></h4>
+<p>Earlier in this reading, a dilemma was raised about how to properly render a person’s full name, including middle names, without encountering problems and without creating fields that might be left as null and thus wasting space on the database. We will now demonstrate this with a small program that queries the <em>company</em> database and pulls out the document with the ID <em>Smith</em>. Once it has the document, it will check for the following fields; <em>fname</em>, <em>mname</em>, <em>mname2</em> and <em>lname</em> and, if they exist, print them. If the field does not exist, it will be ignored.</p>
+<p>Checking for the String value can be accomplished with Document.getString(String <em>fieldname</em>), however, this is not advised, as if the field does not exist, it will return null. Largely thanks to JSONObject, you can use Document.optString(String <em>fieldname</em>, String <em>defaultValue</em>), which will check the JSONObject to see if the field name exists. If it has content, it will return it as a String, otherwise it will return the default value that you passed to it. For our use here, this is exceptionally useful since we no longer have to concern ourselves whether or not the field has content. It also demonstrates that the data structure in CouchDB is only created when the data is needed, since we are assigning the default value of fields at run-time instead of setting the default field in advance.</p>
+<p>Simply calling all of the fields and extracting their data is not enough, however, as the Strings we obtain need to be formatted properly. Thus, they are passed to a static factory method that checks if the String has at least 1 character in it, and then returns it with a space added to the end of it.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>     <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Database</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Document</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Session</span><span class="o">;</span>
+
+     <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example01_ReadandPrintOneName</span> <span class="o">{</span>
+
+             <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+
+                     <span class="c1">// Create session, select database.</span>
+                     <span class="n">Session</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Session</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">5984</span><span class="o">);</span>
+                     <span class="n">Database</span> <span class="n">db</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">getDatabase</span><span class="o">(</span><span class="s">&quot;company&quot;</span><span class="o">);</span>
+
+                     <span class="k">try</span> <span class="o">{</span>
+                             <span class="c1">// Get the document ID</span>
+                             <span class="n">Document</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="na">getDocument</span><span class="o">(</span><span class="s">&quot;Smith&quot;</span><span class="o">);</span>
+
+                             <span class="c1">// Use optString instead of getString so that in case the field</span>
+                             <span class="c1">// doesn&#39;t exist, you can return a default value.</span>
+<span class="hll">                             <span class="n">String</span> <span class="n">fname</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">optString</span><span class="o">(</span><span class="s">&quot;fname&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+</span><span class="hll">                             <span class="n">String</span> <span class="n">mname</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">optString</span><span class="o">(</span><span class="s">&quot;mname&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+</span><span class="hll">                             <span class="n">String</span> <span class="n">mname2</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">optString</span><span class="o">(</span><span class="s">&quot;mname2&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+</span><span class="hll">                             <span class="n">String</span> <span class="n">lname</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">optString</span><span class="o">(</span><span class="s">&quot;lname&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+</span><span class="hll">
+</span>                             <span class="c1">// Print the string.</span>
+<span class="hll">                             <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">addSpacing</span><span class="o">(</span><span class="n">fname</span><span class="o">)</span> <span class="o">+</span> <span class="n">addSpacing</span><span class="o">(</span><span class="n">mname</span><span class="o">)</span>
+</span><span class="hll">                                             <span class="o">+</span> <span class="n">addSpacing</span><span class="o">(</span><span class="n">mname2</span><span class="o">)</span> <span class="o">+</span> <span class="n">addSpacing</span><span class="o">(</span><span class="n">lname</span><span class="o">));</span>
+</span>
+                     <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                     <span class="o">}</span>
+
+             <span class="o">}</span>
+
+             <span class="c1">// Used for quick formatting if the String has at least 1 character in it,</span>
+             <span class="c1">// it adds a space to the end of it. Used so &quot;Jim Clark&quot; is not rendered as</span>
+             <span class="c1">// &quot;Jim   Clark&quot;.</span>
+
+<span class="hll">             <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">addSpacing</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="hll">
+</span><span class="hll">                     <span class="k">if</span> <span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="hll">                             <span class="k">return</span> <span class="n">str</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="o">;</span>
+</span><span class="hll">                     <span class="o">}</span> <span class="k">else</span>
+</span><span class="hll">                             <span class="k">return</span> <span class="n">str</span><span class="o">;</span>
+</span><span class="hll">
+</span><span class="hll">             <span class="o">}</span>
+</span>
+     <span class="o">}</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>John Martin Smith
+</pre></div>
+</div>
+<p>To call all of the documents in the database, you will need to use a ViewResults object. A ViewResults object is an extension of the Document object, but used to obtain information about the results of a query.
+When using ViewResults, remember that you will not get each document, and that you will have to iterate through the ViewResults to get each of the Documents in your query with a for loop.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>     <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Database</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Document</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Session</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.ViewResults</span><span class="o">;</span>
+
+     <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example02_ReadandPrintAllNames</span> <span class="o">{</span>
+
+             <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+
+                     <span class="c1">// Create session, select database.</span>
+                     <span class="n">Session</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Session</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">5984</span><span class="o">);</span>
+                     <span class="n">Database</span> <span class="n">db</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">getDatabase</span><span class="o">(</span><span class="s">&quot;company&quot;</span><span class="o">);</span>
+
+<span class="hll">                     <span class="n">ViewResults</span> <span class="n">viewRes</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="na">getAllDocuments</span><span class="o">();</span>
+</span><span class="hll">                     <span class="k">for</span> <span class="o">(</span><span class="n">Document</span> <span class="n">d</span><span class="o">:</span> <span class="n">viewRes</span><span class="o">.</span><span class="na">getResults</span><span class="o">())</span> <span class="o">{</span>
+</span>
+                             <span class="k">try</span> <span class="o">{</span>
+                                     <span class="n">Document</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="na">getDocument</span><span class="o">(</span><span class="n">d</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+                                     <span class="n">String</span> <span class="n">fname</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">optString</span><span class="o">(</span><span class="s">&quot;fname&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+                                     <span class="n">String</span> <span class="n">mname</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">optString</span><span class="o">(</span><span class="s">&quot;mname&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+                                     <span class="n">String</span> <span class="n">mname2</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">optString</span><span class="o">(</span><span class="s">&quot;mname2&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+                                     <span class="n">String</span> <span class="n">lname</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">optString</span><span class="o">(</span><span class="s">&quot;lname&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+
+                                     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span>
+                                                     <span class="n">addSpacing</span><span class="o">(</span><span class="n">fname</span><span class="o">)</span> <span class="o">+</span>
+                                                     <span class="n">addSpacing</span><span class="o">(</span><span class="n">mname</span><span class="o">)</span> <span class="o">+</span>
+                                                     <span class="n">addSpacing</span><span class="o">(</span><span class="n">mname2</span><span class="o">)</span> <span class="o">+</span>
+                                                     <span class="n">addSpacing</span><span class="o">(</span><span class="n">lname</span><span class="o">)</span> <span class="o">+</span>
+                                                     <span class="s">&quot;\n&quot;</span><span class="o">);</span>
+
+                             <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                                     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                             <span class="o">}</span>
+
+<span class="hll">                     <span class="o">}</span>
+</span>
+             <span class="o">}</span>
+
+             <span class="c1">// Used for quick formatting if the String has at least 1 character in it,</span>
+             <span class="c1">// it adds a space to the end of it. Used so &quot;Jim Clark&quot; is not rendered as</span>
+             <span class="c1">// &quot;Jim   Clark&quot;.</span>
+
+             <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">addSpacing</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+
+                     <span class="k">if</span> <span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                             <span class="k">return</span> <span class="n">str</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="o">;</span>
+                     <span class="o">}</span> <span class="k">else</span>
+                             <span class="k">return</span> <span class="n">str</span><span class="o">;</span>
+
+             <span class="o">}</span>
+
+     <span class="o">}</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Nov 10, 2013 8:18:56 PM com.fourspaces.couchdb.ViewResults getResults
+INFO: {&quot;id&quot;:&quot;Clark&quot;,&quot;key&quot;:&quot;Clark&quot;,&quot;value&quot;:{&quot;rev&quot;:&quot;4-80d67aaf854fc5b343ff7965957af85f&quot;}}
+Nov 10, 2013 8:18:56 PM com.fourspaces.couchdb.ViewResults getResults
+INFO: {&quot;id&quot;:&quot;Jones&quot;,&quot;key&quot;:&quot;Jones&quot;,&quot;value&quot;:{&quot;rev&quot;:&quot;1-5689148ea6a8d74ee4f8164677a5a34c&quot;}}
+Nov 10, 2013 8:18:56 PM com.fourspaces.couchdb.ViewResults getResults
+INFO: {&quot;id&quot;:&quot;Smith&quot;,&quot;key&quot;:&quot;Smith&quot;,&quot;value&quot;:{&quot;rev&quot;:&quot;2-0f7b84b2ce837d9531a4fca0f2e9d405&quot;}}
+Jim Clark
+Catherine Mary Louise Jones
+John Martin Smith
+</pre></div>
+</div>
+<p>As you can see in the example shown above, the highlighted lines show what changes will need to be made to query all documents in the database. In the output, you will notice that the for loop condition <em>Document d: viewRes.getResults()</em> will cause all of the documents to appear in the output.</p>
+<p>However, selecting all of the documents in the database is usually not ideal – perhaps we only wish to select one or two documents.
+In that case, we need an <em>ad hoc</em> (“for this” in Latin) view of the database. Fortunately, accomplishing this feat is fairly simple. Say we only want to return documents in the <em>company</em> database where the field <em>fname</em> equals Jim.
+To do this, we simply call <em>Database.adhoc(String query)</em>, which returns a ViewResult of the documents that satisfy the query. Remember that even though the query is written in as a String, it is still a JavaScript function written as a String. An example can be seen below, with the changes and query highlighted.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>      <span class="cm">/** * @author Cooper Wickum */</span>
+
+      <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+      <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Database</span><span class="o">;</span>
+      <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Document</span><span class="o">;</span>
+      <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Session</span><span class="o">;</span>
+      <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.ViewResults</span><span class="o">;</span>
+
+      <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example03_ReadandPrintOneSpecificName</span> <span class="o">{</span>
+
+              <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+
+                      <span class="c1">// Create session, select database.</span>
+                      <span class="n">Session</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Session</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">5984</span><span class="o">);</span>
+                      <span class="n">Database</span> <span class="n">db</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">getDatabase</span><span class="o">(</span><span class="s">&quot;company&quot;</span><span class="o">);</span>
+
+                      <span class="c1">// Select all documents with the field fname with Jim as the contents.</span>
+<span class="hll">                      <span class="n">ViewResults</span> <span class="n">viewRes</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="na">adhoc</span><span class="o">(</span><span class="s">&quot;function (doc) { if (doc.fname==&#39;Jim&#39;) { emit(null, doc); }}&quot;</span><span class="o">);</span>
+</span>
+                      <span class="k">for</span> <span class="o">(</span><span class="n">Document</span> <span class="n">d</span> <span class="o">:</span> <span class="n">viewRes</span><span class="o">.</span><span class="na">getResults</span><span class="o">())</span> <span class="o">{</span>
+
+                              <span class="k">try</span> <span class="o">{</span>
+                                      <span class="n">Document</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="na">getDocument</span><span class="o">(</span><span class="n">d</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+                                      <span class="n">String</span> <span class="n">fname</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">optString</span><span class="o">(</span><span class="s">&quot;fname&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+                                      <span class="n">String</span> <span class="n">mname</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">optString</span><span class="o">(</span><span class="s">&quot;mname&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+                                      <span class="n">String</span> <span class="n">mname2</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">optString</span><span class="o">(</span><span class="s">&quot;mname2&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+                                      <span class="n">String</span> <span class="n">lname</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">optString</span><span class="o">(</span><span class="s">&quot;lname&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+
+                                      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">addSpacing</span><span class="o">(</span><span class="n">fname</span><span class="o">)</span> <span class="o">+</span> <span class="n">addSpacing</span><span class="o">(</span><span class="n">mname</span><span class="o">)</span>
+                                                      <span class="o">+</span> <span class="n">addSpacing</span><span class="o">(</span><span class="n">mname2</span><span class="o">)</span> <span class="o">+</span> <span class="n">addSpacing</span><span class="o">(</span><span class="n">lname</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;\n&quot;</span><span class="o">);</span>
+
+                              <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                                      <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                              <span class="o">}</span>
+
+                      <span class="o">}</span>
+
+              <span class="o">}</span>
+
+              <span class="c1">// Used for quick formatting if the String has at least 1 character in it,</span>
+              <span class="c1">// it adds a space to the end of it. Used so &quot;Jim Clark&quot; is not rendered as</span>
+              <span class="c1">// &quot;Jim   Clark&quot;.</span>
+
+              <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">addSpacing</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+
+                      <span class="k">if</span> <span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                              <span class="k">return</span> <span class="n">str</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="o">;</span>
+                      <span class="o">}</span> <span class="k">else</span>
+                              <span class="k">return</span> <span class="n">str</span><span class="o">;</span>
+
+              <span class="o">}</span>
+
+      <span class="o">}</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Nov 11, 2013 4:20:08 PM com.fourspaces.couchdb.ViewResults getResults
+INFO: {&quot;id&quot;:&quot;Clark&quot;,&quot;key&quot;:null,&quot;value&quot;:{&quot;_id&quot;:&quot;Clark&quot;,&quot;_rev&quot;:&quot;4-80d67aaf854fc5b343ff7965957af85f&quot;,&quot;fname&quot;:&quot;Jim&quot;,&quot;lname&quot;:&quot;Clark&quot;,&quot;_deleted_conflicts&quot;:[&quot;2-e28f11da32baf6cb5b1213f1f97a63c9&quot;]}}
+Jim Clark
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-documents">
+<h4>Creating Documents<a class="headerlink" href="#creating-documents" title="Permalink to this headline">¶</a></h4>
+<p>Creating documents in CouchDB using Java is not a very difficult task. To create a new document in the CouchDB database, first create a new Document object. When creating the new Document object, you can either leave no arguments, or use an existing JSONObject as the argument. Since a Document object contains a JSONObject, this is viable. In the following example, however, we use the no argument constructor.</p>
+<p>Then you can set each of your Document’s fields by using <em>Document.put(Object arg0, Object arg1)</em>, where arg0 is the name of the field, and arg1 is the contents of the field.
+This is not advisable for designating the document’s ID, as there is a separate method, <em>Document.setId(String id)</em>, that is intended for designating the ID of a document. Once you are done filling in all of the required fields, you must call <em>Database.saveDocument(doc)</em>, where <em>doc</em> is the Document object you just created.</p>
+<p>Below is a short example that creates a document, inserts two fields, and then saves it. The lines that show the document getting created are highlighted.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>      <span class="cm">/** * @author Cooper Wickum */</span>
+
+      <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+      <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Database</span><span class="o">;</span>
+      <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Document</span><span class="o">;</span>
+      <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Session</span><span class="o">;</span>
+
+      <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example04_CreateDocument</span> <span class="o">{</span>
+
+              <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+
+                      <span class="c1">// Create session, select database.</span>
+                      <span class="n">Session</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Session</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">5984</span><span class="o">);</span>
+                      <span class="n">Database</span> <span class="n">db</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">getDatabase</span><span class="o">(</span><span class="s">&quot;company&quot;</span><span class="o">);</span>
+
+                      <span class="c1">// Create the new document, assign fields.</span>
+                      <span class="k">try</span> <span class="o">{</span>
+<span class="hll">                              <span class="n">Document</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Document</span><span class="o">();</span>
+</span><span class="hll">                              <span class="n">doc</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="s">&quot;Schumi&quot;</span><span class="o">);</span>
+</span><span class="hll">                              <span class="n">doc</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;fname&quot;</span><span class="o">,</span> <span class="s">&quot;Michael&quot;</span><span class="o">);</span>
+</span><span class="hll">                              <span class="n">doc</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;lname&quot;</span><span class="o">,</span> <span class="s">&quot;Schumacher&quot;</span><span class="o">);</span>
+</span><span class="hll">                              <span class="n">db</span><span class="o">.</span><span class="na">saveDocument</span><span class="o">(</span><span class="n">doc</span><span class="o">);</span>
+</span>
+                      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                              <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                      <span class="o">}</span>
+
+              <span class="o">}</span>
+
+      <span class="o">}</span>
+</pre></div>
+</div>
+<p>Here is the document as it appears in Futon.</p>
+<div class="figure align-center">
+<img alt="The new document we just created as seen in Futon." src="../_images/futon_12.jpg" />
+</div>
+</div>
+<div class="section" id="updating-documents">
+<h4>Updating Documents<a class="headerlink" href="#updating-documents" title="Permalink to this headline">¶</a></h4>
+<p>The same methods we have used to read and create documents can be used to update a document. Let’s update the document we just created and change the <em>fname</em> field from Michael to Ralf. In addition, we will add the <em>mname</em> field and assign it the value of Michael.</p>
+<p>To edit a field in a document, first we must call the document that we wish to change. In this instance, I chose to call by ID since the ID is known. Once we have the document, we use <em>Document.put(arg0, arg1)</em> to edit a field. To change <em>fname</em> from Michael to Ralf, we would use <em>Document.put(“fname”, “Ralf”)</em>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The <em>put(arg0, arg1)</em> method does not care if there is information already in a field, it will overwrite it if that field exists, and if the field doesn’t exist, it will create a new field.</p>
+</div>
+<p>Below is an example of what was described above, and a screenshot of the output in Futon.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>      <span class="cm">/** * @author Cooper Wickum */</span>
+
+      <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+      <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Database</span><span class="o">;</span>
+      <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Document</span><span class="o">;</span>
+      <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Session</span><span class="o">;</span>
+
+      <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example05_ChangeDocument</span> <span class="o">{</span>
+
+              <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+
+                      <span class="c1">// Create session, select database.</span>
+                      <span class="n">Session</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Session</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">5984</span><span class="o">);</span>
+                      <span class="n">Database</span> <span class="n">db</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">getDatabase</span><span class="o">(</span><span class="s">&quot;company&quot;</span><span class="o">);</span>
+
+                      <span class="c1">// Call the document we want to change, edit a field, save.</span>
+                      <span class="k">try</span> <span class="o">{</span>
+<span class="hll">                              <span class="n">Document</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="na">getDocument</span><span class="o">(</span><span class="s">&quot;Schumi&quot;</span><span class="o">);</span>
+</span><span class="hll">                              <span class="n">doc</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;fname&quot;</span><span class="o">,</span> <span class="s">&quot;Ralf&quot;</span><span class="o">);</span>
+</span><span class="hll">                              <span class="n">doc</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;mname&quot;</span><span class="o">,</span> <span class="s">&quot;Michael&quot;</span><span class="o">);</span>
+</span><span class="hll">                              <span class="n">db</span><span class="o">.</span><span class="na">saveDocument</span><span class="o">(</span><span class="n">doc</span><span class="o">);</span>
+</span>
+                      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                              <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                      <span class="o">}</span>
+
+              <span class="o">}</span>
+
+      <span class="o">}</span>
+</pre></div>
+</div>
+<div class="figure align-center">
+<img alt="The document we just changed." src="../_images/futon_13.jpg" />
+</div>
+<p>One functionality that has not been demonstrated yet is the ability to delete fields. So let’s take the above example and remove the <em>mname</em> field entirely. To remove a field, call <em>Document.remove(String arg0)</em>, where arg0 is the name of the field you wish to remove.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>      <span class="cm">/** * @author Cooper Wickum */</span>
+
+      <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+      <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Database</span><span class="o">;</span>
+      <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Document</span><span class="o">;</span>
+      <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Session</span><span class="o">;</span>
+
+      <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example06_DeleteField</span> <span class="o">{</span>
+
+              <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+
+                      <span class="c1">// Create session, select database.</span>
+                      <span class="n">Session</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Session</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">5984</span><span class="o">);</span>
+                      <span class="n">Database</span> <span class="n">db</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">getDatabase</span><span class="o">(</span><span class="s">&quot;company&quot;</span><span class="o">);</span>
+
+                      <span class="c1">// Call the document we want to change, remove a field by name, save.</span>
+                      <span class="k">try</span> <span class="o">{</span>
+<span class="hll">                              <span class="n">Document</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="na">getDocument</span><span class="o">(</span><span class="s">&quot;Schumi&quot;</span><span class="o">);</span>
+</span><span class="hll">                              <span class="n">doc</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="s">&quot;mname&quot;</span><span class="o">);</span>
+</span><span class="hll">                              <span class="n">db</span><span class="o">.</span><span class="na">saveDocument</span><span class="o">(</span><span class="n">doc</span><span class="o">);</span>
+</span>
+                      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                              <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                      <span class="o">}</span>
+
+              <span class="o">}</span>
+
+      <span class="o">}</span>
+
+      <span class="o">..</span> <span class="n">figure</span><span class="o">::</span>  <span class="n">images</span><span class="o">/</span><span class="n">couch</span><span class="o">/</span><span class="n">futon_14</span><span class="o">.</span><span class="na">jpg</span>
+ <span class="o">:</span><span class="n">align</span><span class="o">:</span>   <span class="n">center</span>
+ <span class="o">:</span><span class="n">alt</span><span class="o">:</span> <span class="n">The</span> <span class="n">document</span> <span class="n">we</span> <span class="n">just</span> <span class="n">changed</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="deleting-documents">
+<h4>Deleting Documents<a class="headerlink" href="#deleting-documents" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>      <span class="cm">/** * @author Cooper Wickum */</span>
+
+      <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+      <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Database</span><span class="o">;</span>
+      <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Document</span><span class="o">;</span>
+      <span class="kn">import</span> <span class="nn">com.fourspaces.couchdb.Session</span><span class="o">;</span>
+
+      <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example07_DeleteDocument</span> <span class="o">{</span>
+
+              <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+
+                      <span class="c1">// Create session, select database.</span>
+                      <span class="n">Session</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Session</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">5984</span><span class="o">);</span>
+                      <span class="n">Database</span> <span class="n">db</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">getDatabase</span><span class="o">(</span><span class="s">&quot;company&quot;</span><span class="o">);</span>
+
+                      <span class="c1">// Call the document we want to delete, and then delete it.</span>
+                      <span class="k">try</span> <span class="o">{</span>
+<span class="hll">                              <span class="n">Document</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="na">getDocument</span><span class="o">(</span><span class="s">&quot;Smith&quot;</span><span class="o">);</span>
+</span><span class="hll">                              <span class="n">db</span><span class="o">.</span><span class="na">deleteDocument</span><span class="o">(</span><span class="n">doc</span><span class="o">);</span>
+</span><span class="hll">
+</span>                      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                              <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                      <span class="o">}</span>
+
+              <span class="o">}</span>
+
+      <span class="o">}</span>
+</pre></div>
+</div>
+<div class="figure align-center">
+<img alt="The document with the ID Smith was deleted." src="../_images/futon_15.jpg" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="mongodb">
+<h2>MongoDB<a class="headerlink" href="#mongodb" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<img alt="The MongoDB logo." src="../_images/logo_mongo.jpg" />
+</div>
+<p><strong>MongoDB</strong> is an open-source document-based database that was written in C++. It is the most widely used NoSQL database, being used by companies such as MetLife, MTV, MyEdu, SAP, Sourceforge, Stripe, Under Armour, and many, many others (in case you wish to see the full list compiled by MongoDB themselves, it is viewable on MongoDB’s own website: <a class="reference external" href="http://www.mongodb.org/about/production-deployments/">http://www.mongodb.org/about/production-deployments/</a>).</p>
+<div class="section" id="features-of-mongodb">
+<h3>Features of MongoDB<a class="headerlink" href="#features-of-mongodb" title="Permalink to this headline">¶</a></h3>
+<p>MongoDB stores all of its documents in BSON (Binary JSON). The problem with BSON documents is that they are larger than JSON documents. Recent versions of MongoDB allow for documents as large as 16MB, however, if you are using documents that large, it is likely that your documents are improperly designed. If, however, you need to use documents that large, GridFS is a much better alternative.
+Generally speaking, it might be best to avoid creating large documents, especially if they are updated often, as those operations may take a significant amount of time.</p>
+<p>Unlike CouchDB, which provides eventual consistency, MongoDB provides enforced consistency.</p>
+</div>
+<div class="section" id="replication-and-replica-sets">
+<h3>Replication and Replica Sets<a class="headerlink" href="#replication-and-replica-sets" title="Permalink to this headline">¶</a></h3>
+<p>In order to ensure that data is always available to users, MongoDB provides a form of replication in the form of replica sets.
+Replication protects a database by having multiple copies of the data on multiple servers.
+By making additional copies of the data, one or more copies can be designated for disaster recovery and backups.
+In this way, it is possible for MongoDB to recover from either service or hardware failures.
+Replication can also be used to increase the capacity of read operations, since read and write operations can be performed on completely different servers.</p>
+<p>MongoDB introduces the concept of a <strong>replica set</strong>, which is a group of up to 12 <em>mongod</em> instances that hold the same data set.
+The primary <em>mongod</em> instance is used for all write operations. Each replica set can only have one primary <em>mongod</em> instance, and because of this, replica sets provide for strict consistency. The other members of replica sets are either <strong>secondaries</strong>, which use operations given to them by the primary so that their data sets are identical, and <strong>arbiters</strong>, whose purpose will be explained later in this reading.</p>
+<p>For replication to function, the primary records all of the changes made to its data sets in it’s <strong>oplog</strong>. An oplog (short for operations log) is a record of all operations that modify the data. Once these operations are applied to the primary, they are passed to the secondary members of the replica set. A diagram can be seen below.</p>
+<div class="figure align-center">
+<img alt="Basic model showing replication." src="../_images/replication_1.jpg" />
+</div>
+<p>Once an operation is passed to the secondaries, they each apply it and record it in their own oplogs.
+To ensure replication, each member of the replica set sends a heartbeat (essentially a ping) to every other member in the replica set evert two seconds.</p>
+<div class="section" id="arbiters">
+<h4>Arbiters<a class="headerlink" href="#arbiters" title="Permalink to this headline">¶</a></h4>
+<p>An <strong>arbiter</strong> is an element in a replica set which does not contain a dataset. It’s only purpose is to vote in elections, they cannot become the primary. As a result, the arbiter’s best use is as a tiebreaker when there are an even number of members in a replica set. Since the arbiters do not hold a copy of the data set, they do not require any additional hardware to operate, and operations from the primary’s <em>oplog</em> are not passed to them.</p>
+<div class="figure align-center">
+<img alt="A replication set with an arbiter." src="../_images/replication_2.jpg" />
+</div>
+<p>A diagram showing a primary, secondary, and an arbiter in a replica set.</p>
+</div>
+<div class="section" id="elections">
+<h4>Elections<a class="headerlink" href="#elections" title="Permalink to this headline">¶</a></h4>
+<div class="figure align-center">
+<img alt="There is no primary connected to these two secondaries, therefore an election must take place." src="../_images/replication_3.jpg" />
+</div>
+<p>When a replica set is created, the primary steps down, or when the primary becomes unavailable for more than 10 seconds, the remaining elements of the replica set will hold an election to determine which of the secondaries will assume the role of the primary.
+Elections take some time to complete, and as a result, MongoDB attempts to avoid them unless there are no other options.</p>
+<p>Similarly to the real world, each member in the replica set has certain factors that set them apart from other candidates. Some of those factors are listed below.</p>
+<ul class="simple">
+<li>If a heartbeat from one member does not return after ten seconds, the others will consider that the member is inaccessible.</li>
+<li>Each member in the replica set has a priority value attached to it. This value can be from between 0 and 100 (including decimals), and its only purpose is for eligibility to become the primary during an election. The higher the <em>priority</em> value, the more likely the element will become primary. A <em>priority</em> of 0 renders it impossible for a secondary to become a primary.</li>
+<li>The timestamp of the last operation applied from the <em>oplog</em>, called the <em>optime</em>, is also a factor. The more recent the <em>optime</em> is, the greater its chances are at becoming primary.</li>
+<li>The ability for a replica set to be able to connect to a majority of the other members of the set.</li>
+</ul>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If no partition of the network contains a majority of the replica set, the replica set will not hold an election for a new primary and will become read-only. One way to avoid this situation is for a majority of the replica set to exist in one location, and the minority of instances elsewhere.</p>
+</div>
+<div class="figure align-center">
+<img alt="Election results." src="../_images/replication_4.jpg" />
+</div>
+</div>
+</div>
+<div class="section" id="automatic-sharding">
+<h3>Automatic Sharding<a class="headerlink" href="#automatic-sharding" title="Permalink to this headline">¶</a></h3>
+<p>Among MongoDB’s core functionalities is that it utilizes horizontally scaling, also known as <strong>sharding</strong>.
+Sharding is the practice of dividing the data set and distributing each piece, or <strong>shard</strong> of the data set to different servers as an independent database. The shards form one single database logically, even though they may be in different locations.
+As the number of shards increases, the operations that each shard has to handle decreases, as does the amount of data each shard possesses.</p>
+<div class="figure align-center">
+<img alt="Basic sharding." src="../_images/shards_1.jpg" />
+</div>
+<p>The above diagram shows the basic idea of sharding. Each of the four colored boxes in the corners is part of the multicolored box in the center (representing the complete data set), but they all exist separately in different locations.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">You cannot perform sharding on a collection larger than 256GB – this is a limitation that MongoDB will eventually remove. Earlier versions of MongoDB had a much smaller limit.</p>
+</div>
+<div class="section" id="sharded-clusters">
+<h4>Sharded Clusters<a class="headerlink" href="#sharded-clusters" title="Permalink to this headline">¶</a></h4>
+<p>MongoDB implements sharding by using <strong>sharded clusters</strong>, a form of deployment that consists of at least one <em>mongos</em> routing process, at least one shard (replica set), and three configuration processes.</p>
+<p>The shards store the data in a sharded cluster, with each shard being a replica set. The <em>mongos</em> processes are query routers, which interface with the client applications. They direct the operations to the required shard(s), and return results to the clients. The request load from the clients can be divided across multiple query routers.
+The three config servers contain the metadata of the sharded cluster, and is used by the query router to match operations to the appropriate shards. <strong>There are always three config servers.</strong></p>
+</div>
+</div>
+<div class="section" id="connecting-to-mongodb">
+<h3>Connecting to MongoDB<a class="headerlink" href="#connecting-to-mongodb" title="Permalink to this headline">¶</a></h3>
+<p>In order to connect to your local MongoDB, open another command prompt and type in <strong>C:\MongoDB\bin\mongo.exe company</strong>. This will connect to the <em>mongod.exe</em> process that is already running on port 27017 on the database named <em>company</em>. If you do not specify a database name at the end of this command, you will connect to the database named <em>test</em>.</p>
+</div>
+<div class="section" id="crud-in-mongodb-command-prompt">
+<h3>CRUD in MongoDB – Command Prompt<a class="headerlink" href="#crud-in-mongodb-command-prompt" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h4>Creating Documents<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>In order to perform any further operations in MongoDB with the command prompt, we must first add a database. Fortunately, both can be done at the same time. We will emulate the naming dilemma seen in the CouchDB examples, but we will also assign everyone an age, which will be intended to be an integer value.</p>
+<p>Inside each database are buckets called <strong>collections</strong>, which will hold all of our data. We will place everyone in a collection called <em>staff</em>. Since we can create our first document at the same time we create the collection, let’s enter the following into <em>mongo.exe</em>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>db.staff.insert( { fname: &quot;Mike&quot;, lname: &quot;Conway&quot;, age: 29 } )
+</pre></div>
+</div>
+<p>Similarly to CouchDB, you have to specify the document’s ID when you create it. However, there are two other ways to add a document into MongoDB. The second method uses the <em>update()</em> method with the <em>upsert</em> attached. The <em>upsert</em> flag allows for the document to be created if it does not already exist. This is shown below;</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>db.staff.update( { _id: 477 },{ $set: { fname: &quot;Kevin&quot;, mname: &quot;James&quot;, lname: &quot;Conway&quot;, age: 34} },{ upsert : true } )
+</pre></div>
+</div>
+<p>The above code looks for a document with the ID of 477 as can be seen in the first set of {} brackets. The second set chooses what values will be added to the document, and if <em>upsert</em> is true, it will create the document if it does not match an existing document. As you may have noticed, unlike in CouchDB, MongoDB does accept integer values for its _id tag.</p>
+<p>The third method to create a document in the command prompt is to use the save() method. To use this method to make a new document, you have to ensure that either the _id you specified does not exist, or that you do not enter the _id field at all. For our demo, we know that the only _id that should exist so far is 477, with the previous document, so we will assign this document the _id of 478.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>db.staff.save( { _id: 478, fname: &quot;Mike&quot;, mname: &quot;William&quot;, lname: &quot;Dawes&quot;, age: 18 } )
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h4>Reading Documents<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>Now that we have added three documents, let’s display all of the documents that we have added to the <em>staff</em> collection. To view every document in a collection, type the following command into your <em>mongo.exe</em> command prompt.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>db.staff(find)
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="figure align-center">
+<img alt="All three documents we have created and all of their contents." src="../_images/cmd_1.jpg" />
+</div>
+<p>As you can see, the first document (the one we did not enter an _id for) has a long ObjectID, and using the update command will insert the fields in the document in alphabetical order. Both the <em>insert</em> and <em>save</em> methods entered them in the same order they were entered when they were created. Variance among the order of fields may be somewhat confusing, so it is best to avoid doing that.</p>
+<p>First, let’s do a basic selection by selecting all documents in the <em>staff</em> collection where the age field is equal to 18. When we display these documents, let’s show _id, mname, and age. We do not need to tell Mongo to return the _id, so we only specify mname and age.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>db.staff.find( { age: 18 }, { mname: 1, age: 1 } )
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="figure align-center">
+<img alt="The only document where age equals 18." src="../_images/cmd_2.jpg" />
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If we don’t want to return the _id, we would add <strong>_id: 0</strong> to the second set of brackets in the query.</p>
+</div>
+<p>Now lets pull all documents in which the age field is greater than 18. Notice that this is only a slight modification of the previous query.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>db.staff.find( { age: { $gt: 18 } }, { mname: 1, age: 1 } )
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="figure align-center">
+<img alt="Both documents shown, with all appropriate values." src="../_images/cmd_3.jpg" />
+</div>
+<p>In the query above, you may notice, in the first set of brackets, there is a query operator <em>$gt</em>, which stands for ‘greater than’. Many, if not all of the same query operators that exist in SQL operators exist in MongoDB, the basic comparison and logical operators are listed below;</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>$gt - Greater than</li>
+<li>$gte - Greater than or equal to</li>
+<li>$lt - Less than</li>
+<li>$lte - Less than or equal to</li>
+<li>$ne - Not equal to</li>
+<li>$in - Returns documents that contain the specified values in an array. To return all documents where the field <em>type</em> contains either <em>bird</em> or <em>cat</em>, use <em>find( {type: {$in: [‘bird’, ‘cat’] } } )</em></li>
+<li>$nin - Returnss documents that to NOT contain the specified values in an array.</li>
+<li>$and, $or, $not, $nor - Logical operators.</li>
+<li>$exists - Returns documents that contain the specified value(s).</li>
+<li>$type - Returns documents that have a field of the specified type.</li>
+<li>$where - Essentially the same as a WHERE clause in MySQL, except in this case, $where is a JavaScript function.</li>
+</ul>
+</div>
+<p>Sometimes, it may make it easier if query results were sorted by a certain numerical value. In cases like these, we would append <em>.sort()</em> to the end of our query. When using <em>sort()</em>, you have to specify what value you want to use as your sort key and whether you want to sort ascending or descending. For asceding order, use 1, and for descending, use -1.</p>
+<p>For this next example, let’s sort every document by age in descending order, returning only the _id and age.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>db.staff.find( { }, { age: 1 } ).sort({ age: -1 })
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="figure align-center">
+<img alt="A list of all documents by age in descending order." src="../_images/cmd_4.jpg" />
+</div>
+<p>Assume we wished to limit ourselves to only showing the first two documents in the previous query’s results, showing the oldest two staff members. We would tack <em>limit(x)</em> to the end of the query, with x representing the number of responses we would obtain.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>db.staff.find( { }, { age: 1 } ).sort({ age: -1 }).limit(2)
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="figure align-center">
+<img alt="The oldest two staff members." src="../_images/cmd_5.jpg" />
+</div>
+</div>
+<div class="section" id="id3">
+<h4>Updating Documents<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>Earlier, we used the commands <em>update()</em> and <em>save()</em> to create a document. Both of these same commands can also be used for updating an existing document.</p>
+<p>For starters, let’s select the document with the _id of 477 and add 4 years to their age. Instead of having to set their age to one static value, we can use $inc (short for increment) to accomplish this.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>db.staff.update( { _id: 477 }, { $inc: { age: 4 } } )
+</pre></div>
+</div>
+<p>Now let’s check the results:</p>
+<p>Output:</p>
+<div class="figure align-center">
+<img alt="He's now 4 years older!" src="../_images/cmd_6.jpg" />
+</div>
+<p>It is possible to update more than one row at a time, so for this next example, we will select every document with the <em>lname</em> value being “Conway” and change it to “Curran”.</p>
+<p>To modify multiple documents that satisfy the condition in the first set of brackets, we add a third set of brackets to the end containing <em>multi: true</em>, as can be seen below.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>db.staff.update( { lname: &quot;Conway&quot; }, { $set: { lname: &quot;Curran&quot; } }, {multi: true} )
+</pre></div>
+</div>
+<p>To check the results, I searched for all documents in the <em>staff</em> collection with <em>lname</em> equal to “Curran”, and then all documents with <em>lname</em> equal to “Conway”. As you can see in the figure below, “Conway” got no results, and “Curran got two.”</p>
+<div class="figure align-center">
+<img alt="The Conways are now the Currans." src="../_images/cmd_7.jpg" />
+</div>
+<p>Using the <em>save()</em> method for updating documents requires that you know what the _id of the document is before updating it, otherwise, as explained before, it will create a new document.
+Also, when using <em>save()</em>, you will replace the entire document with the content of the <em>save</em> command. It will replace everything in that document with the contents it is given.
+Let’s use the <em>save()</em> method to change the fields of tthe document with _id of 478.
+We will change <em>fname</em> to Erin, <em>lname</em> to Marchesi, and we will set the <em>age</em> to 19. Note that the previous document had a middle name. This one will not.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>db.staff.save({ _id: 478, fname: &quot;Erin&quot;, lname: &quot;Marchesi&quot;, age: 19 } )
+</pre></div>
+</div>
+<p>Now let’s check the results:</p>
+<p>Output:</p>
+<div class="figure align-center">
+<img alt="No mname field, when the original version of document 478 had a mname." src="../_images/cmd_8.jpg" />
+</div>
+<p>As can be seen, even though the original had a mname, the <em>save()</em> function overwrote the entire document with what was passed to it. Be careful when using it.</p>
+</div>
+<div class="section" id="id4">
+<h4>Deleting Documents<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">You can not use <em>remove()</em> on a capped collection.</p>
+</div>
+<p>Deleting documents is a very simple task in the command prompt. There is one method for deleting documents, <em>remove()</em>, that can take zero to two arguments.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>db.staff.remove()
+</pre></div>
+</div>
+<p>Calling <em>remove()</em> with no arguments will remove all documents in that database, and while that may seem the easiest way to clean out a collection, it does not remove indexes. It may be more efficient to call <em>drop()</em> on that particular database if your intention is to clean it out entirely, since <em>drop()</em> removes all of the indexes.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>db.staff.remove( {age: 19} )
+</pre></div>
+</div>
+<p>Calling <em>remove()</em> with one argument will remove all documents who satisfy the conditions of the query in brackets (in this case, all documents with age being equal to 19). If you are deleting a large number of documents, consider copying all of the documents you wish to save to a new collection, and then calling <em>drop()</em> on the current database.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>db.staff.remove( {age: 19}, 1 )
+</pre></div>
+</div>
+<p>Calling <em>remove()</em> with two arguments, as shown above, removes only one document from the database that satisfies the conditions in the query. Instead of placing ‘1’ behind the comma, you can alternatively type ‘true’, and it will have the same effect.</p>
+</div>
+</div>
+<div class="section" id="mongodb-in-java">
+<h3>MongoDB in Java<a class="headerlink" href="#mongodb-in-java" title="Permalink to this headline">¶</a></h3>
+<p>Connecting to MongoDB with Java requires only one library – the <strong>Mongo Java Driver</strong>, which is available from the MongoDB website in the Java Language Center(<a class="reference external" href="http://docs.mongodb.org/ecosystem/drivers/java/">http://docs.mongodb.org/ecosystem/drivers/java/</a>).
+The Java Language Center provides links to several third party libraries, but this demonstration uses version 2.10.1. of the official Mongo Java Driver(<a class="reference external" href="http://central.maven.org/maven2/org/mongodb/mongo-java-driver/2.10.1/">http://central.maven.org/maven2/org/mongodb/mongo-java-driver/2.10.1/</a>).</p>
+<div class="section" id="connecting">
+<h4>Connecting<a class="headerlink" href="#connecting" title="Permalink to this headline">¶</a></h4>
+<p>Connecting to only one instance of MongoDB is fairly simple in Java. To connect to only one instance of MongoDB
+, create a new <em>MongoClient</em> object and enter two arguments, a String containing the host URL, and an integer for the port number.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Creating a new MongoClient object with no arguments in the constructor will default to connecting to <em>localhost:27017</em>. Alternatively, if you only enter a host name, it will connect to the host using the default port (27017).</p>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">try</span> <span class="o">{</span>
+        <span class="n">MongoClient</span> <span class="n">mon</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MongoClient</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">27017</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="k">catch</span> <span class="o">(</span><span class="n">UnknownHostException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>In the above example, the host name and port number are both used to create a ServerAddress object inside the Mongo object.
+It is possible to connect to a sharded cluser with the same constructor by making the argument in the Mongo object a list of ServerAddress objects.
+An example is seen below.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">try</span> <span class="o">{</span>
+        <span class="n">MongoClient</span> <span class="n">mon</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MongoClient</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
+        <span class="k">new</span> <span class="n">ServerAddress</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">27017</span><span class="o">),</span>
+        <span class="k">new</span> <span class="n">ServerAddress</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">27018</span><span class="o">),</span>
+        <span class="k">new</span> <span class="n">ServerAddress</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">27019</span><span class="o">)));</span>
+<span class="o">}</span>
+<span class="k">catch</span> <span class="o">(</span><span class="n">UnknownHostException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Mongo is able to tell the difference between a <em>mongos</em> server and a list of replica set members.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If one of the ServerAddresses cannot connect to Mongo, it will return an error message.</p>
+</div>
+<p>To access a database, you need to create a database object and point it to a database in Mongo. Do this by creating a DB object and calling <em>MongoClient.getDB(String X)</em>.</p>
+<p>If your MongoDB has authentication, you can check authentication by calling <em>DB.authenticate(String username, char[] password)</em>, which returns a boolean value. An example of both connecting to a database (we will be connecting to the company database created earlier) and authentication is shown below;</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>     <span class="k">try</span> <span class="o">{</span>
+<span class="hll">                     <span class="n">MongoClient</span> <span class="n">mon</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MongoClient</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">27017</span><span class="o">);</span>
+</span><span class="hll">                     <span class="n">DB</span> <span class="n">db</span> <span class="o">=</span> <span class="n">mon</span><span class="o">.</span><span class="na">getDB</span><span class="o">(</span><span class="s">&quot;company&quot;</span><span class="o">);</span>
+</span>                     <span class="kt">boolean</span> <span class="n">auth</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="na">authenticate</span><span class="o">(</span><span class="n">username</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span> <span class="c1">//Optional</span>
+             <span class="o">}</span>
+     <span class="k">catch</span> <span class="o">(</span><span class="n">UnknownHostException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+     <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h4>Reading Documents<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p>In order to read any documents at all, we need a way to go into the collection that contains the documents we need. To accomplish this, we
+call a new <em>DBCollection</em> object. A <em>DBCollection</em> object is the Java representation of a collection. To get a specific collection in a <em>DB</em>
+object, use <em>DB.getCollection(String s)</em>, which returns a <em>DBCollection</em> of the contents of a collection sharing a name with String s. If there
+is no collection sharing the same name, an empty <em>DBCollection</em> is created.</p>
+<p>Next, create a <em>DBCursor</em> object, which is essentially an iterator for query results. The <em>DBCollection.find(BasicDBObject query)</em> method returns a <em>DBCursor</em>
+of the results of a query as defined by the <em>BasicDBObject</em>. <em>DBCollection.find()</em> works the same way the <em>db.collection.find()</em> command does in the shell, as leaving no arguments will return every item in the collection. Once we have
+a <em>DBCursor</em>, we can iterate through it by using a loop to retrieve each result contained in the <em>DBCursor</em>.</p>
+<p>For this example, assume that all of the remove operations that were done in the shell have been undone.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>     <span class="kn">import</span> <span class="nn">java.net.UnknownHostException</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.DB</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.DBCollection</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.DBCursor</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.MongoClient</span><span class="o">;</span>
+
+     <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example01_GetAllItemsFromACollection</span> <span class="o">{</span>
+
+             <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+
+                     <span class="k">try</span> <span class="o">{</span>
+                             <span class="n">MongoClient</span> <span class="n">mon</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MongoClient</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">27017</span><span class="o">);</span>
+                             <span class="n">DB</span> <span class="n">db</span> <span class="o">=</span> <span class="n">mon</span><span class="o">.</span><span class="na">getDB</span><span class="o">(</span><span class="s">&quot;company&quot;</span><span class="o">);</span>
+<span class="hll">                             <span class="n">DBCollection</span> <span class="n">staffColl</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="na">getCollection</span><span class="o">(</span><span class="s">&quot;staff&quot;</span><span class="o">);</span>
+</span><span class="hll">
+</span><span class="hll">                             <span class="n">DBCursor</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">staffColl</span><span class="o">.</span><span class="na">find</span><span class="o">();</span>
+</span><span class="hll">
+</span><span class="hll">                             <span class="k">while</span> <span class="o">(</span><span class="n">cursor</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+</span><span class="hll">                                     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">cursor</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
+</span><span class="hll">                             <span class="o">}</span>
+</span><span class="hll">                             <span class="n">cursor</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span>
+                     <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">UnknownHostException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                     <span class="o">}</span>
+
+             <span class="o">}</span>
+     <span class="o">}</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;528845205e9f772541afc58a&quot;} , &quot;fname&quot; : &quot;Mike&quot; , &quot;lname&quot; : &quot;Curran&quot; , &quot;age&quot; : 29.0}
+{ &quot;_id&quot; : 477.0 , &quot;age&quot; : 38.0 , &quot;fname&quot; : &quot;Kevin&quot; , &quot;lname&quot; : &quot;Curran&quot; , &quot;mname&quot; : &quot;James&quot;}
+{ &quot;_id&quot; : 478.0 , &quot;fname&quot; : &quot;Erin&quot; , &quot;lname&quot; : &quot;Marchesi&quot; , &quot;age&quot; : 19.0}
+</pre></div>
+</div>
+<p>The first document, as was the case earlier, has its assigned ObjectID, here shown as “$oid”. Note that all of the numerical values are shown as decimals here.</p>
+<p>To make a query have some kind of condition, you will need to send a <em>BasicDBObject</em> to the <em>DBCollection.find(BasicDBObject query)</em> method. When creating a <em>BasicDBObject(a, b)</em>, we will add a condition for our query, where <em>a</em> is the name of the field or condition, and <em>b</em> is the value.
+<em>BasicDBObject query = new BasicDBObject(“lname”, “Curran”);</em> will return all values where the <em>lname</em> field equals “Curran”. If we wish to add more conditions, we use the <em>BasicDBObject.append(String a, Object b)</em> method to add more conditions to the query.
+To add a conditions which use a query operator, such as returning all documents where the field <em>age</em> is a value less than 30, we use <em>BasicDBObject.append(“age”, new BasicDBObject(“$lt”, 30));</em>. Here, we add another <em>BasicDBObject</em> as the second argument, and place the conditional operator in the first argument.</p>
+<p>The code below will return all documents with <em>lname</em> equal to “Curran” and with <em>age</em> less than 30.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>     <span class="kn">import</span> <span class="nn">java.net.UnknownHostException</span><span class="o">;</span>
+
+     <span class="kn">import</span> <span class="nn">com.mongodb.BasicDBObject</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.DB</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.DBCollection</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.DBCursor</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.MongoClient</span><span class="o">;</span>
+
+     <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example02_GetAllItemsNamedCurran</span> <span class="o">{</span>
+
+             <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+
+                     <span class="k">try</span> <span class="o">{</span>
+                             <span class="n">MongoClient</span> <span class="n">mon</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MongoClient</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">27017</span><span class="o">);</span>
+                             <span class="n">DB</span> <span class="n">db</span> <span class="o">=</span> <span class="n">mon</span><span class="o">.</span><span class="na">getDB</span><span class="o">(</span><span class="s">&quot;company&quot;</span><span class="o">);</span>
+                             <span class="n">DBCollection</span> <span class="n">staffColl</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="na">getCollection</span><span class="o">(</span><span class="s">&quot;staff&quot;</span><span class="o">);</span>
+
+<span class="hll">                             <span class="c1">// Create query conditions as a BasicDBObject</span>
+</span><span class="hll">                             <span class="n">BasicDBObject</span> <span class="n">query</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BasicDBObject</span><span class="o">(</span><span class="s">&quot;lname&quot;</span><span class="o">,</span> <span class="s">&quot;Curran&quot;</span><span class="o">);</span>
+</span><span class="hll">
+</span><span class="hll">                             <span class="c1">// Append another condition to return all documents with age less</span>
+</span><span class="hll">                             <span class="c1">// than 30.</span>
+</span><span class="hll">                             <span class="n">query</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicDBObject</span><span class="o">(</span><span class="s">&quot;$lt&quot;</span><span class="o">,</span> <span class="mi">30</span><span class="o">));</span>
+</span>
+                             <span class="n">DBCursor</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">staffColl</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">query</span><span class="o">);</span>
+
+                             <span class="k">while</span> <span class="o">(</span><span class="n">cursor</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+                                     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">cursor</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
+                             <span class="o">}</span>
+                             <span class="n">cursor</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+
+                     <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">UnknownHostException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                     <span class="o">}</span>
+
+             <span class="o">}</span>
+     <span class="o">}</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;528845205e9f772541afc58a&quot;} , &quot;fname&quot; : &quot;Mike&quot; , &quot;lname&quot; : &quot;Curran&quot; , &quot;age&quot; : 29.0}
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h4>Creating Documents<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<p>In the previous example, we saw how to use the <em>BasicDBObject</em> to read from a document. Using the same means, we can use it to create a new document.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>     <span class="kn">import</span> <span class="nn">java.net.UnknownHostException</span><span class="o">;</span>
+
+     <span class="kn">import</span> <span class="nn">com.mongodb.BasicDBObject</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.DB</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.DBCollection</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.DBCursor</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.MongoClient</span><span class="o">;</span>
+
+     <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example03_CreateNewDocument</span> <span class="o">{</span>
+
+             <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+
+                     <span class="k">try</span> <span class="o">{</span>
+                             <span class="n">MongoClient</span> <span class="n">mon</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MongoClient</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">27017</span><span class="o">);</span>
+                             <span class="n">DB</span> <span class="n">db</span> <span class="o">=</span> <span class="n">mon</span><span class="o">.</span><span class="na">getDB</span><span class="o">(</span><span class="s">&quot;company&quot;</span><span class="o">);</span>
+                             <span class="n">DBCollection</span> <span class="n">staffColl</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="na">getCollection</span><span class="o">(</span><span class="s">&quot;staff&quot;</span><span class="o">);</span>
+
+<span class="hll">                             <span class="c1">// Create query conditions as a BasicDBObject</span>
+</span><span class="hll">                             <span class="n">BasicDBObject</span> <span class="n">query</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BasicDBObject</span><span class="o">(</span><span class="s">&quot;_id&quot;</span><span class="o">,</span> <span class="mi">479</span><span class="o">)</span>
+</span><span class="hll">                                             <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;fname&quot;</span><span class="o">,</span> <span class="s">&quot;Anakin&quot;</span><span class="o">)</span>
+</span><span class="hll">                                             <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;lname&quot;</span><span class="o">,</span> <span class="s">&quot;Skywalker&quot;</span><span class="o">)</span>
+</span><span class="hll">                                             <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="mi">10</span><span class="o">);</span>
+</span><span class="hll">
+</span>                             <span class="n">staffColl</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">query</span><span class="o">);</span>
+
+                             <span class="c1">// Read all documents when we are finished so we can check the</span>
+                             <span class="c1">// output.</span>
+                             <span class="n">DBCursor</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">staffColl</span><span class="o">.</span><span class="na">find</span><span class="o">();</span>
+
+                             <span class="k">while</span> <span class="o">(</span><span class="n">cursor</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+                                     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">cursor</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
+                             <span class="o">}</span>
+                             <span class="n">cursor</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+
+                     <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">UnknownHostException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                     <span class="o">}</span>
+
+             <span class="o">}</span>
+     <span class="o">}</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;528845205e9f772541afc58a&quot;} , &quot;fname&quot; : &quot;Mike&quot; , &quot;lname&quot; : &quot;Curran&quot; , &quot;age&quot; : 29.0}
+{ &quot;_id&quot; : 477.0 , &quot;age&quot; : 38.0 , &quot;fname&quot; : &quot;Kevin&quot; , &quot;lname&quot; : &quot;Curran&quot; , &quot;mname&quot; : &quot;James&quot;}
+{ &quot;_id&quot; : 478.0 , &quot;fname&quot; : &quot;Erin&quot; , &quot;lname&quot; : &quot;Marchesi&quot; , &quot;age&quot; : 19.0}
+{ &quot;_id&quot; : 479 , &quot;fname&quot; : &quot;Anakin&quot; , &quot;lname&quot; : &quot;Skywalker&quot; , &quot;age&quot; : 10}
+</pre></div>
+</div>
+<p>As you can see in the highlighted lines in the code shown above, we use <em>BasicDBObject</em> in almost the same way for reading and creating. The only major difference is the presence of <em>DBCollection.insert(BasicDBObject query)</em>, which essentially mimics the <em>db.collection.insert()</em> method in the command prompt. Notice too that the numerical values that we entered are appearing as integers instead of decimals.</p>
+</div>
+<div class="section" id="id7">
+<h4>Updating Documents<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<p>The <em>BasicDBObject</em> can also be used for update queries as well. In this section, we will show how to perform a <em>db.collection.update()</em> command in Java.
+In order to run the update query, we need to create a second <em>BasicDBObject</em> in order to modify the fields that we want to update.
+We then pass this second <em>BasicDBObject</em> to the <em>DBCollection.update()</em> method, which accepts two <em>BasicDBObjects</em>, the first to specify the objects that you will be updating.
+The second <em>BasicDBObject</em> will determine what fields will be updated. You can optionally add two booleans, the first to determine the <em>upsert</em> flag, and the second to determine the <em>multi</em> flag.</p>
+<p>An example of how to use this is shown below.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>     <span class="kn">import</span> <span class="nn">java.net.UnknownHostException</span><span class="o">;</span>
+
+     <span class="kn">import</span> <span class="nn">com.mongodb.BasicDBObject</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.DB</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.DBCollection</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.DBCursor</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.MongoClient</span><span class="o">;</span>
+
+     <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example04_UpdateDocument</span> <span class="o">{</span>
+
+             <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+
+                     <span class="k">try</span> <span class="o">{</span>
+                             <span class="n">MongoClient</span> <span class="n">mon</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MongoClient</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">27017</span><span class="o">);</span>
+                             <span class="n">DB</span> <span class="n">db</span> <span class="o">=</span> <span class="n">mon</span><span class="o">.</span><span class="na">getDB</span><span class="o">(</span><span class="s">&quot;company&quot;</span><span class="o">);</span>
+                             <span class="n">DBCollection</span> <span class="n">staffColl</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="na">getCollection</span><span class="o">(</span><span class="s">&quot;staff&quot;</span><span class="o">);</span>
+
+<span class="hll">                             <span class="c1">// Pick the object to update by parameters.</span>
+</span><span class="hll">                             <span class="n">BasicDBObject</span> <span class="n">findQuery</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BasicDBObject</span><span class="o">(</span><span class="s">&quot;fname&quot;</span><span class="o">,</span> <span class="s">&quot;Anakin&quot;</span><span class="o">)</span>
+</span><span class="hll">                                             <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;lname&quot;</span><span class="o">,</span> <span class="s">&quot;Skywalker&quot;</span><span class="o">);</span>
+</span><span class="hll">
+</span><span class="hll">                             <span class="c1">// Query for the fields to insert into update.</span>
+</span><span class="hll">                             <span class="n">BasicDBObject</span> <span class="n">updateQuery</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BasicDBObject</span><span class="o">(</span><span class="s">&quot;fname&quot;</span><span class="o">,</span> <span class="s">&quot;Darth&quot;</span><span class="o">)</span>
+</span><span class="hll">                             <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;lname&quot;</span><span class="o">,</span> <span class="s">&quot;Vader&quot;</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="mi">35</span><span class="o">);</span>
+</span><span class="hll">
+</span><span class="hll">                             <span class="c1">// Booleans for upsert and multi</span>
+</span><span class="hll">                             <span class="kt">boolean</span> <span class="n">upsert</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span><span class="hll">                             <span class="kt">boolean</span> <span class="n">multi</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span><span class="hll">
+</span><span class="hll">                             <span class="c1">// Run the update query.</span>
+</span><span class="hll">                             <span class="n">staffColl</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">findQuery</span><span class="o">,</span> <span class="n">updateQuery</span><span class="o">,</span> <span class="n">upsert</span><span class="o">,</span> <span class="n">multi</span><span class="o">);</span>
+</span>
+                             <span class="c1">// Read all documents when we are finished so we can check the</span>
+                             <span class="c1">// output.</span>
+                             <span class="n">DBCursor</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">staffColl</span><span class="o">.</span><span class="na">find</span><span class="o">();</span>
+
+                             <span class="k">while</span> <span class="o">(</span><span class="n">cursor</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+                                     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">cursor</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
+                             <span class="o">}</span>
+                             <span class="n">cursor</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+
+                     <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">UnknownHostException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                     <span class="o">}</span>
+
+             <span class="o">}</span>
+     <span class="o">}</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;528845205e9f772541afc58a&quot;} , &quot;fname&quot; : &quot;Mike&quot; , &quot;lname&quot; : &quot;Curran&quot; , &quot;age&quot; : 29.0}
+{ &quot;_id&quot; : 477.0 , &quot;age&quot; : 38.0 , &quot;fname&quot; : &quot;Kevin&quot; , &quot;lname&quot; : &quot;Curran&quot; , &quot;mname&quot; : &quot;James&quot;}
+{ &quot;_id&quot; : 478.0 , &quot;fname&quot; : &quot;Erin&quot; , &quot;lname&quot; : &quot;Marchesi&quot; , &quot;age&quot; : 19.0}
+{ &quot;_id&quot; : 479 , &quot;fname&quot; : &quot;Darth&quot; , &quot;lname&quot; : &quot;Vader&quot; , &quot;age&quot; : 35}
+</pre></div>
+</div>
+<p>As you may remember, there is another command that is used for updating documents in MongoDB, that being <em>db.collection.save()</em>.
+The <em>DBCollection.save()</em> works in much the same way that the <em>db.collection.save()</em> did in the console. <em>DBCollection.save()</em> can take
+a <em>BasicDBObject</em> and perform the save operation on the database. The below example shows it being used to both create a new document
+and to modify an existing one.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>     <span class="kn">import</span> <span class="nn">java.net.UnknownHostException</span><span class="o">;</span>
+
+     <span class="kn">import</span> <span class="nn">com.mongodb.BasicDBObject</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.DB</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.DBCollection</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.DBCursor</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.MongoClient</span><span class="o">;</span>
+
+     <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example05_SaveDocument</span> <span class="o">{</span>
+
+             <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+
+                     <span class="k">try</span> <span class="o">{</span>
+                             <span class="n">MongoClient</span> <span class="n">mon</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MongoClient</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">27017</span><span class="o">);</span>
+                             <span class="n">DB</span> <span class="n">db</span> <span class="o">=</span> <span class="n">mon</span><span class="o">.</span><span class="na">getDB</span><span class="o">(</span><span class="s">&quot;company&quot;</span><span class="o">);</span>
+                             <span class="n">DBCollection</span> <span class="n">staffColl</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="na">getCollection</span><span class="o">(</span><span class="s">&quot;staff&quot;</span><span class="o">);</span>
+
+<span class="hll">                             <span class="c1">// Pick the object to update by parameters.</span>
+</span><span class="hll">                             <span class="n">BasicDBObject</span> <span class="n">saveNew</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BasicDBObject</span><span class="o">(</span><span class="s">&quot;fname&quot;</span><span class="o">,</span> <span class="s">&quot;Luke&quot;</span><span class="o">)</span>
+</span><span class="hll">                                     <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;lname&quot;</span><span class="o">,</span> <span class="s">&quot;Skywalker&quot;</span><span class="o">)</span>
+</span><span class="hll">                                     <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="mi">20</span><span class="o">);</span>
+</span><span class="hll">
+</span><span class="hll">                             <span class="c1">// Query for the fields to insert into update.</span>
+</span><span class="hll">                             <span class="n">BasicDBObject</span> <span class="n">saveUpdate</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BasicDBObject</span><span class="o">(</span><span class="s">&quot;_id&quot;</span><span class="o">,</span> <span class="s">&quot;479&quot;</span><span class="o">)</span>
+</span><span class="hll">                                     <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;fname&quot;</span><span class="o">,</span> <span class="s">&quot;James&quot;</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;mname&quot;</span><span class="o">,</span> <span class="s">&quot;Earl&quot;</span><span class="o">)</span>
+</span><span class="hll">                                     <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;lname&quot;</span><span class="o">,</span> <span class="s">&quot;Jones&quot;</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="mi">82</span><span class="o">);</span>
+</span><span class="hll">
+</span><span class="hll">                             <span class="c1">// Run the save queries.</span>
+</span><span class="hll">                             <span class="n">staffColl</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">saveNew</span><span class="o">);</span>
+</span><span class="hll">                             <span class="n">staffColl</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">saveUpdate</span><span class="o">);</span>
+</span>
+                             <span class="c1">// Read all documents when we are finished so we can check the</span>
+                             <span class="c1">// output.</span>
+                             <span class="n">DBCursor</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">staffColl</span><span class="o">.</span><span class="na">find</span><span class="o">();</span>
+
+                             <span class="k">while</span> <span class="o">(</span><span class="n">cursor</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+                                     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">cursor</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
+                             <span class="o">}</span>
+                             <span class="n">cursor</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+
+                     <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">UnknownHostException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                     <span class="o">}</span>
+
+             <span class="o">}</span>
+     <span class="o">}</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;528845205e9f772541afc58a&quot;} , &quot;fname&quot; : &quot;Mike&quot; , &quot;lname&quot; : &quot;Curran&quot; , &quot;age&quot; : 29.0}
+{ &quot;_id&quot; : 477.0 , &quot;age&quot; : 38.0 , &quot;fname&quot; : &quot;Kevin&quot; , &quot;lname&quot; : &quot;Curran&quot; , &quot;mname&quot; : &quot;James&quot;}
+{ &quot;_id&quot; : 478.0 , &quot;fname&quot; : &quot;Erin&quot; , &quot;lname&quot; : &quot;Marchesi&quot; , &quot;age&quot; : 19.0}
+{ &quot;_id&quot; : 479 , &quot;fname&quot; : &quot;Darth&quot; , &quot;lname&quot; : &quot;Vader&quot; , &quot;age&quot; : 35}
+{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;5289abff7cf311038788282f&quot;} , &quot;fname&quot; : &quot;Luke&quot; , &quot;lname&quot; : &quot;Skywalker&quot; , &quot;age&quot; : 20}
+{ &quot;_id&quot; : &quot;479&quot; , &quot;fname&quot; : &quot;James&quot; , &quot;mname&quot; : &quot;Earl&quot; , &quot;lname&quot; : &quot;Jones&quot; , &quot;age&quot; : 82}
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h4>Deleting Documents<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<p>Removing documents from Mongo in Java is almost the exact same code as creating or updating a document. The main difference is that to remove a document, we call <em>DBCollection.remove()</em> and pass a <em>BasicDBObject</em> to it. In the following example, we will remove one document based on specific fields.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>     <span class="kn">import</span> <span class="nn">java.net.UnknownHostException</span><span class="o">;</span>
+
+     <span class="kn">import</span> <span class="nn">com.mongodb.BasicDBObject</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.DB</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.DBCollection</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.DBCursor</span><span class="o">;</span>
+     <span class="kn">import</span> <span class="nn">com.mongodb.MongoClient</span><span class="o">;</span>
+
+     <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example06_RemoveDocument</span> <span class="o">{</span>
+
+             <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+
+                     <span class="k">try</span> <span class="o">{</span>
+                             <span class="n">MongoClient</span> <span class="n">mon</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MongoClient</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">27017</span><span class="o">);</span>
+                             <span class="n">DB</span> <span class="n">db</span> <span class="o">=</span> <span class="n">mon</span><span class="o">.</span><span class="na">getDB</span><span class="o">(</span><span class="s">&quot;company&quot;</span><span class="o">);</span>
+                             <span class="n">DBCollection</span> <span class="n">staffColl</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="na">getCollection</span><span class="o">(</span><span class="s">&quot;staff&quot;</span><span class="o">);</span>
+
+<span class="hll">                             <span class="c1">// Pick the object to delete by parameters.</span>
+</span><span class="hll">                             <span class="n">BasicDBObject</span> <span class="n">deleteMe</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BasicDBObject</span><span class="o">(</span><span class="s">&quot;fname&quot;</span><span class="o">,</span> <span class="s">&quot;Luke&quot;</span><span class="o">)</span>
+</span><span class="hll">                                     <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;lname&quot;</span><span class="o">,</span> <span class="s">&quot;Skywalker&quot;</span><span class="o">)</span>
+</span><span class="hll">                                     <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="mi">20</span><span class="o">);</span>
+</span><span class="hll">
+</span><span class="hll">                             <span class="c1">// Run the remove queries.</span>
+</span><span class="hll">                             <span class="n">staffColl</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">deleteMe</span><span class="o">);</span>
+</span>
+                             <span class="c1">// Read all documents when we are finished so we can check the</span>
+                             <span class="c1">// output.</span>
+                             <span class="n">DBCursor</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">staffColl</span><span class="o">.</span><span class="na">find</span><span class="o">();</span>
+
+                             <span class="k">while</span> <span class="o">(</span><span class="n">cursor</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+                                     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">cursor</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
+                             <span class="o">}</span>
+                             <span class="n">cursor</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+
+                     <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">UnknownHostException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                     <span class="o">}</span>
+
+             <span class="o">}</span>
+     <span class="o">}</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;528845205e9f772541afc58a&quot;} , &quot;fname&quot; : &quot;Mike&quot; , &quot;lname&quot; : &quot;Curran&quot; , &quot;age&quot; : 29.0}
+{ &quot;_id&quot; : 477.0 , &quot;age&quot; : 38.0 , &quot;fname&quot; : &quot;Kevin&quot; , &quot;lname&quot; : &quot;Curran&quot; , &quot;mname&quot; : &quot;James&quot;}
+{ &quot;_id&quot; : 478.0 , &quot;fname&quot; : &quot;Erin&quot; , &quot;lname&quot; : &quot;Marchesi&quot; , &quot;age&quot; : 19.0}
+{ &quot;_id&quot; : 479 , &quot;fname&quot; : &quot;Darth&quot; , &quot;lname&quot; : &quot;Vader&quot; , &quot;age&quot; : 35}
+{ &quot;_id&quot; : &quot;479&quot; , &quot;fname&quot; : &quot;James&quot; , &quot;mname&quot; : &quot;Earl&quot; , &quot;lname&quot; : &quot;Jones&quot; , &quot;age&quot; : 82}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>Automatic Sharding<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>Among MongoDB’s core functionalities is that it utilizes horizontally scaling, also known as <strong>sharding</strong>.
+Sharding is the practice of dividing the data set and distributing each piece, or <strong>shard</strong> of the data set to different servers as an independent database. The shards form one single database logically, even though they may be in different locations.
+As the number of shards increases, the operations that each shard has to handle decreases, as does the amount of data each shard possesses.</p>
+<div class="figure align-center">
+<img alt="Basic sharding." src="../_images/shards_1.jpg" />
+</div>
+<p>The above diagram shows the basic idea of sharding. Each of the four colored boxes in the corners is part of the multicolored box in the center (representing the complete data set), but they all exist separately in different locations.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">You cannot perform sharding on a collection larger than 256GB – this is a limitation that MongoDB will eventually remove. Earlier versions of MongoDB had a much smaller limit.</p>
+</div>
+</div>
+<div class="section" id="external-sources">
+<h2>External Sources<a class="headerlink" href="#external-sources" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://www.mongodb.com/learn/nosql">http://www.mongodb.com/learn/nosql</a></li>
+<li><a class="reference external" href="http://www.couchbase.com/why-nosql/nosql-database">http://www.couchbase.com/why-nosql/nosql-database</a></li>
+<li><a class="reference external" href="http://guide.couchdb.org/editions/1/en/why.html">http://guide.couchdb.org/editions/1/en/why.html</a></li>
+<li><a class="reference external" href="http://www.3pillarglobal.com/blog/exploring-different-types-nosql-databases">http://www.3pillarglobal.com/blog/exploring-different-types-nosql-databases</a></li>
+<li><a class="reference external" href="http://queue.acm.org/detail.cfm?id=2462076">http://queue.acm.org/detail.cfm?id=2462076</a></li>
+<li><a class="reference external" href="http://docs.mongodb.org/manual/">http://docs.mongodb.org/manual/</a></li>
+<li><a class="reference external" href="https://foundationdb.com/white-papers/consistency">https://foundationdb.com/white-papers/consistency</a></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../agents/agents.html" class="btn btn-neutral float-right" title="Distributed Agents" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../rest/rest.html" class="btn btn-neutral float-left" title="REST and Web Services" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

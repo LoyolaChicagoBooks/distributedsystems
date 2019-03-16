@@ -1,0 +1,761 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introduction and Issues &mdash; Distributed Systems v0.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Networking Primer" href="../networking/networking.html" />
+    <link rel="prev" title="Welcome to Distributed Systems" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Distributed Systems
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction and Issues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-a-distributed-system">What is a distributed system?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#illustration">Illustration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advantages-of-distributed-systems-vs-centralized">Advantages of Distributed Systems vs. Centralized</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advantages-of-distributed-systems-vs-standalones">Advantages of Distributed Systems vs. Standalones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#disadvantages-of-distributed-systems">Disadvantages of Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#key-characteristics">Key Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resource-sharing">Resource Sharing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resources-must-be-managed">Resources Must be Managed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#openness">Openness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#open-distributed-systems">Open Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#concurrency">Concurrency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scalability">Scalability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fault-tolerance">Fault Tolerance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transparency">Transparency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#design-issues">Design Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#issues-arising-from-distributed-systems">Issues arising from Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#naming">Naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#naming-name-resolution">Naming - Name Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#naming-design-considerations">Naming - Design Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#communication">Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#types-of-communication">Types of Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#client-server-communication">Client-Server Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Client-Server Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#group-multicast">Group Multicast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#software-structure">Software Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#distributed-system-software-structure">Distributed System Software Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#consistency-management">Consistency Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#caching">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#consistency">Consistency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#workload-allocation">Workload Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#processor-pool-model">Processor Pool Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quality-of-service">Quality-of-Service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../networking/networking.html">Networking Primer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concurrency/concurrency.html">Concurrency and Threads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html">Distributed Systems and Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#storage-devices">Storage Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#local-storage">Local Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#distributed-filesystems">Distributed Filesystems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#case-study-sun-nfs">Case Study - SUN NFS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../directories/directories.html">Directories and LDAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maven/maven.html">Project Build Management With Maven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ci/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clocks/clocks.html">Clocks and Synchronization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trans/trans.html">Distributed Transactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dns/dns.html">Domain Name Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queue/queue.html">Distributed Queues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mpi/mpi.html">Message Passing Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smtp/smtp.html">SMTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corba/corba.html">Object Brokers and CORBA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rest/rest.html">REST and Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nosql/nosql.html">NoSQL Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agents/agents.html">Distributed Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_spark/apache_spark.html">Apache Spark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bit_torrent/bit_torrent.html">BitTorrent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop/hadoop.html">Hadoop Distributed File System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../message_queues/message_queues.html">Message Queues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../object_brokering/object_brokering.html">Object Brokering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rsync/rsync.html">File Sychronization and rsync</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../volunteer/volunteer.html">Volunteer Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/cloud.html">Cloud Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iot/iot.html">Internet of Things and Pervasive Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../election/election.html">Election Algorithms</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Distributed Systems</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Introduction and Issues</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/issues/issues.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction-and-issues">
+<h1>Introduction and Issues<a class="headerlink" href="#introduction-and-issues" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-a-distributed-system">
+<h2>What is a distributed system?<a class="headerlink" href="#what-is-a-distributed-system" title="Permalink to this headline">¶</a></h2>
+<p>“A collection of autonomous computers linked by a network with software designed to produce an integrated facility”</p>
+<p>“A collection of independent computers that appear to the users of the system as a single computer”</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Distributed systems</p>
+<ul class="simple">
+<li>Department computing cluster</li>
+<li>Corporate systems</li>
+<li>Cloud systems (e.g. Google, Microsoft, etc.)</li>
+</ul>
+<p>Application examples</p>
+<ul class="simple">
+<li>Email</li>
+<li>News</li>
+<li>Multimedia information systems - video conferencing</li>
+<li>Airline reservation system</li>
+<li>Banking system</li>
+<li>File downloads (BitTorrent)</li>
+<li>Messaging</li>
+</ul>
+</div>
+<div class="section" id="illustration">
+<h2>Illustration<a class="headerlink" href="#illustration" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id2">
+<a class="reference internal image-reference" href="../_images/issues-3.jpg"><img alt="../_images/issues-3.jpg" src="../_images/issues-3.jpg" style="width: 640.0px; height: 480.0px;" /></a>
+<p class="caption"><span class="caption-text">A Distributed System</span></p>
+</div>
+<div class="figure" id="id3">
+<a class="reference internal image-reference" href="../_images/issues-4.jpg"><img alt="../_images/issues-4.jpg" src="../_images/issues-4.jpg" style="width: 640.0px; height: 480.0px;" /></a>
+<p class="caption"><span class="caption-text">A Centralized Multi-User System</span></p>
+</div>
+<div class="figure" id="id4">
+<a class="reference internal image-reference" href="../_images/issues-5.jpg"><img alt="../_images/issues-5.jpg" src="../_images/issues-5.jpg" style="width: 640.0px; height: 480.0px;" /></a>
+<p class="caption"><span class="caption-text">An Application Example</span></p>
+</div>
+</div>
+<div class="section" id="advantages-of-distributed-systems-vs-centralized">
+<h2>Advantages of Distributed Systems vs. Centralized<a class="headerlink" href="#advantages-of-distributed-systems-vs-centralized" title="Permalink to this headline">¶</a></h2>
+<p>Economics</p>
+<ul class="simple">
+<li>Commodity microprocessors have better price/performance than mainframes</li>
+</ul>
+<p>Speed</p>
+<ul class="simple">
+<li>Collective power of large number of systems is potentially infinite</li>
+</ul>
+<p>Geographic and Responsibility Distribution</p>
+<ul class="simple">
+<li>Can provide better speed in geographic regions by not going over slower transoceanic cables</li>
+</ul>
+<p>Reliability</p>
+<ul class="simple">
+<li>One machine’s failure need not bring down the system</li>
+</ul>
+<p>Extensibility</p>
+<ul class="simple">
+<li>Computers and software can be added incrementally</li>
+</ul>
+</div>
+<div class="section" id="advantages-of-distributed-systems-vs-standalones">
+<h2>Advantages of Distributed Systems vs. Standalones<a class="headerlink" href="#advantages-of-distributed-systems-vs-standalones" title="Permalink to this headline">¶</a></h2>
+<p>Data Sharing</p>
+<ul class="simple">
+<li>Multiple users can access common database, data files</li>
+</ul>
+<p>Device/Resource Sharing</p>
+<ul class="simple">
+<li>e.g., printers, servers, other CPUs…</li>
+</ul>
+<p>Communication</p>
+<ul class="simple">
+<li>Communication with other systems…</li>
+</ul>
+<p>Flexibility</p>
+<ul class="simple">
+<li>Spread workload to different &amp; most appropriate systems</li>
+</ul>
+<p>Extensibility</p>
+<ul class="simple">
+<li>Add resources and software as needed</li>
+</ul>
+</div>
+<div class="section" id="disadvantages-of-distributed-systems">
+<h2>Disadvantages of Distributed Systems<a class="headerlink" href="#disadvantages-of-distributed-systems" title="Permalink to this headline">¶</a></h2>
+<p>Software</p>
+<ul class="simple">
+<li>Little software exists compared to PCs (for example) but the situation is improving with the cloud.</li>
+</ul>
+<p>Networking</p>
+<ul class="simple">
+<li>Still slow and can cause other problems (e.g., when disconnected)</li>
+</ul>
+<p>Security</p>
+<ul class="simple">
+<li>Data may be accessed by unauthorized users through network interfaces</li>
+</ul>
+<p>Privacy</p>
+<ul class="simple">
+<li>Data may be accessed securely but without the owner’s consent (significant issue in modern systems)</li>
+</ul>
+</div>
+<div class="section" id="key-characteristics">
+<h2>Key Characteristics<a class="headerlink" href="#key-characteristics" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Support for resource sharing</li>
+<li>Openness</li>
+<li>Concurrency</li>
+<li>Scalability</li>
+<li>Fault Tolerance (Reliability)</li>
+<li>Transparency</li>
+</ul>
+</div>
+<div class="section" id="resource-sharing">
+<h2>Resource Sharing<a class="headerlink" href="#resource-sharing" title="Permalink to this headline">¶</a></h2>
+<p>Share hardware, software, data and information</p>
+<p>Hardware Devices</p>
+<ul class="simple">
+<li>printers, disks, memory, sensors</li>
+</ul>
+<p>Software Sharing</p>
+<ul class="simple">
+<li>compilers, libraries, toolkits, computational kernels</li>
+</ul>
+<p>Data</p>
+<ul class="simple">
+<li>databases, files</li>
+</ul>
+</div>
+<div class="section" id="resources-must-be-managed">
+<h2>Resources Must be Managed<a class="headerlink" href="#resources-must-be-managed" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id5">
+<a class="reference internal image-reference" href="../_images/issues-11.jpg"><img alt="../_images/issues-11.jpg" src="../_images/issues-11.jpg" style="width: 640.0px; height: 480.0px;" /></a>
+<p class="caption"><span class="caption-text">Resources Must Be Managed</span></p>
+</div>
+<div class="figure" id="id6">
+<a class="reference internal image-reference" href="../_images/issues-12.jpg"><img alt="../_images/issues-12.jpg" src="../_images/issues-12.jpg" style="width: 640.0px; height: 480.0px;" /></a>
+<p class="caption"><span class="caption-text">Client-Server Model for Resource Sharing</span></p>
+</div>
+</div>
+<div class="section" id="openness">
+<h2>Openness<a class="headerlink" href="#openness" title="Permalink to this headline">¶</a></h2>
+<p>Determines whether the system can be extended in various ways without disrupting existing system and services</p>
+<p>Hardware extensions (adding peripherals, memory, communication interfaces..)</p>
+<dl class="docutils">
+<dt>Software extensions</dt>
+<dd><ul class="first last simple">
+<li>Operating System features</li>
+<li>Communication protocols</li>
+</ul>
+</dd>
+<dt>Mainly achieved using published interfaces, standardization</dt>
+<dd><ul class="first last simple">
+<li>Great example of a distributed, standards-focused effort, <a class="reference external" href="http://www.ietf.org/">http://www.ietf.org/</a></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="open-distributed-systems">
+<h2>Open Distributed Systems<a class="headerlink" href="#open-distributed-systems" title="Permalink to this headline">¶</a></h2>
+<p>Are characterized by the fact that their key interfaces are published</p>
+<ul class="simple">
+<li>e.g., HTTP Protocol, <a class="reference external" href="https://www.ietf.org/rfc/rfc2616.txt">https://www.ietf.org/rfc/rfc2616.txt</a></li>
+</ul>
+<p>Based on the provision of a uniform interprocess communication mechanism and published interfaces for access to shared resources</p>
+<p>Can be constructed from heterogeneous hardware and software.</p>
+</div>
+<div class="section" id="concurrency">
+<h2>Concurrency<a class="headerlink" href="#concurrency" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>In a single system several processes are interleaved</li>
+<li>In distributed systems - there are many systems with one or more processors</li>
+<li>Many users simultaneously invoke commands or applications (e.g., Netscape..)</li>
+<li>Many server processes run concurrently, each responding to  different client request, e.g., File Server</li>
+</ul>
+<div class="figure" id="id7">
+<a class="reference internal image-reference" href="../_images/issues-16.jpg"><img alt="../_images/issues-16.jpg" src="../_images/issues-16.jpg" style="width: 640.0px; height: 480.0px;" /></a>
+<p class="caption"><span class="caption-text">Opportunities for Concurrency</span></p>
+</div>
+</div>
+<div class="section" id="scalability">
+<h2>Scalability<a class="headerlink" href="#scalability" title="Permalink to this headline">¶</a></h2>
+<p>Scale of system</p>
+<ul class="simple">
+<li>Few PCs servers –&gt; Dept level systems –&gt; Local area network –&gt; Internetworked systems —&gt;Wide area network…</li>
+<li>Ideally - system and applications software should not (need to) change as systems scales</li>
+</ul>
+<p>Scalability depends on all aspects</p>
+<ul class="simple">
+<li>Hardware</li>
+<li>Software</li>
+<li>Networks</li>
+<li>Storage</li>
+</ul>
+</div>
+<div class="section" id="fault-tolerance">
+<h2>Fault Tolerance<a class="headerlink" href="#fault-tolerance" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Ability to operate under failure(s) - possibly at a degraded performance level</li>
+<li>Two Approaches
+- Hardware redundancy - use of redundant components
+- Software Recovery - design of programs to recover</li>
+<li>In distributed systems
+- servers can be replicated
+- databases may be replicated
+- software recovery involves the design so that state of permanent data can be recovered</li>
+<li>Distributed systems, in general, provide a high(er) degree of availability</li>
+</ul>
+</div>
+<div class="section" id="transparency">
+<h2>Transparency<a class="headerlink" href="#transparency" title="Permalink to this headline">¶</a></h2>
+<p>Transparency “is the concealment from the user of the separation of components of a distributed system so that the system is perceived as a whole”.</p>
+<p>Examples</p>
+<ul class="simple">
+<li>Access Transparency - enables local and remote objects to be accessed using identical operations (e g., read file..)</li>
+<li>Location transparency - location of resources is hidden</li>
+<li>Migration transparency - resources can move without changing names</li>
+<li>Replication Transparency - users cannot tell how many copies exist</li>
+<li>Concurrency Transparency - multiple users can hare resources automatically</li>
+<li>Parallelism Transparency - activities can happen in parallel without user knowing about it</li>
+<li>Failure Transparency - concealment of faults</li>
+</ul>
+</div>
+<div class="section" id="design-issues">
+<h2>Design Issues<a class="headerlink" href="#design-issues" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Openness</li>
+<li>Resource Sharing</li>
+<li>Concurrency</li>
+<li>Scalability</li>
+<li>Fault-Tolerance</li>
+<li>Transparency</li>
+<li>High-Performance</li>
+</ul>
+</div>
+<div class="section" id="issues-arising-from-distributed-systems">
+<h2>Issues arising from Distributed Systems<a class="headerlink" href="#issues-arising-from-distributed-systems" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Naming - How to uniquely identify resources</li>
+<li>Communication - How to exchange data and information reliably with good performance</li>
+<li>Software Structure - How to make software open, extensible, scalable, with high-performance</li>
+<li>Workload Allocation - Where to perform computations and various services</li>
+<li>Consistency Maintenance - How to keep consistency at a reasonable cost</li>
+</ul>
+</div>
+<div class="section" id="naming">
+<h2>Naming<a class="headerlink" href="#naming" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>A resource must have a name (or identifier) for access</li>
+<li>Name: Can be interpreted by user, e.g., a file name</li>
+<li>Identifier - Interpreted by programs, e.g., port number</li>
+</ul>
+</div>
+<div class="section" id="naming-name-resolution">
+<h2>Naming - Name Resolution<a class="headerlink" href="#naming-name-resolution" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>“resolved” when it is translated into a form to be used to invoke an action on the resource</li>
+<li>Usually a communication identified PLUS other attributes</li>
+<li>E.g., Internet communication id<ul>
+<li>host id:port no</li>
+<li>also known as “IP address:port no”</li>
+<li>192:130.228.6:8000</li>
+</ul>
+</li>
+<li>Name resolution may involve several translation steps</li>
+</ul>
+</div>
+<div class="section" id="naming-design-considerations">
+<h2>Naming - Design Considerations<a class="headerlink" href="#naming-design-considerations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Name space for each type of resource<ul>
+<li>e.g., files, ports, printers, etc.</li>
+</ul>
+</li>
+<li>Must be resolvable to communication Ids<ul>
+<li>typically achieved by names and their translation in a “name service”</li>
+<li>You must have come across “DNS” when using the WWW!!</li>
+</ul>
+</li>
+<li>Frequently accessed resources, e.g., files are resolved by resource manager for efficiency</li>
+<li>Hierarchical Name Space - each part is resolved relative to current context, e.g., file names in UNIX</li>
+</ul>
+</div>
+<div class="section" id="communication">
+<h2>Communication<a class="headerlink" href="#communication" title="Permalink to this headline">¶</a></h2>
+<p>Communication is an essential part of distributed systems
+- e.g., clients and servers must communicate for request and response</p>
+<p>Communication normally involved
+- transfer of data from sender to receiver
+- synchronization among processes</p>
+<p>Communication accomplished by message passing</p>
+<p>Synchronous or blocking
+- sender waits for receiver to  execute a receive operation</p>
+<p>Asynchronous or non-blocking</p>
+</div>
+<div class="section" id="types-of-communication">
+<h2>Types of Communication<a class="headerlink" href="#types-of-communication" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Client-Server</li>
+<li>Group Multicast</li>
+<li>Function Shipping</li>
+<li>Performance of distributed systems depends critically on communication performance</li>
+<li>We will study the software components involved in communication</li>
+</ul>
+</div>
+<div class="section" id="client-server-communication">
+<h2>Client-Server Communication<a class="headerlink" href="#client-server-communication" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Client sends request to server process</li>
+<li>Server executes the request</li>
+<li>Server transmits a reply and data, e.g., file servers, web server…</li>
+</ul>
+<div class="figure" id="id8">
+<a class="reference internal image-reference" href="../_images/issues-29.jpg"><img alt="../_images/issues-29.jpg" src="../_images/issues-29.jpg" style="width: 640.0px; height: 480.0px;" /></a>
+<p class="caption"><span class="caption-text">Client-Server Communication</span></p>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Client-Server Communication<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Message Passing Operations<ul>
+<li>send</li>
+<li>receive</li>
+</ul>
+</li>
+<li>Remote Procedure Call (RPC)<ul>
+<li>hides communication behind procedure call abstraction</li>
+<li>e.g., read(fp,buffer,….)</li>
+<li>Files reside with the server, thus there will be communication between client and server to satisfy this request</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="group-multicast">
+<h2>Group Multicast<a class="headerlink" href="#group-multicast" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>A very important primitive for distributed systems</li>
+<li>Target of a message is a group of processes<ul>
+<li>e.g., chat room, I sending a message to class list, video conference</li>
+</ul>
+</li>
+<li>Where is multicast useful?<ul>
+<li>Locating objects - client multicasts a message to many servers; server that can satisfy request responds</li>
+<li>Fault-tolerance - more than one server does a job; even if one fails, results still available</li>
+<li>Multiple updates</li>
+</ul>
+</li>
+<li>Hardware support may or may not be available<ul>
+<li>if no hardware support, each recipient is sent a message</li>
+</ul>
+</li>
+</ul>
+<div class="figure" id="id9">
+<a class="reference internal image-reference" href="../_images/issues-32.jpg"><img alt="../_images/issues-32.jpg" src="../_images/issues-32.jpg" style="width: 640.0px; height: 480.0px;" /></a>
+<p class="caption"><span class="caption-text">Group Multicast</span></p>
+</div>
+</div>
+<div class="section" id="software-structure">
+<h2>Software Structure<a class="headerlink" href="#software-structure" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>In a centralized system, O/S manages resources and provides essential services</li>
+<li>Basic resource management<ul>
+<li>memory allocation and protection</li>
+<li>process creation and processor scheduling</li>
+<li>peripheral device handling</li>
+</ul>
+</li>
+<li>User and application services<ul>
+<li>user authentication and access control (e.g., login)</li>
+<li>file management and access facilities</li>
+<li>clock facilities</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="distributed-system-software-structure">
+<h2>Distributed System Software Structure<a class="headerlink" href="#distributed-system-software-structure" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>It must be easy to add new services (flexibility, extensibility, openness requirements)</li>
+<li>Kernel is normally restricted to<ul>
+<li>memory allocation</li>
+<li>process creation and scheduling</li>
+<li>interposes communication</li>
+<li>peripheral device handling</li>
+</ul>
+</li>
+<li>E.g., Microkernels - represent light weight O/S, most services provided as applications on top of microkernels</li>
+</ul>
+<div class="figure" id="id10">
+<a class="reference internal image-reference" href="../_images/issues-35.jpg"><img alt="../_images/issues-35.jpg" src="../_images/issues-35.jpg" style="width: 640.0px; height: 480.0px;" /></a>
+<p class="caption"><span class="caption-text">Distributed System Software Structure</span></p>
+</div>
+</div>
+<div class="section" id="consistency-management">
+<h2>Consistency Management<a class="headerlink" href="#consistency-management" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>When do consistency problems arise?<ul>
+<li>concurrency</li>
+<li>sharing data</li>
+<li>caching</li>
+</ul>
+</li>
+<li>Why cache data?<ul>
+<li>for performance, scalability</li>
+</ul>
+</li>
+<li>How?<ul>
+<li>Subsequent requests (many of them) need not go over the NETWORK to SERVERS</li>
+<li>better utilized servers, network  and better response</li>
+</ul>
+</li>
+<li>Caching is normally transparent, but creates consistency problems</li>
+</ul>
+</div>
+<div class="section" id="caching">
+<h2>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Suppose your program (pseudocode) adds numbers stored in a file as follows (assume each number is 4 bytes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">I</span><span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span>
+       <span class="n">tmp</span> <span class="o">=</span> <span class="n">read</span> <span class="nb">next</span> <span class="n">number</span> <span class="kn">from</span> <span class="nn">file</span>
+       <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">tmp</span>
+<span class="n">end</span> <span class="k">for</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">With no caching, each read will go over the network, which will send a new 4 byte number. Assuming 1 millisecond (ms) to get a number, requres a total of 1s to get all of the numbers.</p>
+</li>
+<li><p class="first">With caching, assuming 1000 byte pages, 249 of the 250 reads will be local requests (from the cache).</p>
+</li>
+</ul>
+</div>
+<div class="section" id="consistency">
+<h2>Consistency<a class="headerlink" href="#consistency" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Update consistency<ul>
+<li>when multiple processes access and update data concurrently</li>
+<li>effect should be such that all processes sharing data see the same values (consistent image)</li>
+<li>E.g., sharing data in a database</li>
+</ul>
+</li>
+<li>Replication consistency<ul>
+<li>when data replicated and once process updates it</li>
+<li>All other processes should see the updated data immediately</li>
+<li>e.g., replicated files, electronic bulletin board</li>
+</ul>
+</li>
+<li>Cache consistency<ul>
+<li>When data (normally at different levels of granularity, such as pages, disk blocks, files…) is cached and updates by one process, it must be invalidated or updated by others</li>
+<li>When and how depends on the consistency models used</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="workload-allocation">
+<h2>Workload Allocation<a class="headerlink" href="#workload-allocation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>In distributed systems many resources (e.g., other workstations, servers etc.) may be available for “computing”</li>
+<li>Capacity and size of memory of a workstation or server may determine what applications may are able to run</li>
+<li>Parts of applications may be run on different workstations for parallelism (e.g., compiling different files of the same program)</li>
+<li>Some workstations or servers may have special hardware to do certain types of applications fast (e.g., video compression)</li>
+<li>Idle workstations may be utilized for better performance and utilization</li>
+</ul>
+</div>
+<div class="section" id="processor-pool-model">
+<h2>Processor Pool Model<a class="headerlink" href="#processor-pool-model" title="Permalink to this headline">¶</a></h2>
+<p>In a processor pool model, processes are allocated to processors for their lifetime (e.g the
+Amoeba research O/S supports this concept).</p>
+<div class="figure" id="id11">
+<a class="reference internal image-reference" href="../_images/issues-41.jpg"><img alt="../_images/issues-41.jpg" src="../_images/issues-41.jpg" style="width: 640.0px; height: 480.0px;" /></a>
+<p class="caption"><span class="caption-text">Processor Pool Model</span></p>
+</div>
+</div>
+<div class="section" id="quality-of-service">
+<h2>Quality-of-Service<a class="headerlink" href="#quality-of-service" title="Permalink to this headline">¶</a></h2>
+<p>Quality of Service (a.k.a. QoS) refers to performance and other service expectations of a client or an application.</p>
+<ul class="simple">
+<li>Performance</li>
+<li>Reliability and availability</li>
+<li>security</li>
+</ul>
+<p>Examples where this is important.</p>
+<ul class="simple">
+<li>Voice over IP (VOIP) and telephony</li>
+<li>Video (e.g. Netflix and friends)</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../networking/networking.html" class="btn btn-neutral float-right" title="Networking Primer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to Distributed Systems" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

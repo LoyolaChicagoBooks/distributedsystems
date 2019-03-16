@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Domain Name Service &mdash; Distributed Systems v0.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Distributed Queues" href="../queue/queue.html" />
+    <link rel="prev" title="Distributed Transactions" href="../trans/trans.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Distributed Systems
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../issues/issues.html">Introduction and Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../networking/networking.html">Networking Primer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concurrency/concurrency.html">Concurrency and Threads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html">Distributed Systems and Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#storage-devices">Storage Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#local-storage">Local Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#distributed-filesystems">Distributed Filesystems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#case-study-sun-nfs">Case Study - SUN NFS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../directories/directories.html">Directories and LDAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maven/maven.html">Project Build Management With Maven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ci/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clocks/clocks.html">Clocks and Synchronization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trans/trans.html">Distributed Transactions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Domain Name Service</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-dns">What is DNS ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#types-of-dns-records">Types of DNS Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#history-of-dns">History of DNS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#top-level-domains">Top Level Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dns-and-its-hierarchies">DNS and Its Hierarchies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#name-servers">Name Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resolving-addresses">Resolving Addresses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enabling-distribution-and-load-balancing">Enabling Distribution and Load Balancing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#credits">Credits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../queue/queue.html">Distributed Queues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mpi/mpi.html">Message Passing Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smtp/smtp.html">SMTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corba/corba.html">Object Brokers and CORBA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rest/rest.html">REST and Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nosql/nosql.html">NoSQL Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agents/agents.html">Distributed Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_spark/apache_spark.html">Apache Spark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bit_torrent/bit_torrent.html">BitTorrent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop/hadoop.html">Hadoop Distributed File System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../message_queues/message_queues.html">Message Queues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../object_brokering/object_brokering.html">Object Brokering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rsync/rsync.html">File Sychronization and rsync</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../volunteer/volunteer.html">Volunteer Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/cloud.html">Cloud Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iot/iot.html">Internet of Things and Pervasive Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../election/election.html">Election Algorithms</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Distributed Systems</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Domain Name Service</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/dns/dns.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="domain-name-service">
+<h1>Domain Name Service<a class="headerlink" href="#domain-name-service" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-dns">
+<h2>What is DNS ?<a class="headerlink" href="#what-is-dns" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>DNS is a hierarchal, decentralized naming system for computers, services, and resources connected to or not connected to the internet.</li>
+<li>DNS implementations can reside on LANs or at internet scale</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="types-of-dns-records">
+<h2>Types of DNS Records<a class="headerlink" href="#types-of-dns-records" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>A Records: host name to ip address record</li>
+<li>MX Records: records of host names and IP addresses of SMTP mail exchangers</li>
+<li>NS Records:</li>
+<li>PTR Records: records for reverse DNS lookups. To translate ip addresses to host names</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="history-of-dns">
+<h2>History of DNS<a class="headerlink" href="#history-of-dns" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Original IP-address to host name translations were maintained in a text file on each host that was named hosts.txt. This approach still exists on Linux, Windows, and similar PC and server systems. This approach is still somewhat useful on statically addressed small networks that don’t implement dynamic network discovery services.</li>
+<li>The IP address and host names were managed by 1-2 people from the 1970s to the early 1980s</li>
+<li>In the early 1980s, Mockapetris created the original DNS system. Soon after, the IETF (Internet Engineering Task Force) published RFC 882 and 883 to document the protocols and capabilities of DNS</li>
+<li>In 1984, UC Berkley students implemented the first UNIX based DNS server called BIND. This system was ported to Windows NT in the early 1990s</li>
+<li>Currently, BIND is one of the most widely used DNS platforms used on the internet.</li>
+<li>In subsequent years and decades, standards groups and researchers proposed and implemented new record types, improved security, and scaling of the DNS system as the internet itself expanded.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="top-level-domains">
+<h2>Top Level Domains<a class="headerlink" href="#top-level-domains" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>A TLD is the right-most section of a internet address. For example, google.com’s TLD is .com, Luc.edu’s TLD is .edu</li>
+<li>Originally, there were very few TLDs. These included .arpa, .org, .com, .net, .nato</li>
+<li>Soon after, national / regional specific TLDs came into existence such as .dd for East Germany, or .us for America</li>
+<li>In the 2000s, ICANN introduced many new TLDs, and in the 2010’s 1000s of new TLDs were introduced</li>
+<li>TLDs are arbitrary and controlled by ICANN, the group that manages the Internet’s root DNS servers. In an isolated network or in your own LAN, you can create your own TLDs, but they will only be respected within your own network.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="dns-and-its-hierarchies">
+<h2>DNS and Its Hierarchies<a class="headerlink" href="#dns-and-its-hierarchies" title="Permalink to this headline">¶</a></h2>
+<div class="figure">
+<img alt="../_images/dns_hierarchy.png" src="../_images/dns_hierarchy.png" />
+</div>
+</div>
+<div class="section" id="name-servers">
+<h2>Name Servers<a class="headerlink" href="#name-servers" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>The DNS system is a distributed database system.</li>
+<li>Each node in the database is a name server.</li>
+<li>Each domain has at least one authoritative DNS server that publishes information about the domain and the name servers of any domains subordinate to it.</li>
+<li>The top of the hierarchy is served by the root name servers. These servers manage the TLDs</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="resolving-addresses">
+<h2>Resolving Addresses<a class="headerlink" href="#resolving-addresses" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>DNS resolvers perform recursive queries in the hierarchal internet database to resolve these addresses.</li>
+<li>This kind of recursive query can put a very intense load on hosts that are responsible for records closer to the root. To solve this problem, a caching solution is needed.</li>
+<li>Nearly all ISPs provide a DNS server that contains a few hours old cache of a large portion of the internet’s DNS records. This cache gets partially invalidated every few hours. This is why when a DNS record is updated on the internet, it can take several hours to propagate through the entire internet.</li>
+<li>Additionally, most operating systems will locally cache DNS query results for at least several minutes or more.</li>
+</ul>
+</div></blockquote>
+<div class="figure">
+<img alt="../_images/resolution.png" src="../_images/resolution.png" />
+</div>
+</div>
+<div class="section" id="enabling-distribution-and-load-balancing">
+<h2>Enabling Distribution and Load Balancing<a class="headerlink" href="#enabling-distribution-and-load-balancing" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>It is possible to configure regional DNS records. This allows an Internet visible web service to be physically hosted around the world and to have DNS queries be resolved to the closest physical server.</li>
+<li>Additionally, more than one IP address can be configured for a name record to point to. The DNS server, resolver, and caching mechanisms can randomly pick among the addresses sent back. This depends somewhat on client implementations for correctness.</li>
+<li>Failover MX records. When registering a mail exchanger for a site, it is possible to register multiple mail exchangers for the site with different priorities. Often, larger organizations will have one onsite SMTP server and one offsite SMTP server to allow for better uptime.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="credits">
+<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Information for this lecture was drawn from:</dt>
+<dd><ul class="first last">
+<li>Wikipedia</li>
+<li>Distributed Systems by Andrew Tanenbaum</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../queue/queue.html" class="btn btn-neutral float-right" title="Distributed Queues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../trans/trans.html" class="btn btn-neutral float-left" title="Distributed Transactions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

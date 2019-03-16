@@ -1,0 +1,1320 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Distributed Systems and Storage &mdash; Distributed Systems v0.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Directories and LDAP" href="../directories/directories.html" />
+    <link rel="prev" title="Concurrency and Threads" href="../concurrency/concurrency.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Distributed Systems
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../issues/issues.html">Introduction and Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../networking/networking.html">Networking Primer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concurrency/concurrency.html">Concurrency and Threads</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Distributed Systems and Storage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#types-of-non-local-storage">Types of Non-Local Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-we-evaluate-storage-systems">How Do We Evaluate Storage Systems?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#storage-devices">Storage Devices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#storage-and-failure">Storage and Failure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#maximizing-availability-raid">Maximizing Availability - RAID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#raid">RAID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#raid-0">RAID - 0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#raid-1">RAID - 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#raid-5">RAID - 5</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#local-storage">Local Storage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#implementing-files-and-folders">Implementing Files and Folders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inodes">Inodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inodes-indirect-blocks">Inodes - Indirect Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#block-caches">Block Caches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#folders-and-path-traversal">Folders and Path Traversal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#virtual-filesystems-vfs">Virtual Filesystems / VFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Virtual Filesystems / VFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#virtual-filesystems-and-stacking">Virtual Filesystems and Stacking</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#distributed-filesystems">Distributed Filesystems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#file-service-model">File Service Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#directory-service">Directory Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#naming-transparency">Naming Transparency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#file-sharing-semantics">File Sharing Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#unix-semantics">UNIX Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#more-semantics">More Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#distributed-file-system-implementation">Distributed File System Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system-structure">System Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Directory Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stateless-versus-stateful">Stateless versus Stateful</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#caching">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#caching-server">Caching - Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#caching-client">Caching - Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#client-cache-consistency">Client - Cache Consistency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#client-cache-consistency-other-options">Client - Cache Consistency - Other Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#replication">Replication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#replication-update-protocols">Replication - Update Protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#replication-voting-algorithm">Replication - Voting Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#replication-general-quorum-algorithm">Replication - General Quorum Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#case-study-sun-nfs">Case Study - SUN NFS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sun-nfs-implementation">SUN NFS - Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../directories/directories.html">Directories and LDAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maven/maven.html">Project Build Management With Maven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ci/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clocks/clocks.html">Clocks and Synchronization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trans/trans.html">Distributed Transactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dns/dns.html">Domain Name Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queue/queue.html">Distributed Queues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mpi/mpi.html">Message Passing Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smtp/smtp.html">SMTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corba/corba.html">Object Brokers and CORBA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rest/rest.html">REST and Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nosql/nosql.html">NoSQL Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agents/agents.html">Distributed Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_spark/apache_spark.html">Apache Spark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bit_torrent/bit_torrent.html">BitTorrent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop/hadoop.html">Hadoop Distributed File System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../message_queues/message_queues.html">Message Queues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../object_brokering/object_brokering.html">Object Brokering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rsync/rsync.html">File Sychronization and rsync</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../volunteer/volunteer.html">Volunteer Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/cloud.html">Cloud Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iot/iot.html">Internet of Things and Pervasive Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../election/election.html">Election Algorithms</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Distributed Systems</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Distributed Systems and Storage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/storage/storage.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="distributed-systems-and-storage">
+<h1>Distributed Systems and Storage<a class="headerlink" href="#distributed-systems-and-storage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="types-of-non-local-storage">
+<h2>Types of Non-Local Storage<a class="headerlink" href="#types-of-non-local-storage" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>SANs - Storage Area Networks</li>
+<li>NASs - Network Area Storage</li>
+<li>NFS/CIFS - Network File System / Common Internet File System</li>
+<li>Cloud Storage / Sync Services</li>
+<li>Distributed File Systems</li>
+<li>Parallel File Systems</li>
+</ol>
+</div>
+<div class="section" id="how-do-we-evaluate-storage-systems">
+<h2>How Do We Evaluate Storage Systems?<a class="headerlink" href="#how-do-we-evaluate-storage-systems" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Latency - How long does a single operation of the smallest fundamental unit take to complete.</li>
+<li>Throughput - How many bytes of data per second can we read or write</li>
+<li>Parallel scaling - When several requests are issued at the same, or nearly the same time, how are latency and throughput affected.</li>
+<li>Resilience to failure of storage components - How many and which types of storage hardware failures can be tolerated without the system availability being interrupted and how is performance affected.</li>
+<li>Resilience to failure of network components - If a network is partitioned or fails, does the storage system remain consistent and how are partially complete operations handled</li>
+<li>Semantics - What capabilities are offered to clients? Can existing files be re-written? Are there folders? Is random access possible? How are files locked and shared? Are there any transactional semantics?</li>
+<li>Location Transparency</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="storage-devices">
+<h1>Storage Devices<a class="headerlink" href="#storage-devices" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Types of permanent devices:<ul>
+<li>Magnetic - hard disk, tape, floppy disk</li>
+<li>Optical - CD/DVD/Blu-Ray, Laser Disc, Paper, Punch Cards, Photo
+Film</li>
+<li>Solid State - CMOS, NAND based flash, battery backed dynamic
+memory</li>
+</ul>
+</li>
+<li>Types of transient devices:<ul>
+<li>RAM, Processor Caches</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="storage-and-failure">
+<h2>Storage and Failure<a class="headerlink" href="#storage-and-failure" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>An excellent paper about hard disk failure rates at Google is
+available here:</li>
+<li><a class="reference external" href="https://www.usenix.org/legacy/event/fast07/tech/full_papers/pinheiro/pinheiro.pdf">https://www.usenix.org/legacy/event/fast07/tech/full_papers/pinheiro/pinheiro.pdf</a></li>
+<li>At Google, the failure rates of disks of a given age are:<ul>
+<li>3-months - 2.5</li>
+<li>6-months - 2.0</li>
+<li>1-year - 2</li>
+<li>2-year - 8</li>
+<li>3-year - 8.5</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="maximizing-availability-raid">
+<h2>Maximizing Availability - RAID<a class="headerlink" href="#maximizing-availability-raid" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>To prevent the loss of availability of data, the use of RAID
+(Redundant Array of Inexpensive Disks) allows for redundant copies of
+data to be stored.</li>
+<li>Common RAID levels are:<ul>
+<li>RAID 0 - splits data across disks. Increases disk space and
+provides no redundancy. 2 or more disks are needed.</li>
+<li>RAID 1 - creates an exact copy of data on two or more disks.</li>
+<li>RAID 5/6 - splits data across disks. Uses one or more disks for
+parity. This allows 1-K out of N disks to fail and allow the data
+of any lost disk to be recovered. 3 or more disks are needed.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="raid">
+<h2>RAID<a class="headerlink" href="#raid" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>RAID has three common implementation approaches:<ul>
+<li>Complete hardware implementation - a disk controller or expansion
+card implements RAID. Several disks are connected to this
+controller and it is presented to the operating system as a single
+storage device. Often have reliability guarantees.</li>
+<li>Partial hardware implementation - Same as the complete hardware
+implementation, except parity calculations, and buffering are
+delegated to the host CPU and memory. Don’t often have reliability
+guarantees.</li>
+<li>Software implementation - The operating system itself manages
+several disks and presents to the file-system layer a single
+storage device.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="raid-0">
+<h2>RAID - 0<a class="headerlink" href="#raid-0" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><div class="figure align-center" id="id3">
+<img alt="image" src="../_images/raid_0.jpg" />
+<p class="caption"><span class="caption-text">image</span></p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="raid-1">
+<h2>RAID - 1<a class="headerlink" href="#raid-1" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><div class="figure align-center" id="id4">
+<img alt="image" src="../_images/raid_1.jpg" />
+<p class="caption"><span class="caption-text">image</span></p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="raid-5">
+<h2>RAID - 5<a class="headerlink" href="#raid-5" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><div class="figure align-center" id="id5">
+<img alt="image" src="../_images/raid_5.jpg" />
+<p class="caption"><span class="caption-text">image</span></p>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="local-storage">
+<h1>Local Storage<a class="headerlink" href="#local-storage" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><ul class="simple">
+<li>At the basis of almost any distributed system are the factors involved in local storage systems.</li>
+<li>The problems presented in local storage are simpler and less composed than in their distributed counter-parts.</li>
+</ul>
+</div></blockquote>
+<div class="section" id="implementing-files-and-folders">
+<h2>Implementing Files and Folders<a class="headerlink" href="#implementing-files-and-folders" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>How files and folders are implemented in a storage medium can greatly
+depend upon the physical characteristics and capabilities of that
+medium.</li>
+<li>For example, on tape-drives, CD/DVD/Blu-Ray, or write-once media,
+files and folders are stored contiguously with no fragmentation. All
+of the information about the filesystem can be held in a TOC (Table
+Of Contents).</li>
+<li>For filesystems with files that have a finite lifetime, such as on
+flash media, hard disks, SSDs, and others, the layout of files and
+folders must be maintained in a more complex way.</li>
+<li>Among these more advanced methods are linked lists and i-nodes.</li>
+<li>To manage free-space, objects like bit-maps and linked lists are
+possibilities.</li>
+</ul>
+</div>
+<div class="section" id="inodes">
+<h2>Inodes<a class="headerlink" href="#inodes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>inodes are the fundamental structures of a UNIX filesystem</li>
+<li>inodes have the following attributes:<ul>
+<li>File Ownership - user, group</li>
+<li>File Mode - rwx bits for each of user, group, and others</li>
+<li>Last access and modified timestamps</li>
+<li>File size in bytes</li>
+<li>Device id</li>
+<li>Pointers to blocks on the storage device for the file or folder’s
+contents</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="inodes-indirect-blocks">
+<h2>Inodes - Indirect Blocks<a class="headerlink" href="#inodes-indirect-blocks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>The strategy of using indirect, double indirect, and even triple
+indirect blocks is a very successful implementation strategy</li>
+<li>This approach is used by ext2 / ext3 / ext4 in Linux.</li>
+</ul>
+<div class="figure align-center">
+<img alt="image" src="../_images/ext2-inode.jpg" />
+</div>
+</div>
+<div class="section" id="block-caches">
+<h2>Block Caches<a class="headerlink" href="#block-caches" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>To improve the performance of a filesystem, and to make disk
+scheduling algorithms more realizable, most operating systems
+implement some kind of block cache.</li>
+<li>The block cache allows for read-ahead and write-behind. It also
+allows for lower latency I/O operations.</li>
+<li>With a block cache, the write() system call for instance only needs
+to complete modifications to the cache before returning. The
+operating system can complete the operation on disk in a background
+thread.</li>
+<li>Without this cache, the system call would not be able to return until
+the write had been committed to disk.</li>
+<li>Important parameters of any block cache are:<ul>
+<li>The size of the cache in physical memory</li>
+<li>The delay before committing ’dirty’ items in the cache to disk</li>
+</ul>
+</li>
+<li>The larger the cache, the better the filesystem will likely perform,
+but this can come at the cost of available memory for programs.</li>
+<li>The larger the delay before writing items to the disk, the better the
+disk allocation and scheduling decisions the operating system can
+make.</li>
+<li>The shorter the delay before writing to disk, the greater the
+guarantee in the presence of failure that modifications will be
+persisted to disk.</li>
+</ul>
+</div>
+<div class="section" id="folders-and-path-traversal">
+<h2>Folders and Path Traversal<a class="headerlink" href="#folders-and-path-traversal" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">In all but the most simple filesystems, there is a concept of a
+folder and a path.</p>
+</li>
+<li><p class="first">In UNIX operating systems, folder entries are held within inodes that
+have the filetype in the mode set to type directory.</p>
+</li>
+<li><p class="first">The contents of the inode then are a list of filenames and pointers
+to the inodes of those files and/or folders.</p>
+</li>
+<li><p class="first">Resolving paths involve accessing a root folder, and accessing each
+folder recursively until reaching a file or finding the folder to be
+invalid.</p>
+</li>
+<li><p class="first">An example of path traversal. When traversing paths, the path may
+cross into different filesystems.</p>
+<blockquote>
+<div><div class="figure align-center">
+<img alt="image" src="../_images/path_traversal.jpg" />
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="virtual-filesystems-vfs">
+<h2>Virtual Filesystems / VFS<a class="headerlink" href="#virtual-filesystems-vfs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Aside from files and folders there are other things like named pipes,
+domain sockets, symbolic and hard links that need to be handled by
+the filesystem.</li>
+<li>Rather than have the semantics of these implemented in each
+filesystem implementation, many OS architectures include a virtual
+filesystem or VFS.</li>
+<li>The VFS stands between the OS kernel and the filesystem
+implementation.</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>Virtual Filesystems / VFS<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>The VFS can help adapt both foreign filesystems (such as VFAT) by
+producing a contract that these implementations can adapt to.</li>
+<li>The VFS can also help reduce code duplication between FS
+implementations by providing common structures and handling shared
+behavior:<ul>
+<li>Path traversal</li>
+<li>Handling named pipes, domain sockets, etc…</li>
+<li>Managing file handles and file locking</li>
+<li>Structures and functions for the block cache.</li>
+<li>Structures and functions for accessing storage devices</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="virtual-filesystems-and-stacking">
+<h2>Virtual Filesystems and Stacking<a class="headerlink" href="#virtual-filesystems-and-stacking" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>In some VFS implementations it is possible to stack filesystems on
+top of each other.</li>
+<li>A great example of this in Linux is UMSDOS: the base VFAT filesystem
+does not have support for users, groups, security or extended
+attributes. By creating special files on VFAT and then hiding them,
+UMSDOS can adapt VFAT to be a UNIX-like filesystem</li>
+<li>Another great example of this is UnionFS. It allows two filesystems
+to be transparently overlaid.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="distributed-filesystems">
+<h1>Distributed Filesystems<a class="headerlink" href="#distributed-filesystems" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Flat file service</dt>
+<dd><ul class="first last">
+<li>implements operations on the contents of file</li>
+<li>UFID (Unique File Ids) used to refer to files</li>
+<li>new UFID assigned when file created</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Directory  service</dt>
+<dd><ul class="first last">
+<li>provides mapping between text names and UFIDs</li>
+<li>Functions to create, update.. directories</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Client module</dt>
+<dd><ul class="first last">
+<li>runs on client computer</li>
+<li>provides APIs to access files</li>
+<li>holds information about network location of file server and directory server</li>
+<li>sometimes caching at client</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="section" id="file-service-model">
+<h2>File Service Model<a class="headerlink" href="#file-service-model" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Upload/download model</dt>
+<dd><ul class="first last">
+<li>read/write file operations</li>
+<li>entire file transferred to client</li>
+<li>requires space on client</li>
+<li>Products like SkyDrive and DropBox work like this</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Remote Access Interface</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>large number of operations</dt>
+<dd><ul class="first last">
+<li>seek, changing file attributes, read/write part of file…</li>
+<li>does not require space (as much) on client</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="directory-service">
+<h2>Directory Service<a class="headerlink" href="#directory-service" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Key issue for distributed file system</dt>
+<dd><ul class="first last">
+<li>whether all clients have the same VIEW of the directory hierarchy</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="naming-transparency">
+<h2>Naming Transparency<a class="headerlink" href="#naming-transparency" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Location Transparency</dt>
+<dd><ul class="first last">
+<li>path names give no hint as to where the files are located</li>
+<li>e.g., /server1/dir1/dir2/X indicates X located on server1 but NOT where server1 is located</li>
+<li>Problems? If X needs to be moved to another server (e.g., due to space) - say server2 - programs with strings built in will not work!</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Location Independence</dt>
+<dd><ul class="first last">
+<li>files can be moved without changing their names</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Three common approaches to file and directory naming</dt>
+<dd><ul class="first last">
+<li>Machine + path naming, such as /machine/path or machine:path (location dependent)</li>
+<li>Mounting remote file systems onto the local file hierarchy (location dependent)</li>
+<li>A single name space that looks the same on all machines (location independent)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="file-sharing-semantics">
+<h2>File Sharing Semantics<a class="headerlink" href="#file-sharing-semantics" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>When files are shared (and one or more write) what are the semantics?</li>
+</ul>
+</div>
+<div class="section" id="unix-semantics">
+<h2>UNIX Semantics<a class="headerlink" href="#unix-semantics" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>A read is always provided with the last write (system enforces absolute time ordering)</li>
+<li><dl class="first docutils">
+<dt>UNIX semantic can be achieved by</dt>
+<dd><ul class="first last">
+<li>read/write going to server</li>
+<li>no caching of files</li>
+<li>sequential processing by server</li>
+<li>BUT in distributed systems, this may perform poorly!</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>How to improve performance?</dt>
+<dd><ul class="first last">
+<li>requires caching</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Modify Semantics?</dt>
+<dd><ul class="first last">
+<li>“changes to an open file are initially visible only to the process that modified the file. When file closes, changed become visible to others”</li>
+<li>Called Session Semantics</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="more-semantics">
+<h2>More Semantics<a class="headerlink" href="#more-semantics" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Q What is the result of multiple (simultaneous) updates of cached file?</dt>
+<dd><ol class="first last arabic">
+<li>final result depends on who closed last!</li>
+<li>one of the results, but which one it is can not be specified (easier to implement)</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Immutable Files</dt>
+<dd><ul class="first last">
+<li>can only create and read files</li>
+<li>can replace existing file atomically</li>
+<li>to modify a file, create new one and replace</li>
+<li>what if two try to replace the same file?</li>
+<li>what if one is reading while another tries to replace?</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="distributed-file-system-implementation">
+<h2>Distributed File System Implementation<a class="headerlink" href="#distributed-file-system-implementation" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Need to understand file usage (so that)</dt>
+<dd><ul class="first last">
+<li>implement common operations well</li>
+<li>achieve efficiency</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>Satyanarayan (CMU) of file usage pattern on UNIX</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="system-structure">
+<h2>System Structure<a class="headerlink" href="#system-structure" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>How should the system be organized?</dt>
+<dd><ul class="first last">
+<li>are clients and server different?</li>
+<li>how are file and directory services organized?</li>
+<li><dl class="first docutils">
+<dt>caching/no caching</dt>
+<dd><ul class="first last">
+<li>server</li>
+<li>client</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>how are updates handled?</li>
+<li>sharing semantics?</li>
+<li>stateful versus stateless</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id2">
+<h2>Directory Service<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Separate</dt>
+<dd><ul class="first last">
+<li>(-) requires going to directory servers to map symbolic names onto binary names</li>
+<li>(+) functions are unrelated (e.g., implement DOS directory server and UNIX server- both use same file server</li>
+<li>(+) simpler</li>
+<li>requires more communication</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>Lookup</li>
+</ul>
+</div>
+<div class="section" id="stateless-versus-stateful">
+<h2>Stateless versus Stateful<a class="headerlink" href="#stateless-versus-stateful" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Stateless advantages</dt>
+<dd><ul class="first last">
+<li>Fault tolerance</li>
+<li>No OPEN/CLOSE calls needed</li>
+<li>No server space wasted on tables</li>
+<li>No limits on number of open files</li>
+<li>No problem if client crashes</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>For example,</dt>
+<dd><ul class="first last">
+<li>each request self contained</li>
+<li>if server crashes - no information lost</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="caching">
+<h2>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>One of the most important design considerations</dt>
+<dd><ul class="first last">
+<li>impacts performance</li>
+<li>If caching  –  how should it be done?</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="caching-server">
+<h2>Caching - Server<a class="headerlink" href="#caching-server" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Server Disk</dt>
+<dd><ul class="first last">
+<li>(+) most space</li>
+<li>(+) one copy of each file</li>
+<li>(+) no consistency problem</li>
+<li><dl class="first docutils">
+<dt>(-) performance</dt>
+<dd><ul class="first last">
+<li>each access requires disk access –&gt; server memory –&gt; network –&gt; client memory</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Server Memory</dt>
+<dd><ul class="first last">
+<li>keep MRU files in server’s memory</li>
+<li>If request satisfied from cache ==&gt; no disk transfer BUT still network transfer</li>
+<li><ol class="first upperalpha" start="17">
+<li><dl class="first docutils">
+<dt>Unit of caching? Whole files</dt>
+<dd><ul class="first last">
+<li>(+) high speed transfer</li>
+<li>(-) too much memory</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</li>
+<li>Blocks  + better use of space</li>
+<li><ol class="first upperalpha" start="17">
+<li><dl class="first docutils">
+<dt>What to replace when cache full?</dt>
+<dd><ul class="first last">
+<li>LRU</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="caching-client">
+<h2>Caching - Client<a class="headerlink" href="#caching-client" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Client Caching</li>
+<li><dl class="first docutils">
+<dt>Disk</dt>
+<dd><ul class="first last">
+<li>slower</li>
+<li>more space</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Memory</dt>
+<dd><ul class="first last">
+<li>less space</li>
+<li>faster</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>Where to cache?</li>
+<li><dl class="first docutils">
+<dt>User Address Space</dt>
+<dd><ul class="first last">
+<li>cache managed by system call library</li>
+<li>library keeps most heavily used files</li>
+<li>when process exits - written back to server</li>
+<li>(+) simple</li>
+<li>(+) low overhead</li>
+<li>(-) effective if file repeatedly used</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kernel</dt>
+<dd><ul class="first last">
+<li>(-) kernel needed in all cases )even for a cache hit)</li>
+<li>(+) cache survives beyond process ( e.g., two pass compiler - file from first pass available in cache)</li>
+<li>(+) kernel free of file system</li>
+<li>(+) more flexible</li>
+<li><dl class="first docutils">
+<dt>little control over memory space allocation</dt>
+<dd><ul class="first last">
+<li>e.g., virtual memory may result in disk operation even if cache hit</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="client-cache-consistency">
+<h2>Client - Cache Consistency<a class="headerlink" href="#client-cache-consistency" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>client caching introduces inconsistency</dt>
+<dd><ul class="first last">
+<li>one or more writers and multiple readers</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Write-thru</dt>
+<dd><ul class="first last">
+<li>similar to between processor cache and memory</li>
+<li>when a block modified - immediately sent to server (also kept in cache)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>problem</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>client on machine 1 reds file</dt>
+<dd><ul class="first last">
+<li>modify file (server updated)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>client on machine 2 reads and modifies files</dt>
+<dd><ul class="first last">
+<li>server updated</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>another client on machine 1 reads file</dt>
+<dd><ul class="first last">
+<li>gets local copy (which is stale)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>solution: write-thru</dt>
+<dd><ul class="first last">
+<li>cache manager checks with the server before providing file to client</li>
+<li><dl class="first docutils">
+<dt>If local copy upto-date</dt>
+<dd><ul class="first last">
+<li>provide to client</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>Else get from server</li>
+<li>RPC for check is not as expensive as file access</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Performance problems</dt>
+<dd><ul class="first last">
+<li>read is fine</li>
+<li>each write generates network traffic (very expensive)</li>
+<li>compromise - periodic updates (say 30 sec) of writes</li>
+<li>collected and sent to server</li>
+<li>eliminates writing of many scratch files completely (which otherwise would be written)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>Note- semantics have changed for delayed writes</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="client-cache-consistency-other-options">
+<h2>Client - Cache Consistency - Other Options<a class="headerlink" href="#client-cache-consistency-other-options" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Write-on-Close</dt>
+<dd><ul class="first last">
+<li>session semantics</li>
+<li><dl class="first docutils">
+<dt>wait (delay - say 30 sec) after close to see if file deleted</dt>
+<dd><ul class="first last">
+<li>in that case write eliminated</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Centralized Control</dt>
+<dd><ul class="first last">
+<li>File server keeps track of who has file and in what mode</li>
+<li>if new request for read - server checks to see if file opened read/write</li>
+<li>if read  - grant request</li>
+<li>if write - deny request</li>
+<li>when file closed - inform others</li>
+<li>Many variations possible</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="replication">
+<h2>Replication<a class="headerlink" href="#replication" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Multiple copies of files for</dt>
+<dd><ul class="first last">
+<li>increased reliability so no data is lost</li>
+<li>increased availability when one server is down</li>
+<li>improved performance through division of load</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="replication-update-protocols">
+<h2>Replication - Update Protocols<a class="headerlink" href="#replication-update-protocols" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>send update to each file in sequence</dt>
+<dd><ul class="first last">
+<li>problem - if process updating crashes in the middle ==&gt; inconsistent copies</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Primary Copy Replication</dt>
+<dd><ul class="first last">
+<li>one server designed as primary</li>
+<li>primary updated (changes made locally by primary server)</li>
+<li>primary server updates secondary copies</li>
+<li>reads can be done from any copy</li>
+<li><dl class="first docutils">
+<dt>to guard against primary copy failure</dt>
+<dd><ul class="first last">
+<li>updates first stored on stable storage</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>But if primary copy down - No update can be made!!</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="replication-voting-algorithm">
+<h2>Replication - Voting Algorithm<a class="headerlink" href="#replication-voting-algorithm" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Requires clients to acquire permission of multiple servers before reading/writing file</li>
+<li>File replicated on N servers - to update client needs to contact  majority , N/2 + 1 servers</li>
+<li>File changed and new version no assigned</li>
+<li><dl class="first docutils">
+<dt>To read - client contacts N/2 + 1 servers</dt>
+<dd><ul class="first last">
+<li>will always get the latest version</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="replication-general-quorum-algorithm">
+<h2>Replication - General Quorum Algorithm<a class="headerlink" href="#replication-general-quorum-algorithm" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>No of replicas - N</li>
+<li>Read Quorum - Nr</li>
+<li>Write Quorum - Nw</li>
+<li>Constraints  Nr + Nw &gt; N</li>
+<li>Read/write requires participation of the corresponding quorum</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="case-study-sun-nfs">
+<h1>Case Study - SUN NFS<a class="headerlink" href="#case-study-sun-nfs" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>NFS - Network File System</dt>
+<dd><ul class="first last">
+<li>designed to allow an arbitrary collection of clients and servers to share a common file system</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Design Goals</dt>
+<dd><ul class="first last">
+<li>heterogeneity</li>
+<li>access transparency</li>
+<li>local and remote accesses look the same - e.g., normal UNIX system calls</li>
+<li>failure transparency</li>
+<li>stateless</li>
+<li>idempotent</li>
+<li>performance transparency</li>
+<li>client caching</li>
+<li>server caching</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Location Transparency</dt>
+<dd><ul class="first last">
+<li>client establishes file name space by adding remote file systems to local name space</li>
+<li>file system exported by servers (node holding it)</li>
+<li>file system remote-mounted by  client</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Not Supported in Design Goals</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Replication transparency</dt>
+<dd><ul class="first last">
+<li>separate service for replication (NIS)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Concurrency</dt>
+<dd><ul class="first last">
+<li>Naïve locking</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Scalability</dt>
+<dd><ul class="first last">
+<li>limited</li>
+<li>originally designed to support 5-10 clients</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="section" id="sun-nfs-implementation">
+<h2>SUN NFS - Implementation<a class="headerlink" href="#sun-nfs-implementation" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>VFS Layer</dt>
+<dd><ul class="first last">
+<li>maintains table with one entry for each open file</li>
+<li>entry called v-node (indicates  whether local or remote)</li>
+<li>v-node points to I-node (for local files) and r-node (for remote files)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Typical Operation</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Read</dt>
+<dd><ul class="first last">
+<li>locate v-node</li>
+<li>determine local or remote</li>
+<li>transfer occurs in 8K (normally) byte blocks</li>
+<li>automatic prefetching (read-ahead) of next block</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Write</dt>
+<dd><ul class="first last">
+<li>writes not immediately written to server</li>
+<li>8K bytes collected before writing</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Caching</dt>
+<dd><ul class="first last">
+<li>server caches (to reduce disk accesses)</li>
+<li><dl class="first docutils">
+<dt>client maintains cache for</dt>
+<dd><ul class="first last">
+<li>for file attributes (I-nodes)</li>
+<li>for file data</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>cache block consistency problems</dt>
+<dd><ul class="first last">
+<li>with each cache block is a timer</li>
+<li>entry discarded when timer expired</li>
+<li>when file opened- server checked for last modification of file</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>UNIX semantics not completely enforced</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../directories/directories.html" class="btn btn-neutral float-right" title="Directories and LDAP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../concurrency/concurrency.html" class="btn btn-neutral float-left" title="Concurrency and Threads" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

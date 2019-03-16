@@ -1,0 +1,962 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Message Passing Interface &mdash; Distributed Systems v0.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="SMTP" href="../smtp/smtp.html" />
+    <link rel="prev" title="Distributed Queues" href="../queue/queue.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Distributed Systems
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../issues/issues.html">Introduction and Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../networking/networking.html">Networking Primer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concurrency/concurrency.html">Concurrency and Threads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html">Distributed Systems and Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#storage-devices">Storage Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#local-storage">Local Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#distributed-filesystems">Distributed Filesystems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/storage.html#case-study-sun-nfs">Case Study - SUN NFS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../directories/directories.html">Directories and LDAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maven/maven.html">Project Build Management With Maven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ci/ci.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clocks/clocks.html">Clocks and Synchronization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trans/trans.html">Distributed Transactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dns/dns.html">Domain Name Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queue/queue.html">Distributed Queues</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Message Passing Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#credits">Credits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lecture-code">Lecture Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-mpi">What is MPI?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#uses-of-mpi">Uses of MPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parallel-computing">Parallel Computing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#monte-carlo-simulations">Monte Carlo Simulations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-mpi-programming-model">The MPI Programming Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-processes-ranks">Multiple Processes - Ranks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-a-simple-mpi-program">Writing a Simple MPI Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hello-world">Hello World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-mpi-program">Running the MPI Program</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#communication-is-key">Communication is Key</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-communicator">The Communicator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#point-to-point">Point to Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collective">Collective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#barriers">Barriers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#all-to-one">All-to-One</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#one-to-all">One-to-All</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#all-to-all">All-to-All</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#combining-results">Combining Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mpi-and-distributed-topics">MPI and Distributed Topics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-points">General Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#openness">Openness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scalability">Scalability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fault-tolerance">Fault Tolerance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transparency">Transparency</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../smtp/smtp.html">SMTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corba/corba.html">Object Brokers and CORBA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rest/rest.html">REST and Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nosql/nosql.html">NoSQL Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agents/agents.html">Distributed Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_spark/apache_spark.html">Apache Spark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bit_torrent/bit_torrent.html">BitTorrent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop/hadoop.html">Hadoop Distributed File System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../message_queues/message_queues.html">Message Queues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../object_brokering/object_brokering.html">Object Brokering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rsync/rsync.html">File Sychronization and rsync</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../volunteer/volunteer.html">Volunteer Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/cloud.html">Cloud Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iot/iot.html">Internet of Things and Pervasive Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../election/election.html">Election Algorithms</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Distributed Systems</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Message Passing Interface</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/mpi/mpi.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="message-passing-interface">
+<h1>Message Passing Interface<a class="headerlink" href="#message-passing-interface" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="credits">
+<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>This lecture was written originally Brian Gathright, a former graduate student. It as since been adapted into this course’s lecture notes</li>
+</ul>
+</div>
+<div class="section" id="lecture-code">
+<h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="code/mpi">MPI Code Samples</a></p>
+</div>
+<div class="section" id="what-is-mpi">
+<h2>What is MPI?<a class="headerlink" href="#what-is-mpi" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>MPI stands for Message Passing Interface.</li>
+<li>MPI is used to send messages from one process (computer, workstation etc.) to another. These messages can contain data ranging from primitive types (integers, strings and so forth) to actual objects.</li>
+<li><dl class="first docutils">
+<dt>MPI is only an interface, as such you will need an Implementation of MPI before you can start coding.</dt>
+<dd><ul class="first last">
+<li>The interface itself lists the functions that any implementation of it must be able to perform.</li>
+<li>As such, MPI implementations are standardized on the basis that they all conform to the overarching interface.</li>
+<li>Think of MPI as a protocol: it defines the rules for Message Passing, but it is up to implementations to implement functions that follow the rules.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>MPI is a language-independent communications protocol. Implementations of MPI have been developed for several different languages.</dt>
+<dd><ul class="first last">
+<li>For example, pyMPI is used for Python and MPI.NET is used for C#. Note: in this lecture we are using MPI.NET and C#.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>To summarize: MPI is a message passing library whose implementations are used to send messages (data, instructions, etc.) to other processes in order to perform specific tasks. In this way MPI is very much a Distributed topic.</li>
+</ul>
+<div class="section" id="uses-of-mpi">
+<h3>Uses of MPI<a class="headerlink" href="#uses-of-mpi" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>MPI is helpful whenever you need several workstations (or clusters) to work together efficiently and effectively.</li>
+<li>Two examples of such tasks are Parallel Computing and Monte Carlo Simulations.</li>
+</ul>
+</div>
+<div class="section" id="parallel-computing">
+<h3>Parallel Computing<a class="headerlink" href="#parallel-computing" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Parallel computing is a form of computation in which multiple calculations are done at the same time.</p>
+</li>
+<li><p class="first">For example, imagine you want to calculate the sum of a large amount of numbers (as in hundreds of thousands). You could do this several ways.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Obviously, you could simply sum all the numbers in a linear fashion with one process. If there are a ton of numbers, this is not ideal.</li>
+<li>You could improve your solution by implementing threading, but this would require you to have a lot of overhead for making sure the threads communicate effectively. That is they need to be assigned explicit numbers to sum and where to save those numbers. We would also need a master (or root) thread to get all of the info from the other threads. Not to mention you would need to make everything thread safe. This sounds bothersome.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Luckily, MPI would make this type of problem fairly painless. MPI can make use of collective functions (more on that in a minute), in which one process, the root, can communicate with all other processes. Using an MPI call the root process can assign numbers to the other processes and allot space for where the results should go. Once the other processs receive their numbers they sum them and return the results to the root process. The root process can then simply sum the sums. That’s it. We will look at the code in a bit.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="monte-carlo-simulations">
+<h3>Monte Carlo Simulations<a class="headerlink" href="#monte-carlo-simulations" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Briefly, Monte Carlo computations are computations that rely on random simulations that are done repeatably to derive probablities.</li>
+<li>MPI works great for this! Imagine you want to calculate the approximate value of Pi.</li>
+<li>One way of doing this is to simulate throwing darts at a circle inside a square. The ratio of darts inside the circle is the approximate value of Pi. Just like the summation problem above, we can do this in a linear fashion.</li>
+<li>However, MPI would allow us to scale up the number of simulations we do. For example, we could throw 1000 darts at a board, but our results would be much more accurate if we threw 1000 darts at 10 different boards. With MPI we can do that: each operation is done on a different process and in parallel. The results can then be compiled and are much closer.</li>
+</ul>
+</div>
+<div class="section" id="the-mpi-programming-model">
+<h3>The MPI Programming Model<a class="headerlink" href="#the-mpi-programming-model" title="Permalink to this headline">¶</a></h3>
+<p>Now that you see that MPI has uses and benefits, let us talk briefly on the nitty-gritty details of how an implementation of MPI
+looks and works. All implementations of MPI should have the following capabilities.</p>
+</div>
+<div class="section" id="multiple-processes-ranks">
+<h3>Multiple Processes - Ranks<a class="headerlink" href="#multiple-processes-ranks" title="Permalink to this headline">¶</a></h3>
+<p>As mentioned above, MPI works on multiple processes, that is multiple computers in a workstation or cluster all working together (or all on one machine).
+In MPI, each process is assigned a Rank. Rank is used to split up the work and allow communication between the processes and also
+to allow specific processes to have specific tasks. In our Summation example, the Root process (Rank 0), was responsible for sending
+out the tasks (the numbers to be summed) while all other processes (Rank’s 1 - N) were responsible for summing a list of numbers and returning
+the results. By convention, the root is always Rank 0 and is generally the master process, assuming your program needs such a process.</p>
+<p>A naive approach to setting this up would be to define the root process, give it specific instructions, and then define the other processes. We could do this via classes for example.
+However, MPI does this for us (by assigning the ranks) and so we can simply write our code with reference to Ranks.
+For instance, the summing example could look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">Rank</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="p">{</span>
+        <span class="n">assign</span> <span class="n">numbers</span><span class="p">;</span>
+        <span class="n">wait</span> <span class="k">for</span> <span class="n">responses</span><span class="p">;</span>
+        <span class="nb">sum</span> <span class="n">the</span> <span class="n">responses</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">the</span> <span class="nb">sum</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">else</span>
+<span class="p">{</span>
+        <span class="n">wait</span> <span class="k">for</span> <span class="n">numbers</span><span class="p">;</span>
+        <span class="nb">sum</span> <span class="n">them</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">them</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this way we only have to write the program once, and then the processes will know what to do based on their Rank.
+Each process is running the same program, but is working on different parts of it. We will look back at the Summation problem later on.</p>
+</div>
+<div class="section" id="writing-a-simple-mpi-program">
+<h3>Writing a Simple MPI Program<a class="headerlink" href="#writing-a-simple-mpi-program" title="Permalink to this headline">¶</a></h3>
+<p>In order to write your own MPI programs you will need an Implementation of MPI for the language you wish to code in.</p>
+<p>We used:</p>
+<ul class="simple">
+<li>MPI.NET: <a class="reference external" href="http://osl.iu.edu/research/mpi.net/software/">http://osl.iu.edu/research/mpi.net/software/</a></li>
+<li>Microsoft Compute Cluster Server: <a class="reference external" href="http://www.microsoft.com/en-us/download/details.aspx?id=239">http://www.microsoft.com/en-us/download/details.aspx?id=239</a> is necessary for cluster work.</li>
+<li>The above two are a bit obsolete on the Microsoft platform. Search for Microsoft HPC Server 2012 R2. This takes some work to setup, but is very doable.</li>
+</ul>
+<p>Once you have an implementation installed you can begin coding. You will need to reference that you wish to use MPI (in C# this is done by the “using” statement at the top of your code). You will also need to add MPI to your project references. Next inside your code you will need to set up an MPI Environment.
+In C# the skeleton looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">System</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">MPI</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MPIProgram</span>
+<span class="p">{</span>
+        <span class="n">static</span> <span class="n">void</span> <span class="n">Main</span><span class="p">(</span><span class="n">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+                <span class="n">using</span> <span class="p">(</span><span class="n">new</span> <span class="n">MPI</span><span class="o">.</span><span class="n">Environment</span><span class="p">(</span><span class="n">ref</span> <span class="n">args</span><span class="p">))</span>
+                <span class="p">{</span>
+                        <span class="o">//</span> <span class="n">code</span> <span class="n">goes</span> <span class="ow">in</span> <span class="n">here</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>All of your code must go inside the MPI Environment, that way MPI can handle setting up and tearing down the environment for you.</p>
+</div>
+<div class="section" id="hello-world">
+<h3>Hello World<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h3>
+<p>Assume we want to write the quintessential Hello World program. We could simply add</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">void</span> <span class="n">Main</span><span class="p">(</span><span class="n">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="n">using</span> <span class="p">(</span><span class="n">new</span> <span class="n">MPI</span><span class="o">.</span><span class="n">Environment</span><span class="p">(</span><span class="n">ref</span> <span class="n">args</span><span class="p">))</span>
+        <span class="p">{</span>
+                <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>However, that would be boring; every process would just print the same thing. Instead let’s make the output vary based on rank:</p>
+<p>Here is the code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">void</span> <span class="n">Main</span><span class="p">(</span><span class="n">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">using</span> <span class="p">(</span><span class="n">new</span> <span class="n">MPI</span><span class="o">.</span><span class="n">Environment</span><span class="p">(</span><span class="n">ref</span> <span class="n">args</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="o">//</span><span class="n">root</span><span class="s1">&#39;s instructions</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">Communicator</span><span class="o">.</span><span class="n">world</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Hello, World! I am the root.&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="o">//</span><span class="n">non</span><span class="o">-</span><span class="n">root</span><span class="s1">&#39;s instructions</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Hello, World! I am rank &quot;</span> <span class="o">+</span> <span class="n">Communicator</span><span class="o">.</span><span class="n">world</span><span class="o">.</span><span class="n">Rank</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-the-mpi-program">
+<h3>Running the MPI Program<a class="headerlink" href="#running-the-mpi-program" title="Permalink to this headline">¶</a></h3>
+<p>We can run the program from the command line using MPI. Most implementations use “mpiexec”, though it might vary slightly.
+For MPI.NET we would write:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;mpiexec.exe ProgramName.exe&quot;</span>
+</pre></div>
+</div>
+<p>However, this would only run with one process and so our output would just be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Hello, World! I am the root.
+</pre></div>
+</div>
+<p>MPI makes it easy to launch N processes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;mpiexec.exe -n 5 ProgramName.exe&quot;</span>
+</pre></div>
+</div>
+<p>would launch 5 processes and so the output would now be something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Hello, World! I am the root.
+Hello, World! I am rank 3.
+Hello, World! I am rank 4.
+Hello, World! I am rank 1.
+Hello, World! I am rank 2.
+</pre></div>
+</div>
+<p>The order the processes print will vary each call. This is due to the fact they are all run concurrently.</p>
+<p>Note: In our examples we only launched processes from our local computer, but this is similar to how it would work on a cluster of computers. In the call to mpiexec.exe you also supply the host and the names of the various workstations.</p>
+</div>
+</div>
+<div class="section" id="communication-is-key">
+<h2>Communication is Key<a class="headerlink" href="#communication-is-key" title="Permalink to this headline">¶</a></h2>
+<p>Our Hello World program is technically an MPI program, but there was no actual communication between the different processes. Let’s remedy that.</p>
+<p>MPI allows two major types of communication: Point to Point and Collectives. Before we get to those, let’s briefly discuss the Communicator object.</p>
+<div class="section" id="the-communicator">
+<h3>The Communicator<a class="headerlink" href="#the-communicator" title="Permalink to this headline">¶</a></h3>
+<p>The Communicator is crucial to MPI projects.
+The Communicator is what allows the different processes to, well, communicate with eachother.
+MPI programs can have several Communicators.
+In the HelloWorld example we used “Communicator.world.Rank”.
+All projects will have the “world” Communicator.
+This Communicator is useful because it keeps track of all the different ranks of the processes within our project.</p>
+<p>More advanced projects may have several Communicators each with their own amount of processes.
+Multiple Communicators are needed if you want to section off the processes in your code such that only certain processes receive messages to and from each other.</p>
+<p>You will notice all of our code uses the world communicator for sending and receiving messages. For convenience sake we use the variable comm to refer to Communicator.world.</p>
+</div>
+<div class="section" id="point-to-point">
+<h3>Point to Point<a class="headerlink" href="#point-to-point" title="Permalink to this headline">¶</a></h3>
+<p>Point to Point communication is the most basic. This is simply when the processes communicate on a one to one basis. Rank 0 talks to
+Rank 1, Rank 1 talks to Rank 2 etc. or even more simply Rank 0 talks to Rank 1 and Rank 1 talks to Rank 0. Point to Point can have its
+uses, but we will primarily use it to illustrate message sending and then focus on the more exciting Collective Communication.</p>
+<p>Point to Point makes use of the Send and Receive functions.</p>
+<p>The Send function is used to send the messages. The send message takes three parameters (data, rank, tag)</p>
+<ul class="simple">
+<li>data is what we are sending</li>
+<li>rank is the rank of the destination of the message</li>
+<li>tag is used to differieniate between types of messages.<ul>
+<li>tags are useful for when we are sendign around multiple types of data, such as integers and strings. We could tag all integers with 0 and all
+strings with 1. When a message is received it is only used if the tag matches, this is so we don’t accidentally receive an integer in place of a string.</li>
+</ul>
+</li>
+</ul>
+<p>Before we continue let us talk really briefly about what data can be sent. All implementations of MPI need to be able to send primitive types.
+Depending on your implementation of MPI you can also send other things. For example, MPI.NET allows the sending of:</p>
+<ul class="simple">
+<li>Primitive Types (integers, strings, floats…)</li>
+<li>Structures</li>
+<li>Serializable Classes</li>
+</ul>
+<p>What you send can effect perfomance. Primitives and Structures are generally sent in a single message and are the “fastest”.
+Classes need to be serialized and can be split up between multiple messages, which is obviously slower. But, if you need the classes
+then there isn’t much you can do.</p>
+<p>Now let’s move on to the recieve function.</p>
+<p>The receive function is similar with parameters (rank, tag)</p>
+<ul class="simple">
+<li>rank is used so it knows who is sending the data</li>
+<li>tag for the reasons mentioned above: if the tags don’t match that’s not the message we want.</li>
+</ul>
+<p>When you receive a primitive type you must match it directly, i.e. you can’t receive a message with a string and save it as an integer.
+However, with classes you can receive it via its base class. For example you can receive a poodle as a dog.</p>
+<p>When you send Arrays you must make sure the receiving side has an array with enough room.</p>
+<p>One final note is that Point to Point can be blocking or unblocking. Blocking means the process will not continue until it has received its message.
+Unblocking means the process can continue executing steps while waiting for its message.</p>
+<p>For this example let’s simply pass a string around between our processes, starting at the root and ultimately returning to the root. Each process will
+add something to the string and print it so we can see the progress of our message.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">void</span> <span class="n">Main</span><span class="p">(</span><span class="n">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">using</span> <span class="p">(</span><span class="n">new</span> <span class="n">MPI</span><span class="o">.</span><span class="n">Environment</span><span class="p">(</span><span class="n">ref</span> <span class="n">args</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">Intracommunicator</span> <span class="n">comm</span> <span class="o">=</span> <span class="n">Communicator</span><span class="o">.</span><span class="n">world</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Root: Let&#39;s play a game of telephone!&quot;</span><span class="p">);</span>
+
+            <span class="n">string</span> <span class="n">originalMsg</span> <span class="o">=</span> <span class="s2">&quot;chicago&quot;</span><span class="p">;</span>
+
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Root: The inital word is: </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">originalMsg</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">.&quot;</span><span class="p">);</span>
+            <span class="n">comm</span><span class="o">.</span><span class="n">Send</span><span class="p">(</span><span class="n">originalMsg</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+            <span class="o">//</span><span class="n">example</span> <span class="n">of</span> <span class="n">a</span> <span class="n">blocking</span> <span class="n">Receieve</span>
+            <span class="n">string</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Receive</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Communicator</span><span class="o">.</span><span class="n">anySource</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+            <span class="o">//</span><span class="ow">not</span> <span class="n">printed</span> <span class="n">until</span> <span class="n">the</span> <span class="n">message</span> <span class="ow">is</span> <span class="n">received</span><span class="o">.</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">Equals</span><span class="p">(</span><span class="n">originalMsg</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Root: Good job guys! You got it!&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Root: Close enough...&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="o">//</span><span class="n">more</span> <span class="n">blocking</span> <span class="n">Recieves</span>
+            <span class="n">string</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Receive</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+            <span class="n">string</span> <span class="n">newMsg</span> <span class="o">=</span> <span class="n">jumble</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="n">newMsg</span><span class="p">);</span>
+
+            <span class="n">comm</span><span class="o">.</span><span class="n">Send</span><span class="p">(</span><span class="n">newMsg</span><span class="p">,</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">comm</span><span class="o">.</span><span class="n">Size</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="o">//</span><span class="n">switches</span> <span class="n">two</span> <span class="n">letters</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">word</span>
+<span class="n">static</span> <span class="n">string</span> <span class="n">jumble</span><span class="p">(</span><span class="n">string</span> <span class="n">word</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Random</span> <span class="n">rand</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Random</span><span class="p">();</span>
+    <span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">rand</span><span class="o">.</span><span class="n">Next</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">word</span><span class="o">.</span><span class="n">Length</span><span class="p">);</span>
+    <span class="nb">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">rand</span><span class="o">.</span><span class="n">Next</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">word</span><span class="o">.</span><span class="n">Length</span><span class="p">);</span>
+    <span class="n">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="n">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">word</span><span class="o">.</span><span class="n">Length</span><span class="p">;</span> <span class="n">x</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">sb</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="n">x</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="n">char</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">sb</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="n">sb</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sb</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+    <span class="n">sb</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">sb</span><span class="o">.</span><span class="n">ToString</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>output with 4 processes and word “chicago”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Root</span><span class="p">:</span> <span class="n">Let</span><span class="s1">&#39;s play a game of telephone.</span>
+<span class="n">Root</span><span class="p">:</span> <span class="n">The</span> <span class="n">inital</span> <span class="n">word</span> <span class="ow">is</span> <span class="s2">&quot;chicago&quot;</span><span class="o">.</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">chicaog</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">hcicaog</span>
+<span class="mi">3</span><span class="p">:</span> <span class="n">hcciaog</span>
+<span class="n">Root</span><span class="p">:</span> <span class="n">Close</span> <span class="n">enough</span><span class="o">...</span>
+</pre></div>
+</div>
+<p>We could just have easily sent an array around and change values or an integer.</p>
+<p>This example used blocking receive: processes waited until they received a message from their neighbor. Hence, the order will always be 1, 2, 3, … n</p>
+<p>Here is a really simple example with unblocking receive.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">void</span> <span class="n">Main</span><span class="p">(</span><span class="n">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">using</span> <span class="p">(</span><span class="n">new</span> <span class="n">MPI</span><span class="o">.</span><span class="n">Environment</span><span class="p">(</span><span class="n">ref</span> <span class="n">args</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">Intracommunicator</span> <span class="n">comm</span> <span class="o">=</span> <span class="n">Communicator</span><span class="o">.</span><span class="n">world</span><span class="p">;</span>
+        <span class="o">//</span><span class="n">root</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Root sent a message to Rank 1&quot;</span><span class="p">);</span>
+
+            <span class="n">comm</span><span class="o">.</span><span class="n">Send</span><span class="p">(</span><span class="s2">&quot;blah&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+            <span class="o">//</span><span class="n">nonblocking</span> <span class="n">receive</span>
+            <span class="n">Request</span> <span class="n">receive</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">ImmediateReceive</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;We are performing a nonblocking receive, so we can print instantly.&quot;</span><span class="p">);</span>
+            <span class="n">receive</span><span class="o">.</span><span class="n">Wait</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="o">//</span><span class="ow">not</span> <span class="n">the</span> <span class="n">root</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">comm</span><span class="o">.</span><span class="n">Receive</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+            <span class="o">//</span><span class="n">Rank</span> <span class="mi">1</span> <span class="n">will</span> <span class="n">wait</span> <span class="n">half</span> <span class="n">a</span> <span class="n">second</span> <span class="n">before</span> <span class="n">sending</span> <span class="n">response</span>
+            <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">Thread</span><span class="o">.</span><span class="n">Sleep</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span>
+
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;We waited half a second before sending something to the root.&quot;</span><span class="p">);</span>
+            <span class="n">comm</span><span class="o">.</span><span class="n">Send</span><span class="p">(</span><span class="s2">&quot;blah&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;If root was blocking, it wouldn&#39;t have been able to print until now!&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Root</span> <span class="n">sent</span> <span class="n">a</span> <span class="n">message</span> <span class="n">to</span> <span class="n">Rank</span> <span class="mi">1</span>
+<span class="n">We</span> <span class="n">are</span> <span class="n">performing</span> <span class="n">a</span> <span class="n">nonblocking</span> <span class="n">receive</span><span class="p">,</span> <span class="n">so</span> <span class="n">we</span> <span class="nb">print</span> <span class="n">instantly</span><span class="o">.</span>
+<span class="n">We</span> <span class="n">waited</span> <span class="n">half</span> <span class="n">a</span> <span class="n">second</span> <span class="n">before</span> <span class="n">sending</span> <span class="n">something</span> <span class="n">to</span> <span class="n">the</span> <span class="n">root</span><span class="o">.</span>
+<span class="n">If</span> <span class="n">root</span> <span class="n">was</span> <span class="n">blocking</span><span class="p">,</span> <span class="n">it</span> <span class="n">wouldn</span><span class="s1">&#39;t have been able to print until now!</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="collective">
+<h3>Collective<a class="headerlink" href="#collective" title="Permalink to this headline">¶</a></h3>
+<p>The other type of communication we can do is Collective, that is all the processes communicate with each other in one way or another.
+You could probably do all of your coding in Point to Point Communication, but this would get messy pretty quickly. Here are two reasons
+to consider Collective Communication:</p>
+<ul class="simple">
+<li>Code Readability and Maintainability.<ul>
+<li>It is easier to read and maintain code with collectives.</li>
+<li>For example if we want to send something to every process it would require N^2 point to point communications, with a collective it is one simple call.</li>
+</ul>
+</li>
+<li>Performance<ul>
+<li>MPI has designed algorithms that are optimized to do collective communication. As mentioned above, we can also save a lot of time having one call versus several.</li>
+</ul>
+</li>
+</ul>
+<p>The five major ways of communication that MPI implements are:</p>
+<ul class="simple">
+<li>barriers: wait for others before proceeding
+- uses Barrier</li>
+<li>all-to-one: all processes send data to one
+- uses Gather and Allgather</li>
+<li>one-to-all: sends data to all processes from one
+- uses Broadcast and Scatter</li>
+<li>all-to-all: all processes send data to all processes
+- uses Alltoall</li>
+<li>combining results: get results from every process and do something with it.
+- uses Reduce</li>
+</ul>
+</div>
+<div class="section" id="barriers">
+<h3>Barriers<a class="headerlink" href="#barriers" title="Permalink to this headline">¶</a></h3>
+<p>Barriers are not exclusive to MPI. You might have encountered them before when using threads. A barrier simply blocks all processes
+from going past a certain point in your code until all processes are at that point, hence the name: barrier.</p>
+<p>In MPI its as simple as calling the Barrier function.</p>
+<p>Put barriers where you need every process to be on the same page before proceeding.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">void</span> <span class="n">Main</span><span class="p">(</span><span class="n">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">using</span> <span class="p">(</span><span class="n">new</span> <span class="n">MPI</span><span class="o">.</span><span class="n">Environment</span><span class="p">(</span><span class="n">ref</span> <span class="n">args</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">Intracommunicator</span> <span class="n">comm</span> <span class="o">=</span> <span class="n">Communicator</span><span class="o">.</span><span class="n">world</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Get to the CHOPPA!&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">Random</span> <span class="n">rand</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Random</span><span class="p">();</span>
+            <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">Thread</span><span class="o">.</span><span class="n">Sleep</span><span class="p">(</span><span class="n">rand</span><span class="o">.</span><span class="n">Next</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">7000</span><span class="p">));</span>
+        <span class="p">}</span>
+
+        <span class="n">comm</span><span class="o">.</span><span class="n">Barrier</span><span class="p">();</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Everyone is on the CHOPPA!&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Get to the CHOPPA!
+//waits until all the sleeps are finished
+Everyone is on the CHOPPA!
+</pre></div>
+</div>
+</div>
+<div class="section" id="all-to-one">
+<h3>All-to-One<a class="headerlink" href="#all-to-one" title="Permalink to this headline">¶</a></h3>
+<p>This type of communication is where one process requests information from all the other processes.</p>
+<p>The Gather and Allgather functions are used.</p>
+<p>Gather has two parameters: (value, rank of destination). The call to Gather returns to the destination an array of whatever the
+value returns based on the rank of each process. For example we could just call gather(comm.rank, 0) and we would have an array of all
+the ranks of processes we have. The ith value in the array corresponds to the value provided by the process with rank i.</p>
+<p>Allgather is similar, but it sends data from all the processes to all the processes. In gather anyone who isn’t the root will just have
+an empty array, in Allgather everyone will have a copy of an array that contains everyone.</p>
+<p>Generally the root does all the gathering. Say we want all the processes to pick a random number between 1 and 1000 and we want the root
+to sort the numbers and print them out.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">void</span> <span class="n">Main</span><span class="p">(</span><span class="n">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">using</span> <span class="p">(</span><span class="n">new</span> <span class="n">MPI</span><span class="o">.</span><span class="n">Environment</span><span class="p">(</span><span class="n">ref</span> <span class="n">args</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">Intracommunicator</span> <span class="n">comm</span> <span class="o">=</span> <span class="n">Communicator</span><span class="o">.</span><span class="n">world</span><span class="p">;</span>
+        <span class="n">Random</span> <span class="n">rand</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Random</span><span class="p">();</span>
+
+        <span class="o">//</span><span class="n">root</span><span class="s1">&#39;s array will contain all the values returned by the rand call. all other nodes will have an empty array.</span>
+        <span class="nb">int</span><span class="p">[]</span> <span class="n">randomNums</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Gather</span><span class="p">(</span><span class="n">rand</span><span class="o">.</span><span class="n">Next</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1001</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Array</span><span class="o">.</span><span class="n">Sort</span><span class="p">(</span><span class="n">randomNums</span><span class="p">);</span>
+
+            <span class="n">foreach</span> <span class="p">(</span><span class="nb">int</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">randomNums</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>example output with 6 processes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">117</span>
+<span class="mi">520</span>
+<span class="mi">722</span>
+<span class="mi">835</span>
+<span class="mi">877</span>
+<span class="mi">979</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="one-to-all">
+<h3>One-to-All<a class="headerlink" href="#one-to-all" title="Permalink to this headline">¶</a></h3>
+<p>This type of communication is where one process sends information to all the other processes.</p>
+<p>The Broadcast and Scatter commands are used.</p>
+<p>Broadcast has two parameters (value, rank)
+It sends the same value to each process for them to do whatever they want to do with.</p>
+<p>Scatter is similar except it’s value is an array and it sends the ith entry in the array to the ith process, thus spreading out
+different info to differnt processes.</p>
+<p>Say a Professor wants his students to each write a chapter of a book… here is a program that could assign chapters.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">void</span> <span class="n">Main</span><span class="p">(</span><span class="n">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">using</span> <span class="p">(</span><span class="n">new</span> <span class="n">MPI</span><span class="o">.</span><span class="n">Environment</span><span class="p">(</span><span class="n">ref</span> <span class="n">args</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">Intracommunicator</span> <span class="n">comm</span> <span class="o">=</span> <span class="n">Communicator</span><span class="o">.</span><span class="n">world</span><span class="p">;</span>
+        <span class="nb">int</span> <span class="n">root</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">string</span><span class="p">[]</span> <span class="n">nums</span> <span class="o">=</span> <span class="n">new</span> <span class="n">string</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="n">root</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">nums</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Chapter 1: MPI&quot;</span><span class="p">;</span>
+            <span class="n">nums</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Chapter 2: BitCoins&quot;</span><span class="p">;</span>
+            <span class="n">nums</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Chapter 3: MongoDB&quot;</span><span class="p">;</span>
+            <span class="n">nums</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Chapter 4: How to Make a Sandwich&quot;</span><span class="p">;</span>
+
+            <span class="o">//</span><span class="k">if</span> <span class="n">the</span> <span class="n">rank</span> <span class="ow">is</span> <span class="n">yours</span><span class="p">,</span> <span class="n">then</span> <span class="n">you</span> <span class="n">are</span> <span class="n">sending</span> <span class="n">the</span> <span class="n">data</span>
+            <span class="n">comm</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">root</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="o">//</span><span class="k">if</span> <span class="n">the</span> <span class="n">rank</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">yours</span><span class="p">,</span> <span class="n">then</span> <span class="n">you</span> <span class="n">are</span> <span class="n">receiving</span> <span class="n">data</span>
+            <span class="n">string</span> <span class="n">value</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">root</span><span class="p">);</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">+</span> <span class="s2">&quot; was assigned &quot;</span> <span class="o">+</span> <span class="n">value</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>output (note this example is currently hardcoded for 5 processes):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="n">was</span> <span class="n">assigned</span> <span class="n">Chapter</span> <span class="mi">1</span><span class="p">:</span> <span class="n">MPI</span>
+<span class="mi">4</span> <span class="n">was</span> <span class="n">assigned</span> <span class="n">Chapter</span> <span class="mi">4</span><span class="p">:</span> <span class="n">How</span> <span class="n">to</span> <span class="n">Make</span> <span class="n">a</span> <span class="n">Sandwich</span>
+<span class="mi">3</span> <span class="n">was</span> <span class="n">assigned</span> <span class="n">Chapter</span> <span class="mi">3</span><span class="p">:</span> <span class="n">MongoDB</span>
+<span class="mi">2</span> <span class="n">was</span> <span class="n">assigned</span> <span class="n">Chapter</span> <span class="mi">2</span><span class="p">:</span> <span class="n">BitCoins</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="all-to-all">
+<h3>All-to-All<a class="headerlink" href="#all-to-all" title="Permalink to this headline">¶</a></h3>
+<p>Every process sends to every other process. Again the ith value will be sent to the process with rank i. Each process will in turn
+receive a different array where the jth value will be the value from the process with rank j.</p>
+<p>The command is simply Alltoall</p>
+<p>Alltoall is different from Allgather. Allgather is essentially a gather followed by a broadcast; the root gathers all the info and then broadcast it out to everyone. In Alltoall, all ranks gather from all ranks - there is no gathering on one process and then dispersed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">void</span> <span class="n">Main</span><span class="p">(</span><span class="n">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">using</span> <span class="p">(</span><span class="n">new</span> <span class="n">MPI</span><span class="o">.</span><span class="n">Environment</span><span class="p">(</span><span class="n">ref</span> <span class="n">args</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">Intracommunicator</span> <span class="n">comm</span> <span class="o">=</span> <span class="n">Communicator</span><span class="o">.</span><span class="n">world</span><span class="p">;</span>
+        <span class="n">string</span><span class="p">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="n">new</span> <span class="n">string</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">Size</span><span class="p">];</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">comm</span><span class="o">.</span><span class="n">Size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="o">//</span><span class="n">each</span> <span class="n">process</span> <span class="n">fills</span> <span class="n">their</span> <span class="n">data</span> <span class="k">with</span> <span class="n">a</span> <span class="n">string</span> <span class="n">marked</span> <span class="k">with</span> <span class="n">their</span> <span class="n">rank</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;This string came from Rank &quot;</span> <span class="o">+</span> <span class="n">comm</span><span class="o">.</span><span class="n">Rank</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="o">//</span><span class="n">each</span> <span class="n">process</span> <span class="n">will</span> <span class="n">have</span> <span class="ow">in</span> <span class="n">order</span> <span class="n">the</span> <span class="n">strings</span> <span class="kn">from</span> <span class="nn">each</span> <span class="n">process</span>
+        <span class="n">string</span><span class="p">[]</span> <span class="n">results</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Alltoall</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+
+
+        <span class="o">//</span><span class="n">prints</span> <span class="n">out</span> <span class="n">the</span> <span class="n">roots</span> <span class="n">contents</span> <span class="n">to</span> <span class="n">show</span> <span class="n">what</span> <span class="n">happened</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;The root&#39;s array contains: &quot;</span><span class="p">);</span>
+            <span class="n">foreach</span> <span class="p">(</span><span class="n">string</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">results</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>sample output with N processes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">root</span><span class="s1">&#39;s array contains:</span>
+<span class="n">This</span> <span class="n">string</span> <span class="n">came</span> <span class="kn">from</span> <span class="nn">Rank</span> <span class="mi">0</span>
+<span class="n">This</span> <span class="n">string</span> <span class="n">came</span> <span class="kn">from</span> <span class="nn">Rank</span> <span class="mi">1</span>
+<span class="n">This</span> <span class="n">string</span> <span class="n">came</span> <span class="kn">from</span> <span class="nn">Rank</span> <span class="mi">2</span>
+<span class="o">...</span>
+<span class="n">This</span> <span class="n">string</span> <span class="n">came</span> <span class="kn">from</span> <span class="nn">Rank</span> <span class="n">N</span><span class="o">-</span><span class="mi">2</span>
+<span class="n">This</span> <span class="n">string</span> <span class="n">came</span> <span class="kn">from</span> <span class="nn">Rank</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="combining-results">
+<h3>Combining Results<a class="headerlink" href="#combining-results" title="Permalink to this headline">¶</a></h3>
+<p>This is the most interesting Collective Communication (in our opinion).</p>
+<p>It uses the Reduce function (and usually some kind of Broadcast).</p>
+<p>This is used to sum, multiple, etc the stuff from all the processs and return it all to the process who requested it. Think back to our summation problem.</p>
+<p>Here is the code using the call to Reduce:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">void</span> <span class="n">Main</span><span class="p">(</span><span class="n">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">using</span> <span class="p">(</span><span class="n">new</span> <span class="n">MPI</span><span class="o">.</span><span class="n">Environment</span><span class="p">(</span><span class="n">ref</span> <span class="n">args</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="nb">int</span> <span class="n">root</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="nb">int</span> <span class="n">arraySize</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+        <span class="n">Intracommunicator</span> <span class="n">comm</span> <span class="o">=</span> <span class="n">Communicator</span><span class="o">.</span><span class="n">world</span><span class="p">;</span>
+
+        <span class="nb">int</span><span class="p">[]</span> <span class="n">lotsOfNumbers</span> <span class="o">=</span> <span class="n">new</span> <span class="nb">int</span><span class="p">[</span><span class="n">arraySize</span><span class="p">];</span>
+
+        <span class="o">//</span><span class="n">fill</span> <span class="n">the</span> <span class="n">array</span> <span class="k">with</span> <span class="n">the</span> <span class="n">numbers</span> <span class="mi">0</span> <span class="n">through</span> <span class="n">arraySize</span><span class="o">-</span><span class="mi">1</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">lotsOfNumbers</span><span class="o">.</span><span class="n">Length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">lotsOfNumbers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nb">int</span> <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="o">//</span><span class="n">root</span> <span class="n">shares</span> <span class="n">the</span> <span class="n">array</span> <span class="n">of</span> <span class="n">numbers</span> <span class="k">with</span> <span class="n">everyone</span> <span class="k">else</span>
+        <span class="n">comm</span><span class="o">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="n">ref</span> <span class="n">lotsOfNumbers</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+        <span class="o">//</span><span class="n">divides</span> <span class="n">up</span> <span class="n">the</span> <span class="n">work</span><span class="p">,</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">how</span> <span class="n">each</span> <span class="n">process</span> <span class="n">knows</span> <span class="n">which</span> <span class="n">numbers</span> <span class="n">to</span> <span class="nb">sum</span>
+        <span class="nb">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">arraySize</span> <span class="o">/</span> <span class="n">comm</span><span class="o">.</span><span class="n">Size</span><span class="p">;</span>
+        <span class="nb">int</span> <span class="n">startingIndex</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span>
+        <span class="nb">int</span> <span class="n">endingIndex</span> <span class="o">=</span> <span class="n">startingIndex</span> <span class="o">+</span> <span class="n">x</span><span class="p">;</span>
+
+        <span class="o">//</span><span class="n">the</span> <span class="n">last</span> <span class="n">process</span> <span class="n">will</span> <span class="n">grab</span> <span class="n">the</span> <span class="n">outliers</span> <span class="k">if</span> <span class="n">the</span> <span class="n">size</span> <span class="n">isn</span><span class="s1">&#39;t divisible</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="n">comm</span><span class="o">.</span><span class="n">Size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">endingIndex</span> <span class="o">=</span> <span class="n">lotsOfNumbers</span><span class="o">.</span><span class="n">Length</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="o">//</span><span class="n">each</span> <span class="n">process</span> <span class="nb">sum</span><span class="s1">&#39;s its part of the numbers</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">startingIndex</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">endingIndex</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nb">sum</span> <span class="o">+=</span> <span class="n">lotsOfNumbers</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="o">//</span><span class="nb">print</span> <span class="n">out</span> <span class="n">what</span> <span class="n">process</span> <span class="n">was</span> <span class="ow">and</span> <span class="n">what</span> <span class="n">it</span> <span class="n">was</span> <span class="n">responible</span> <span class="k">for</span> <span class="ow">and</span> <span class="n">what</span> <span class="n">it</span> <span class="n">came</span> <span class="n">up</span> <span class="k">with</span><span class="o">.</span>
+        <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Rank &quot;</span> <span class="o">+</span> <span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="s2">&quot;summed the numbers from index &quot;</span> <span class="o">+</span> <span class="n">startingIndex</span> <span class="o">+</span> <span class="s2">&quot; to index &quot;</span> <span class="o">+</span> <span class="p">(</span><span class="n">endingIndex</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; and got &quot;</span> <span class="o">+</span> <span class="nb">sum</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span><span class="p">);</span>
+
+        <span class="o">//</span><span class="n">the</span> <span class="n">root</span> <span class="n">gets</span> <span class="n">the</span> <span class="n">total</span> <span class="nb">sum</span><span class="p">,</span> <span class="n">he</span> <span class="n">gets</span> <span class="n">the</span> <span class="nb">sum</span> <span class="n">values</span> <span class="n">of</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">processes</span> <span class="ow">and</span> <span class="n">adds</span> <span class="n">them</span> <span class="n">together</span>
+        <span class="nb">int</span> <span class="n">totalSum</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Reduce</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="n">Operation</span><span class="o">&lt;</span><span class="nb">int</span><span class="o">&gt;.</span><span class="n">Add</span><span class="p">,</span> <span class="n">root</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="n">root</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;The total sum is: &quot;</span> <span class="o">+</span> <span class="n">totalSum</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And here is some sample output:</p>
+<p>with size 100 and 5 processes</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rank</span> <span class="mi">4</span><span class="p">:</span> <span class="n">summed</span> <span class="n">the</span> <span class="n">numbers</span> <span class="kn">from</span> <span class="nn">index</span> <span class="mi">80</span> <span class="n">to</span> <span class="n">index</span> <span class="mi">99</span> <span class="ow">and</span> <span class="n">got</span> <span class="mf">1790.</span>
+<span class="n">Rank</span> <span class="mi">1</span><span class="p">:</span> <span class="n">summed</span> <span class="n">the</span> <span class="n">numbers</span> <span class="kn">from</span> <span class="nn">index</span> <span class="mi">20</span> <span class="n">to</span> <span class="n">index</span> <span class="mi">39</span> <span class="ow">and</span> <span class="n">got</span> <span class="mf">590.</span>
+<span class="n">Rank</span> <span class="mi">0</span><span class="p">:</span> <span class="n">summed</span> <span class="n">the</span> <span class="n">numbers</span> <span class="kn">from</span> <span class="nn">index</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">index</span> <span class="mi">19</span> <span class="ow">and</span> <span class="n">got</span> <span class="mf">190.</span>
+<span class="n">Rank</span> <span class="mi">2</span><span class="p">:</span> <span class="n">summed</span> <span class="n">the</span> <span class="n">numbers</span> <span class="kn">from</span> <span class="nn">index</span> <span class="mi">40</span> <span class="n">to</span> <span class="n">index</span> <span class="mi">59</span> <span class="ow">and</span> <span class="n">got</span> <span class="mf">990.</span>
+<span class="n">Rank</span> <span class="mi">3</span><span class="p">:</span> <span class="n">summed</span> <span class="n">the</span> <span class="n">numbers</span> <span class="kn">from</span> <span class="nn">index</span> <span class="mi">60</span> <span class="n">to</span> <span class="n">index</span> <span class="mi">79</span> <span class="ow">and</span> <span class="n">got</span> <span class="mf">1390.</span>
+<span class="n">The</span> <span class="n">total</span> <span class="nb">sum</span> <span class="ow">is</span><span class="p">:</span> <span class="mi">4950</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="mpi-and-distributed-topics">
+<h2>MPI and Distributed Topics<a class="headerlink" href="#mpi-and-distributed-topics" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="general-points">
+<h3>General Points<a class="headerlink" href="#general-points" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Optimized for performance. Algorithms for collective communications are optimized based on the knowledge of the network.</li>
+<li>Reliable when sending/receiving messages. The use of tags and ranks make sure the right messages are received.</li>
+<li>Messages arrive in order: If I send two back to back string messages, you will get them in the order I sent them.</li>
+<li>Maintainability and Readability: a lot of the algorithms are done under the hood so in your code you will simply see calls to
+scatter, gather etc, and not have to worry about the inner workings.</li>
+</ul>
+</div>
+<div class="section" id="openness">
+<h3>Openness<a class="headerlink" href="#openness" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Anyone is welcome to write an MPI implementation for any language or platform.</li>
+<li>MPI forums are open and publically available as well as many implementations.</li>
+</ul>
+</div>
+<div class="section" id="scalability">
+<h3>Scalability<a class="headerlink" href="#scalability" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>In one sense MPI scales really well: if you want to add more processes you simply resend the command with more processes.
+On the other hand, some of MPI’s collective communications can cause problems when scaling.</li>
+<li>For example, Alltoall requires an array of the size of the number or processes. If we had say a million processes,
+then each process would have a huge array.</li>
+<li>Also the make up of the processes is generally a graph of some sort. Some of these are not very efficient when handling a lot
+or processes.</li>
+</ul>
+</div>
+<div class="section" id="fault-tolerance">
+<h3>Fault Tolerance<a class="headerlink" href="#fault-tolerance" title="Permalink to this headline">¶</a></h3>
+<p>MPI, being an Interface, says very little about Fault Tolerance.
+However implementations of MPI should and to an extend do have some Fault Tolerances Built in.</p>
+<ul class="simple">
+<li>Resend Messages. If a message is lost or corrupt resend it.</li>
+<li>Give errors that the application can then use to survive.</li>
+</ul>
+<p>Other forms of fault tolerance are left up to the application.</p>
+<ul class="simple">
+<li>One example is that when a process fails, it can return an error to all processes who try to talk to it instead of
+crashing the program. The remaining processes can then do something about it. For example, if the process
+responsible for summing some section of the indexes bombs out, we could write our code to reassign the section.</li>
+<li>Another example is checkpoints. Putting checkpoints in is expensive, but can be worth it.</li>
+</ul>
+</div>
+<div class="section" id="transparency">
+<h3>Transparency<a class="headerlink" href="#transparency" title="Permalink to this headline">¶</a></h3>
+<p>MPI is fairly transparent.</p>
+<p>Access - We can access local or remote processes.</p>
+<p>Location - We do not care / do not need to be aware of where they are being performed.</p>
+<p>Migration - Messages (data) can go from local to remote processes. We can move around an array and edit it between processes. Without the user needing to know.</p>
+<p>Failure - Failures can be concealed and handled inside the code (to an extent).</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../smtp/smtp.html" class="btn btn-neutral float-right" title="SMTP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../queue/queue.html" class="btn btn-neutral float-left" title="Distributed Queues" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
