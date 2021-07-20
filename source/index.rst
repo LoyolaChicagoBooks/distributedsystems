@@ -40,9 +40,6 @@ You have reached the home of Distributed Systems (COMP 339-439) at Loyola Univer
 Repository
    `github.com/LoyolaChicagoBooks/distributedsystems <https://github.com/LoyolaChicagoBooks/distributedsystems>`_
 
-Continuous Integration
-   `travis-ci.org/LoyolaChicagoBooks/distributedsystems <https://travis-ci.org/LoyolaChicagoBooks/distributedsystems>`_
-
 Releases
    `github.com/LoyolaChicagoBooks/distributedsystems/releases <https://github.com/LoyolaChicagoBooks/distributedsystems/releases>`_
 

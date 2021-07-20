@@ -455,10 +455,10 @@ The following shows how to marshall some data using ``sprintf()``:
 
 .. code:: c
 
-     char *name = “smith”;
-     char *place = “London”;
+     char *name = "smith";
+     char *place = "London";
      int year = 1934;
-     sprintf(message, “%d %s %d %s %d”, strlen(name), name, strlen(place), place, years);
+     sprintf(message, "%d %s %d %s %d", strlen(name), name, strlen(place), place, years);
 
 Can you think of how to write the unmarshalling version using
 ``sscanf()``?

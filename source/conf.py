@@ -12,6 +12,7 @@
 # serve to show the default.
 
 import sys, os
+from datetime import date
 
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -50,7 +51,7 @@ copyright = u'2013-2019, George K. Thiruvathukal and Sarah Kaylor'
 #
 # The short X.Y version.
 #version = 'v0.1'
-version = os.environ.get("BOOK_VERSION", "beta")
+version = date.today().strftime("Updated %Y-%m-%d")
 # The full version, including alpha/beta/rc tags.
 release = version
 
