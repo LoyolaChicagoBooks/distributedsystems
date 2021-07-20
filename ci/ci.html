@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Continuous Integration &mdash; Distributed Systems v0.4 documentation</title>
+  <title>Continuous Integration &mdash; Distributed Systems Updated 2021-07-20 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Clocks and Synchronization" href="../clocks/clocks.html" />
@@ -62,7 +65,7 @@
             
             
               <div class="version">
-                v0.4
+                Updated 2021-07-20
               </div>
             
           
@@ -79,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -133,6 +137,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -167,18 +172,20 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Continuous Integration</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/ci/ci.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -197,21 +204,20 @@
 <div class="section" id="what-does-continuous-integration-do">
 <h2>What Does Continuous Integration Do?<a class="headerlink" href="#what-does-continuous-integration-do" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>To support incremental, agile development for one or more developers</li>
-<li>Provides notification of success or failure of forward integration as rapidly as possible. This is especially important on larger teams.</li>
-<li>Performs validation of the product by running unit tests, and automated user interface tests</li>
-<li>Can perform scheduled test or production environment deployments.</li>
+<li><p>To support incremental, agile development for one or more developers</p></li>
+<li><p>Provides notification of success or failure of forward integration as rapidly as possible. This is especially important on larger teams.</p></li>
+<li><p>Performs validation of the product by running unit tests, and automated user interface tests</p></li>
+<li><p>Can perform scheduled test or production environment deployments.</p></li>
 </ul>
 </div>
 <div class="section" id="how-often-is-continuous-integration-run">
 <h2>How Often is Continuous Integration Run?<a class="headerlink" href="#how-often-is-continuous-integration-run" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Continuous Integration can be run as:</dt>
-<dd><ul class="first last">
-<li>Batches - once one build and verification is complete, another immediately starts (grouping more than once change, potentially)</li>
-<li>Upon changes - build and validate the product at every change</li>
-<li>Iteration builds - every day, every week, or some other short period, a distributable product with an installer or package is created. This can be used for manual testing by a test team or by customers.</li>
+<li><dl class="simple">
+<dt>Continuous Integration can be run as:</dt><dd><ul>
+<li><p>Batches - once one build and verification is complete, another immediately starts (grouping more than once change, potentially)</p></li>
+<li><p>Upon changes - build and validate the product at every change</p></li>
+<li><p>Iteration builds - every day, every week, or some other short period, a distributable product with an installer or package is created. This can be used for manual testing by a test team or by customers.</p></li>
 </ul>
 </dd>
 </dl>
@@ -221,134 +227,123 @@
 <div class="section" id="what-are-the-bits-and-pieces-of-continuous-integration">
 <h2>What are the Bits and Pieces of Continuous Integration?<a class="headerlink" href="#what-are-the-bits-and-pieces-of-continuous-integration" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Build Controllers:</dt>
-<dd><ul class="first last">
-<li>A service that coordinates build requests and build operations</li>
-<li>Manages resources such as artifact repositories, build folders, and individual build nodes.</li>
-<li>One or more of these may exist depending upon the product involved.</li>
-<li>Usually a very I/O and memory bound service</li>
+<li><dl class="simple">
+<dt>Build Controllers:</dt><dd><ul>
+<li><p>A service that coordinates build requests and build operations</p></li>
+<li><p>Manages resources such as artifact repositories, build folders, and individual build nodes.</p></li>
+<li><p>One or more of these may exist depending upon the product involved.</p></li>
+<li><p>Usually a very I/O and memory bound service</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Build nodes:</dt>
-<dd><ul class="first last">
-<li>Answer requests from the build controller (the work horse of continuous integration)</li>
-<li>Pulls source code, performs compilation, executes automated tests</li>
-<li>Some environments have as few as 2-3 build nodes, some have hundreds</li>
-<li>Usually a CPU and I/O bound service</li>
+<li><dl class="simple">
+<dt>Build nodes:</dt><dd><ul>
+<li><p>Answer requests from the build controller (the work horse of continuous integration)</p></li>
+<li><p>Pulls source code, performs compilation, executes automated tests</p></li>
+<li><p>Some environments have as few as 2-3 build nodes, some have hundreds</p></li>
+<li><p>Usually a CPU and I/O bound service</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Artifact Database:</dt>
-<dd><ul class="first last">
-<li>Stores the N most recent continuous integration builds</li>
-<li>Stores external 3rd party libraries used in building various versions of the product</li>
-<li>Stores several versions of released builds of individual modules of the product (in the case of component or plugin architectures)</li>
-<li>Stores installers for released or testable products</li>
-<li>Typically has dozens of TB of storage on a fast SAN</li>
+<li><dl class="simple">
+<dt>Artifact Database:</dt><dd><ul>
+<li><p>Stores the N most recent continuous integration builds</p></li>
+<li><p>Stores external 3rd party libraries used in building various versions of the product</p></li>
+<li><p>Stores several versions of released builds of individual modules of the product (in the case of component or plugin architectures)</p></li>
+<li><p>Stores installers for released or testable products</p></li>
+<li><p>Typically has dozens of TB of storage on a fast SAN</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Deployment of Continuous Integration:</dt>
-<dd><ul class="first last">
-<li>Build controllers typically have fairly high resource utilization</li>
-<li>Build nodes typically do not have high resource utilization</li>
-<li>The process of compiling and running unit tests typically does not fully utilize the power of a build node</li>
-<li>So, a common practice is to virtualize hosts that run build nodes and place at run at least two hosts per build node</li>
-<li>It is uncommon to allow more than one build task to occur simultaneously on a build node</li>
-<li>Build nodes are commonly re-imaged every day - every few days.</li>
-<li>Many continuous integration products are capable of running in the cloud with dynamic resource utilization for the build nodes. Both Team City and Team Foundation Server are well known for this</li>
+<li><dl class="simple">
+<dt>Deployment of Continuous Integration:</dt><dd><ul>
+<li><p>Build controllers typically have fairly high resource utilization</p></li>
+<li><p>Build nodes typically do not have high resource utilization</p></li>
+<li><p>The process of compiling and running unit tests typically does not fully utilize the power of a build node</p></li>
+<li><p>So, a common practice is to virtualize hosts that run build nodes and place at run at least two hosts per build node</p></li>
+<li><p>It is uncommon to allow more than one build task to occur simultaneously on a build node</p></li>
+<li><p>Build nodes are commonly re-imaged every day - every few days.</p></li>
+<li><p>Many continuous integration products are capable of running in the cloud with dynamic resource utilization for the build nodes. Both Team City and Team Foundation Server are well known for this</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="../_images/ci_system.jpg"><img alt="../_images/ci_system.jpg" src="../_images/ci_system.jpg" style="width: 336.59999999999997px; height: 270.0px;" /></a>
-<p class="caption"><span class="caption-text">A Possible Corporate Deployment of a Continuous Integration System</span></p>
+<p class="caption"><span class="caption-text">A Possible Corporate Deployment of a Continuous Integration System</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="continuous-integration-products-vendors">
 <h2>Continuous Integration Products / Vendors<a class="headerlink" href="#continuous-integration-products-vendors" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Many exist, but these are what you see out there in the wild:</li>
-<li>Jet Brains - Team City</li>
-<li>Microsoft - Team Foundation Server</li>
-<li>Borland - Silk</li>
-<li>IBM - Rational Suite</li>
-<li>Apache Foundation - Continuum</li>
-<li>Eclipse Foundation - Hudson</li>
-<li>Many in-house / script based systems</li>
+<li><p>Many exist, but these are what you see out there in the wild:</p></li>
+<li><p>Jet Brains - Team City</p></li>
+<li><p>Microsoft - Team Foundation Server</p></li>
+<li><p>Borland - Silk</p></li>
+<li><p>IBM - Rational Suite</p></li>
+<li><p>Apache Foundation - Continuum</p></li>
+<li><p>Eclipse Foundation - Hudson</p></li>
+<li><p>Many in-house / script based systems</p></li>
 </ul>
 </div>
 <div class="section" id="continuous-integration-and-the-key-characteristics-of-distributed-systems">
 <h2>Continuous Integration and the Key Characteristics of Distributed Systems<a class="headerlink" href="#continuous-integration-and-the-key-characteristics-of-distributed-systems" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Openness</dt>
-<dd><ul class="first last">
-<li>Several, including TFS and Team City, and any FOSS system allows for scripting, plugins, and expansion.</li>
-<li>Some are more “canned” solutions like Team City, others are fully customizable like TFS</li>
-<li>Most have a “free as in beer” mode that begins to cost money in wider deployments</li>
-<li>Some of the FOSS alternatives can be a challenge to configure</li>
+<li><dl class="simple">
+<dt>Openness</dt><dd><ul>
+<li><p>Several, including TFS and Team City, and any FOSS system allows for scripting, plugins, and expansion.</p></li>
+<li><p>Some are more “canned” solutions like Team City, others are fully customizable like TFS</p></li>
+<li><p>Most have a “free as in beer” mode that begins to cost money in wider deployments</p></li>
+<li><p>Some of the FOSS alternatives can be a challenge to configure</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Concurrency</dt>
-<dd><ul class="first last">
-<li>Continuous integration systems typically allow for replication and parallelism at the level of the build controller and in build nodes</li>
-<li>When the cloud is used, resources consumption and cost can be flexible.</li>
-<li>Supporting CI for 100s of developers can require a large amount of compute and I/O resources. These systems definitely have to scale.</li>
+<li><dl class="simple">
+<dt>Concurrency</dt><dd><ul>
+<li><p>Continuous integration systems typically allow for replication and parallelism at the level of the build controller and in build nodes</p></li>
+<li><p>When the cloud is used, resources consumption and cost can be flexible.</p></li>
+<li><p>Supporting CI for 100s of developers can require a large amount of compute and I/O resources. These systems definitely have to scale.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Scalability</dt>
-<dd><ul class="first last">
-<li>Some systems are able to scale to the range of 10s of build nodes and controllers, most systems can scale to 100s</li>
-<li>See <a class="reference external" href="http://tfs.visualstudio.com">http://tfs.visualstudio.com</a>. This is a system that Microsoft has built that scales to the cloud level. You pay a subscription and use fee to use this.</li>
+<li><dl class="simple">
+<dt>Scalability</dt><dd><ul>
+<li><p>Some systems are able to scale to the range of 10s of build nodes and controllers, most systems can scale to 100s</p></li>
+<li><p>See <a class="reference external" href="http://tfs.visualstudio.com">http://tfs.visualstudio.com</a>. This is a system that Microsoft has built that scales to the cloud level. You pay a subscription and use fee to use this.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Fault Tolerance</dt>
-<dd><ul class="first last">
-<li>Fault tolerance exists on several levels</li>
-<li><dl class="first docutils">
-<dt>First is the build controller. Typically a primary / secondary replication system is employed.</dt>
-<dd><ul class="first last">
-<li>Issues of network partitioning aren’t usually handled, just single-multi node failures</li>
+<li><dl class="simple">
+<dt>Fault Tolerance</dt><dd><ul>
+<li><p>Fault tolerance exists on several levels</p></li>
+<li><dl class="simple">
+<dt>First is the build controller. Typically a primary / secondary replication system is employed.</dt><dd><ul>
+<li><p>Issues of network partitioning aren’t usually handled, just single-multi node failures</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li>Second is the build node. The build controller will periodically poll build nodes to test their connectivity. If one node is lost, it is taken out of the pool. Any pending builds on such a system can be re-queued by the developer or automatically by the build controller</li>
-<li>Source control and Artifact DB - these usually exist on systems with redundant and fast disk arrays that maintain daily backups. These systems can usually handle single hardware failures and continue to operate.</li>
+<li><p>Second is the build node. The build controller will periodically poll build nodes to test their connectivity. If one node is lost, it is taken out of the pool. Any pending builds on such a system can be re-queued by the developer or automatically by the build controller</p></li>
+<li><p>Source control and Artifact DB - these usually exist on systems with redundant and fast disk arrays that maintain daily backups. These systems can usually handle single hardware failures and continue to operate.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Transparency</dt>
-<dd><ul class="first last">
-<li>To the developer, the only thing that exists is the source control system and the build controller.</li>
-<li>The build controller manages a queue of “builds” that a developer monitors.</li>
-<li><dl class="first docutils">
-<dt>Whether there are 10s of build nodes or 100s, the developer is not aware of this detail or aware of where the build occurs.</dt>
-<dd><ul class="first last">
-<li>transparency of location</li>
-<li>transparency of scale</li>
+<li><dl class="simple">
+<dt>Transparency</dt><dd><ul>
+<li><p>To the developer, the only thing that exists is the source control system and the build controller.</p></li>
+<li><p>The build controller manages a queue of “builds” that a developer monitors.</p></li>
+<li><dl class="simple">
+<dt>Whether there are 10s of build nodes or 100s, the developer is not aware of this detail or aware of where the build occurs.</dt><dd><ul>
+<li><p>transparency of location</p></li>
+<li><p>transparency of scale</p></li>
 </ul>
 </dd>
 </dl>
@@ -365,29 +360,28 @@
 <div class="section" id="the-front-page-of-team-city">
 <h2>The Front Page of Team City<a class="headerlink" href="#the-front-page-of-team-city" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Build definitions for my active projects</li>
-<li>Several Windows and Linux software projects</li>
+<li><p>Build definitions for my active projects</p></li>
+<li><p>Several Windows and Linux software projects</p></li>
 </ul>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../_images/front_page.jpg"><img alt="../_images/front_page.jpg" src="../_images/front_page.jpg" style="width: 51.300000000000004px; height: 45.0px;" /></a>
-<p class="caption"><span class="caption-text">The Front Page of Team City</span></p>
+<p class="caption"><span class="caption-text">The Front Page of Team City</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="build-nodes">
 <h2>Build Nodes<a class="headerlink" href="#build-nodes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>3 Build Nodes</dt>
-<dd><ul class="first last">
-<li>Two Linux nodes</li>
-<li>One Windows nodes</li>
-<li>Supports the development of Windows and Linux software</li>
+<li><dl class="simple">
+<dt>3 Build Nodes</dt><dd><ul>
+<li><p>Two Linux nodes</p></li>
+<li><p>One Windows nodes</p></li>
+<li><p>Supports the development of Windows and Linux software</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-<div class="figure">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="../_images/build_nodes.jpg"><img alt="../_images/build_nodes.jpg" src="../_images/build_nodes.jpg" style="width: 51.0px; height: 26.950000000000003px;" /></a>
 </div>
 </div>
@@ -398,29 +392,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../clocks/clocks.html" class="btn btn-neutral float-right" title="Clocks and Synchronization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../maven/maven.html" class="btn btn-neutral float-left" title="Project Build Management With Maven" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../clocks/clocks.html" class="btn btn-neutral float-right" title="Clocks and Synchronization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../maven/maven.html" class="btn btn-neutral float-left" title="Project Build Management With Maven" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor
+        &#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -428,7 +422,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

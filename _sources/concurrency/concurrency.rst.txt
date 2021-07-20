@@ -170,7 +170,7 @@ This code example shows how to implement a classic mutex, a.k.a. a Lock, in Java
 
 These examples come from http://hpjpc.googlecode.com by Christopher and Thiruvathukal.
 
-.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/thread/Lock.java
+.. literalinclude:: ../../examples/hpjpc/src/main/java/info/jhpc/thread/Lock.java
    :start-after: begin-class-Lock
    :end-before: end-class-Lock
    :linenos:
@@ -180,7 +180,7 @@ Semaphore Example
 
 This shows how to implement a counting semaphore in the Java programming language.
 
-.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/thread/Semaphore.java
+.. literalinclude:: ../../examples/hpjpc/src/main/java/info/jhpc/thread/Semaphore.java
    :start-after: begin-class-Semaphore
    :end-before: end-class-Semaphore
    :linenos:
@@ -193,7 +193,7 @@ This shows how to implement a barrier, which is a synchronization mechanism for 
 a specified number of threads before processing can continue. Once all threads have arrived, 
 processing can continue.
 
-.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/thread/SimpleBarrier.java
+.. literalinclude:: ../../examples/hpjpc/src/main/java/info/jhpc/thread/SimpleBarrier.java
    :start-after: begin-class-SimpleBarrier
    :end-before: end-class-SimpleBarrier
    :linenos:
@@ -217,21 +217,21 @@ our "solution" has the following design:
 Fork 
 -----
 
-.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/Fork.java
+.. literalinclude:: ../../examples/hpjpc/src/main/java/info/jhpc/textbook/chapter03/Fork.java
    :start-after: begin-class-Fork
    :end-before: end-class-Fork
    :linenos:
 
 Diner0
 --------
-.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/Diner0.java
+.. literalinclude:: ../../examples/hpjpc/src/main/java/info/jhpc/textbook/chapter03/Diner0.java
    :start-after: begin-class-Diner0
    :end-before: end-class-Diner0
    :linenos:
 
 Diners0
 --------
-.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/Diners0.java
+.. literalinclude:: ../../examples/hpjpc/src/main/java/info/jhpc/textbook/chapter03/Diners0.java
    :start-after: begin-class-Diners0
    :end-before: end-class-Diners0
    :linenos:
@@ -239,7 +239,7 @@ Diners0
 
 Diners1 - eliminating deadlock with resource enumeration
 ------------------------------------------------------------
-.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/Diners1.java
+.. literalinclude:: ../../examples/hpjpc/src/main/java/info/jhpc/textbook/chapter03/Diners1.java
    :start-after: begin-fork-ordering
    :end-before: end-fork-ordering
    :linenos:
@@ -446,7 +446,7 @@ Concurrent File Copy Example
 Sequential File Copy
 ------------------------------------------
 
-.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/FileCopy0.java
+.. literalinclude:: ../../examples/hpjpc/src/main/java/info/jhpc/textbook/chapter03/FileCopy0.java
    :start-after: begin-class-FileCopy0
    :end-before: end-class-FileCopy0
    :linenos:
@@ -463,32 +463,32 @@ Quick overview of the various classes:
 - FileCopyWriter1: Used to run the writer thread.
 - FileCopy1: Used to act as a drop in replacement for FileCopy0. Sets up the reader and writer threads and then joins with both when the reading/writing are completed.
 
-.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/FileCopy1.java
+.. literalinclude:: ../../examples/hpjpc/src/main/java/info/jhpc/textbook/chapter03/FileCopy1.java
    :start-after: begin-class-FileCopy1
    :end-before: end-class-FileCopy1
    :linenos:
 
-.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/FileCopyReader1.java
+.. literalinclude:: ../../examples/hpjpc/src/main/java/info/jhpc/textbook/chapter03/FileCopyReader1.java
    :start-after: begin-class-FileCopyReader1
    :end-before: end-class-FileCopyReader1
    :linenos:
 
-.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/FileCopyWriter1.java
+.. literalinclude:: ../../examples/hpjpc/src/main/java/info/jhpc/textbook/chapter03/FileCopyWriter1.java
    :start-after: begin-class-FileCopyWriter1
    :end-before: end-class-FileCopyWriter1
    :linenos:
 
-.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/Buffer.java
+.. literalinclude:: ../../examples/hpjpc/src/main/java/info/jhpc/textbook/chapter03/Buffer.java
    :start-after: begin-class-Buffer
    :end-before: end-class-Buffer
    :linenos:
 
-.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/BufferQueue.java
+.. literalinclude:: ../../examples/hpjpc/src/main/java/info/jhpc/textbook/chapter03/BufferQueue.java
    :start-after: begin-class-BufferQueue
    :end-before: end-class-BufferQueue
    :linenos:
 
-.. literalinclude:: ../../examples/hpjpc/src/info/jhpc/textbook/chapter03/Pool.java
+.. literalinclude:: ../../examples/hpjpc/src/main/java/info/jhpc/textbook/chapter03/Pool.java
    :start-after: begin-class-Pool
    :end-before: end-class-Pool
    :linenos:

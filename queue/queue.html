@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Distributed Queues &mdash; Distributed Systems v0.4 documentation</title>
+  <title>Distributed Queues &mdash; Distributed Systems Updated 2021-07-20 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Message Passing Interface" href="../mpi/mpi.html" />
@@ -62,7 +65,7 @@
             
             
               <div class="version">
-                v0.4
+                Updated 2021-07-20
               </div>
             
           
@@ -79,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -129,6 +133,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -163,18 +168,20 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Distributed Queues</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/queue/queue.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -193,15 +200,15 @@
 <div class="section" id="what-is-a-distributed-queue">
 <h2>What is a Distributed Queue?<a class="headerlink" href="#what-is-a-distributed-queue" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>A distributed queue is a distributed, transactional database that supports queued, structured messages. Distributed queues are read/write databases.</li>
-<li>Distributed queues are a commonly used mechanism to provide reliable and scalable messaging between components in a distributed system</li>
+<li><p>A distributed queue is a distributed, transactional database that supports queued, structured messages. Distributed queues are read/write databases.</p></li>
+<li><p>Distributed queues are a commonly used mechanism to provide reliable and scalable messaging between components in a distributed system</p></li>
 </ul>
 </div>
 <div class="section" id="a-simple-hello-world-with-rabbit-mq">
 <h2>A simple Hello World with Rabbit MQ<a class="headerlink" href="#a-simple-hello-world-with-rabbit-mq" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Prerequisites are getting the 3rd party RabbitMQ library, setting up the service, and creating an instance of the distributed queue in RabbitMQ’s database. These are all fairly straight forward:</li>
-<li>The sender code:</li>
+<li><p>Prerequisites are getting the 3rd party RabbitMQ library, setting up the service, and creating an instance of the distributed queue in RabbitMQ’s database. These are all fairly straight forward:</p></li>
+<li><p>The sender code:</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">com.rabbitmq.client.Channel</span><span class="p">;</span>
 <span class="kn">import</span> <span class="nn">com.rabbitmq.client.Connection</span><span class="p">;</span>
@@ -229,7 +236,7 @@
 </pre></div>
 </div>
 <ul class="simple">
-<li>The receiver code:</li>
+<li><p>The receiver code:</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">com.rabbitmq.client.</span><span class="o">*</span><span class="p">;</span>
 
@@ -261,13 +268,13 @@
 </pre></div>
 </div>
 <ul class="simple">
-<li>Overall, this kind of code is fairly simple</li>
+<li><p>Overall, this kind of code is fairly simple</p></li>
 </ul>
 </div>
 <div class="section" id="example-using-msmq">
 <h2>Example using MSMQ<a class="headerlink" href="#example-using-msmq" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Sending a simple message</li>
+<li><p>Sending a simple message</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Message</span> <span class="n">recoverableMessage</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Message</span><span class="p">();</span>
 <span class="n">recoverableMessage</span><span class="o">.</span><span class="n">Body</span> <span class="o">=</span> <span class="s2">&quot;Sample Recoverable Message&quot;</span><span class="p">;</span>
@@ -277,7 +284,7 @@
 </pre></div>
 </div>
 <ul class="simple">
-<li>Sending and receiving a message using transactions:</li>
+<li><p>Sending and receiving a message using transactions:</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MessageQueueTransaction</span> <span class="n">msgTx</span> <span class="o">=</span> <span class="n">new</span> <span class="n">MessageQueueTransaction</span><span class="p">();</span>
 <span class="n">MessageQueue</span> <span class="n">msgQ</span> <span class="o">=</span> <span class="n">new</span> <span class="n">MessageQueue</span><span class="p">(</span><span class="o">@</span><span class="s2">&quot;.\private$\Orders&quot;</span><span class="p">);</span>
@@ -293,31 +300,29 @@
 </pre></div>
 </div>
 <ul class="simple">
-<li>Another important advantage with MSMQ is that it can participate in a distributed transaction via the DTC service in Windows.</li>
+<li><p>Another important advantage with MSMQ is that it can participate in a distributed transaction via the DTC service in Windows.</p></li>
 </ul>
 </div>
 <div class="section" id="using-distributed-queues-in-distributed-software">
 <h2>Using Distributed Queues in Distributed software<a class="headerlink" href="#using-distributed-queues-in-distributed-software" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">A key thing to remember is that distributed queues are a building block, and not a complete queueing solution in and of themselves. What distributed queues give you are the tools to build a proper distributed message or job processing system. Actual implementations need further consideration</p>
-</li>
-<li><p class="first">For example, if you’re trying to ensure that a client queueing a job, and the processing of the job is fully successful or not you need to be careful with how you use the queue:</p>
+<li><p>A key thing to remember is that distributed queues are a building block, and not a complete queueing solution in and of themselves. What distributed queues give you are the tools to build a proper distributed message or job processing system. Actual implementations need further consideration</p></li>
+<li><p>For example, if you’re trying to ensure that a client queueing a job, and the processing of the job is fully successful or not you need to be careful with how you use the queue:</p>
 <blockquote>
 <div><ul class="simple">
-<li>If the job processor dequeues a job and crashes while processing it, the client will not know for sure that the job was completed.</li>
-<li>If the job processor simply leaves the job in the queue while processing, you cannot guarantee that another job processor won’t redundantly perform the work itself.</li>
-<li>If there are more transactions within a system (such as from another database), there may not be a more global transaction to make the entire job atomic.</li>
+<li><p>If the job processor dequeues a job and crashes while processing it, the client will not know for sure that the job was completed.</p></li>
+<li><p>If the job processor simply leaves the job in the queue while processing, you cannot guarantee that another job processor won’t redundantly perform the work itself.</p></li>
+<li><p>If there are more transactions within a system (such as from another database), there may not be a more global transaction to make the entire job atomic.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Typically you can perform updates in distributed queues, or you can use a second queue to mark an item as in-progress. Different queues in the distributed queue can indirectly model a state machine that a item that is being processed will transition through.</p>
-</li>
-<li><p class="first">Another category of problems in terms of scalability is relying on FIFO ordering in the queue. If several items in the queue must be processed in-order and you rely on the queue to provide that order, you’ll run into trouble.</p>
+<li><p>Typically you can perform updates in distributed queues, or you can use a second queue to mark an item as in-progress. Different queues in the distributed queue can indirectly model a state machine that a item that is being processed will transition through.</p></li>
+<li><p>Another category of problems in terms of scalability is relying on FIFO ordering in the queue. If several items in the queue must be processed in-order and you rely on the queue to provide that order, you’ll run into trouble.</p>
 <blockquote>
 <div><ul class="simple">
-<li>The recommended approach would be to put any kind of ordering dependency into your queued item as a part of its structure rather than relying on the queue to do the ordering.</li>
-<li>Often, to scale up, distributed queues need several processors on several hosts to consume from the queue. In parallel situations like this, it is impossible to coordinate order except as a part of application logic.</li>
-<li>A good article about this - <a class="reference external" href="https://content.pivotal.io/blog/continuous-integration-scaling-to-74-000-builds-per-day-with-travis-ci-rabbitmq">https://content.pivotal.io/blog/continuous-integration-scaling-to-74-000-builds-per-day-with-travis-ci-rabbitmq</a></li>
+<li><p>The recommended approach would be to put any kind of ordering dependency into your queued item as a part of its structure rather than relying on the queue to do the ordering.</p></li>
+<li><p>Often, to scale up, distributed queues need several processors on several hosts to consume from the queue. In parallel situations like this, it is impossible to coordinate order except as a part of application logic.</p></li>
+<li><p>A good article about this - <a class="reference external" href="https://content.pivotal.io/blog/continuous-integration-scaling-to-74-000-builds-per-day-with-travis-ci-rabbitmq">https://content.pivotal.io/blog/continuous-integration-scaling-to-74-000-builds-per-day-with-travis-ci-rabbitmq</a></p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -330,29 +335,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../mpi/mpi.html" class="btn btn-neutral float-right" title="Message Passing Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../dns/dns.html" class="btn btn-neutral float-left" title="Domain Name Service" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../mpi/mpi.html" class="btn btn-neutral float-right" title="Message Passing Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../dns/dns.html" class="btn btn-neutral float-left" title="Domain Name Service" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor
+        &#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -360,7 +365,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

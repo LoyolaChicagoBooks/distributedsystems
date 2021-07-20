@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Domain Name Service &mdash; Distributed Systems v0.4 documentation</title>
+  <title>Domain Name Service &mdash; Distributed Systems Updated 2021-07-20 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Distributed Queues" href="../queue/queue.html" />
@@ -62,7 +65,7 @@
             
             
               <div class="version">
-                v0.4
+                Updated 2021-07-20
               </div>
             
           
@@ -79,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -134,6 +138,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -168,18 +173,20 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Domain Name Service</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/dns/dns.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -199,8 +206,8 @@
 <h2>What is DNS ?<a class="headerlink" href="#what-is-dns" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>DNS is a hierarchal, decentralized naming system for computers, services, and resources connected to or not connected to the internet.</li>
-<li>DNS implementations can reside on LANs or at internet scale</li>
+<li><p>DNS is a hierarchal, decentralized naming system for computers, services, and resources connected to or not connected to the internet.</p></li>
+<li><p>DNS implementations can reside on LANs or at internet scale</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -208,10 +215,10 @@
 <h2>Types of DNS Records<a class="headerlink" href="#types-of-dns-records" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>A Records: host name to ip address record</li>
-<li>MX Records: records of host names and IP addresses of SMTP mail exchangers</li>
-<li>NS Records:</li>
-<li>PTR Records: records for reverse DNS lookups. To translate ip addresses to host names</li>
+<li><p>A Records: host name to ip address record</p></li>
+<li><p>MX Records: records of host names and IP addresses of SMTP mail exchangers</p></li>
+<li><p>NS Records:</p></li>
+<li><p>PTR Records: records for reverse DNS lookups. To translate ip addresses to host names</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -219,12 +226,12 @@
 <h2>History of DNS<a class="headerlink" href="#history-of-dns" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>Original IP-address to host name translations were maintained in a text file on each host that was named hosts.txt. This approach still exists on Linux, Windows, and similar PC and server systems. This approach is still somewhat useful on statically addressed small networks that don’t implement dynamic network discovery services.</li>
-<li>The IP address and host names were managed by 1-2 people from the 1970s to the early 1980s</li>
-<li>In the early 1980s, Mockapetris created the original DNS system. Soon after, the IETF (Internet Engineering Task Force) published RFC 882 and 883 to document the protocols and capabilities of DNS</li>
-<li>In 1984, UC Berkley students implemented the first UNIX based DNS server called BIND. This system was ported to Windows NT in the early 1990s</li>
-<li>Currently, BIND is one of the most widely used DNS platforms used on the internet.</li>
-<li>In subsequent years and decades, standards groups and researchers proposed and implemented new record types, improved security, and scaling of the DNS system as the internet itself expanded.</li>
+<li><p>Original IP-address to host name translations were maintained in a text file on each host that was named hosts.txt. This approach still exists on Linux, Windows, and similar PC and server systems. This approach is still somewhat useful on statically addressed small networks that don’t implement dynamic network discovery services.</p></li>
+<li><p>The IP address and host names were managed by 1-2 people from the 1970s to the early 1980s</p></li>
+<li><p>In the early 1980s, Mockapetris created the original DNS system. Soon after, the IETF (Internet Engineering Task Force) published RFC 882 and 883 to document the protocols and capabilities of DNS</p></li>
+<li><p>In 1984, UC Berkley students implemented the first UNIX based DNS server called BIND. This system was ported to Windows NT in the early 1990s</p></li>
+<li><p>Currently, BIND is one of the most widely used DNS platforms used on the internet.</p></li>
+<li><p>In subsequent years and decades, standards groups and researchers proposed and implemented new record types, improved security, and scaling of the DNS system as the internet itself expanded.</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -232,17 +239,17 @@
 <h2>Top Level Domains<a class="headerlink" href="#top-level-domains" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>A TLD is the right-most section of a internet address. For example, google.com’s TLD is .com, Luc.edu’s TLD is .edu</li>
-<li>Originally, there were very few TLDs. These included .arpa, .org, .com, .net, .nato</li>
-<li>Soon after, national / regional specific TLDs came into existence such as .dd for East Germany, or .us for America</li>
-<li>In the 2000s, ICANN introduced many new TLDs, and in the 2010’s 1000s of new TLDs were introduced</li>
-<li>TLDs are arbitrary and controlled by ICANN, the group that manages the Internet’s root DNS servers. In an isolated network or in your own LAN, you can create your own TLDs, but they will only be respected within your own network.</li>
+<li><p>A TLD is the right-most section of a internet address. For example, google.com’s TLD is .com, Luc.edu’s TLD is .edu</p></li>
+<li><p>Originally, there were very few TLDs. These included .arpa, .org, .com, .net, .nato</p></li>
+<li><p>Soon after, national / regional specific TLDs came into existence such as .dd for East Germany, or .us for America</p></li>
+<li><p>In the 2000s, ICANN introduced many new TLDs, and in the 2010’s 1000s of new TLDs were introduced</p></li>
+<li><p>TLDs are arbitrary and controlled by ICANN, the group that manages the Internet’s root DNS servers. In an isolated network or in your own LAN, you can create your own TLDs, but they will only be respected within your own network.</p></li>
 </ul>
 </div></blockquote>
 </div>
 <div class="section" id="dns-and-its-hierarchies">
 <h2>DNS and Its Hierarchies<a class="headerlink" href="#dns-and-its-hierarchies" title="Permalink to this headline">¶</a></h2>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/dns_hierarchy.png" src="../_images/dns_hierarchy.png" />
 </div>
 </div>
@@ -250,10 +257,10 @@
 <h2>Name Servers<a class="headerlink" href="#name-servers" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>The DNS system is a distributed database system.</li>
-<li>Each node in the database is a name server.</li>
-<li>Each domain has at least one authoritative DNS server that publishes information about the domain and the name servers of any domains subordinate to it.</li>
-<li>The top of the hierarchy is served by the root name servers. These servers manage the TLDs</li>
+<li><p>The DNS system is a distributed database system.</p></li>
+<li><p>Each node in the database is a name server.</p></li>
+<li><p>Each domain has at least one authoritative DNS server that publishes information about the domain and the name servers of any domains subordinate to it.</p></li>
+<li><p>The top of the hierarchy is served by the root name servers. These servers manage the TLDs</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -261,13 +268,13 @@
 <h2>Resolving Addresses<a class="headerlink" href="#resolving-addresses" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>DNS resolvers perform recursive queries in the hierarchal internet database to resolve these addresses.</li>
-<li>This kind of recursive query can put a very intense load on hosts that are responsible for records closer to the root. To solve this problem, a caching solution is needed.</li>
-<li>Nearly all ISPs provide a DNS server that contains a few hours old cache of a large portion of the internet’s DNS records. This cache gets partially invalidated every few hours. This is why when a DNS record is updated on the internet, it can take several hours to propagate through the entire internet.</li>
-<li>Additionally, most operating systems will locally cache DNS query results for at least several minutes or more.</li>
+<li><p>DNS resolvers perform recursive queries in the hierarchal internet database to resolve these addresses.</p></li>
+<li><p>This kind of recursive query can put a very intense load on hosts that are responsible for records closer to the root. To solve this problem, a caching solution is needed.</p></li>
+<li><p>Nearly all ISPs provide a DNS server that contains a few hours old cache of a large portion of the internet’s DNS records. This cache gets partially invalidated every few hours. This is why when a DNS record is updated on the internet, it can take several hours to propagate through the entire internet.</p></li>
+<li><p>Additionally, most operating systems will locally cache DNS query results for at least several minutes or more.</p></li>
 </ul>
 </div></blockquote>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/resolution.png" src="../_images/resolution.png" />
 </div>
 </div>
@@ -275,9 +282,9 @@
 <h2>Enabling Distribution and Load Balancing<a class="headerlink" href="#enabling-distribution-and-load-balancing" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>It is possible to configure regional DNS records. This allows an Internet visible web service to be physically hosted around the world and to have DNS queries be resolved to the closest physical server.</li>
-<li>Additionally, more than one IP address can be configured for a name record to point to. The DNS server, resolver, and caching mechanisms can randomly pick among the addresses sent back. This depends somewhat on client implementations for correctness.</li>
-<li>Failover MX records. When registering a mail exchanger for a site, it is possible to register multiple mail exchangers for the site with different priorities. Often, larger organizations will have one onsite SMTP server and one offsite SMTP server to allow for better uptime.</li>
+<li><p>It is possible to configure regional DNS records. This allows an Internet visible web service to be physically hosted around the world and to have DNS queries be resolved to the closest physical server.</p></li>
+<li><p>Additionally, more than one IP address can be configured for a name record to point to. The DNS server, resolver, and caching mechanisms can randomly pick among the addresses sent back. This depends somewhat on client implementations for correctness.</p></li>
+<li><p>Failover MX records. When registering a mail exchanger for a site, it is possible to register multiple mail exchangers for the site with different priorities. Often, larger organizations will have one onsite SMTP server and one offsite SMTP server to allow for better uptime.</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -285,11 +292,10 @@
 <h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li><dl class="first docutils">
-<dt>Information for this lecture was drawn from:</dt>
-<dd><ul class="first last">
-<li>Wikipedia</li>
-<li>Distributed Systems by Andrew Tanenbaum</li>
+<li><dl class="simple">
+<dt>Information for this lecture was drawn from:</dt><dd><ul>
+<li><p>Wikipedia</p></li>
+<li><p>Distributed Systems by Andrew Tanenbaum</p></li>
 </ul>
 </dd>
 </dl>
@@ -304,29 +310,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../queue/queue.html" class="btn btn-neutral float-right" title="Distributed Queues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../trans/trans.html" class="btn btn-neutral float-left" title="Distributed Transactions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../queue/queue.html" class="btn btn-neutral float-right" title="Distributed Queues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../trans/trans.html" class="btn btn-neutral float-left" title="Distributed Transactions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor
+        &#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -334,7 +340,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

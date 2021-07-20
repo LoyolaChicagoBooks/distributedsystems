@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Message Passing Interface &mdash; Distributed Systems v0.4 documentation</title>
+  <title>Message Passing Interface &mdash; Distributed Systems Updated 2021-07-20 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="SMTP" href="../smtp/smtp.html" />
@@ -62,7 +65,7 @@
             
             
               <div class="version">
-                v0.4
+                Updated 2021-07-20
               </div>
             
           
@@ -79,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -157,6 +161,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -191,18 +196,20 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Message Passing Interface</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/mpi/mpi.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -221,7 +228,7 @@
 <div class="section" id="credits">
 <h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>This lecture was written originally Brian Gathright, a former graduate student. It as since been adapted into this course’s lecture notes</li>
+<li><p>This lecture was written originally Brian Gathright, a former graduate student. It as since been adapted into this course’s lecture notes</p></li>
 </ul>
 </div>
 <div class="section" id="lecture-code">
@@ -231,59 +238,55 @@
 <div class="section" id="what-is-mpi">
 <h2>What is MPI?<a class="headerlink" href="#what-is-mpi" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>MPI stands for Message Passing Interface.</li>
-<li>MPI is used to send messages from one process (computer, workstation etc.) to another. These messages can contain data ranging from primitive types (integers, strings and so forth) to actual objects.</li>
-<li><dl class="first docutils">
-<dt>MPI is only an interface, as such you will need an Implementation of MPI before you can start coding.</dt>
-<dd><ul class="first last">
-<li>The interface itself lists the functions that any implementation of it must be able to perform.</li>
-<li>As such, MPI implementations are standardized on the basis that they all conform to the overarching interface.</li>
-<li>Think of MPI as a protocol: it defines the rules for Message Passing, but it is up to implementations to implement functions that follow the rules.</li>
+<li><p>MPI stands for Message Passing Interface.</p></li>
+<li><p>MPI is used to send messages from one process (computer, workstation etc.) to another. These messages can contain data ranging from primitive types (integers, strings and so forth) to actual objects.</p></li>
+<li><dl class="simple">
+<dt>MPI is only an interface, as such you will need an Implementation of MPI before you can start coding.</dt><dd><ul>
+<li><p>The interface itself lists the functions that any implementation of it must be able to perform.</p></li>
+<li><p>As such, MPI implementations are standardized on the basis that they all conform to the overarching interface.</p></li>
+<li><p>Think of MPI as a protocol: it defines the rules for Message Passing, but it is up to implementations to implement functions that follow the rules.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>MPI is a language-independent communications protocol. Implementations of MPI have been developed for several different languages.</dt>
-<dd><ul class="first last">
-<li>For example, pyMPI is used for Python and MPI.NET is used for C#. Note: in this lecture we are using MPI.NET and C#.</li>
+<li><dl class="simple">
+<dt>MPI is a language-independent communications protocol. Implementations of MPI have been developed for several different languages.</dt><dd><ul>
+<li><p>For example, pyMPI is used for Python and MPI.NET is used for C#. Note: in this lecture we are using MPI.NET and C#.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li>To summarize: MPI is a message passing library whose implementations are used to send messages (data, instructions, etc.) to other processes in order to perform specific tasks. In this way MPI is very much a Distributed topic.</li>
+<li><p>To summarize: MPI is a message passing library whose implementations are used to send messages (data, instructions, etc.) to other processes in order to perform specific tasks. In this way MPI is very much a Distributed topic.</p></li>
 </ul>
 <div class="section" id="uses-of-mpi">
 <h3>Uses of MPI<a class="headerlink" href="#uses-of-mpi" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>MPI is helpful whenever you need several workstations (or clusters) to work together efficiently and effectively.</li>
-<li>Two examples of such tasks are Parallel Computing and Monte Carlo Simulations.</li>
+<li><p>MPI is helpful whenever you need several workstations (or clusters) to work together efficiently and effectively.</p></li>
+<li><p>Two examples of such tasks are Parallel Computing and Monte Carlo Simulations.</p></li>
 </ul>
 </div>
 <div class="section" id="parallel-computing">
 <h3>Parallel Computing<a class="headerlink" href="#parallel-computing" title="Permalink to this headline">¶</a></h3>
 <ul>
-<li><p class="first">Parallel computing is a form of computation in which multiple calculations are done at the same time.</p>
-</li>
-<li><p class="first">For example, imagine you want to calculate the sum of a large amount of numbers (as in hundreds of thousands). You could do this several ways.</p>
+<li><p>Parallel computing is a form of computation in which multiple calculations are done at the same time.</p></li>
+<li><p>For example, imagine you want to calculate the sum of a large amount of numbers (as in hundreds of thousands). You could do this several ways.</p>
 <blockquote>
 <div><ul class="simple">
-<li>Obviously, you could simply sum all the numbers in a linear fashion with one process. If there are a ton of numbers, this is not ideal.</li>
-<li>You could improve your solution by implementing threading, but this would require you to have a lot of overhead for making sure the threads communicate effectively. That is they need to be assigned explicit numbers to sum and where to save those numbers. We would also need a master (or root) thread to get all of the info from the other threads. Not to mention you would need to make everything thread safe. This sounds bothersome.</li>
+<li><p>Obviously, you could simply sum all the numbers in a linear fashion with one process. If there are a ton of numbers, this is not ideal.</p></li>
+<li><p>You could improve your solution by implementing threading, but this would require you to have a lot of overhead for making sure the threads communicate effectively. That is they need to be assigned explicit numbers to sum and where to save those numbers. We would also need a master (or root) thread to get all of the info from the other threads. Not to mention you would need to make everything thread safe. This sounds bothersome.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Luckily, MPI would make this type of problem fairly painless. MPI can make use of collective functions (more on that in a minute), in which one process, the root, can communicate with all other processes. Using an MPI call the root process can assign numbers to the other processes and allot space for where the results should go. Once the other processs receive their numbers they sum them and return the results to the root process. The root process can then simply sum the sums. That’s it. We will look at the code in a bit.</p>
-</li>
+<li><p>Luckily, MPI would make this type of problem fairly painless. MPI can make use of collective functions (more on that in a minute), in which one process, the root, can communicate with all other processes. Using an MPI call the root process can assign numbers to the other processes and allot space for where the results should go. Once the other processs receive their numbers they sum them and return the results to the root process. The root process can then simply sum the sums. That’s it. We will look at the code in a bit.</p></li>
 </ul>
 </div>
 <div class="section" id="monte-carlo-simulations">
 <h3>Monte Carlo Simulations<a class="headerlink" href="#monte-carlo-simulations" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Briefly, Monte Carlo computations are computations that rely on random simulations that are done repeatably to derive probablities.</li>
-<li>MPI works great for this! Imagine you want to calculate the approximate value of Pi.</li>
-<li>One way of doing this is to simulate throwing darts at a circle inside a square. The ratio of darts inside the circle is the approximate value of Pi. Just like the summation problem above, we can do this in a linear fashion.</li>
-<li>However, MPI would allow us to scale up the number of simulations we do. For example, we could throw 1000 darts at a board, but our results would be much more accurate if we threw 1000 darts at 10 different boards. With MPI we can do that: each operation is done on a different process and in parallel. The results can then be compiled and are much closer.</li>
+<li><p>Briefly, Monte Carlo computations are computations that rely on random simulations that are done repeatably to derive probablities.</p></li>
+<li><p>MPI works great for this! Imagine you want to calculate the approximate value of Pi.</p></li>
+<li><p>One way of doing this is to simulate throwing darts at a circle inside a square. The ratio of darts inside the circle is the approximate value of Pi. Just like the summation problem above, we can do this in a linear fashion.</p></li>
+<li><p>However, MPI would allow us to scale up the number of simulations we do. For example, we could throw 1000 darts at a board, but our results would be much more accurate if we threw 1000 darts at 10 different boards. With MPI we can do that: each operation is done on a different process and in parallel. The results can then be compiled and are much closer.</p></li>
 </ul>
 </div>
 <div class="section" id="the-mpi-programming-model">
@@ -325,9 +328,9 @@ Each process is running the same program, but is working on different parts of i
 <p>In order to write your own MPI programs you will need an Implementation of MPI for the language you wish to code in.</p>
 <p>We used:</p>
 <ul class="simple">
-<li>MPI.NET: <a class="reference external" href="http://osl.iu.edu/research/mpi.net/software/">http://osl.iu.edu/research/mpi.net/software/</a></li>
-<li>Microsoft Compute Cluster Server: <a class="reference external" href="http://www.microsoft.com/en-us/download/details.aspx?id=239">http://www.microsoft.com/en-us/download/details.aspx?id=239</a> is necessary for cluster work.</li>
-<li>The above two are a bit obsolete on the Microsoft platform. Search for Microsoft HPC Server 2012 R2. This takes some work to setup, but is very doable.</li>
+<li><p>MPI.NET: <a class="reference external" href="http://osl.iu.edu/research/mpi.net/software/">http://osl.iu.edu/research/mpi.net/software/</a></p></li>
+<li><p>Microsoft Compute Cluster Server: <a class="reference external" href="http://www.microsoft.com/en-us/download/details.aspx?id=239">http://www.microsoft.com/en-us/download/details.aspx?id=239</a> is necessary for cluster work.</p></li>
+<li><p>The above two are a bit obsolete on the Microsoft platform. Search for Microsoft HPC Server 2012 R2. This takes some work to setup, but is very doable.</p></li>
 </ul>
 <p>Once you have an implementation installed you can begin coding. You will need to reference that you wish to use MPI (in C# this is done by the “using” statement at the top of your code). You will also need to add MPI to your project references. Next inside your code you will need to set up an MPI Environment.
 In C# the skeleton looks like this:</p>
@@ -433,20 +436,21 @@ uses, but we will primarily use it to illustrate message sending and then focus 
 <p>Point to Point makes use of the Send and Receive functions.</p>
 <p>The Send function is used to send the messages. The send message takes three parameters (data, rank, tag)</p>
 <ul class="simple">
-<li>data is what we are sending</li>
-<li>rank is the rank of the destination of the message</li>
-<li>tag is used to differieniate between types of messages.<ul>
-<li>tags are useful for when we are sendign around multiple types of data, such as integers and strings. We could tag all integers with 0 and all
-strings with 1. When a message is received it is only used if the tag matches, this is so we don’t accidentally receive an integer in place of a string.</li>
+<li><p>data is what we are sending</p></li>
+<li><p>rank is the rank of the destination of the message</p></li>
+<li><p>tag is used to differieniate between types of messages.</p>
+<ul>
+<li><p>tags are useful for when we are sendign around multiple types of data, such as integers and strings. We could tag all integers with 0 and all
+strings with 1. When a message is received it is only used if the tag matches, this is so we don’t accidentally receive an integer in place of a string.</p></li>
 </ul>
 </li>
 </ul>
 <p>Before we continue let us talk really briefly about what data can be sent. All implementations of MPI need to be able to send primitive types.
 Depending on your implementation of MPI you can also send other things. For example, MPI.NET allows the sending of:</p>
 <ul class="simple">
-<li>Primitive Types (integers, strings, floats…)</li>
-<li>Structures</li>
-<li>Serializable Classes</li>
+<li><p>Primitive Types (integers, strings, floats…)</p></li>
+<li><p>Structures</p></li>
+<li><p>Serializable Classes</p></li>
 </ul>
 <p>What you send can effect perfomance. Primitives and Structures are generally sent in a single message and are the “fastest”.
 Classes need to be serialized and can be split up between multiple messages, which is obviously slower. But, if you need the classes
@@ -454,8 +458,8 @@ then there isn’t much you can do.</p>
 <p>Now let’s move on to the recieve function.</p>
 <p>The receive function is similar with parameters (rank, tag)</p>
 <ul class="simple">
-<li>rank is used so it knows who is sending the data</li>
-<li>tag for the reasons mentioned above: if the tags don’t match that’s not the message we want.</li>
+<li><p>rank is used so it knows who is sending the data</p></li>
+<li><p>tag for the reasons mentioned above: if the tags don’t match that’s not the message we want.</p></li>
 </ul>
 <p>When you receive a primitive type you must match it directly, i.e. you can’t receive a message with a string and save it as an integer.
 However, with classes you can receive it via its base class. For example you can receive a poodle as a dog.</p>
@@ -585,28 +589,30 @@ add something to the string and print it so we can see the progress of our messa
 You could probably do all of your coding in Point to Point Communication, but this would get messy pretty quickly. Here are two reasons
 to consider Collective Communication:</p>
 <ul class="simple">
-<li>Code Readability and Maintainability.<ul>
-<li>It is easier to read and maintain code with collectives.</li>
-<li>For example if we want to send something to every process it would require N^2 point to point communications, with a collective it is one simple call.</li>
+<li><p>Code Readability and Maintainability.</p>
+<ul>
+<li><p>It is easier to read and maintain code with collectives.</p></li>
+<li><p>For example if we want to send something to every process it would require N^2 point to point communications, with a collective it is one simple call.</p></li>
 </ul>
 </li>
-<li>Performance<ul>
-<li>MPI has designed algorithms that are optimized to do collective communication. As mentioned above, we can also save a lot of time having one call versus several.</li>
+<li><p>Performance</p>
+<ul>
+<li><p>MPI has designed algorithms that are optimized to do collective communication. As mentioned above, we can also save a lot of time having one call versus several.</p></li>
 </ul>
 </li>
 </ul>
 <p>The five major ways of communication that MPI implements are:</p>
 <ul class="simple">
-<li>barriers: wait for others before proceeding
-- uses Barrier</li>
-<li>all-to-one: all processes send data to one
-- uses Gather and Allgather</li>
-<li>one-to-all: sends data to all processes from one
-- uses Broadcast and Scatter</li>
-<li>all-to-all: all processes send data to all processes
-- uses Alltoall</li>
-<li>combining results: get results from every process and do something with it.
-- uses Reduce</li>
+<li><p>barriers: wait for others before proceeding
+- uses Barrier</p></li>
+<li><p>all-to-one: all processes send data to one
+- uses Gather and Allgather</p></li>
+<li><p>one-to-all: sends data to all processes from one
+- uses Broadcast and Scatter</p></li>
+<li><p>all-to-all: all processes send data to all processes
+- uses Alltoall</p></li>
+<li><p>combining results: get results from every process and do something with it.
+- uses Reduce</p></li>
 </ul>
 </div>
 <div class="section" id="barriers">
@@ -858,29 +864,29 @@ receive a different array where the jth value will be the value from the process
 <div class="section" id="general-points">
 <h3>General Points<a class="headerlink" href="#general-points" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Optimized for performance. Algorithms for collective communications are optimized based on the knowledge of the network.</li>
-<li>Reliable when sending/receiving messages. The use of tags and ranks make sure the right messages are received.</li>
-<li>Messages arrive in order: If I send two back to back string messages, you will get them in the order I sent them.</li>
-<li>Maintainability and Readability: a lot of the algorithms are done under the hood so in your code you will simply see calls to
-scatter, gather etc, and not have to worry about the inner workings.</li>
+<li><p>Optimized for performance. Algorithms for collective communications are optimized based on the knowledge of the network.</p></li>
+<li><p>Reliable when sending/receiving messages. The use of tags and ranks make sure the right messages are received.</p></li>
+<li><p>Messages arrive in order: If I send two back to back string messages, you will get them in the order I sent them.</p></li>
+<li><p>Maintainability and Readability: a lot of the algorithms are done under the hood so in your code you will simply see calls to
+scatter, gather etc, and not have to worry about the inner workings.</p></li>
 </ul>
 </div>
 <div class="section" id="openness">
 <h3>Openness<a class="headerlink" href="#openness" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Anyone is welcome to write an MPI implementation for any language or platform.</li>
-<li>MPI forums are open and publically available as well as many implementations.</li>
+<li><p>Anyone is welcome to write an MPI implementation for any language or platform.</p></li>
+<li><p>MPI forums are open and publically available as well as many implementations.</p></li>
 </ul>
 </div>
 <div class="section" id="scalability">
 <h3>Scalability<a class="headerlink" href="#scalability" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>In one sense MPI scales really well: if you want to add more processes you simply resend the command with more processes.
-On the other hand, some of MPI’s collective communications can cause problems when scaling.</li>
-<li>For example, Alltoall requires an array of the size of the number or processes. If we had say a million processes,
-then each process would have a huge array.</li>
-<li>Also the make up of the processes is generally a graph of some sort. Some of these are not very efficient when handling a lot
-or processes.</li>
+<li><p>In one sense MPI scales really well: if you want to add more processes you simply resend the command with more processes.
+On the other hand, some of MPI’s collective communications can cause problems when scaling.</p></li>
+<li><p>For example, Alltoall requires an array of the size of the number or processes. If we had say a million processes,
+then each process would have a huge array.</p></li>
+<li><p>Also the make up of the processes is generally a graph of some sort. Some of these are not very efficient when handling a lot
+or processes.</p></li>
 </ul>
 </div>
 <div class="section" id="fault-tolerance">
@@ -888,15 +894,15 @@ or processes.</li>
 <p>MPI, being an Interface, says very little about Fault Tolerance.
 However implementations of MPI should and to an extend do have some Fault Tolerances Built in.</p>
 <ul class="simple">
-<li>Resend Messages. If a message is lost or corrupt resend it.</li>
-<li>Give errors that the application can then use to survive.</li>
+<li><p>Resend Messages. If a message is lost or corrupt resend it.</p></li>
+<li><p>Give errors that the application can then use to survive.</p></li>
 </ul>
 <p>Other forms of fault tolerance are left up to the application.</p>
 <ul class="simple">
-<li>One example is that when a process fails, it can return an error to all processes who try to talk to it instead of
+<li><p>One example is that when a process fails, it can return an error to all processes who try to talk to it instead of
 crashing the program. The remaining processes can then do something about it. For example, if the process
-responsible for summing some section of the indexes bombs out, we could write our code to reassign the section.</li>
-<li>Another example is checkpoints. Putting checkpoints in is expensive, but can be worth it.</li>
+responsible for summing some section of the indexes bombs out, we could write our code to reassign the section.</p></li>
+<li><p>Another example is checkpoints. Putting checkpoints in is expensive, but can be worth it.</p></li>
 </ul>
 </div>
 <div class="section" id="transparency">
@@ -915,29 +921,29 @@ responsible for summing some section of the indexes bombs out, we could write ou
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../smtp/smtp.html" class="btn btn-neutral float-right" title="SMTP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../queue/queue.html" class="btn btn-neutral float-left" title="Distributed Queues" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../smtp/smtp.html" class="btn btn-neutral float-right" title="SMTP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../queue/queue.html" class="btn btn-neutral float-left" title="Distributed Queues" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor
+        &#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -945,7 +951,6 @@ responsible for summing some section of the indexes bombs out, we could write ou
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>BitTorrent &mdash; Distributed Systems v0.4 documentation</title>
+  <title>BitTorrent &mdash; Distributed Systems Updated 2021-07-20 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Hadoop Distributed File System" href="../hadoop/hadoop.html" />
@@ -62,7 +65,7 @@
             
             
               <div class="version">
-                v0.4
+                Updated 2021-07-20
               </div>
             
           
@@ -79,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -137,6 +141,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -171,18 +176,20 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>BitTorrent</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/bit_torrent/bit_torrent.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -199,11 +206,11 @@
   <div class="section" id="bittorrent">
 <h1>BitTorrent<a class="headerlink" href="#bittorrent" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li>BitTorrent is a protocol for peer-to-peer content sharing over the Internet.</li>
-<li>In November 2004 BitTorrent share of the whole Internet Traffic was estimated at 35% (Wikipedia).</li>
-<li>The protocol was designed by Bram Cohen in 2001.</li>
-<li>Bram Cohen released an implementation in the same year.</li>
-<li>The final Version was released in 2008.</li>
+<li><p>BitTorrent is a protocol for peer-to-peer content sharing over the Internet.</p></li>
+<li><p>In November 2004 BitTorrent share of the whole Internet Traffic was estimated at 35% (Wikipedia).</p></li>
+<li><p>The protocol was designed by Bram Cohen in 2001.</p></li>
+<li><p>Bram Cohen released an implementation in the same year.</p></li>
+<li><p>The final Version was released in 2008.</p></li>
 </ul>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="../_images/BitTorrentModel.png"><img alt="Figure 1" src="../_images/BitTorrentModel.png" style="width: 700px; height: 600px;" /></a>
@@ -211,58 +218,64 @@
 <div class="section" id="terminology">
 <h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Seeder</dt>
-<dd>A peer with complete file is called seeder.
+<li><dl class="simple">
+<dt>Seeder</dt><dd><p>A peer with complete file is called seeder.
 Initially there is only one seeder (the one who uploads the file).
-Peers who download the file completely and contunue to share, become seeders.</dd>
+Peers who download the file completely and contunue to share, become seeders.</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Peer</dt>
-<dd>A host that is in process of downloading the file while uploading at the same time. This is sometimes called a leecher as well; however, the term leecher is sometimes used for peers that just download and decide to not upload.</dd>
+<li><dl class="simple">
+<dt>Peer</dt><dd><p>A host that is in process of downloading the file while uploading at the same time. This is sometimes called a leecher as well; however, the term leecher is sometimes used for peers that just download and decide to not upload.</p>
+</dd>
 </dl>
 </li>
-<li>Bencoding
-Messages exchanged between peers and trackers are bencoded as explained below:<ul>
-<li>Strings are prefixed with an integer representing their length followed by a colon and the string itself. For example 4:info corresponds to ‘info’</li>
-<li>Integers are prefixed by an i followed by the integer and ending with an e. Example, i3e corresponds to 3.</li>
-<li>Lists are prefixed with l followed by elements (also bencoded) ending with e. Example l4:info3:abce corresponds to [‘info’, ‘abc’]</li>
-<li>Dictionaries are prefixed by d followed by an alternating list of keys and values, and they end in e. For example, d1:a4:spam1:b4:infoe corresponds to {‘a’: ‘spam’, ‘b’: ‘info’}</li>
+<li><p>Bencoding
+Messages exchanged between peers and trackers are bencoded as explained below:</p>
+<ul>
+<li><p>Strings are prefixed with an integer representing their length followed by a colon and the string itself. For example 4:info corresponds to ‘info’</p></li>
+<li><p>Integers are prefixed by an i followed by the integer and ending with an e. Example, i3e corresponds to 3.</p></li>
+<li><p>Lists are prefixed with l followed by elements (also bencoded) ending with e. Example l4:info3:abce corresponds to [‘info’, ‘abc’]</p></li>
+<li><p>Dictionaries are prefixed by d followed by an alternating list of keys and values, and they end in e. For example, d1:a4:spam1:b4:infoe corresponds to {‘a’: ‘spam’, ‘b’: ‘info’}</p></li>
 </ul>
 </li>
-<li>Metainfo (.torrent) File<ul>
-<li>A light-weight file that contains meta-data about the file(s), trackers, etc. as explained below.</li>
-<li>URL of the tracker(s).</li>
-<li>info field which is a dictionary with the following elements<ul>
-<li>name: maps to the name of the file/directory being shared</li>
-<li>piece length: The size of the file pieces.</li>
-<li>length: Length of the file in bytes.</li>
+<li><p>Metainfo (.torrent) File</p>
+<ul>
+<li><p>A light-weight file that contains meta-data about the file(s), trackers, etc. as explained below.</p></li>
+<li><p>URL of the tracker(s).</p></li>
+<li><p>info field which is a dictionary with the following elements</p>
+<ul>
+<li><p>name: maps to the name of the file/directory being shared</p></li>
+<li><p>piece length: The size of the file pieces.</p></li>
+<li><p>length: Length of the file in bytes.</p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li>Tracker<ul>
-<li>A host that coordinates file distribution.</li>
-<li>Maintains IP address, port number and an ID for every peer.</li>
-<li>Transfer state for peers: downloading, completed.</li>
-<li>It returs a random list of peers to the clients when requested.</li>
-<li>Peers send Tracker GET requests to trackers and they get Responses back from the tracker.</li>
-<li>Tracker GET requests have the following fields<ul>
-<li>info_hash: a sha1 hash of the metainfo file</li>
-<li>peer_id: a 20 byte identifier that the peer generates when it first starts</li>
-<li>ip: The IP address of the peer</li>
-<li>port: The port number that the peer uses</li>
-<li>uploaded: The total amount (in bytes) uploaded so far</li>
-<li>downloaded: The total amount (in bytes) this peer has downloaded so far</li>
-<li>left: The amount (in bytes) this peer has yet to download to complete download</li>
-<li>event: An optional key that maps to one of ‘completed’, ‘started’, stopped’. The peers can inform the trackers of their status using event messages.</li>
+<li><p>Tracker</p>
+<ul>
+<li><p>A host that coordinates file distribution.</p></li>
+<li><p>Maintains IP address, port number and an ID for every peer.</p></li>
+<li><p>Transfer state for peers: downloading, completed.</p></li>
+<li><p>It returs a random list of peers to the clients when requested.</p></li>
+<li><p>Peers send Tracker GET requests to trackers and they get Responses back from the tracker.</p></li>
+<li><p>Tracker GET requests have the following fields</p>
+<ul>
+<li><p>info_hash: a sha1 hash of the metainfo file</p></li>
+<li><p>peer_id: a 20 byte identifier that the peer generates when it first starts</p></li>
+<li><p>ip: The IP address of the peer</p></li>
+<li><p>port: The port number that the peer uses</p></li>
+<li><p>uploaded: The total amount (in bytes) uploaded so far</p></li>
+<li><p>downloaded: The total amount (in bytes) this peer has downloaded so far</p></li>
+<li><p>left: The amount (in bytes) this peer has yet to download to complete download</p></li>
+<li><p>event: An optional key that maps to one of ‘completed’, ‘started’, stopped’. The peers can inform the trackers of their status using event messages.</p></li>
 </ul>
 </li>
-<li>Tracker responses are dictionaries with the following elements:<ul>
-<li>interval: Number of seconds downloader should wait before sending another request</li>
-<li>peers: A list of dictionaries corresponding to peers</li>
-<li>failure reason: A string explaining the reason why the request failed, in case there is a failure</li>
+<li><p>Tracker responses are dictionaries with the following elements:</p>
+<ul>
+<li><p>interval: Number of seconds downloader should wait before sending another request</p></li>
+<li><p>peers: A list of dictionaries corresponding to peers</p></li>
+<li><p>failure reason: A string explaining the reason why the request failed, in case there is a failure</p></li>
 </ul>
 </li>
 </ul>
@@ -272,18 +285,20 @@ Messages exchanged between peers and trackers are bencoded as explained below:<u
 <div class="section" id="how-it-works">
 <h2>How It Works<a class="headerlink" href="#how-it-works" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>BitTorrent client is the tool used to achieve the majority of the activities in sharing.</li>
-<li>The file(s) being distribted is divided into pieces.<ul>
-<li>When a peer receives a piece, it can then redistribute it to other peers.</li>
-<li>Pieces are protected by a cryptographic hash so as to avoid accidental or malicious modification.</li>
-<li>Pieces are distributed non-sequentially and the client rearranges them when it receives all the pieces.</li>
-<li>Piece size can be set arbitrarily by the client. For example, with piece size of 1 MB a 10 MB file will divided into 10 equal pieces and will be shared in chunks of 1 MB.</li>
+<li><p>BitTorrent client is the tool used to achieve the majority of the activities in sharing.</p></li>
+<li><p>The file(s) being distribted is divided into pieces.</p>
+<ul>
+<li><p>When a peer receives a piece, it can then redistribute it to other peers.</p></li>
+<li><p>Pieces are protected by a cryptographic hash so as to avoid accidental or malicious modification.</p></li>
+<li><p>Pieces are distributed non-sequentially and the client rearranges them when it receives all the pieces.</p></li>
+<li><p>Piece size can be set arbitrarily by the client. For example, with piece size of 1 MB a 10 MB file will divided into 10 equal pieces and will be shared in chunks of 1 MB.</p></li>
 </ul>
 </li>
-<li>Transfer is done via TCP as follows:<ul>
-<li>The protocol makes sure that several requests are pending before a piece is being sent.</li>
-<li>At the receiving end once a piece arrives, another request is sent.</li>
-<li>At any point in time, a specific number of pieces (usually 5) is requested.</li>
+<li><p>Transfer is done via TCP as follows:</p>
+<ul>
+<li><p>The protocol makes sure that several requests are pending before a piece is being sent.</p></li>
+<li><p>At the receiving end once a piece arrives, another request is sent.</p></li>
+<li><p>At any point in time, a specific number of pieces (usually 5) is requested.</p></li>
 </ul>
 </li>
 </ul>
@@ -292,15 +307,17 @@ Messages exchanged between peers and trackers are bencoded as explained below:<u
 <p>If pieces are not selected in a well-thought way, all peers may endup having downloaded the same pieces but some (of the more difficult pieces) may be missing. If the seeder disappears preamturely, all peers may end up with incomplete files.
 To solve this issue, one or more of the following policies are used:</p>
 <ul class="simple">
-<li>Random First Piece Selection<ul>
-<li>Initially the peer has no pieces.</li>
-<li>Select a first piece and downoad it as soon as possibly.</li>
-<li>Select a random piece of the file and download it.</li>
+<li><p>Random First Piece Selection</p>
+<ul>
+<li><p>Initially the peer has no pieces.</p></li>
+<li><p>Select a first piece and downoad it as soon as possibly.</p></li>
+<li><p>Select a random piece of the file and download it.</p></li>
 </ul>
 </li>
-<li>Rarest Piece First<ul>
-<li>Determine the piecest that are not found or are rare among the peers and download those first.</li>
-<li>This ensures that the common pieces are left towards the end to be downloaded.</li>
+<li><p>Rarest Piece First</p>
+<ul>
+<li><p>Determine the piecest that are not found or are rare among the peers and download those first.</p></li>
+<li><p>This ensures that the common pieces are left towards the end to be downloaded.</p></li>
 </ul>
 </li>
 </ul>
@@ -317,11 +334,11 @@ The original uploader is known as seed/seeder and others who start downloading f
 <p>Choking is a mechanism using which the BitTorrent protocol avoids free riders, those who want to download but not upload.
 Also, choking helps tackle network congestion???</p>
 <ol class="arabic simple">
-<li>Upload one file piece to peer p</li>
-<li>Repeat 1 N times // N is typically between 2 and 5</li>
-<li>If peer p uploads data go to 1 else go to 4</li>
-<li>Stop uploading to p for S seconds</li>
-<li>After S seconds go to step 1</li>
+<li><p>Upload one file piece to peer p</p></li>
+<li><p>Repeat 1 N times // N is typically between 2 and 5</p></li>
+<li><p>If peer p uploads data go to 1 else go to 4</p></li>
+<li><p>Stop uploading to p for S seconds</p></li>
+<li><p>After S seconds go to step 1</p></li>
 </ol>
 <p>The above procedure is applied for all peers. The last step is called optimistic unchoking. This way the algorithm makes sure that no peers are choked permanently.
 This is a simplistic procedure for choking/unchoking mechanism. The real algorithm may be more complex depending on implementation.
@@ -331,29 +348,30 @@ And finally the seeders and peers upoad to those peers with the highest upload r
 <div class="section" id="peer-protocol">
 <h3>Peer Protocol<a class="headerlink" href="#peer-protocol" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Peer connections are symmetrical: same data can be sent in both directions</li>
-<li>File pieces are referred to by indexes</li>
-<li>When a peer finishes downloading a piece it announces to all other peers that it has that piece</li>
-<li>Connections on both sides contain two bits of state: choked/unchoked and interested/not_interested</li>
-<li>Choking the status indicating that no data can be sent until the unchoking happens</li>
-<li>Data transfer happens when one side is interested and the other side is not choking</li>
-<li>Connections start in unchoked and not-interested state</li>
-<li>Downloaders should keep several piece requests queued for best TCP performance</li>
-<li>The peer data stream is started by a handshake and followed by a continuous stream of data transfers</li>
-<li>The first chunk of bytes is the header</li>
-<li>Next comes the 20 byte hash of the info value from the metainfo file i.e. the info_hash</li>
-<li>Then comes the 20 byte peer id</li>
-<li>At this point handshake is finished and an alternating stream of length prefixes and messages continue flowing</li>
-<li>Peer messages start with a byte that specifies their type as follows:<ul>
-<li>0: choke</li>
-<li>1: unchoke</li>
-<li>2: interested</li>
-<li>3: not interested</li>
-<li>4: have</li>
-<li>5: bitfield</li>
-<li>6: request</li>
-<li>7: piece</li>
-<li>8: cancel</li>
+<li><p>Peer connections are symmetrical: same data can be sent in both directions</p></li>
+<li><p>File pieces are referred to by indexes</p></li>
+<li><p>When a peer finishes downloading a piece it announces to all other peers that it has that piece</p></li>
+<li><p>Connections on both sides contain two bits of state: choked/unchoked and interested/not_interested</p></li>
+<li><p>Choking the status indicating that no data can be sent until the unchoking happens</p></li>
+<li><p>Data transfer happens when one side is interested and the other side is not choking</p></li>
+<li><p>Connections start in unchoked and not-interested state</p></li>
+<li><p>Downloaders should keep several piece requests queued for best TCP performance</p></li>
+<li><p>The peer data stream is started by a handshake and followed by a continuous stream of data transfers</p></li>
+<li><p>The first chunk of bytes is the header</p></li>
+<li><p>Next comes the 20 byte hash of the info value from the metainfo file i.e. the info_hash</p></li>
+<li><p>Then comes the 20 byte peer id</p></li>
+<li><p>At this point handshake is finished and an alternating stream of length prefixes and messages continue flowing</p></li>
+<li><p>Peer messages start with a byte that specifies their type as follows:</p>
+<ul>
+<li><p>0: choke</p></li>
+<li><p>1: unchoke</p></li>
+<li><p>2: interested</p></li>
+<li><p>3: not interested</p></li>
+<li><p>4: have</p></li>
+<li><p>5: bitfield</p></li>
+<li><p>6: request</p></li>
+<li><p>7: piece</p></li>
+<li><p>8: cancel</p></li>
 </ul>
 </li>
 </ul>
@@ -364,35 +382,41 @@ Cancel messages are sent when the download is completed.</p>
 <div class="section" id="distributed-characteristics">
 <h3>Distributed Characteristics<a class="headerlink" href="#distributed-characteristics" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Support for resource sharing<ul>
-<li>Trackers are used to make sure that resources are shared among as many peers as possible</li>
+<li><p>Support for resource sharing</p>
+<ul>
+<li><p>Trackers are used to make sure that resources are shared among as many peers as possible</p></li>
 </ul>
 </li>
-<li>Openness<ul>
-<li>The specification is open for implementation.</li>
-<li>No restriction to any particular platform whatsover. There are implementations for various platforms.</li>
+<li><p>Openness</p>
+<ul>
+<li><p>The specification is open for implementation.</p></li>
+<li><p>No restriction to any particular platform whatsover. There are implementations for various platforms.</p></li>
 </ul>
 </li>
-<li>Concurrency<ul>
-<li>Each peer is both a client and server</li>
-<li>Many processes interact to achieve the job</li>
+<li><p>Concurrency</p>
+<ul>
+<li><p>Each peer is both a client and server</p></li>
+<li><p>Many processes interact to achieve the job</p></li>
 </ul>
 </li>
-<li>Scalability<ul>
-<li>Peers are added or removed seamlessly without affecting the reliability of the system.</li>
-<li>New trackers can be added and old one can disappear without much effect to the whole system.</li>
+<li><p>Scalability</p>
+<ul>
+<li><p>Peers are added or removed seamlessly without affecting the reliability of the system.</p></li>
+<li><p>New trackers can be added and old one can disappear without much effect to the whole system.</p></li>
 </ul>
 </li>
-<li>Fault Tolerance<ul>
-<li>When peers appear or disappear at random, the system is not affected significantly as long as there is at least one seeder.</li>
-<li>One or more trackers should always exist to propogate peers information.</li>
-<li>If number of seeders goes to zero, peers keep sharing the portions of the files that they have. This might mean that the file(s) might be incomplete. As soon as a seeder re-appears all peers can catch up and get the whole file(s).</li>
-<li>There are implementations in which there is no need for trackers.</li>
+<li><p>Fault Tolerance</p>
+<ul>
+<li><p>When peers appear or disappear at random, the system is not affected significantly as long as there is at least one seeder.</p></li>
+<li><p>One or more trackers should always exist to propogate peers information.</p></li>
+<li><p>If number of seeders goes to zero, peers keep sharing the portions of the files that they have. This might mean that the file(s) might be incomplete. As soon as a seeder re-appears all peers can catch up and get the whole file(s).</p></li>
+<li><p>There are implementations in which there is no need for trackers.</p></li>
 </ul>
 </li>
-<li>Transparency<ul>
-<li>All details are hidden from the end users.</li>
-<li>It looks much like a normal client-server download manager</li>
+<li><p>Transparency</p>
+<ul>
+<li><p>All details are hidden from the end users.</p></li>
+<li><p>It looks much like a normal client-server download manager</p></li>
 </ul>
 </li>
 </ul>
@@ -400,30 +424,30 @@ Cancel messages are sent when the download is completed.</p>
 <div class="section" id="advantages">
 <h3>Advantages<a class="headerlink" href="#advantages" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Economical: Almost no maintenance cost is involved</li>
-<li>It is very efficient since every participant is a content provider. No dependency on a single party.</li>
-<li>Highly extensible: peers join and leave with almost no effect on the content with the exception that there always should be at least one seeder.</li>
-<li>It is reliable: As long as there is one seeder (and more peers), it is guaranteed that the system works well.</li>
-<li>It gives flexibility: The work is evenly distributed among peers.</li>
+<li><p>Economical: Almost no maintenance cost is involved</p></li>
+<li><p>It is very efficient since every participant is a content provider. No dependency on a single party.</p></li>
+<li><p>Highly extensible: peers join and leave with almost no effect on the content with the exception that there always should be at least one seeder.</p></li>
+<li><p>It is reliable: As long as there is one seeder (and more peers), it is guaranteed that the system works well.</p></li>
+<li><p>It gives flexibility: The work is evenly distributed among peers.</p></li>
 </ul>
 </div>
 <div class="section" id="disadvantages">
 <h3>Disadvantages<a class="headerlink" href="#disadvantages" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>If there is no seeder, for some content the peers may end up exchanging only part of the whole content.</li>
-<li>Peers are loosely dependent on one another for bandwidth.</li>
-<li>Designed for public file sharing and hence not the best option for private sharing</li>
-<li>Copyright infringment concerns: it is hard to control whether the shared resources for copyright infringement.</li>
+<li><p>If there is no seeder, for some content the peers may end up exchanging only part of the whole content.</p></li>
+<li><p>Peers are loosely dependent on one another for bandwidth.</p></li>
+<li><p>Designed for public file sharing and hence not the best option for private sharing</p></li>
+<li><p>Copyright infringment concerns: it is hard to control whether the shared resources for copyright infringement.</p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>BitTorrent Official specification: <a class="reference external" href="http://www.bittorrent.org/beps/bep_0003.html">http://www.bittorrent.org/beps/bep_0003.html</a></li>
-<li>Wikipedia entry: <a class="reference external" href="http://en.wikipedia.org/wiki/BitTorrent">http://en.wikipedia.org/wiki/BitTorrent</a></li>
-<li>The Pirate Bay, a BitTorrent distribution server: <a class="reference external" href="http://thepiratebay.sx/">http://thepiratebay.sx/</a></li>
-<li>An example of list of trackers: <a class="reference external" href="http://tech.thaweesha.com/2013/02/torrent-tracker-list-2013.html">http://tech.thaweesha.com/2013/02/torrent-tracker-list-2013.html</a></li>
+<li><p>BitTorrent Official specification: <a class="reference external" href="http://www.bittorrent.org/beps/bep_0003.html">http://www.bittorrent.org/beps/bep_0003.html</a></p></li>
+<li><p>Wikipedia entry: <a class="reference external" href="http://en.wikipedia.org/wiki/BitTorrent">http://en.wikipedia.org/wiki/BitTorrent</a></p></li>
+<li><p>The Pirate Bay, a BitTorrent distribution server: <a class="reference external" href="http://thepiratebay.sx/">http://thepiratebay.sx/</a></p></li>
+<li><p>An example of list of trackers: <a class="reference external" href="http://tech.thaweesha.com/2013/02/torrent-tracker-list-2013.html">http://tech.thaweesha.com/2013/02/torrent-tracker-list-2013.html</a></p></li>
 </ul>
 </div>
 </div>
@@ -433,29 +457,29 @@ Cancel messages are sent when the download is completed.</p>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../hadoop/hadoop.html" class="btn btn-neutral float-right" title="Hadoop Distributed File System" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../apache_spark/apache_spark.html" class="btn btn-neutral float-left" title="Apache Spark" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../hadoop/hadoop.html" class="btn btn-neutral float-right" title="Hadoop Distributed File System" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../apache_spark/apache_spark.html" class="btn btn-neutral float-left" title="Apache Spark" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor
+        &#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -463,7 +487,6 @@ Cancel messages are sent when the download is completed.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

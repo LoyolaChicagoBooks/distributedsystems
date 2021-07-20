@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Distributed Transactions &mdash; Distributed Systems v0.4 documentation</title>
+  <title>Distributed Transactions &mdash; Distributed Systems Updated 2021-07-20 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Domain Name Service" href="../dns/dns.html" />
@@ -62,7 +65,7 @@
             
             
               <div class="version">
-                v0.4
+                Updated 2021-07-20
               </div>
             
           
@@ -79,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -137,6 +141,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -171,18 +176,20 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Distributed Transactions</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/trans/trans.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -201,36 +208,36 @@
 <div class="section" id="transactions-defined">
 <h2>Transactions Defined<a class="headerlink" href="#transactions-defined" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>A transaction is a unit of reliable and consistent computation.</li>
-<li>A sequence of read and write operations on a database that happen entirely or not at all.</li>
-<li>Transactions may or may not be repeatable or isolated.</li>
+<li><p>A transaction is a unit of reliable and consistent computation.</p></li>
+<li><p>A sequence of read and write operations on a database that happen entirely or not at all.</p></li>
+<li><p>Transactions may or may not be repeatable or isolated.</p></li>
 </ul>
 </div>
 <div class="section" id="acid">
 <h2>ACID<a class="headerlink" href="#acid" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>ACID = Atomicity, Consistency, Isolation, Durability</li>
-<li>Atomicity requires that each transaction be “all or nothing”. i.e. if one part of a transaction fails, then the entire transaction fails and the database remains unchanged w.r.t. the actions in the transaction</li>
-<li>Consistency requires that the pre-state and post-state of a transaction on a database be valid. Typically this refers to having all constraints on the data structures in the database be valid.</li>
-<li>Isolation. This refers to the degree of serializability. Providing maximum isolation for concurrent transactions would have an equivalent post-state as running all transactions in serial.</li>
-<li>Durability. This ensures that once a transaction has been committed that it will remain committed, even in the event of some crash or power-loss.</li>
+<li><p>ACID = Atomicity, Consistency, Isolation, Durability</p></li>
+<li><p>Atomicity requires that each transaction be “all or nothing”. i.e. if one part of a transaction fails, then the entire transaction fails and the database remains unchanged w.r.t. the actions in the transaction</p></li>
+<li><p>Consistency requires that the pre-state and post-state of a transaction on a database be valid. Typically this refers to having all constraints on the data structures in the database be valid.</p></li>
+<li><p>Isolation. This refers to the degree of serializability. Providing maximum isolation for concurrent transactions would have an equivalent post-state as running all transactions in serial.</p></li>
+<li><p>Durability. This ensures that once a transaction has been committed that it will remain committed, even in the event of some crash or power-loss.</p></li>
 </ul>
 </div>
 <div class="section" id="isolation-levels-serializable">
 <h2>Isolation Levels - Serializable<a class="headerlink" href="#isolation-levels-serializable" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Transactions are guaranteed to be serializable w.r.t. each other. This means that the post state of two concurrent transactions would be the same as if they were executed in serial (one after the other) fashion.</li>
-<li>There are many algorithms for determining serializability and implementing either pessimistic or optimistic locks to achieve serializable isolation within a single database host.</li>
-<li>Read, write, and range-locks are kept for the duration of a transaction.</li>
+<li><p>Transactions are guaranteed to be serializable w.r.t. each other. This means that the post state of two concurrent transactions would be the same as if they were executed in serial (one after the other) fashion.</p></li>
+<li><p>There are many algorithms for determining serializability and implementing either pessimistic or optimistic locks to achieve serializable isolation within a single database host.</p></li>
+<li><p>Read, write, and range-locks are kept for the duration of a transaction.</p></li>
 </ul>
 </div>
 <div class="section" id="isolation-levels-repeatable-reads">
 <h2>Isolation Levels - Repeatable Reads<a class="headerlink" href="#isolation-levels-repeatable-reads" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Read and write locks are kept for the duration of the transaction, but range-locks are not kept.</li>
-<li>This allows for phantom reads.</li>
-<li>This means that for example in Transaction A, executing the same query twice in a row will not produce the same results within Transaction A if there is some Transaction B that adds values within the range.</li>
-<li>Example (Transaction A)</li>
+<li><p>Read and write locks are kept for the duration of the transaction, but range-locks are not kept.</p></li>
+<li><p>This allows for phantom reads.</p></li>
+<li><p>This means that for example in Transaction A, executing the same query twice in a row will not produce the same results within Transaction A if there is some Transaction B that adds values within the range.</p></li>
+<li><p>Example (Transaction A)</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">transaction</span> <span class="n">isolation</span> <span class="n">level</span> <span class="n">repeatable</span> <span class="n">read</span>
 <span class="n">begin</span> <span class="n">tran</span> <span class="n">t1</span>
@@ -240,7 +247,7 @@
 </pre></div>
 </div>
 <ul class="simple">
-<li>Example (Transaction B)</li>
+<li><p>Example (Transaction B)</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>set transaction isolation level repeatable read
 begin tran t1
@@ -249,61 +256,63 @@ commit tran t1
 </pre></div>
 </div>
 <ul class="simple">
-<li>In this example, the first query in Transaction A if timed properly with Transaction B would produce different results compared to the second query.</li>
+<li><p>In this example, the first query in Transaction A if timed properly with Transaction B would produce different results compared to the second query.</p></li>
 </ul>
 </div>
 <div class="section" id="isolation-levels-read-committed">
 <h2>Isolation Levels - Read Committed<a class="headerlink" href="#isolation-levels-read-committed" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Write locks are kept for the duration of the transaction, but read locks and range locks are not kept.</li>
-<li>Basically, this guarantees that any data that is read has been previously committed. You will not see any intermediate, uncommitted writes from another transaction.</li>
-<li>Subsequently issued reads will not be guaranteed to get the same data as other transactions may have committed during that time.</li>
-<li>Written data will be consistently re-readable though.</li>
+<li><p>Write locks are kept for the duration of the transaction, but read locks and range locks are not kept.</p></li>
+<li><p>Basically, this guarantees that any data that is read has been previously committed. You will not see any intermediate, uncommitted writes from another transaction.</p></li>
+<li><p>Subsequently issued reads will not be guaranteed to get the same data as other transactions may have committed during that time.</p></li>
+<li><p>Written data will be consistently re-readable though.</p></li>
 </ul>
 </div>
 <div class="section" id="isolation-levels-read-uncommitted">
 <h2>Isolation Levels - Read Uncommitted<a class="headerlink" href="#isolation-levels-read-uncommitted" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>This is the lowest isolation level</li>
-<li>Dirty reads are allowed. One transaction may see not-yet-committed changes made by other transactions</li>
+<li><p>This is the lowest isolation level</p></li>
+<li><p>Dirty reads are allowed. One transaction may see not-yet-committed changes made by other transactions</p></li>
 </ul>
 </div>
 <div class="section" id="isolation-levels-mixing-levels">
 <h2>Isolation Levels - Mixing Levels<a class="headerlink" href="#isolation-levels-mixing-levels" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>If two transactions run concurrently, they run under the highest isolation level.</li>
-<li>For example, if one transaction runs “read committed” and another runs “read uncommitted” at the same time over the same data, then both transactions will run under “read committed” isolation.</li>
-<li>If this were not the case, then higher isolation levels would not be able to make their guarantees.</li>
+<li><p>If two transactions run concurrently, they run under the highest isolation level.</p></li>
+<li><p>For example, if one transaction runs “read committed” and another runs “read uncommitted” at the same time over the same data, then both transactions will run under “read committed” isolation.</p></li>
+<li><p>If this were not the case, then higher isolation levels would not be able to make their guarantees.</p></li>
 </ul>
 </div>
 <div class="section" id="distributed-commit-algorithms">
 <h2>Distributed Commit Algorithms<a class="headerlink" href="#distributed-commit-algorithms" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Distributed commit algorithms are also known as “Distributed Reliability Protocols”, but not commonly</li>
-<li>The two most commonly used algorithms are 2PC and 3PC</li>
-<li>The coordination of distributed transactions is often a separate service. In Microsoft Windows, this is called the “Distributed Transaction Coordinator”.</li>
-<li>In the .NET framework, distributed transactions are available in the System.Transactions assembly, and the main class that plugs into OLEDB and ADO.NET database access drivers is called TransactionScope</li>
-<li>Other RDBMS systems come with their own services or have them built into the RDBMS engine itself.</li>
+<li><p>Distributed commit algorithms are also known as “Distributed Reliability Protocols”, but not commonly</p></li>
+<li><p>The two most commonly used algorithms are 2PC and 3PC</p></li>
+<li><p>The coordination of distributed transactions is often a separate service. In Microsoft Windows, this is called the “Distributed Transaction Coordinator”.</p></li>
+<li><p>In the .NET framework, distributed transactions are available in the System.Transactions assembly, and the main class that plugs into OLEDB and ADO.NET database access drivers is called TransactionScope</p></li>
+<li><p>Other RDBMS systems come with their own services or have them built into the RDBMS engine itself.</p></li>
 </ul>
 </div>
 <div class="section" id="pc-two-phase-commit">
 <h2>2PC - Two Phase Commit<a class="headerlink" href="#pc-two-phase-commit" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>The workflow of a Two Phase Commit:</li>
+<li><p>The workflow of a Two Phase Commit:</p></li>
 </ul>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="../_images/2PCWorkflow.JPG"><img alt="../_images/2PCWorkflow.JPG" src="../_images/2PCWorkflow.JPG" style="height: 500px;" /></a>
 </div>
 <ul class="simple">
-<li>The steps to the commit are:</li>
-<li>Phase 1<ol class="arabic">
-<li>Prepare</li>
-<li>Voting Phase (abort or commit)</li>
+<li><p>The steps to the commit are:</p></li>
+<li><p>Phase 1</p>
+<ol class="arabic simple">
+<li><p>Prepare</p></li>
+<li><p>Voting Phase (abort or commit)</p></li>
 </ol>
 </li>
-<li>Phase 2<ol class="arabic">
-<li>Global commit / abort</li>
-<li>Committed Aborted</li>
+<li><p>Phase 2</p>
+<ol class="arabic simple">
+<li><p>Global commit / abort</p></li>
+<li><p>Committed Aborted</p></li>
 </ol>
 </li>
 </ul>
@@ -311,24 +320,27 @@ commit tran t1
 <div class="section" id="pc-three-phase-commit">
 <h2>3PC - Three Phase Commit<a class="headerlink" href="#pc-three-phase-commit" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>We can say a distributed commit protocol it is non blocking if:<ul>
-<li>There is no state that is “adjacent” to both a commit and and an abort state</li>
-<li>There is no noncommittal state that is “adjacent” to a commit state</li>
-<li>Here “adjacent” means that it is possible to go from one state to another with a single state transition</li>
+<li><p>We can say a distributed commit protocol it is non blocking if:</p>
+<ul>
+<li><p>There is no state that is “adjacent” to both a commit and and an abort state</p></li>
+<li><p>There is no noncommittal state that is “adjacent” to a commit state</p></li>
+<li><p>Here “adjacent” means that it is possible to go from one state to another with a single state transition</p></li>
 </ul>
 </li>
-<li>So, we can say that 2PC is not a non blocking commit protocol, because:<ul>
-<li>In the COMMIT state of 2PC, if any process is in this state, we know that all the sites have voted to commit the transaction. This would be a committable state.</li>
-<li>In the READY state of 2PC, is noncommittable since the existence of a process in this state does not imply that all the processes have voted to commit the transaction.</li>
-<li>So, the WAIT state in the 2PC coordinator and the READY state in the 2PC participant violate the nonblocking conditions we have stated above.</li>
+<li><p>So, we can say that 2PC is not a non blocking commit protocol, because:</p>
+<ul>
+<li><p>In the COMMIT state of 2PC, if any process is in this state, we know that all the sites have voted to commit the transaction. This would be a committable state.</p></li>
+<li><p>In the READY state of 2PC, is noncommittable since the existence of a process in this state does not imply that all the processes have voted to commit the transaction.</p></li>
+<li><p>So, the WAIT state in the 2PC coordinator and the READY state in the 2PC participant violate the nonblocking conditions we have stated above.</p></li>
 </ul>
 </li>
-<li>So, to make 2PC a non-blocking commit protocol, we add another “phase” to make it 3PC<ul>
-<li>We add another state between the WAIT/READY and COMMIT states.</li>
-<li>This serves as a buffer state where the process is ready to commit or abort but has not yet committed or aborted.</li>
+<li><p>So, to make 2PC a non-blocking commit protocol, we add another “phase” to make it 3PC</p>
+<ul>
+<li><p>We add another state between the WAIT/READY and COMMIT states.</p></li>
+<li><p>This serves as a buffer state where the process is ready to commit or abort but has not yet committed or aborted.</p></li>
 </ul>
 </li>
-<li>The workflow of a three phase commit:</li>
+<li><p>The workflow of a three phase commit:</p></li>
 </ul>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="../_images/3PCWorkflow.JPG"><img alt="../_images/3PCWorkflow.JPG" src="../_images/3PCWorkflow.JPG" style="height: 500px;" /></a>
@@ -337,30 +349,32 @@ commit tran t1
 <div class="section" id="distributed-transaction-support-in-database-products">
 <h2>Distributed Transaction Support in Database Products<a class="headerlink" href="#distributed-transaction-support-in-database-products" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>MySQL: not very good. it falls short on durability.<ul>
-<li>resource: <a class="reference external" href="http://dev.mysql.com/doc/refman/5.7/en/xa.html">http://dev.mysql.com/doc/refman/5.7/en/xa.html</a></li>
+<li><p>MySQL: not very good. it falls short on durability.</p>
+<ul>
+<li><p>resource: <a class="reference external" href="http://dev.mysql.com/doc/refman/5.7/en/xa.html">http://dev.mysql.com/doc/refman/5.7/en/xa.html</a></p></li>
 </ul>
 </li>
-<li>MSSQL: very good. in standard and enterprise editions hosted on Windows 2008R2 or newer, with MSDTC enabled it is quite simple to use distributed transactions. Integrates quite well with OLEDB as well.</li>
-<li>Oracle: very good. Integrates with OLEDB quite well.</li>
-<li>PostgreSQL: pretty decent.</li>
+<li><p>MSSQL: very good. in standard and enterprise editions hosted on Windows 2008R2 or newer, with MSDTC enabled it is quite simple to use distributed transactions. Integrates quite well with OLEDB as well.</p></li>
+<li><p>Oracle: very good. Integrates with OLEDB quite well.</p></li>
+<li><p>PostgreSQL: pretty decent.</p></li>
 </ul>
 </div>
 <div class="section" id="why-do-i-need-distributed-transactions">
 <h2>Why do I need distributed transactions?<a class="headerlink" href="#why-do-i-need-distributed-transactions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Data federation is quite common in industry implementations of RDBMS systems.</li>
-<li>For example:<ul>
-<li>Inventory data may be on a SQL host A</li>
-<li>Credit card data may be on SQL host B</li>
-<li>Store-front RTTM (real time transaction processing) system may be on SQL hosts C-E</li>
-<li>Corporate data warehouse may be on SQL host F</li>
+<li><p>Data federation is quite common in industry implementations of RDBMS systems.</p></li>
+<li><p>For example:</p>
+<ul>
+<li><p>Inventory data may be on a SQL host A</p></li>
+<li><p>Credit card data may be on SQL host B</p></li>
+<li><p>Store-front RTTM (real time transaction processing) system may be on SQL hosts C-E</p></li>
+<li><p>Corporate data warehouse may be on SQL host F</p></li>
 </ul>
 </li>
-<li>Each of these hosts may have different physical security and network security requirements depending on corporate policy, and legal requirements. For example, SQL host B is most likely an encrypted database on a host in a secure location. Connections to this host are always encrypted. Very few people have access to this database, and IT is likely not among those who do.</li>
-<li>The store-front RTTM web application may have very different scaling and performance requirements. The database(s) for this system may be replicated over several SQL hosts for performance and reliability reasons.</li>
-<li>The corporate data warehouse will likely be on a SQL host with a very large, dedicated storage SAN. Such systems are query heavy and mostly read-only except for daily ETL loads.</li>
-<li>So, in order to process a credit-card order on the store’s web-app and ensure inventory, you may very well need to be able to initiate a distributed transaction across 3 or more databases on 3 different SQL hosts.</li>
+<li><p>Each of these hosts may have different physical security and network security requirements depending on corporate policy, and legal requirements. For example, SQL host B is most likely an encrypted database on a host in a secure location. Connections to this host are always encrypted. Very few people have access to this database, and IT is likely not among those who do.</p></li>
+<li><p>The store-front RTTM web application may have very different scaling and performance requirements. The database(s) for this system may be replicated over several SQL hosts for performance and reliability reasons.</p></li>
+<li><p>The corporate data warehouse will likely be on a SQL host with a very large, dedicated storage SAN. Such systems are query heavy and mostly read-only except for daily ETL loads.</p></li>
+<li><p>So, in order to process a credit-card order on the store’s web-app and ensure inventory, you may very well need to be able to initiate a distributed transaction across 3 or more databases on 3 different SQL hosts.</p></li>
 </ul>
 </div>
 </div>
@@ -370,29 +384,29 @@ commit tran t1
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../dns/dns.html" class="btn btn-neutral float-right" title="Domain Name Service" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../clocks/clocks.html" class="btn btn-neutral float-left" title="Clocks and Synchronization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../dns/dns.html" class="btn btn-neutral float-right" title="Domain Name Service" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../clocks/clocks.html" class="btn btn-neutral float-left" title="Clocks and Synchronization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor
+        &#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -400,7 +414,6 @@ commit tran t1
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

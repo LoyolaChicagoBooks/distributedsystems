@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>SMTP &mdash; Distributed Systems v0.4 documentation</title>
+  <title>SMTP &mdash; Distributed Systems Updated 2021-07-20 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Object Brokers and CORBA" href="../corba/corba.html" />
@@ -62,7 +65,7 @@
             
             
               <div class="version">
-                v0.4
+                Updated 2021-07-20
               </div>
             
           
@@ -79,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -134,6 +138,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -168,18 +173,20 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>SMTP</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/smtp/smtp.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -199,7 +206,7 @@
 <h2>Credit<a class="headerlink" href="#credit" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>This lecture was originally written by Sana Fatima. It has been updated to be added to this course’s lecture notes.</li>
+<li><p>This lecture was originally written by Sana Fatima. It has been updated to be added to this course’s lecture notes.</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -210,20 +217,19 @@
 <div class="section" id="history">
 <h2>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>September 1980, RFC 772. Mail Transfer Protocol (MTP) first defined. Elements borrowed from Telnet and FTP.</li>
-<li>November 1981, RFC 788. SMTP first defined for the specific purpose of delivering email.</li>
-<li><dl class="first docutils">
-<dt>February 1993, RFC 1425 SMTP Service Extensions published. In this standard:</dt>
-<dd><ul class="first last">
-<li>Process for adding new capabilities to extend how SMTP works (Extended SMTP).</li>
-<li>Maintains backward-compatibility with existing systems.</li>
+<li><p>September 1980, RFC 772. Mail Transfer Protocol (MTP) first defined. Elements borrowed from Telnet and FTP.</p></li>
+<li><p>November 1981, RFC 788. SMTP first defined for the specific purpose of delivering email.</p></li>
+<li><dl class="simple">
+<dt>February 1993, RFC 1425 SMTP Service Extensions published. In this standard:</dt><dd><ul>
+<li><p>Process for adding new capabilities to extend how SMTP works (Extended SMTP).</p></li>
+<li><p>Maintains backward-compatibility with existing systems.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li>January 1996, RFC 1891. Delivery status notification extension</li>
-<li>September 2000, RFC 2920. Command pipelining extension</li>
-<li>April 2001, RFC 2821. Current base standard for SMTP</li>
+<li><p>January 1996, RFC 1891. Delivery status notification extension</p></li>
+<li><p>September 2000, RFC 2920. Command pipelining extension</p></li>
+<li><p>April 2001, RFC 2821. Current base standard for SMTP</p></li>
 </ul>
 </div>
 <div class="section" id="smtp-process">
@@ -236,33 +242,30 @@
 <div class="section" id="smtp-model">
 <h2>SMTP Model<a class="headerlink" href="#smtp-model" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Sender’s client machine → sender’s local SMTP server → recipient’s local SMTP server → recipient’s local host</li>
-<li><dl class="first docutils">
-<dt>Relaying</dt>
-<dd><ul class="first last">
-<li>Absence of DNS made electronic mail delivery complex.</li>
-<li>SMTP routing information had to be included along with the e-mail address.</li>
-<li>Routing information specified the SMTP servers that the mail had to be relayed through in order to reach its destination.</li>
-<li>This early process was inconvenient: requiring many devices to handle the mail, resulting in delays, and requiring communication of source routes between servers.</li>
+<li><p>Sender’s client machine → sender’s local SMTP server → recipient’s local SMTP server → recipient’s local host</p></li>
+<li><dl class="simple">
+<dt>Relaying</dt><dd><ul>
+<li><p>Absence of DNS made electronic mail delivery complex.</p></li>
+<li><p>SMTP routing information had to be included along with the e-mail address.</p></li>
+<li><p>Routing information specified the SMTP servers that the mail had to be relayed through in order to reach its destination.</p></li>
+<li><p>This early process was inconvenient: requiring many devices to handle the mail, resulting in delays, and requiring communication of source routes between servers.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Direct Email Communication (preferred method)</dt>
-<dd><ul class="first last">
-<li><dl class="first docutils">
-<dt>Utilizes DNS</dt>
-<dd><ul class="first last">
-<li>Support for mail exchanger (MX): record that allows mapping of domain name to IP address of the SMTP server.</li>
+<li><dl class="simple">
+<dt>Direct Email Communication (preferred method)</dt><dd><ul>
+<li><dl class="simple">
+<dt>Utilizes DNS</dt><dd><ul>
+<li><p>Support for mail exchanger (MX): record that allows mapping of domain name to IP address of the SMTP server.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li>Sender SMTP server can make a connection to directly send the message to the receiver’s SMTP server.</li>
-<li>Direct email delivery is faster and more efficient.</li>
-<li>SMTP is used for the transfer between the sender’s client to it’s local SMTP server and the transfer between that SMTP server to the recipient’s local SMTP server. Retrieval of email by the recipient is done using POP or IMAP.</li>
-<li>Each email transfer requires establishing a TCP connection and then sending the email headers and body using the SMTP mail transaction process.</li>
+<li><p>Sender SMTP server can make a connection to directly send the message to the receiver’s SMTP server.</p></li>
+<li><p>Direct email delivery is faster and more efficient.</p></li>
+<li><p>SMTP is used for the transfer between the sender’s client to it’s local SMTP server and the transfer between that SMTP server to the recipient’s local SMTP server. Retrieval of email by the recipient is done using POP or IMAP.</p></li>
+<li><p>Each email transfer requires establishing a TCP connection and then sending the email headers and body using the SMTP mail transaction process.</p></li>
 </ul>
 </dd>
 </dl>
@@ -272,53 +275,49 @@
 <div class="section" id="establishing-a-connection">
 <h2>Establishing a Connection<a class="headerlink" href="#establishing-a-connection" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Using TCP to ensure efficient and reliable communication.</li>
-<li><dl class="first docutils">
-<dt>SMTP servers must be available 24/7 to allow mail to be delivered at any time.</dt>
-<dd><ul class="first last">
-<li>This is why end-users use other protocols to retrieve an email over running their own SMTP servers.</li>
+<li><p>Using TCP to ensure efficient and reliable communication.</p></li>
+<li><dl class="simple">
+<dt>SMTP servers must be available 24/7 to allow mail to be delivered at any time.</dt><dd><ul>
+<li><p>This is why end-users use other protocols to retrieve an email over running their own SMTP servers.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li>Server listens on well known port 25 for TCP connection requests from other servers.</li>
-<li><dl class="first docutils">
-<dt>Communication is similar to FTP.</dt>
-<dd><ul class="first last">
-<li>SMTP commands are sent as plain ASCII text over the TCP connection.</li>
+<li><p>Server listens on well known port 25 for TCP connection requests from other servers.</p></li>
+<li><dl class="simple">
+<dt>Communication is similar to FTP.</dt><dd><ul>
+<li><p>SMTP commands are sent as plain ASCII text over the TCP connection.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/smtpEstablishing.jpg" src="../_images/smtpEstablishing.jpg" />
 </div>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Commands and Replies</dt>
-<dd><ul class="first last">
-<li>EHLO (extended hello) command includes the domain name of the sender as a parameter. Sent to greet a SMTP receiver and ask for a list of extensions it supports.</li>
-<li>220 greeting reply includes server name.</li>
-<li>250 reply states successful execution of command.</li>
-<li>221 quitting reply includes server name.</li>
+<li><dl class="simple">
+<dt>Commands and Replies</dt><dd><ul>
+<li><p>EHLO (extended hello) command includes the domain name of the sender as a parameter. Sent to greet a SMTP receiver and ask for a list of extensions it supports.</p></li>
+<li><p>220 greeting reply includes server name.</p></li>
+<li><p>250 reply states successful execution of command.</p></li>
+<li><p>221 quitting reply includes server name.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/smtpConnection.jpg" src="../_images/smtpConnection.jpg" />
 </div>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Shows some supported extensions</dt>
-<dd><ul class="first last">
-<li>8BITMIME: 8-bit content transfer encoding type in MIME.</li>
-<li>SIZE: Message size declaration.</li>
-<li>PIPELINING: multiple commands can be sent in groups instead of the command/reply format.</li>
-<li>ETRN: extended Turn.</li>
-<li>VRFY: checks if email address is valid.</li>
+<li><dl class="simple">
+<dt>Shows some supported extensions</dt><dd><ul>
+<li><p>8BITMIME: 8-bit content transfer encoding type in MIME.</p></li>
+<li><p>SIZE: Message size declaration.</p></li>
+<li><p>PIPELINING: multiple commands can be sent in groups instead of the command/reply format.</p></li>
+<li><p>ETRN: extended Turn.</p></li>
+<li><p>VRFY: checks if email address is valid.</p></li>
 </ul>
 </dd>
 </dl>
@@ -328,53 +327,48 @@
 <div class="section" id="smtp-mail-transaction-process">
 <h2>SMTP Mail Transaction Process<a class="headerlink" href="#smtp-mail-transaction-process" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Transaction Initiation and Sender Identification</dt>
-<dd><ul class="first last">
-<li>Sender tells receiver it wants to start sending message</li>
-<li>Sender gives the email address of the message sender</li>
+<li><dl class="simple">
+<dt>Transaction Initiation and Sender Identification</dt><dd><ul>
+<li><p>Sender tells receiver it wants to start sending message</p></li>
+<li><p>Sender gives the email address of the message sender</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Recipient Identification</dt>
-<dd><ul class="first last">
-<li>Sender gives the email address(es) of the recipients of this email</li>
+<li><dl class="simple">
+<dt>Recipient Identification</dt><dd><ul>
+<li><p>Sender gives the email address(es) of the recipients of this email</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Mail Transfer</dt>
-<dd><ul class="first last">
-<li>Sender transfers email message according to the RFC 2822 specification, for message format.</li>
+<li><dl class="simple">
+<dt>Mail Transfer</dt><dd><ul>
+<li><p>Sender transfers email message according to the RFC 2822 specification, for message format.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Why isn’t it just a single step?</dt>
-<dd><ul class="first last">
-<li>Separation of the sender and recipient information from the message.</li>
-<li>Gives SMTP receiver the information up front.</li>
-<li>Greater control on distribution.</li>
-<li>Allows for easier security implementation</li>
+<li><dl class="simple">
+<dt>Why isn’t it just a single step?</dt><dd><ul>
+<li><p>Separation of the sender and recipient information from the message.</p></li>
+<li><p>Gives SMTP receiver the information up front.</p></li>
+<li><p>Greater control on distribution.</p></li>
+<li><p>Allows for easier security implementation</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/smtpTransaction.jpg" src="../_images/smtpTransaction.jpg" />
 </div>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>3 command/reply sequences</dt>
-<dd><ul class="first last">
-<li>Sender identified using MAIL command</li>
-<li>Each Recipient identified with one RCPT command</li>
-<li>Message transferred with the DATA command</li>
+<li><dl class="simple">
+<dt>3 command/reply sequences</dt><dd><ul>
+<li><p>Sender identified using MAIL command</p></li>
+<li><p>Each Recipient identified with one RCPT command</p></li>
+<li><p>Message transferred with the DATA command</p></li>
 </ul>
 </dd>
 </dl>
@@ -384,25 +378,25 @@
 <div class="section" id="smtp-features">
 <h2>SMTP Features<a class="headerlink" href="#smtp-features" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Relaying</li>
-<li>Forwarding: SMTP server will accept an email for a nonlocal host and forward it. Similar to relaying but it is used for a different purpose.</li>
-<li>Address Debugging: VRFY (verify) command used to check validity of email address.</li>
-<li>Mailing List Expansion: EXPN (expand) command</li>
-<li>Failure response: if initial attempt doesn’t go through the server will periodically retry to send the email until it reaches a timeout, returning a failure message.</li>
+<li><p>Relaying</p></li>
+<li><p>Forwarding: SMTP server will accept an email for a nonlocal host and forward it. Similar to relaying but it is used for a different purpose.</p></li>
+<li><p>Address Debugging: VRFY (verify) command used to check validity of email address.</p></li>
+<li><p>Mailing List Expansion: EXPN (expand) command</p></li>
+<li><p>Failure response: if initial attempt doesn’t go through the server will periodically retry to send the email until it reaches a timeout, returning a failure message.</p></li>
 </ul>
 </div>
 <div class="section" id="smtp-security">
 <h2>SMTP Security<a class="headerlink" href="#smtp-security" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Base protocol doesn’t include security features.</li>
-<li>SMTP servers implement security features.</li>
-<li>IP address check of the device attempting to connect to the server.</li>
-<li>Restriction of certain features, such as relaying.</li>
-<li>Limit use of the EXPN command to prevent unauthorized users from getting the email addresses.</li>
-<li>Checking validity of sender email address.</li>
-<li>Refusing the message if recipient’s address is not a local mailbox.</li>
-<li>Limiting the size or number of emails sent in a given time.</li>
-<li>Logging server access.</li>
+<li><p>Base protocol doesn’t include security features.</p></li>
+<li><p>SMTP servers implement security features.</p></li>
+<li><p>IP address check of the device attempting to connect to the server.</p></li>
+<li><p>Restriction of certain features, such as relaying.</p></li>
+<li><p>Limit use of the EXPN command to prevent unauthorized users from getting the email addresses.</p></li>
+<li><p>Checking validity of sender email address.</p></li>
+<li><p>Refusing the message if recipient’s address is not a local mailbox.</p></li>
+<li><p>Limiting the size or number of emails sent in a given time.</p></li>
+<li><p>Logging server access.</p></li>
 </ul>
 </div>
 </div>
@@ -412,29 +406,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../corba/corba.html" class="btn btn-neutral float-right" title="Object Brokers and CORBA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../mpi/mpi.html" class="btn btn-neutral float-left" title="Message Passing Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../corba/corba.html" class="btn btn-neutral float-right" title="Object Brokers and CORBA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../mpi/mpi.html" class="btn btn-neutral float-left" title="Message Passing Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor
+        &#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -442,7 +436,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Directories and LDAP &mdash; Distributed Systems v0.4 documentation</title>
+  <title>Directories and LDAP &mdash; Distributed Systems Updated 2021-07-20 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Project Build Management With Maven" href="../maven/maven.html" />
@@ -62,7 +65,7 @@
             
             
               <div class="version">
-                v0.4
+                Updated 2021-07-20
               </div>
             
           
@@ -79,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -145,6 +149,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -179,18 +184,20 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Directories and LDAP</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/directories/directories.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -209,34 +216,34 @@
 <div class="section" id="what-is-a-directory">
 <h2>What is a Directory?<a class="headerlink" href="#what-is-a-directory" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Yellow pages</li>
-<li>Personal phone/address book</li>
-<li>Mail order catalogs</li>
-<li>Library catalog cards</li>
-<li>TV Guides</li>
-<li>Your organization’s mailing list</li>
-<li>Netscape’s HTML directory</li>
+<li><p>Yellow pages</p></li>
+<li><p>Personal phone/address book</p></li>
+<li><p>Mail order catalogs</p></li>
+<li><p>Library catalog cards</p></li>
+<li><p>TV Guides</p></li>
+<li><p>Your organization’s mailing list</p></li>
+<li><p>Netscape’s HTML directory</p></li>
 </ul>
 </div>
 <div class="section" id="what-is-not-a-directory">
 <h2>What is NOT a Directory?<a class="headerlink" href="#what-is-not-a-directory" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Database: more costly, heavy-duty transaction support, frequent writes</li>
-<li>File system: allows partial retrieval, random access of data</li>
-<li>Web servers: delivers big image files, provides web application development
-platform</li>
-<li>FTP servers: can’t do search, not attribute-based information model</li>
-<li>DNS servers: not extensible, no updates</li>
+<li><p>Database: more costly, heavy-duty transaction support, frequent writes</p></li>
+<li><p>File system: allows partial retrieval, random access of data</p></li>
+<li><p>Web servers: delivers big image files, provides web application development
+platform</p></li>
+<li><p>FTP servers: can’t do search, not attribute-based information model</p></li>
+<li><p>DNS servers: not extensible, no updates</p></li>
 </ul>
 </div>
 <div class="section" id="types">
 <h2>Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h2>
 <p>Types of (Network) Directories</p>
 <ul class="simple">
-<li>NOS-based: MS Active Directory (with LDAP core), Novell NDS</li>
-<li>Application-specific: Lotus Notes Address Book, MS Exchange Directory</li>
-<li>Purpose-specific: DNS</li>
-<li>General-purpose, standards-based: LDAP, X.500 directories</li>
+<li><p>NOS-based: MS Active Directory (with LDAP core), Novell NDS</p></li>
+<li><p>Application-specific: Lotus Notes Address Book, MS Exchange Directory</p></li>
+<li><p>Purpose-specific: DNS</p></li>
+<li><p>General-purpose, standards-based: LDAP, X.500 directories</p></li>
 </ul>
 </div>
 <div class="section" id="characteristics-of-directories">
@@ -255,30 +262,30 @@ platform</li>
 <hr class="docutils" />
 <p>The Nerve Center of an Organization’s Infrastructure?</p>
 <ul class="simple">
-<li>Naming: who/what are there?</li>
-<li>Location: where are they?</li>
-<li>Security: protect against unauthorized access and tempering</li>
-<li>Management: personnel, decision- making</li>
-<li>Resource: monitor load and usage</li>
-<li>Extensibility: grow with the organization</li>
+<li><p>Naming: who/what are there?</p></li>
+<li><p>Location: where are they?</p></li>
+<li><p>Security: protect against unauthorized access and tempering</p></li>
+<li><p>Management: personnel, decision- making</p></li>
+<li><p>Resource: monitor load and usage</p></li>
+<li><p>Extensibility: grow with the organization</p></li>
 </ul>
 </div>
 <div class="section" id="so-what-is-ldap-exactly">
 <h2>So what is LDAP, exactly?<a class="headerlink" href="#so-what-is-ldap-exactly" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>LDAP: Lightweight Directory Access Protocol</li>
-<li>Preceded by the two X.500-related protocols: DAS, DIXIE (front ends)</li>
-<li>“Lightweight”: simplified encoding methods, runs directly on commonly
-available TCP/IP</li>
-<li>“Heavyweight”:X.500DAPuses complex encoding methods, runs on rare OSI
-network protocol stack</li>
-<li>Simplified implementation of clients and servers by eliminating infrequent
-and redundant DAP features/operations</li>
-<li>Data elements represented as simple text strings, while messages wrapped in
-binary encoding for efficiency</li>
-<li>Uses a subset of the X.500 encoding rules to further simplify implementation</li>
-<li>Simplified transport: no need for OSI, runs directly over TCP.</li>
-<li>Supports both IPv4 and IPv6.</li>
+<li><p>LDAP: Lightweight Directory Access Protocol</p></li>
+<li><p>Preceded by the two X.500-related protocols: DAS, DIXIE (front ends)</p></li>
+<li><p>“Lightweight”: simplified encoding methods, runs directly on commonly
+available TCP/IP</p></li>
+<li><p>“Heavyweight”:X.500DAPuses complex encoding methods, runs on rare OSI
+network protocol stack</p></li>
+<li><p>Simplified implementation of clients and servers by eliminating infrequent
+and redundant DAP features/operations</p></li>
+<li><p>Data elements represented as simple text strings, while messages wrapped in
+binary encoding for efficiency</p></li>
+<li><p>Uses a subset of the X.500 encoding rules to further simplify implementation</p></li>
+<li><p>Simplified transport: no need for OSI, runs directly over TCP.</p></li>
+<li><p>Supports both IPv4 and IPv6.</p></li>
 </ul>
 </div>
 <div class="section" id="early-ldap-implementations">
@@ -288,29 +295,29 @@ binary encoding for efficiency</li>
 <div class="section" id="slapd-stand-alone-ldap-daemon">
 <h2>SLAPD: Stand-alone LDAP Daemon<a class="headerlink" href="#slapd-stand-alone-ldap-daemon" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Multi-platform LDAP directory server</li>
-<li>Flexible customization</li>
-<li>Support for both LDAPv2 and LDAPv3</li>
-<li>Support for both IPv4 and IPv6</li>
-<li>Simple Authentication and Security Layer</li>
-<li>Transport Layer Security through SSL</li>
-<li>Generic modules API: covers development for front-end communication with
+<li><p>Multi-platform LDAP directory server</p></li>
+<li><p>Flexible customization</p></li>
+<li><p>Support for both LDAPv2 and LDAPv3</p></li>
+<li><p>Support for both IPv4 and IPv6</p></li>
+<li><p>Simple Authentication and Security Layer</p></li>
+<li><p>Transport Layer Security through SSL</p></li>
+<li><p>Generic modules API: covers development for front-end communication with
 LDAP client, and back-end database operations with Perl, Shell, SQL, TCL,
-and Python</li>
+and Python</p></li>
 </ul>
 </div>
 <div class="section" id="slapd-continued">
 <h2>SLAPD: Continued<a class="headerlink" href="#slapd-continued" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Access control based on LDAP authorization information, IP address, domain
-name, etc.</li>
-<li>Support for Unicode and language tags</li>
-<li>Choice of various backend databases</li>
-<li>A multi-threaded <strong>slapd</strong> process can handle all incoming requests =&gt; reduced
-system overhead =&gt; higher performance</li>
-<li>Replication of data using single-master multiple-slave scheme for
-high-volume environments</li>
-<li>Highly configurable via a single configuration file that “does it all”</li>
+<li><p>Access control based on LDAP authorization information, IP address, domain
+name, etc.</p></li>
+<li><p>Support for Unicode and language tags</p></li>
+<li><p>Choice of various backend databases</p></li>
+<li><p>A multi-threaded <strong>slapd</strong> process can handle all incoming requests =&gt; reduced
+system overhead =&gt; higher performance</p></li>
+<li><p>Replication of data using single-master multiple-slave scheme for
+high-volume environments</p></li>
+<li><p>Highly configurable via a single configuration file that “does it all”</p></li>
 </ul>
 </div>
 <div class="section" id="ldap-client-server-exchange-protocol">
@@ -320,44 +327,44 @@ high-volume environments</li>
 <div class="section" id="example-ldap-usage">
 <h2>Example LDAP Usage<a class="headerlink" href="#example-ldap-usage" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>A directory service that enables a user to locate remote resources ANYWHERE
-on a distributed network.</li>
-<li>A dynamic system that provides/fetches resources based on individual user’s
-queries.</li>
-<li>A model that would utilize and manage the existing system in a more
-organized way.</li>
-<li>Examples:”OmniPrint” service from anywhere on the network, location and
-availability of a coffeemaker!</li>
-<li>A robust and extensible client-server model</li>
-<li>Application needs: data elements, service performance (latency, throughput,
-e.g., 480K searches per hour)</li>
-<li>User needs: accuracy, privacy, up-to-date, completeness, security, balance
-for all users</li>
-<li>Extensibility: Must be able to extend to distributed and replicated models</li>
-<li>Platforms supported: Should accommodate heterogeneous platforms</li>
+<li><p>A directory service that enables a user to locate remote resources ANYWHERE
+on a distributed network.</p></li>
+<li><p>A dynamic system that provides/fetches resources based on individual user’s
+queries.</p></li>
+<li><p>A model that would utilize and manage the existing system in a more
+organized way.</p></li>
+<li><p>Examples:”OmniPrint” service from anywhere on the network, location and
+availability of a coffeemaker!</p></li>
+<li><p>A robust and extensible client-server model</p></li>
+<li><p>Application needs: data elements, service performance (latency, throughput,
+e.g., 480K searches per hour)</p></li>
+<li><p>User needs: accuracy, privacy, up-to-date, completeness, security, balance
+for all users</p></li>
+<li><p>Extensibility: Must be able to extend to distributed and replicated models</p></li>
+<li><p>Platforms supported: Should accommodate heterogeneous platforms</p></li>
 </ul>
 </div>
 <div class="section" id="schemas">
 <h2>Schemas<a class="headerlink" href="#schemas" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Similar to databases, needed for integrity and quality</li>
-<li>A set of rules that determines what can be stored in a directory service</li>
-<li>A set of rules that defines how directory servers and clients should treat
-information during a directory operation</li>
-<li>Each entity (called “attribute”) has its own object identifier (called an
-<em>oid</em>)</li>
-<li>Reduce unnecessary data duplication resulted from some directory-enabled
-applications</li>
+<li><p>Similar to databases, needed for integrity and quality</p></li>
+<li><p>A set of rules that determines what can be stored in a directory service</p></li>
+<li><p>A set of rules that defines how directory servers and clients should treat
+information during a directory operation</p></li>
+<li><p>Each entity (called “attribute”) has its own object identifier (called an
+<em>oid</em>)</p></li>
+<li><p>Reduce unnecessary data duplication resulted from some directory-enabled
+applications</p></li>
 </ul>
 </div>
 <div class="section" id="attributes-and-objectclasses">
 <h2>attributes and objectclasses<a class="headerlink" href="#attributes-and-objectclasses" title="Permalink to this headline">¶</a></h2>
 <p>The following shows how to create your own schema in LDAP (for our example
 fictitious domain):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">description</span> <span class="n">ATTRIBUTE</span> <span class="p">::</span><span class="o">=</span> <span class="p">{</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">description</span> <span class="n">ATTRIBUTE</span> <span class="p">:</span><span class="o">:=</span> <span class="p">{</span>
   <span class="n">WITH</span> <span class="n">SYNTAX</span> <span class="n">DirectoryString</span> <span class="p">{</span><span class="mi">1024</span><span class="p">}</span>
   <span class="n">EQUALITY</span> <span class="n">MATCHING</span> <span class="n">RULE</span> <span class="n">caseIgnoreMatch</span>
-  <span class="n">SUBSTRINGS</span> <span class="n">MATCHING</span> <span class="n">RULE</span> <span class="n">caseIgnoreSubstringsMatch</span> <span class="n">ID</span> <span class="mf">2.5</span><span class="o">.</span><span class="mf">4.13</span>
+  <span class="n">SUBSTRINGS</span> <span class="n">MATCHING</span> <span class="n">RULE</span> <span class="n">caseIgnoreSubstringsMatch</span> <span class="n">ID</span> <span class="mf">2.5.4.13</span>
 <span class="p">}</span>
 
 <span class="n">objectclass</span> <span class="n">printer</span>
@@ -376,13 +383,13 @@ does not define methods (functions) as in OOP.</p>
 <div class="section" id="namespaces">
 <h2>Namespaces<a class="headerlink" href="#namespaces" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Means by which information in the directory will be named and referenced,
-similar to a pointer or label (or index).</li>
-<li>Namespace can be of any topology, e.g. tree, star, triangular, or linear.
-LDAP supports trees innately.</li>
-<li>Concept of DN and its components: CN, C, ST, L, O, OU, STREET, DC, UID</li>
-<li>Naming scheme could be internet-based or traditional, based on
-organizational needs</li>
+<li><p>Means by which information in the directory will be named and referenced,
+similar to a pointer or label (or index).</p></li>
+<li><p>Namespace can be of any topology, e.g. tree, star, triangular, or linear.
+LDAP supports trees innately.</p></li>
+<li><p>Concept of DN and its components: CN, C, ST, L, O, OU, STREET, DC, UID</p></li>
+<li><p>Naming scheme could be internet-based or traditional, based on
+organizational needs</p></li>
 </ul>
 <p>Here’s an example of a DN:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ou</span><span class="o">=</span><span class="n">cpdc</span><span class="p">,</span><span class="n">ou</span><span class="o">=</span><span class="n">ece</span><span class="p">,</span><span class="n">ou</span><span class="o">=</span><span class="n">northwestern</span><span class="p">,</span><span class="n">ou</span><span class="o">=</span><span class="n">edu</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">evanston</span><span class="p">,</span><span class="n">st</span><span class="o">=</span><span class="n">illinois</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">us</span>
@@ -441,11 +448,11 @@ University), <a class="reference external" href="http://www2.cose.isu.edu/~chius
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="http://openldap.org">http://openldap.org</a></li>
-<li>T. Howes et. al., <em>Understanding and Deploying LDAP Directory Services</em>,
-MacMillan Technical Publishing, 1999</li>
-<li>LDAP bindings are provided in many languages, such as Python and Java.
-OpenLDAP provides C bindings.</li>
+<li><p><a class="reference external" href="http://openldap.org">http://openldap.org</a></p></li>
+<li><p>T. Howes et. al., <em>Understanding and Deploying LDAP Directory Services</em>,
+MacMillan Technical Publishing, 1999</p></li>
+<li><p>LDAP bindings are provided in many languages, such as Python and Java.
+OpenLDAP provides C bindings.</p></li>
 </ul>
 </div>
 </div>
@@ -455,29 +462,29 @@ OpenLDAP provides C bindings.</li>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../maven/maven.html" class="btn btn-neutral float-right" title="Project Build Management With Maven" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../storage/storage.html" class="btn btn-neutral float-left" title="Distributed Systems and Storage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../maven/maven.html" class="btn btn-neutral float-right" title="Project Build Management With Maven" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../storage/storage.html" class="btn btn-neutral float-left" title="Distributed Systems and Storage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor
+        &#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -485,7 +492,6 @@ OpenLDAP provides C bindings.</li>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

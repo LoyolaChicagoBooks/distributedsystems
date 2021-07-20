@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Hadoop Distributed File System &mdash; Distributed Systems v0.4 documentation</title>
+  <title>Hadoop Distributed File System &mdash; Distributed Systems Updated 2021-07-20 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Message Queues" href="../message_queues/message_queues.html" />
@@ -62,7 +65,7 @@
             
             
               <div class="version">
-                v0.4
+                Updated 2021-07-20
               </div>
             
           
@@ -79,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -157,6 +161,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -191,18 +196,20 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Hadoop Distributed File System</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/hadoop/hadoop.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -220,16 +227,15 @@
 <h1>Hadoop Distributed File System<a class="headerlink" href="#hadoop-distributed-file-system" title="Permalink to this headline">¶</a></h1>
 <p>Hadoop is:</p>
 <ul class="simple">
-<li>An open source, Java-based software framework</li>
-<li>Supports the processing of large data sets in a distributed computing environment</li>
-<li>Designed to scale up from a single server to thousands of machines</li>
-<li>Has a very high degree of fault tolerance</li>
-<li>Possible to run application on systems with thousands of nodes involving thousands of terabytes</li>
-<li><dl class="first docutils">
-<dt>Consists of two main layers:</dt>
-<dd><ul class="first last">
-<li>Hadoop Distributed File Systems(HDFS): Distributes data</li>
-<li>Map/Reduce: Distributes application</li>
+<li><p>An open source, Java-based software framework</p></li>
+<li><p>Supports the processing of large data sets in a distributed computing environment</p></li>
+<li><p>Designed to scale up from a single server to thousands of machines</p></li>
+<li><p>Has a very high degree of fault tolerance</p></li>
+<li><p>Possible to run application on systems with thousands of nodes involving thousands of terabytes</p></li>
+<li><dl class="simple">
+<dt>Consists of two main layers:</dt><dd><ul>
+<li><p>Hadoop Distributed File Systems(HDFS): Distributes data</p></li>
+<li><p>Map/Reduce: Distributes application</p></li>
 </ul>
 </dd>
 </dl>
@@ -238,54 +244,53 @@
 <div class="section" id="hdfs">
 <h2>HDFS<a class="headerlink" href="#hdfs" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>File system component of Hadoop</li>
-<li>Master/Slave architecture</li>
-<li>Separately stores file system metadata and application data</li>
-<li>Stores metadata on a dedicated server(Master), called the NameNode</li>
-<li>Stores application data on a number of other servers(Slave), called DataNodes</li>
-<li>Single NameNode and many DataNodes(100s or 1000s of nodes)</li>
+<li><p>File system component of Hadoop</p></li>
+<li><p>Master/Slave architecture</p></li>
+<li><p>Separately stores file system metadata and application data</p></li>
+<li><p>Stores metadata on a dedicated server(Master), called the NameNode</p></li>
+<li><p>Stores application data on a number of other servers(Slave), called DataNodes</p></li>
+<li><p>Single NameNode and many DataNodes(100s or 1000s of nodes)</p></li>
 </ul>
 </div>
 <div class="section" id="architecture">
 <h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Comprised of interconnected clusters of nodes where files and directories reside</li>
-<li>A single NameNode, that manages the file system namespace</li>
-<li>DataNodes store data as blocks within files.</li>
+<li><p>Comprised of interconnected clusters of nodes where files and directories reside</p></li>
+<li><p>A single NameNode, that manages the file system namespace</p></li>
+<li><p>DataNodes store data as blocks within files.</p></li>
 </ul>
 <div class="figure align-center" id="id1">
 <img alt="High-level architecture of HDFS" src="../_images/highlevel_architecture.png" />
-<p class="caption"><span class="caption-text"><em>(High-level view)</em></span></p>
+<p class="caption"><span class="caption-text"><em>(High-level view)</em></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-center" id="id2">
 <img alt="HDFS architecture" src="../_images/hdfs_architecture.png" />
-<p class="caption"><span class="caption-text"><em>(HDFS Architecture)</em></span></p>
+<p class="caption"><span class="caption-text"><em>(HDFS Architecture)</em></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="namenode-and-datanodes">
 <h3>NameNode and DataNodes<a class="headerlink" href="#namenode-and-datanodes" title="Permalink to this headline">¶</a></h3>
 <ul>
-<li><p class="first"><strong>NameNode:</strong></p>
+<li><p><strong>NameNode:</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li>Bookkeeper of HDFS. Repository for all HDFS metadata</li>
-<li>Its function is memory and I/O intensive. So the server hosting the NameNode typically does not store any user data</li>
-<li>Executes file system namespace operations; like; opening, closing, and renaming files and directories</li>
-<li>Maintains the namespace tree and the mapping of file blocks to DataNodes</li>
-<li>Files and directories are represented by <em>inodes</em></li>
-<li>Regulates client access to files</li>
+<li><p>Bookkeeper of HDFS. Repository for all HDFS metadata</p></li>
+<li><p>Its function is memory and I/O intensive. So the server hosting the NameNode typically does not store any user data</p></li>
+<li><p>Executes file system namespace operations; like; opening, closing, and renaming files and directories</p></li>
+<li><p>Maintains the namespace tree and the mapping of file blocks to DataNodes</p></li>
+<li><p>Files and directories are represented by <em>inodes</em></p></li>
+<li><p>Regulates client access to files</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first"><strong>Secondary NameNode:</strong></p>
+<li><p><strong>Secondary NameNode:</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li>An assistant daemon for monitoring the state of the cluster HDFS</li>
-<li>Like the NameNode, each cluster has one Secondary NameNode</li>
-<li><dl class="first docutils">
-<dt>Differs from the NameNode:</dt>
-<dd><ul class="first last">
-<li>It does not receive or record any real-time changes to HDFS</li>
-<li>Instead, it communicates with the NameNode to take snapshots of HDFS metadata at intervals defined by the cluster configuration</li>
+<li><p>An assistant daemon for monitoring the state of the cluster HDFS</p></li>
+<li><p>Like the NameNode, each cluster has one Secondary NameNode</p></li>
+<li><dl class="simple">
+<dt>Differs from the NameNode:</dt><dd><ul>
+<li><p>It does not receive or record any real-time changes to HDFS</p></li>
+<li><p>Instead, it communicates with the NameNode to take snapshots of HDFS metadata at intervals defined by the cluster configuration</p></li>
 </ul>
 </dd>
 </dl>
@@ -298,15 +303,15 @@
 <a class="reference internal image-reference" href="../_images/secondary_namenode.png"><img alt="Secondary NameNode" src="../_images/secondary_namenode.png" style="width: 226.5px; height: 116.5px;" /></a>
 </div>
 <ul>
-<li><p class="first"><strong>DataNodes:</strong></p>
+<li><p><strong>DataNodes:</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li>Manage storage attached to the nodes that they run on</li>
-<li>A file is splitted into one or more blocks <em>(typically 128MB)</em>. These blocks are stored in a set of DataNodes</li>
-<li>Performs block creation, deletion, and replication upon instruction from the NameNode</li>
-<li>Data blocks are replicated for fault tolerance and fast access</li>
-<li>DataNodes send <em>heartbeats</em> to the NameNode to confirm that the DataNode is working and the block replicas it hosts are available</li>
-<li>Responsible for serving read and write requests from the file system’s client</li>
+<li><p>Manage storage attached to the nodes that they run on</p></li>
+<li><p>A file is splitted into one or more blocks <em>(typically 128MB)</em>. These blocks are stored in a set of DataNodes</p></li>
+<li><p>Performs block creation, deletion, and replication upon instruction from the NameNode</p></li>
+<li><p>Data blocks are replicated for fault tolerance and fast access</p></li>
+<li><p>DataNodes send <em>heartbeats</em> to the NameNode to confirm that the DataNode is working and the block replicas it hosts are available</p></li>
+<li><p>Responsible for serving read and write requests from the file system’s client</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -315,14 +320,13 @@
 <div class="section" id="file-system-namespace">
 <h3>File System Namespace<a class="headerlink" href="#file-system-namespace" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Traditional hierarchical file organization</li>
-<li><dl class="first docutils">
-<dt>User/Application can:</dt>
-<dd><ul class="first last">
-<li>Create directories</li>
-<li>Create/delete/remove/rename a file</li>
-<li>Maintains the file system</li>
-<li>Any meta information changes to the file system recorded by the NameNode</li>
+<li><p>Traditional hierarchical file organization</p></li>
+<li><dl class="simple">
+<dt>User/Application can:</dt><dd><ul>
+<li><p>Create directories</p></li>
+<li><p>Create/delete/remove/rename a file</p></li>
+<li><p>Maintains the file system</p></li>
+<li><p>Any meta information changes to the file system recorded by the NameNode</p></li>
 </ul>
 </dd>
 </dl>
@@ -332,19 +336,19 @@
 <div class="section" id="file-read-and-write">
 <h3>File Read and Write<a class="headerlink" href="#file-read-and-write" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Single-writer, multiple-reader model</li>
-<li>An HDFS file consists of blocks</li>
-<li>When there is a need for a new block, the NameNode allocates a block with a unique block ID</li>
-<li>It also determines a list of DataNodes to host replicas of the block</li>
-<li>The DataNodes forms a pipeline, the order of which minimizes the total network distance from the client to the last DataNode</li>
+<li><p>Single-writer, multiple-reader model</p></li>
+<li><p>An HDFS file consists of blocks</p></li>
+<li><p>When there is a need for a new block, the NameNode allocates a block with a unique block ID</p></li>
+<li><p>It also determines a list of DataNodes to host replicas of the block</p></li>
+<li><p>The DataNodes forms a pipeline, the order of which minimizes the total network distance from the client to the last DataNode</p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="hdfs-client">
 <h2>HDFS Client<a class="headerlink" href="#hdfs-client" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>User applications access the file system using this client</li>
-<li>Supports operations to read, write and delete files, and operations to create and delete directories</li>
+<li><p>User applications access the file system using this client</p></li>
+<li><p>Supports operations to read, write and delete files, and operations to create and delete directories</p></li>
 </ul>
 <div class="section" id="read-operation">
 <h3>Read Operation<a class="headerlink" href="#read-operation" title="Permalink to this headline">¶</a></h3>
@@ -358,7 +362,7 @@
 <p>When a client writes, it first asks the NameNode to choose DataNodes to host replicas of the first block of the file. The client organizes a pipeline from node-to-node and sends the data. When the first block is filled, the client requests new DataNodes to be chosen to host replicas of the next block. A new pipeline is organized, and client sends the further bytes of the file</p>
 <div class="figure align-center" id="id3">
 <a class="reference internal image-reference" href="../_images/client_interaction.png"><img alt="Client Interaction" src="../_images/client_interaction.png" style="width: 359.0px; height: 198.5px;" /></a>
-<p class="caption"><span class="caption-text"><em>(An HDFS client creates a new file by giving its path to the NameNode. For each block of the file, the NameNode returns a list of DataNodes to host its replicas. The client then pipelines data to the chosen DataNodes, which eventually confirm the creation of the block replicas to the NameNode)</em></span></p>
+<p class="caption"><span class="caption-text"><em>(An HDFS client creates a new file by giving its path to the NameNode. For each block of the file, the NameNode returns a list of DataNodes to host its replicas. The client then pipelines data to the chosen DataNodes, which eventually confirm the creation of the block replicas to the NameNode)</em></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>HDFS provides an API that exposes the locations of a file blocks. This allows applications like the MapReduce framework to schedule a task to where the data are located</p>
 </div>
@@ -366,40 +370,39 @@
 <div class="section" id="data-replication">
 <h2>4. Data Replication<a class="headerlink" href="#data-replication" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Blocks of a file are replicated for fault tolerance</li>
-<li>An application can specify the number of replicas of a file</li>
-<li>The NameNode makes all decisions regarding replication of blocks</li>
-<li>NameNode periodically receives a Heartbeat and a Block-report from each of the DataNodes in the cluster</li>
-<li>Heartbeat implies that the DataNode is functioning properly. A Block-report contains a list of all blocks on a DataNode</li>
+<li><p>Blocks of a file are replicated for fault tolerance</p></li>
+<li><p>An application can specify the number of replicas of a file</p></li>
+<li><p>The NameNode makes all decisions regarding replication of blocks</p></li>
+<li><p>NameNode periodically receives a Heartbeat and a Block-report from each of the DataNodes in the cluster</p></li>
+<li><p>Heartbeat implies that the DataNode is functioning properly. A Block-report contains a list of all blocks on a DataNode</p></li>
 </ul>
 <div class="section" id="replica-placement">
 <h3>Replica Placement<a class="headerlink" href="#replica-placement" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>The placement of replicas are critical to HDFS reliability and performance</li>
-<li>Rack-aware replica placement model is used to improve reliability, availability and network bandwidth utilization</li>
-<li>Communication between two nodes in different racks has to go through switches</li>
-<li>Network bandwidth between machines in the same rack is greater than network bandwidth between machines in different racks</li>
-<li>NameNode determines the rack id for each DataNode</li>
-<li><dl class="first docutils">
-<dt>Replicas are typically placed on unique racks. This prevents losing data when an entire rack fails and allows use of bandwidth from multiple racks when reading</dt>
-<dd><ul class="first last">
-<li>easy to balance load on component failure, but not an optimal process</li>
-<li>increase the cost of writes because a write needs to transfer blocks to multiple racks</li>
+<li><p>The placement of replicas are critical to HDFS reliability and performance</p></li>
+<li><p>Rack-aware replica placement model is used to improve reliability, availability and network bandwidth utilization</p></li>
+<li><p>Communication between two nodes in different racks has to go through switches</p></li>
+<li><p>Network bandwidth between machines in the same rack is greater than network bandwidth between machines in different racks</p></li>
+<li><p>NameNode determines the rack id for each DataNode</p></li>
+<li><dl class="simple">
+<dt>Replicas are typically placed on unique racks. This prevents losing data when an entire rack fails and allows use of bandwidth from multiple racks when reading</dt><dd><ul>
+<li><p>easy to balance load on component failure, but not an optimal process</p></li>
+<li><p>increase the cost of writes because a write needs to transfer blocks to multiple racks</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li>To minimize cost, HDFS put <em>(replication factor is 3)</em> one replica on one node in the local rack, another on a different node in the local rack, and the last on a different node in a different rack</li>
-<li>Thus 1/3 of replicas are on one node, 2/3 of replicas are on one rack, and the last 1/3 are evenly distributed across the remaining racks</li>
+<li><p>To minimize cost, HDFS put <em>(replication factor is 3)</em> one replica on one node in the local rack, another on a different node in the local rack, and the last on a different node in a different rack</p></li>
+<li><p>Thus 1/3 of replicas are on one node, 2/3 of replicas are on one rack, and the last 1/3 are evenly distributed across the remaining racks</p></li>
 </ul>
 </div>
 <div class="section" id="replica-selection">
 <h3>Replica Selection<a class="headerlink" href="#replica-selection" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>To minimize global bandwidth consumption and read latency, HDFS tries to read a block from a replica that is closest to the reader</li>
-<li>If there is a replica on the reader node, then that replica is referred</li>
-<li>Else if there is a replica on the same rack as the reader node, then that one is preferred</li>
-<li>For a HDFS cluster, that may span multiple data centers, replica in the local data center is preferred over the remote one</li>
+<li><p>To minimize global bandwidth consumption and read latency, HDFS tries to read a block from a replica that is closest to the reader</p></li>
+<li><p>If there is a replica on the reader node, then that replica is referred</p></li>
+<li><p>Else if there is a replica on the same rack as the reader node, then that one is preferred</p></li>
+<li><p>For a HDFS cluster, that may span multiple data centers, replica in the local data center is preferred over the remote one</p></li>
 </ul>
 </div>
 </div>
@@ -409,30 +412,28 @@
 <img alt="File System Meta-Data" src="../_images/metadata.png" />
 </div>
 <ul class="simple">
-<li>HDFS namespace is stored by NameNode</li>
-<li><dl class="first docutils">
-<dt>NameNode uses a transaction log called the EditLog to record every change that occurs to the file system meta data</dt>
-<dd><ul class="first last">
-<li>creating a new file</li>
-<li>change replication factor of a file</li>
+<li><p>HDFS namespace is stored by NameNode</p></li>
+<li><dl class="simple">
+<dt>NameNode uses a transaction log called the EditLog to record every change that occurs to the file system meta data</dt><dd><ul>
+<li><p>creating a new file</p></li>
+<li><p>change replication factor of a file</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li>Editlog is stored in the NameNode’s local filesystem</li>
-<li>Entire filesystem namespace including mapping of blocks to files and file system properties is stored in a file FsImage, stored in NameNode’s local filesystem</li>
+<li><p>Editlog is stored in the NameNode’s local filesystem</p></li>
+<li><p>Entire filesystem namespace including mapping of blocks to files and file system properties is stored in a file FsImage, stored in NameNode’s local filesystem</p></li>
 </ul>
 </div>
 <div class="section" id="robustness">
 <h2>Robustness<a class="headerlink" href="#robustness" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Primary objective of HDFS is to store data reliably even in the presence of failure</li>
-<li><dl class="first docutils">
-<dt>Three common types of failures:</dt>
-<dd><ul class="first last">
-<li>NameNode failures</li>
-<li>DataNode failures</li>
-<li>Network partitions</li>
+<li><p>Primary objective of HDFS is to store data reliably even in the presence of failure</p></li>
+<li><dl class="simple">
+<dt>Three common types of failures:</dt><dd><ul>
+<li><p>NameNode failures</p></li>
+<li><p>DataNode failures</p></li>
+<li><p>Network partitions</p></li>
 </ul>
 </dd>
 </dl>
@@ -441,24 +442,23 @@
 <div class="section" id="datanode-failure-and-heartbeat">
 <h3>DataNode failure and Heartbeat<a class="headerlink" href="#datanode-failure-and-heartbeat" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>A network partition can cause a subset of DataNodes to lose connectivity with the NameNode</li>
-<li>NameNode detects this condition by the absence of a Heartbeat message</li>
-<li>NameNode marks DataNodes without Heartbeat and does not send any IO requests to them</li>
-<li>Any data registered to the failed DataNode is not available to the HDFS</li>
-<li>Also the death of DataNode may cause replication factor of some data blocks to fall below their specified value</li>
+<li><p>A network partition can cause a subset of DataNodes to lose connectivity with the NameNode</p></li>
+<li><p>NameNode detects this condition by the absence of a Heartbeat message</p></li>
+<li><p>NameNode marks DataNodes without Heartbeat and does not send any IO requests to them</p></li>
+<li><p>Any data registered to the failed DataNode is not available to the HDFS</p></li>
+<li><p>Also the death of DataNode may cause replication factor of some data blocks to fall below their specified value</p></li>
 </ul>
 </div>
 <div class="section" id="re-replication">
 <h3>Re-replication<a class="headerlink" href="#re-replication" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>NameNode constantly tracks which blocks need to be replicated and initiates replication whenever necessary</li>
-<li><dl class="first docutils">
-<dt>Necessity of replication may arise due to:</dt>
-<dd><ul class="first last">
-<li>A DataNode may become unavailable</li>
-<li>A replica may become corrupted</li>
-<li>A hard disk on a DataNode may fail</li>
-<li>The replication factor of a file may be increased</li>
+<li><p>NameNode constantly tracks which blocks need to be replicated and initiates replication whenever necessary</p></li>
+<li><dl class="simple">
+<dt>Necessity of replication may arise due to:</dt><dd><ul>
+<li><p>A DataNode may become unavailable</p></li>
+<li><p>A replica may become corrupted</p></li>
+<li><p>A hard disk on a DataNode may fail</p></li>
+<li><p>The replication factor of a file may be increased</p></li>
 </ul>
 </dd>
 </dl>
@@ -468,34 +468,34 @@
 <div class="section" id="cluster-re-balancing">
 <h3>Cluster Re-balancing<a class="headerlink" href="#cluster-re-balancing" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>HDFS architecture is compatible with data re-balancing schemes</li>
-<li>A scheme might move data from one DataNode to another if the free space on a DataNode falls below a certain threshold</li>
-<li>In the event of a sudden high demand for a particular file, a scheme might dynamically create additional replicas and re-balance other data in the cluster</li>
-<li>These types of data re-balancing are not yet implemented</li>
+<li><p>HDFS architecture is compatible with data re-balancing schemes</p></li>
+<li><p>A scheme might move data from one DataNode to another if the free space on a DataNode falls below a certain threshold</p></li>
+<li><p>In the event of a sudden high demand for a particular file, a scheme might dynamically create additional replicas and re-balance other data in the cluster</p></li>
+<li><p>These types of data re-balancing are not yet implemented</p></li>
 </ul>
 </div>
 <div class="section" id="data-integrity">
 <h3>Data Integrity<a class="headerlink" href="#data-integrity" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Consider a situation, a block of data fetched from DataNode arrives corrupted</li>
-<li>This corruption may occur because of faults in a storage device, network faults, or buggy software</li>
-<li>A HDFS client creates the checksum of every block of its file and stores it in hidden files in the HDFS namespace</li>
-<li>When a clients retrieves the contents of file, it verifies that the corresponding checksums match</li>
-<li>If does not match, the client can retrieve the block from a replica</li>
+<li><p>Consider a situation, a block of data fetched from DataNode arrives corrupted</p></li>
+<li><p>This corruption may occur because of faults in a storage device, network faults, or buggy software</p></li>
+<li><p>A HDFS client creates the checksum of every block of its file and stores it in hidden files in the HDFS namespace</p></li>
+<li><p>When a clients retrieves the contents of file, it verifies that the corresponding checksums match</p></li>
+<li><p>If does not match, the client can retrieve the block from a replica</p></li>
 </ul>
 </div>
 <div class="section" id="metadata-disk-failure">
 <h3>Metadata Disk Failure<a class="headerlink" href="#metadata-disk-failure" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>FsImage and EditLog are central data structures of HDFS</li>
-<li>A corruption of these files can cause a HDFS instance to be non-functional</li>
-<li>For this reason, a NameNode can be configured to maintain multiple copies of the FsImage and EditLog</li>
-<li>Multiple copies of the FsImage and EditLog files are updated synchronously</li>
-<li>Meta-data is not data-intensive</li>
-<li>The NameNode machine is a single point of failure for a Hadoop cluster</li>
-<li>If the NameNode fails, manual intervention is necessary</li>
-<li>The Secondary NameNode help minimize the downtime and loss of data</li>
-<li>Automatic restart and fail over of NameNode is NOT supported yet! Still a research topic!</li>
+<li><p>FsImage and EditLog are central data structures of HDFS</p></li>
+<li><p>A corruption of these files can cause a HDFS instance to be non-functional</p></li>
+<li><p>For this reason, a NameNode can be configured to maintain multiple copies of the FsImage and EditLog</p></li>
+<li><p>Multiple copies of the FsImage and EditLog files are updated synchronously</p></li>
+<li><p>Meta-data is not data-intensive</p></li>
+<li><p>The NameNode machine is a single point of failure for a Hadoop cluster</p></li>
+<li><p>If the NameNode fails, manual intervention is necessary</p></li>
+<li><p>The Secondary NameNode help minimize the downtime and loss of data</p></li>
+<li><p>Automatic restart and fail over of NameNode is NOT supported yet! Still a research topic!</p></li>
 </ul>
 </div>
 </div>
@@ -505,15 +505,14 @@
 <div class="section" id="fs-shell">
 <h3>FS Shell<a class="headerlink" href="#fs-shell" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>HDFS allows user data to be organized in the form of files and directories</li>
-<li>Provides a command line interface called FS shell that lets a user interact with the data in HDFS</li>
-<li>Syntax is similar to other shells(e.g. bash, csh)</li>
-<li><dl class="first docutils">
-<dt>Some commands:</dt>
-<dd><ul class="first last">
-<li>Create a directory named “/testdir”: bin/hadoop dfs -mkdir /usr/testdir</li>
-<li>Create a file named “myfile.txt”: bin/hadoop dfs -touchz /usr/testdir/myfile.txt</li>
-<li>View the contents of the file: bin/hadoop dfs -cat /usr/testdir/myfile.txt</li>
+<li><p>HDFS allows user data to be organized in the form of files and directories</p></li>
+<li><p>Provides a command line interface called FS shell that lets a user interact with the data in HDFS</p></li>
+<li><p>Syntax is similar to other shells(e.g. bash, csh)</p></li>
+<li><dl class="simple">
+<dt>Some commands:</dt><dd><ul>
+<li><p>Create a directory named “/testdir”: bin/hadoop dfs -mkdir /usr/testdir</p></li>
+<li><p>Create a file named “myfile.txt”: bin/hadoop dfs -touchz /usr/testdir/myfile.txt</p></li>
+<li><p>View the contents of the file: bin/hadoop dfs -cat /usr/testdir/myfile.txt</p></li>
 </ul>
 </dd>
 </dl>
@@ -523,13 +522,12 @@
 <div class="section" id="dfsadmin">
 <h3>DFSAdmin<a class="headerlink" href="#dfsadmin" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>The DFSAdmin command set is used for administering an HDFS cluster</li>
-<li>Used only by an HDFS administrator</li>
-<li><dl class="first docutils">
-<dt>Sample commands:</dt>
-<dd><ul class="first last">
-<li>Generate a list of DataNodes: bin/hadoop dfsadmin -report</li>
-<li>Decommission DataNode: bin/hadoop dfsadmin -decommission <em>datanodename</em></li>
+<li><p>The DFSAdmin command set is used for administering an HDFS cluster</p></li>
+<li><p>Used only by an HDFS administrator</p></li>
+<li><dl class="simple">
+<dt>Sample commands:</dt><dd><ul>
+<li><p>Generate a list of DataNodes: bin/hadoop dfsadmin -report</p></li>
+<li><p>Decommission DataNode: bin/hadoop dfsadmin -decommission <em>datanodename</em></p></li>
 </ul>
 </dd>
 </dl>
@@ -539,8 +537,8 @@
 <div class="section" id="browser-interface">
 <h3>Browser Interface<a class="headerlink" href="#browser-interface" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Default HDFS install configures a web server to expose the HDFS namespace through a configurable TCP port</li>
-<li>Allows the user to navigate the HDFS namespace and view the contents of its files using a web browser</li>
+<li><p>Default HDFS install configures a web server to expose the HDFS namespace through a configurable TCP port</p></li>
+<li><p>Allows the user to navigate the HDFS namespace and view the contents of its files using a web browser</p></li>
 </ul>
 </div>
 </div>
@@ -551,29 +549,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../message_queues/message_queues.html" class="btn btn-neutral float-right" title="Message Queues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../bit_torrent/bit_torrent.html" class="btn btn-neutral float-left" title="BitTorrent" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../message_queues/message_queues.html" class="btn btn-neutral float-right" title="Message Queues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../bit_torrent/bit_torrent.html" class="btn btn-neutral float-left" title="BitTorrent" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor
+        &#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -581,7 +579,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
