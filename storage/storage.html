@@ -26,7 +26,7 @@
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search"  style="background: #922247" >
             <a href="../index.html" class="icon icon-home"> Distributed Systems
           </a>
               <div class="version">
@@ -44,57 +44,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../issues/issues.html">Introduction and Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../networking/networking.html">Networking Primer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../concurrency/concurrency.html">Concurrency and Threads</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Distributed Systems and Storage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#types-of-non-local-storage">Types of Non-Local Storage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#how-do-we-evaluate-storage-systems">How Do We Evaluate Storage Systems?</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#storage-devices">Storage Devices</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#storage-and-failure">Storage and Failure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#maximizing-availability-raid">Maximizing Availability - RAID</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#raid">RAID</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#raid-0">RAID - 0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#raid-1">RAID - 1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#raid-5">RAID - 5</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#local-storage">Local Storage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#implementing-files-and-folders">Implementing Files and Folders</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#inodes">Inodes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#inodes-indirect-blocks">Inodes - Indirect Blocks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#block-caches">Block Caches</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#folders-and-path-traversal">Folders and Path Traversal</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#virtual-filesystems-vfs">Virtual Filesystems / VFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id1">Virtual Filesystems / VFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#virtual-filesystems-and-stacking">Virtual Filesystems and Stacking</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#distributed-filesystems">Distributed Filesystems</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#file-service-model">File Service Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#directory-service">Directory Service</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#naming-transparency">Naming Transparency</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#file-sharing-semantics">File Sharing Semantics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#unix-semantics">UNIX Semantics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#more-semantics">More Semantics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#distributed-file-system-implementation">Distributed File System Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#system-structure">System Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">Directory Service</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#stateless-versus-stateful">Stateless versus Stateful</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#caching">Caching</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#caching-server">Caching - Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#caching-client">Caching - Client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#client-cache-consistency">Client - Cache Consistency</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#client-cache-consistency-other-options">Client - Cache Consistency - Other Options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#replication">Replication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#replication-update-protocols">Replication - Update Protocols</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#replication-voting-algorithm">Replication - Voting Algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#replication-general-quorum-algorithm">Replication - General Quorum Algorithm</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#case-study-sun-nfs">Case Study - SUN NFS</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#sun-nfs-implementation">SUN NFS - Implementation</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Distributed Systems and Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#storage-devices">Storage Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#local-storage">Local Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#distributed-filesystems">Distributed Filesystems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#case-study-sun-nfs">Case Study - SUN NFS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../directories/directories.html">Directories and LDAP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../maven/maven.html">Project Build Management With Maven</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ci/ci.html">Continuous Integration</a></li>
@@ -124,13 +78,13 @@
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #922247" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Distributed Systems</a>
       </nav>
 
       <div class="wy-nav-content">
-        <div class="rst-content">
+        <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
