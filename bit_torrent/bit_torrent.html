@@ -1,76 +1,37 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>BitTorrent &mdash; Distributed Systems Updated 2021-07-20 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>BitTorrent &mdash; Distributed Systems Updated 2021-09-25 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Hadoop Distributed File System" href="../hadoop/hadoop.html" />
     <link rel="prev" title="Apache Spark" href="../apache_spark/apache_spark.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> Distributed Systems
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                Updated 2021-07-20
+                Updated 2021-09-25
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,18 +39,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../issues/issues.html">Introduction and Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../networking/networking.html">Networking Primer</a></li>
@@ -138,73 +88,32 @@
 <li class="toctree-l1"><a class="reference internal" href="../election/election.html">Election Algorithms</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Distributed Systems</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>BitTorrent</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/bit_torrent/bit_torrent.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="bittorrent">
-<h1>BitTorrent<a class="headerlink" href="#bittorrent" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="bittorrent">
+<h1>BitTorrent<a class="headerlink" href="#bittorrent" title="Permalink to this headline"></a></h1>
 <ul class="simple">
 <li><p>BitTorrent is a protocol for peer-to-peer content sharing over the Internet.</p></li>
 <li><p>In November 2004 BitTorrent share of the whole Internet Traffic was estimated at 35% (Wikipedia).</p></li>
@@ -212,11 +121,11 @@
 <li><p>Bram Cohen released an implementation in the same year.</p></li>
 <li><p>The final Version was released in 2008.</p></li>
 </ul>
-<div class="figure align-center">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/BitTorrentModel.png"><img alt="Figure 1" src="../_images/BitTorrentModel.png" style="width: 700px; height: 600px;" /></a>
-</div>
-<div class="section" id="terminology">
-<h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h2>
+</figure>
+<section id="terminology">
+<h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><dl class="simple">
 <dt>Seeder</dt><dd><p>A peer with complete file is called seeder.
@@ -281,9 +190,9 @@ Messages exchanged between peers and trackers are bencoded as explained below:</
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="how-it-works">
-<h2>How It Works<a class="headerlink" href="#how-it-works" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="how-it-works">
+<h2>How It Works<a class="headerlink" href="#how-it-works" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>BitTorrent client is the tool used to achieve the majority of the activities in sharing.</p></li>
 <li><p>The file(s) being distribted is divided into pieces.</p>
@@ -302,8 +211,8 @@ Messages exchanged between peers and trackers are bencoded as explained below:</
 </ul>
 </li>
 </ul>
-<div class="section" id="piece-selection-policy">
-<h3>Piece Selection Policy<a class="headerlink" href="#piece-selection-policy" title="Permalink to this headline">¶</a></h3>
+<section id="piece-selection-policy">
+<h3>Piece Selection Policy<a class="headerlink" href="#piece-selection-policy" title="Permalink to this headline"></a></h3>
 <p>If pieces are not selected in a well-thought way, all peers may endup having downloaded the same pieces but some (of the more difficult pieces) may be missing. If the seeder disappears preamturely, all peers may end up with incomplete files.
 To solve this issue, one or more of the following policies are used:</p>
 <ul class="simple">
@@ -321,16 +230,16 @@ To solve this issue, one or more of the following policies are used:</p>
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="create-and-share-torrent-files">
-<h3>Create and Share Torrent Files<a class="headerlink" href="#create-and-share-torrent-files" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="create-and-share-torrent-files">
+<h3>Create and Share Torrent Files<a class="headerlink" href="#create-and-share-torrent-files" title="Permalink to this headline"></a></h3>
 <p>When a user wants to share a file, they would create a torrent file (Torrent files are identified by .torrent extension) using the client application.
 The torrent file wraps around information such as the specifi file(s) to be shared, location of the file(s) on the seed machine, etc.
 The torrent file is then shared with other peers.
 The original uploader is known as seed/seeder and others who start downloading from seeder are known as peers or leechers.</p>
-</div>
-<div class="section" id="choking-and-optimistic-unchoking-algorithm">
-<h3>Choking and Optimistic Unchoking Algorithm<a class="headerlink" href="#choking-and-optimistic-unchoking-algorithm" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="choking-and-optimistic-unchoking-algorithm">
+<h3>Choking and Optimistic Unchoking Algorithm<a class="headerlink" href="#choking-and-optimistic-unchoking-algorithm" title="Permalink to this headline"></a></h3>
 <p>Choking is a mechanism using which the BitTorrent protocol avoids free riders, those who want to download but not upload.
 Also, choking helps tackle network congestion???</p>
 <ol class="arabic simple">
@@ -344,9 +253,9 @@ Also, choking helps tackle network congestion???</p>
 This is a simplistic procedure for choking/unchoking mechanism. The real algorithm may be more complex depending on implementation.
 In the the case where the uploader is a seeder rather than a simple peer, the overall upload rate for the downloading peer is checked and then it is decided whether to chokoe or unchoke.
 And finally the seeders and peers upoad to those peers with the highest upload rate. This way, the protocol makes sure that the the uploads complete fast and the number of replica is large.</p>
-</div>
-<div class="section" id="peer-protocol">
-<h3>Peer Protocol<a class="headerlink" href="#peer-protocol" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="peer-protocol">
+<h3>Peer Protocol<a class="headerlink" href="#peer-protocol" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Peer connections are symmetrical: same data can be sent in both directions</p></li>
 <li><p>File pieces are referred to by indexes</p></li>
@@ -378,9 +287,9 @@ And finally the seeders and peers upoad to those peers with the highest upload r
 <p>choke, unchoke, interested and not interested have no payload.
 The ‘have’ message has a number as its payload which is the index of the piece the downloader has just completed.
 Cancel messages are sent when the download is completed.</p>
-</div>
-<div class="section" id="distributed-characteristics">
-<h3>Distributed Characteristics<a class="headerlink" href="#distributed-characteristics" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="distributed-characteristics">
+<h3>Distributed Characteristics<a class="headerlink" href="#distributed-characteristics" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Support for resource sharing</p>
 <ul>
@@ -420,9 +329,9 @@ Cancel messages are sent when the download is completed.</p>
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="advantages">
-<h3>Advantages<a class="headerlink" href="#advantages" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="advantages">
+<h3>Advantages<a class="headerlink" href="#advantages" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Economical: Almost no maintenance cost is involved</p></li>
 <li><p>It is very efficient since every participant is a content provider. No dependency on a single party.</p></li>
@@ -430,74 +339,57 @@ Cancel messages are sent when the download is completed.</p>
 <li><p>It is reliable: As long as there is one seeder (and more peers), it is guaranteed that the system works well.</p></li>
 <li><p>It gives flexibility: The work is evenly distributed among peers.</p></li>
 </ul>
-</div>
-<div class="section" id="disadvantages">
-<h3>Disadvantages<a class="headerlink" href="#disadvantages" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="disadvantages">
+<h3>Disadvantages<a class="headerlink" href="#disadvantages" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>If there is no seeder, for some content the peers may end up exchanging only part of the whole content.</p></li>
 <li><p>Peers are loosely dependent on one another for bandwidth.</p></li>
 <li><p>Designed for public file sharing and hence not the best option for private sharing</p></li>
 <li><p>Copyright infringment concerns: it is hard to control whether the shared resources for copyright infringement.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>BitTorrent Official specification: <a class="reference external" href="http://www.bittorrent.org/beps/bep_0003.html">http://www.bittorrent.org/beps/bep_0003.html</a></p></li>
 <li><p>Wikipedia entry: <a class="reference external" href="http://en.wikipedia.org/wiki/BitTorrent">http://en.wikipedia.org/wiki/BitTorrent</a></p></li>
 <li><p>The Pirate Bay, a BitTorrent distribution server: <a class="reference external" href="http://thepiratebay.sx/">http://thepiratebay.sx/</a></p></li>
 <li><p>An example of list of trackers: <a class="reference external" href="http://tech.thaweesha.com/2013/02/torrent-tracker-list-2013.html">http://tech.thaweesha.com/2013/02/torrent-tracker-list-2013.html</a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../hadoop/hadoop.html" class="btn btn-neutral float-right" title="Hadoop Distributed File System" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../apache_spark/apache_spark.html" class="btn btn-neutral float-left" title="Apache Spark" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../hadoop/hadoop.html" class="btn btn-neutral float-right" title="Hadoop Distributed File System" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.
-
-    </p>
+    <p>&#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

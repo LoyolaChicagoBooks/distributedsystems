@@ -1,76 +1,37 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Concurrency and Threads &mdash; Distributed Systems Updated 2021-07-20 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>Concurrency and Threads &mdash; Distributed Systems Updated 2021-09-25 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Distributed Systems and Storage" href="../storage/storage.html" />
     <link rel="prev" title="Networking Primer" href="../networking/networking.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> Distributed Systems
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                Updated 2021-07-20
+                Updated 2021-09-25
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,18 +39,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../issues/issues.html">Introduction and Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../networking/networking.html">Networking Primer</a></li>
@@ -148,75 +98,34 @@
 <li class="toctree-l1"><a class="reference internal" href="../election/election.html">Election Algorithms</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Distributed Systems</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Concurrency and Threads</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/concurrency/concurrency.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="concurrency-and-threads">
-<h1>Concurrency and Threads<a class="headerlink" href="#concurrency-and-threads" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="threads-vs-processes">
-<h2>Threads vs Processes<a class="headerlink" href="#threads-vs-processes" title="Permalink to this headline">¶</a></h2>
+             
+  <section id="concurrency-and-threads">
+<h1>Concurrency and Threads<a class="headerlink" href="#concurrency-and-threads" title="Permalink to this headline"></a></h1>
+<section id="threads-vs-processes">
+<h2>Threads vs Processes<a class="headerlink" href="#threads-vs-processes" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><dl class="simple">
 <dt>Traditional Operating Systems have Processes</dt><dd><ul>
@@ -244,9 +153,9 @@
 </dl>
 </li>
 </ul>
-</div>
-<div class="section" id="what-are-processes-threads">
-<h2>What are Processes, Threads?<a class="headerlink" href="#what-are-processes-threads" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="what-are-processes-threads">
+<h2>What are Processes, Threads?<a class="headerlink" href="#what-are-processes-threads" title="Permalink to this headline"></a></h2>
 <ul>
 <li><dl>
 <dt>Processes have:</dt><dd><ul class="simple">
@@ -256,9 +165,9 @@
 <li><p>An exclusive virtual address space</p></li>
 <li><p>Sandboxing from other process except to the extent that the process participates in IPC</p></li>
 </ul>
-<div class="figure align-center">
+<figure class="align-center">
 <img alt="Process Memory Layout" src="../_images/memory_layout.png" />
-</div>
+</figure>
 </dd>
 </dl>
 </li>
@@ -272,16 +181,16 @@
 <li><p>Each thread runs sequentially</p></li>
 <li><p>In a given process with N threads, 0-i threads may be blocked, and 0-k threads are runnable or running.</p></li>
 </ul>
-<div class="figure align-center">
+<figure class="align-center">
 <img alt="Threaded Memory Layout" src="../_images/memory_layout_multithreaded.png" />
-</div>
+</figure>
 </dd>
 </dl>
 </li>
 </ul>
-</div>
-<div class="section" id="common-threading-use-cases">
-<h2>Common Threading Use Cases<a class="headerlink" href="#common-threading-use-cases" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="common-threading-use-cases">
+<h2>Common Threading Use Cases<a class="headerlink" href="#common-threading-use-cases" title="Permalink to this headline"></a></h2>
 <ul>
 <li><dl>
 <dt>Client / Server - ex: file servers:</dt><dd><ul class="simple">
@@ -289,9 +198,9 @@
 <li><p>When a client connects, a new thread is spawned to handle the request. This permits several clients to connect to the file server at one time because each request is handled by a separate thread of execution.</p></li>
 <li><p>To send the file data, two threads can be used the first can read from the file on disk and the second can write the read buffers to the socket.</p></li>
 </ul>
-<div class="figure align-center">
+<figure class="align-center">
 <img alt="Client-Server Thread Model" src="../_images/client_server.png" />
-</div>
+</figure>
 </dd>
 </dl>
 </li>
@@ -348,9 +257,9 @@
 <li><p>To the extent that the subproblems are not inter-dependent, they can be executed in parallel</p></li>
 <li><p>Multiple threads can work against a common task queue.</p></li>
 </ul>
-<div class="figure align-center">
+<figure class="align-center">
 <img alt="Parallel Thread Model" src="../_images/parallel_threads.png" />
-</div>
+</figure>
 </dd>
 </dl>
 </li>
@@ -417,9 +326,9 @@
 <li><p>An algorithm must be executed in several stages that depend upon each other.</p></li>
 <li><p>For example if there are three stages, then three threads can be launched for each of the stages. As the first thread completes some part of the total work, it can pass it to a queue for the second stage to be processed by the second thread. At this time, the first thread and second thread can work on their own stages in parallel. The same continues to the third thread for the third stage of computation.</p></li>
 </ul>
-<div class="figure align-center">
+<figure class="align-center">
 <img alt="Pipeline Thread Model" src="../_images/pipeline_threads.png" />
-</div>
+</figure>
 </dd>
 </dl>
 </li>
@@ -678,9 +587,9 @@
 <span class="linenos">94</span>	}
 </pre></div>
 </div>
-</div>
-<div class="section" id="mutual-exclusion">
-<h2>Mutual Exclusion<a class="headerlink" href="#mutual-exclusion" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="mutual-exclusion">
+<h2>Mutual Exclusion<a class="headerlink" href="#mutual-exclusion" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Mutual exclusion is a general problem that applies to both processes and threads.</p></li>
 <li><dl class="simple">
@@ -701,9 +610,9 @@
 </li>
 <li><p>When mutual exclusion is achieved, atomic operations on shared data structures are guaranteed to be atomic and not interrupted by other threads.</p></li>
 </ul>
-</div>
-<div class="section" id="tools-for-achieving-mutual-exclusion">
-<h2>Tools for Achieving Mutual Exclusion<a class="headerlink" href="#tools-for-achieving-mutual-exclusion" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="tools-for-achieving-mutual-exclusion">
+<h2>Tools for Achieving Mutual Exclusion<a class="headerlink" href="#tools-for-achieving-mutual-exclusion" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><dl class="simple">
 <dt>Mutex</dt><dd><ul>
@@ -753,9 +662,9 @@
 </dl>
 </li>
 </ul>
-</div>
-<div class="section" id="mutex-example-java">
-<h2>Mutex Example/Java<a class="headerlink" href="#mutex-example-java" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="mutex-example-java">
+<h2>Mutex Example/Java<a class="headerlink" href="#mutex-example-java" title="Permalink to this headline"></a></h2>
 <p>This code example shows how to implement a classic mutex, a.k.a. a Lock, in Java.</p>
 <p>These examples come from <a class="reference external" href="http://hpjpc.googlecode.com">http://hpjpc.googlecode.com</a> by Christopher and Thiruvathukal.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">public</span> <span class="k">class</span> <span class="nc">Lock</span> <span class="p">{</span>
@@ -778,9 +687,9 @@
 <span class="linenos">18</span><span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="semaphore-example">
-<h2>Semaphore Example<a class="headerlink" href="#semaphore-example" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="semaphore-example">
+<h2>Semaphore Example<a class="headerlink" href="#semaphore-example" title="Permalink to this headline"></a></h2>
 <p>This shows how to implement a counting semaphore in the Java programming language.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>
 <span class="linenos"> 2</span><span class="n">public</span> <span class="k">class</span> <span class="nc">Semaphore</span> <span class="p">{</span>
@@ -832,9 +741,9 @@
 <span class="linenos">48</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="barrier">
-<h2>Barrier<a class="headerlink" href="#barrier" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="barrier">
+<h2>Barrier<a class="headerlink" href="#barrier" title="Permalink to this headline"></a></h2>
 <p>This shows how to implement a barrier, which is a synchronization mechanism for awaiting
 a specified number of threads before processing can continue. Once all threads have arrived,
 processing can continue.</p>
@@ -880,9 +789,9 @@ processing can continue.</p>
 <span class="linenos">40</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="deadlock-a-classic-problem">
-<h2>Deadlock - a classic problem<a class="headerlink" href="#deadlock-a-classic-problem" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="deadlock-a-classic-problem">
+<h2>Deadlock - a classic problem<a class="headerlink" href="#deadlock-a-classic-problem" title="Permalink to this headline"></a></h2>
 <p>A classic problem in computer science and one that is often studied in operating systems
 to show the hazards of working with shared, synchronized state, is the <em>dining philosophers problem</em>.
 We won’t describe the entire problem here but you can read <a class="reference external" href="http://en.wikipedia.org/wiki/Dining_philosophers_problem">http://en.wikipedia.org/wiki/Dining_philosophers_problem</a>.</p>
@@ -892,9 +801,9 @@ We won’t describe the entire problem here but you can read <a class="reference
 <li><p>Diner0: A class used to represent a philosopher. The philosopher does three things a philosopher normally does: think(), sleep(), and eat().</p></li>
 <li><p>Diners0: A class used to represent all of the diners seated at the table with their shared forks. This is where the concurrency takes place.</p></li>
 </ul>
-</div>
-<div class="section" id="fork">
-<h2>Fork<a class="headerlink" href="#fork" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="fork">
+<h2>Fork<a class="headerlink" href="#fork" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">public</span> <span class="k">class</span> <span class="nc">Fork</span> <span class="p">{</span>
 <span class="linenos"> 2</span>    <span class="n">public</span> <span class="n">char</span> <span class="nb">id</span><span class="p">;</span>
 <span class="linenos"> 3</span>
@@ -914,9 +823,9 @@ We won’t describe the entire problem here but you can read <a class="reference
 <span class="linenos">17</span><span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="diner0">
-<h2>Diner0<a class="headerlink" href="#diner0" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="diner0">
+<h2>Diner0<a class="headerlink" href="#diner0" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">public</span> <span class="k">class</span> <span class="nc">Diner0</span> <span class="n">extends</span> <span class="n">Thread</span> <span class="p">{</span>
 <span class="linenos"> 2</span>    <span class="n">private</span> <span class="n">char</span> <span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;t&#39;</span><span class="p">;</span>
 <span class="linenos"> 3</span>    <span class="n">private</span> <span class="n">Fork</span> <span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">;</span>
@@ -964,9 +873,9 @@ We won’t describe the entire problem here but you can read <a class="reference
 <span class="linenos">45</span><span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="diners0">
-<h2>Diners0<a class="headerlink" href="#diners0" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="diners0">
+<h2>Diners0<a class="headerlink" href="#diners0" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">public</span> <span class="k">class</span> <span class="nc">Diners0</span> <span class="p">{</span>
 <span class="linenos"> 2</span>    <span class="n">private</span> <span class="n">static</span> <span class="n">Fork</span><span class="p">[]</span> <span class="n">fork</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Fork</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
 <span class="linenos"> 3</span>    <span class="n">private</span> <span class="n">static</span> <span class="n">Diner0</span><span class="p">[]</span> <span class="n">diner</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Diner0</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
@@ -1019,18 +928,18 @@ We won’t describe the entire problem here but you can read <a class="reference
 <span class="linenos">50</span><span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="diners1-eliminating-deadlock-with-resource-enumeration">
-<h2>Diners1 - eliminating deadlock with resource enumeration<a class="headerlink" href="#diners1-eliminating-deadlock-with-resource-enumeration" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="diners1-eliminating-deadlock-with-resource-enumeration">
+<h2>Diners1 - eliminating deadlock with resource enumeration<a class="headerlink" href="#diners1-eliminating-deadlock-with-resource-enumeration" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 <span class="linenos">2</span>            <span class="n">diner</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Diner0</span><span class="p">(</span><span class="n">fork</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">fork</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">5</span><span class="p">]);</span>
 <span class="linenos">3</span>        <span class="p">}</span>
 <span class="linenos">4</span>        <span class="n">diner</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Diner0</span><span class="p">(</span><span class="n">fork</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fork</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="execution-with-deadlock">
-<h2>Execution - With Deadlock<a class="headerlink" href="#execution-with-deadlock" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="execution-with-deadlock">
+<h2>Execution - With Deadlock<a class="headerlink" href="#execution-with-deadlock" title="Permalink to this headline"></a></h2>
 <p>If you have Java and Gradle installed on your computer, you can try these out!</p>
 <p>Make sure you have the HPJPC source code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hg</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">bitbucket</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">loyolachicagocs_books</span><span class="o">/</span><span class="n">hpjpc</span><span class="o">-</span><span class="n">source</span><span class="o">-</span><span class="n">java</span>
@@ -1086,9 +995,9 @@ t23et 1ett0 12et0 t23et 1tt40
 12340 12340 12340 12340 12340
 </pre></div>
 </div>
-</div>
-<div class="section" id="deadlock-free-version">
-<h2>Deadlock-Free Version<a class="headerlink" href="#deadlock-free-version" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="deadlock-free-version">
+<h2>Deadlock-Free Version<a class="headerlink" href="#deadlock-free-version" title="Permalink to this headline"></a></h2>
 <p>Diners1 has a similar Gradle task:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">task</span> <span class="n">Diners1</span><span class="p">(</span><span class="n">dependsOn</span><span class="p">:</span> <span class="s1">&#39;classes&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">:</span> <span class="n">JavaExec</span><span class="p">)</span> <span class="p">{</span>
 <span class="linenos">2</span>    <span class="n">main</span> <span class="o">=</span> <span class="s1">&#39;info.jhpc.textbook.chapter03.Diners1&#39;</span>
@@ -1142,9 +1051,9 @@ Total time: 18.426 secs
 </div>
 <p>The diners, as desired, end up finishing their meal after some time.</p>
 <p>We assume they have moved over to the bar or found a nice place to have dessert.</p>
-</div>
-<div class="section" id="common-data-structures-in-concurrent-programming">
-<h2>Common Data Structures in Concurrent Programming<a class="headerlink" href="#common-data-structures-in-concurrent-programming" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="common-data-structures-in-concurrent-programming">
+<h2>Common Data Structures in Concurrent Programming<a class="headerlink" href="#common-data-structures-in-concurrent-programming" title="Permalink to this headline"></a></h2>
 <ul>
 <li><dl>
 <dt>Bound Buffer</dt><dd><ul class="simple">
@@ -1155,9 +1064,9 @@ Total time: 18.426 secs
 <li><p>Dequeue() - dequeues an item from the data structure. If there are zero items in the queue, Dequeue() will block until another thread enqueues an item in the data structure</p></li>
 <li><p>Bound buffers are used to make sure that when one thread is producing work for a second thread, that if one thread is faster or slower than the other, that they appropriately wait to some extent for each other.</p></li>
 </ul>
-<div class="figure align-center">
+<figure class="align-center">
 <img alt="Bound Buffer" src="../_images/bound_buffer.png" />
-</div>
+</figure>
 </dd>
 </dl>
 </li>
@@ -1195,9 +1104,9 @@ Total time: 18.426 secs
 <span class="linenos">30</span>	<span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="design-considerations">
-<h2>Design Considerations<a class="headerlink" href="#design-considerations" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="design-considerations">
+<h2>Design Considerations<a class="headerlink" href="#design-considerations" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><dl class="simple">
 <dt>Threading requires the support of the operating system - a threading library / package is needed</dt><dd><ul>
@@ -1244,9 +1153,9 @@ Total time: 18.426 secs
 </dl>
 </li>
 </ul>
-</div>
-<div class="section" id="kernel-threads-vs-user-mode-threads">
-<h2>Kernel Threads vs User Mode Threads<a class="headerlink" href="#kernel-threads-vs-user-mode-threads" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="kernel-threads-vs-user-mode-threads">
+<h2>Kernel Threads vs User Mode Threads<a class="headerlink" href="#kernel-threads-vs-user-mode-threads" title="Permalink to this headline"></a></h2>
 <ul>
 <li><dl>
 <dt>There are two types of threads:</dt><dd><ul class="simple">
@@ -1263,9 +1172,9 @@ Total time: 18.426 secs
 </dl>
 </li>
 </ul>
-<div class="figure align-center">
+<figure class="align-center">
 <img alt="Kernel and User Mode Threads" src="../_images/kernel_user_threads.png" />
-</div>
+</figure>
 </dd>
 </dl>
 </li>
@@ -1296,16 +1205,16 @@ Total time: 18.426 secs
 </dl>
 </li>
 </ul>
-</div>
-<div class="section" id="concurrent-file-copy-example">
-<h2>Concurrent File Copy Example<a class="headerlink" href="#concurrent-file-copy-example" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="concurrent-file-copy-example">
+<h2>Concurrent File Copy Example<a class="headerlink" href="#concurrent-file-copy-example" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>FileCopy0: The sequential version</p></li>
 <li><p>FileCopy1: The concurrent version</p></li>
 </ul>
-</div>
-<div class="section" id="sequential-file-copy">
-<h2>Sequential File Copy<a class="headerlink" href="#sequential-file-copy" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="sequential-file-copy">
+<h2>Sequential File Copy<a class="headerlink" href="#sequential-file-copy" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">public</span> <span class="k">class</span> <span class="nc">FileCopy0</span> <span class="p">{</span>
 <span class="linenos"> 2</span>    <span class="n">public</span> <span class="n">static</span> <span class="n">final</span> <span class="nb">int</span> <span class="n">BLOCK_SIZE</span> <span class="o">=</span> <span class="mi">4096</span><span class="p">;</span>
 <span class="linenos"> 3</span>
@@ -1339,9 +1248,9 @@ Total time: 18.426 secs
 <span class="linenos">31</span><span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="concurrent-file-copy-organization">
-<h2>Concurrent File Copy Organization<a class="headerlink" href="#concurrent-file-copy-organization" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="concurrent-file-copy-organization">
+<h2>Concurrent File Copy Organization<a class="headerlink" href="#concurrent-file-copy-organization" title="Permalink to this headline"></a></h2>
 <p>Quick overview of the various classes:</p>
 <ul class="simple">
 <li><p>Pool: Maintains a list of buffers that can be used for allocating/freeing blocks of data without triggering new (or dispose) repeatedly.</p></li>
@@ -1594,9 +1503,9 @@ Total time: 18.426 secs
 <span class="linenos">36</span><span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="execution">
-<h2>Execution<a class="headerlink" href="#execution" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="execution">
+<h2>Execution<a class="headerlink" href="#execution" title="Permalink to this headline"></a></h2>
 <p>You can run FileCopy0 and FileCopy1 by using the corresponding Gradle tasks.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">task</span> <span class="n">FileCopy0</span><span class="p">(</span><span class="n">dependsOn</span><span class="p">:</span> <span class="s1">&#39;classes&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">:</span> <span class="n">JavaExec</span><span class="p">)</span> <span class="p">{</span>
 <span class="linenos">2</span>    <span class="n">main</span> <span class="o">=</span> <span class="s1">&#39;info.jhpc.textbook.chapter03.FileCopy0&#39;</span>
@@ -1613,55 +1522,38 @@ Total time: 18.426 secs
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gradle</span> <span class="n">FileCopy1</span> <span class="o">-</span><span class="n">Pfc0_src</span><span class="o">=</span><span class="n">inputFile</span> <span class="o">-</span><span class="n">Pfc0_dest</span><span class="o">=</span><span class="n">outputFile</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../storage/storage.html" class="btn btn-neutral float-right" title="Distributed Systems and Storage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../networking/networking.html" class="btn btn-neutral float-left" title="Networking Primer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../storage/storage.html" class="btn btn-neutral float-right" title="Distributed Systems and Storage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.
-
-    </p>
+    <p>&#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

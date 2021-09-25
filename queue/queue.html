@@ -1,76 +1,37 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Distributed Queues &mdash; Distributed Systems Updated 2021-07-20 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>Distributed Queues &mdash; Distributed Systems Updated 2021-09-25 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Message Passing Interface" href="../mpi/mpi.html" />
     <link rel="prev" title="Domain Name Service" href="../dns/dns.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> Distributed Systems
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                Updated 2021-07-20
+                Updated 2021-09-25
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,18 +39,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../issues/issues.html">Introduction and Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../networking/networking.html">Networking Primer</a></li>
@@ -130,82 +80,41 @@
 <li class="toctree-l1"><a class="reference internal" href="../election/election.html">Election Algorithms</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Distributed Systems</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Distributed Queues</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/queue/queue.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="distributed-queues">
-<h1>Distributed Queues<a class="headerlink" href="#distributed-queues" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="what-is-a-distributed-queue">
-<h2>What is a Distributed Queue?<a class="headerlink" href="#what-is-a-distributed-queue" title="Permalink to this headline">¶</a></h2>
+             
+  <section id="distributed-queues">
+<h1>Distributed Queues<a class="headerlink" href="#distributed-queues" title="Permalink to this headline"></a></h1>
+<section id="what-is-a-distributed-queue">
+<h2>What is a Distributed Queue?<a class="headerlink" href="#what-is-a-distributed-queue" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>A distributed queue is a distributed, transactional database that supports queued, structured messages. Distributed queues are read/write databases.</p></li>
 <li><p>Distributed queues are a commonly used mechanism to provide reliable and scalable messaging between components in a distributed system</p></li>
 </ul>
-</div>
-<div class="section" id="a-simple-hello-world-with-rabbit-mq">
-<h2>A simple Hello World with Rabbit MQ<a class="headerlink" href="#a-simple-hello-world-with-rabbit-mq" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="a-simple-hello-world-with-rabbit-mq">
+<h2>A simple Hello World with Rabbit MQ<a class="headerlink" href="#a-simple-hello-world-with-rabbit-mq" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Prerequisites are getting the 3rd party RabbitMQ library, setting up the service, and creating an instance of the distributed queue in RabbitMQ’s database. These are all fairly straight forward:</p></li>
 <li><p>The sender code:</p></li>
@@ -270,9 +179,9 @@
 <ul class="simple">
 <li><p>Overall, this kind of code is fairly simple</p></li>
 </ul>
-</div>
-<div class="section" id="example-using-msmq">
-<h2>Example using MSMQ<a class="headerlink" href="#example-using-msmq" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="example-using-msmq">
+<h2>Example using MSMQ<a class="headerlink" href="#example-using-msmq" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Sending a simple message</p></li>
 </ul>
@@ -302,9 +211,9 @@
 <ul class="simple">
 <li><p>Another important advantage with MSMQ is that it can participate in a distributed transaction via the DTC service in Windows.</p></li>
 </ul>
-</div>
-<div class="section" id="using-distributed-queues-in-distributed-software">
-<h2>Using Distributed Queues in Distributed software<a class="headerlink" href="#using-distributed-queues-in-distributed-software" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="using-distributed-queues-in-distributed-software">
+<h2>Using Distributed Queues in Distributed software<a class="headerlink" href="#using-distributed-queues-in-distributed-software" title="Permalink to this headline"></a></h2>
 <ul>
 <li><p>A key thing to remember is that distributed queues are a building block, and not a complete queueing solution in and of themselves. What distributed queues give you are the tools to build a proper distributed message or job processing system. Actual implementations need further consideration</p></li>
 <li><p>For example, if you’re trying to ensure that a client queueing a job, and the processing of the job is fully successful or not you need to be careful with how you use the queue:</p>
@@ -327,55 +236,38 @@
 </div></blockquote>
 </li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../mpi/mpi.html" class="btn btn-neutral float-right" title="Message Passing Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../dns/dns.html" class="btn btn-neutral float-left" title="Domain Name Service" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../mpi/mpi.html" class="btn btn-neutral float-right" title="Message Passing Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.
-
-    </p>
+    <p>&#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

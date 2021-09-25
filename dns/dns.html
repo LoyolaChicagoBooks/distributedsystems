@@ -1,76 +1,37 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Domain Name Service &mdash; Distributed Systems Updated 2021-07-20 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>Domain Name Service &mdash; Distributed Systems Updated 2021-09-25 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Distributed Queues" href="../queue/queue.html" />
     <link rel="prev" title="Distributed Transactions" href="../trans/trans.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> Distributed Systems
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                Updated 2021-07-20
+                Updated 2021-09-25
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,18 +39,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../issues/issues.html">Introduction and Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../networking/networking.html">Networking Primer</a></li>
@@ -135,84 +85,43 @@
 <li class="toctree-l1"><a class="reference internal" href="../election/election.html">Election Algorithms</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Distributed Systems</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Domain Name Service</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/dns/dns.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="domain-name-service">
-<h1>Domain Name Service<a class="headerlink" href="#domain-name-service" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="what-is-dns">
-<h2>What is DNS ?<a class="headerlink" href="#what-is-dns" title="Permalink to this headline">¶</a></h2>
+             
+  <section id="domain-name-service">
+<h1>Domain Name Service<a class="headerlink" href="#domain-name-service" title="Permalink to this headline"></a></h1>
+<section id="what-is-dns">
+<h2>What is DNS ?<a class="headerlink" href="#what-is-dns" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>DNS is a hierarchal, decentralized naming system for computers, services, and resources connected to or not connected to the internet.</p></li>
 <li><p>DNS implementations can reside on LANs or at internet scale</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="types-of-dns-records">
-<h2>Types of DNS Records<a class="headerlink" href="#types-of-dns-records" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="types-of-dns-records">
+<h2>Types of DNS Records<a class="headerlink" href="#types-of-dns-records" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>A Records: host name to ip address record</p></li>
@@ -221,9 +130,9 @@
 <li><p>PTR Records: records for reverse DNS lookups. To translate ip addresses to host names</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="history-of-dns">
-<h2>History of DNS<a class="headerlink" href="#history-of-dns" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="history-of-dns">
+<h2>History of DNS<a class="headerlink" href="#history-of-dns" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Original IP-address to host name translations were maintained in a text file on each host that was named hosts.txt. This approach still exists on Linux, Windows, and similar PC and server systems. This approach is still somewhat useful on statically addressed small networks that don’t implement dynamic network discovery services.</p></li>
@@ -234,9 +143,9 @@
 <li><p>In subsequent years and decades, standards groups and researchers proposed and implemented new record types, improved security, and scaling of the DNS system as the internet itself expanded.</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="top-level-domains">
-<h2>Top Level Domains<a class="headerlink" href="#top-level-domains" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="top-level-domains">
+<h2>Top Level Domains<a class="headerlink" href="#top-level-domains" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>A TLD is the right-most section of a internet address. For example, google.com’s TLD is .com, Luc.edu’s TLD is .edu</p></li>
@@ -246,15 +155,15 @@
 <li><p>TLDs are arbitrary and controlled by ICANN, the group that manages the Internet’s root DNS servers. In an isolated network or in your own LAN, you can create your own TLDs, but they will only be respected within your own network.</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="dns-and-its-hierarchies">
-<h2>DNS and Its Hierarchies<a class="headerlink" href="#dns-and-its-hierarchies" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-default">
+</section>
+<section id="dns-and-its-hierarchies">
+<h2>DNS and Its Hierarchies<a class="headerlink" href="#dns-and-its-hierarchies" title="Permalink to this headline"></a></h2>
+<figure class="align-default">
 <img alt="../_images/dns_hierarchy.png" src="../_images/dns_hierarchy.png" />
-</div>
-</div>
-<div class="section" id="name-servers">
-<h2>Name Servers<a class="headerlink" href="#name-servers" title="Permalink to this headline">¶</a></h2>
+</figure>
+</section>
+<section id="name-servers">
+<h2>Name Servers<a class="headerlink" href="#name-servers" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>The DNS system is a distributed database system.</p></li>
@@ -263,9 +172,9 @@
 <li><p>The top of the hierarchy is served by the root name servers. These servers manage the TLDs</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="resolving-addresses">
-<h2>Resolving Addresses<a class="headerlink" href="#resolving-addresses" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="resolving-addresses">
+<h2>Resolving Addresses<a class="headerlink" href="#resolving-addresses" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>DNS resolvers perform recursive queries in the hierarchal internet database to resolve these addresses.</p></li>
@@ -274,12 +183,12 @@
 <li><p>Additionally, most operating systems will locally cache DNS query results for at least several minutes or more.</p></li>
 </ul>
 </div></blockquote>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../_images/resolution.png" src="../_images/resolution.png" />
-</div>
-</div>
-<div class="section" id="enabling-distribution-and-load-balancing">
-<h2>Enabling Distribution and Load Balancing<a class="headerlink" href="#enabling-distribution-and-load-balancing" title="Permalink to this headline">¶</a></h2>
+</figure>
+</section>
+<section id="enabling-distribution-and-load-balancing">
+<h2>Enabling Distribution and Load Balancing<a class="headerlink" href="#enabling-distribution-and-load-balancing" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>It is possible to configure regional DNS records. This allows an Internet visible web service to be physically hosted around the world and to have DNS queries be resolved to the closest physical server.</p></li>
@@ -287,9 +196,9 @@
 <li><p>Failover MX records. When registering a mail exchanger for a site, it is possible to register multiple mail exchangers for the site with different priorities. Often, larger organizations will have one onsite SMTP server and one offsite SMTP server to allow for better uptime.</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="credits">
-<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="credits">
+<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -302,55 +211,38 @@
 </li>
 </ul>
 </div></blockquote>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../queue/queue.html" class="btn btn-neutral float-right" title="Distributed Queues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../trans/trans.html" class="btn btn-neutral float-left" title="Distributed Transactions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../queue/queue.html" class="btn btn-neutral float-right" title="Distributed Queues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.
-
-    </p>
+    <p>&#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

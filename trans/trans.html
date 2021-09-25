@@ -1,76 +1,37 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Distributed Transactions &mdash; Distributed Systems Updated 2021-07-20 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>Distributed Transactions &mdash; Distributed Systems Updated 2021-09-25 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Domain Name Service" href="../dns/dns.html" />
     <link rel="prev" title="Clocks and Synchronization" href="../clocks/clocks.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> Distributed Systems
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                Updated 2021-07-20
+                Updated 2021-09-25
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,18 +39,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../issues/issues.html">Introduction and Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../networking/networking.html">Networking Primer</a></li>
@@ -138,83 +88,42 @@
 <li class="toctree-l1"><a class="reference internal" href="../election/election.html">Election Algorithms</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Distributed Systems</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Distributed Transactions</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/trans/trans.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="distributed-transactions">
-<h1>Distributed Transactions<a class="headerlink" href="#distributed-transactions" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="transactions-defined">
-<h2>Transactions Defined<a class="headerlink" href="#transactions-defined" title="Permalink to this headline">¶</a></h2>
+             
+  <section id="distributed-transactions">
+<h1>Distributed Transactions<a class="headerlink" href="#distributed-transactions" title="Permalink to this headline"></a></h1>
+<section id="transactions-defined">
+<h2>Transactions Defined<a class="headerlink" href="#transactions-defined" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>A transaction is a unit of reliable and consistent computation.</p></li>
 <li><p>A sequence of read and write operations on a database that happen entirely or not at all.</p></li>
 <li><p>Transactions may or may not be repeatable or isolated.</p></li>
 </ul>
-</div>
-<div class="section" id="acid">
-<h2>ACID<a class="headerlink" href="#acid" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="acid">
+<h2>ACID<a class="headerlink" href="#acid" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>ACID = Atomicity, Consistency, Isolation, Durability</p></li>
 <li><p>Atomicity requires that each transaction be “all or nothing”. i.e. if one part of a transaction fails, then the entire transaction fails and the database remains unchanged w.r.t. the actions in the transaction</p></li>
@@ -222,17 +131,17 @@
 <li><p>Isolation. This refers to the degree of serializability. Providing maximum isolation for concurrent transactions would have an equivalent post-state as running all transactions in serial.</p></li>
 <li><p>Durability. This ensures that once a transaction has been committed that it will remain committed, even in the event of some crash or power-loss.</p></li>
 </ul>
-</div>
-<div class="section" id="isolation-levels-serializable">
-<h2>Isolation Levels - Serializable<a class="headerlink" href="#isolation-levels-serializable" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="isolation-levels-serializable">
+<h2>Isolation Levels - Serializable<a class="headerlink" href="#isolation-levels-serializable" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Transactions are guaranteed to be serializable w.r.t. each other. This means that the post state of two concurrent transactions would be the same as if they were executed in serial (one after the other) fashion.</p></li>
 <li><p>There are many algorithms for determining serializability and implementing either pessimistic or optimistic locks to achieve serializable isolation within a single database host.</p></li>
 <li><p>Read, write, and range-locks are kept for the duration of a transaction.</p></li>
 </ul>
-</div>
-<div class="section" id="isolation-levels-repeatable-reads">
-<h2>Isolation Levels - Repeatable Reads<a class="headerlink" href="#isolation-levels-repeatable-reads" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="isolation-levels-repeatable-reads">
+<h2>Isolation Levels - Repeatable Reads<a class="headerlink" href="#isolation-levels-repeatable-reads" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Read and write locks are kept for the duration of the transaction, but range-locks are not kept.</p></li>
 <li><p>This allows for phantom reads.</p></li>
@@ -258,33 +167,33 @@ commit tran t1
 <ul class="simple">
 <li><p>In this example, the first query in Transaction A if timed properly with Transaction B would produce different results compared to the second query.</p></li>
 </ul>
-</div>
-<div class="section" id="isolation-levels-read-committed">
-<h2>Isolation Levels - Read Committed<a class="headerlink" href="#isolation-levels-read-committed" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="isolation-levels-read-committed">
+<h2>Isolation Levels - Read Committed<a class="headerlink" href="#isolation-levels-read-committed" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Write locks are kept for the duration of the transaction, but read locks and range locks are not kept.</p></li>
 <li><p>Basically, this guarantees that any data that is read has been previously committed. You will not see any intermediate, uncommitted writes from another transaction.</p></li>
 <li><p>Subsequently issued reads will not be guaranteed to get the same data as other transactions may have committed during that time.</p></li>
 <li><p>Written data will be consistently re-readable though.</p></li>
 </ul>
-</div>
-<div class="section" id="isolation-levels-read-uncommitted">
-<h2>Isolation Levels - Read Uncommitted<a class="headerlink" href="#isolation-levels-read-uncommitted" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="isolation-levels-read-uncommitted">
+<h2>Isolation Levels - Read Uncommitted<a class="headerlink" href="#isolation-levels-read-uncommitted" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>This is the lowest isolation level</p></li>
 <li><p>Dirty reads are allowed. One transaction may see not-yet-committed changes made by other transactions</p></li>
 </ul>
-</div>
-<div class="section" id="isolation-levels-mixing-levels">
-<h2>Isolation Levels - Mixing Levels<a class="headerlink" href="#isolation-levels-mixing-levels" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="isolation-levels-mixing-levels">
+<h2>Isolation Levels - Mixing Levels<a class="headerlink" href="#isolation-levels-mixing-levels" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>If two transactions run concurrently, they run under the highest isolation level.</p></li>
 <li><p>For example, if one transaction runs “read committed” and another runs “read uncommitted” at the same time over the same data, then both transactions will run under “read committed” isolation.</p></li>
 <li><p>If this were not the case, then higher isolation levels would not be able to make their guarantees.</p></li>
 </ul>
-</div>
-<div class="section" id="distributed-commit-algorithms">
-<h2>Distributed Commit Algorithms<a class="headerlink" href="#distributed-commit-algorithms" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="distributed-commit-algorithms">
+<h2>Distributed Commit Algorithms<a class="headerlink" href="#distributed-commit-algorithms" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Distributed commit algorithms are also known as “Distributed Reliability Protocols”, but not commonly</p></li>
 <li><p>The two most commonly used algorithms are 2PC and 3PC</p></li>
@@ -292,15 +201,15 @@ commit tran t1
 <li><p>In the .NET framework, distributed transactions are available in the System.Transactions assembly, and the main class that plugs into OLEDB and ADO.NET database access drivers is called TransactionScope</p></li>
 <li><p>Other RDBMS systems come with their own services or have them built into the RDBMS engine itself.</p></li>
 </ul>
-</div>
-<div class="section" id="pc-two-phase-commit">
-<h2>2PC - Two Phase Commit<a class="headerlink" href="#pc-two-phase-commit" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="pc-two-phase-commit">
+<h2>2PC - Two Phase Commit<a class="headerlink" href="#pc-two-phase-commit" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>The workflow of a Two Phase Commit:</p></li>
 </ul>
-<div class="figure align-center">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/2PCWorkflow.JPG"><img alt="../_images/2PCWorkflow.JPG" src="../_images/2PCWorkflow.JPG" style="height: 500px;" /></a>
-</div>
+</figure>
 <ul class="simple">
 <li><p>The steps to the commit are:</p></li>
 <li><p>Phase 1</p>
@@ -316,9 +225,9 @@ commit tran t1
 </ol>
 </li>
 </ul>
-</div>
-<div class="section" id="pc-three-phase-commit">
-<h2>3PC - Three Phase Commit<a class="headerlink" href="#pc-three-phase-commit" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="pc-three-phase-commit">
+<h2>3PC - Three Phase Commit<a class="headerlink" href="#pc-three-phase-commit" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>We can say a distributed commit protocol it is non blocking if:</p>
 <ul>
@@ -342,12 +251,12 @@ commit tran t1
 </li>
 <li><p>The workflow of a three phase commit:</p></li>
 </ul>
-<div class="figure align-center">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/3PCWorkflow.JPG"><img alt="../_images/3PCWorkflow.JPG" src="../_images/3PCWorkflow.JPG" style="height: 500px;" /></a>
-</div>
-</div>
-<div class="section" id="distributed-transaction-support-in-database-products">
-<h2>Distributed Transaction Support in Database Products<a class="headerlink" href="#distributed-transaction-support-in-database-products" title="Permalink to this headline">¶</a></h2>
+</figure>
+</section>
+<section id="distributed-transaction-support-in-database-products">
+<h2>Distributed Transaction Support in Database Products<a class="headerlink" href="#distributed-transaction-support-in-database-products" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>MySQL: not very good. it falls short on durability.</p>
 <ul>
@@ -358,9 +267,9 @@ commit tran t1
 <li><p>Oracle: very good. Integrates with OLEDB quite well.</p></li>
 <li><p>PostgreSQL: pretty decent.</p></li>
 </ul>
-</div>
-<div class="section" id="why-do-i-need-distributed-transactions">
-<h2>Why do I need distributed transactions?<a class="headerlink" href="#why-do-i-need-distributed-transactions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="why-do-i-need-distributed-transactions">
+<h2>Why do I need distributed transactions?<a class="headerlink" href="#why-do-i-need-distributed-transactions" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Data federation is quite common in industry implementations of RDBMS systems.</p></li>
 <li><p>For example:</p>
@@ -376,55 +285,38 @@ commit tran t1
 <li><p>The corporate data warehouse will likely be on a SQL host with a very large, dedicated storage SAN. Such systems are query heavy and mostly read-only except for daily ETL loads.</p></li>
 <li><p>So, in order to process a credit-card order on the store’s web-app and ensure inventory, you may very well need to be able to initiate a distributed transaction across 3 or more databases on 3 different SQL hosts.</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../dns/dns.html" class="btn btn-neutral float-right" title="Domain Name Service" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../clocks/clocks.html" class="btn btn-neutral float-left" title="Clocks and Synchronization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../dns/dns.html" class="btn btn-neutral float-right" title="Domain Name Service" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.
-
-    </p>
+    <p>&#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

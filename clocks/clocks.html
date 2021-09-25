@@ -1,77 +1,38 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Clocks and Synchronization &mdash; Distributed Systems Updated 2021-07-20 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>Clocks and Synchronization &mdash; Distributed Systems Updated 2021-09-25 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Distributed Transactions" href="../trans/trans.html" />
     <link rel="prev" title="Continuous Integration" href="../ci/ci.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> Distributed Systems
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                Updated 2021-07-20
+                Updated 2021-09-25
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -79,18 +40,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../issues/issues.html">Introduction and Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../networking/networking.html">Networking Primer</a></li>
@@ -139,75 +89,34 @@
 <li class="toctree-l1"><a class="reference internal" href="../election/election.html">Election Algorithms</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Distributed Systems</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Clocks and Synchronization</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/clocks/clocks.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="clocks-and-synchronization">
-<h1>Clocks and Synchronization<a class="headerlink" href="#clocks-and-synchronization" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="what-is-time-some-physics">
-<h2>What is Time? Some Physics<a class="headerlink" href="#what-is-time-some-physics" title="Permalink to this headline">¶</a></h2>
+             
+  <section id="clocks-and-synchronization">
+<h1>Clocks and Synchronization<a class="headerlink" href="#clocks-and-synchronization" title="Permalink to this headline"></a></h1>
+<section id="what-is-time-some-physics">
+<h2>What is Time? Some Physics<a class="headerlink" href="#what-is-time-some-physics" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>The understanding of time has evolved greatly in the past 150 years.</p></li>
 <li><dl class="simple">
@@ -221,21 +130,23 @@
 </dl>
 </li>
 </ul>
-<div class="figure align-default" id="id1">
-<img alt="../_images/Relativity_of_Simultaneity.svg" src="../_images/Relativity_of_Simultaneity.svg" /><p class="caption"><span class="caption-text">Two events in space-time. The green observer sees A and B happening at the same time since the two events happen on the same X time plane for A. For the red observer, B is encountered first, then A second. For the blue observer A happens first, and B second. (Image taken from <a class="reference external" href="http://commons.wikipedia.org/wiki/File:Relativity_of_Simultaneity.*">http://commons.wikipedia.org/wiki/File:Relativity_of_Simultaneity.*</a> under the Creative Commons License.)</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="time-and-computation">
-<h2>Time and Computation<a class="headerlink" href="#time-and-computation" title="Permalink to this headline">¶</a></h2>
+<figure class="align-default" id="id1">
+<img alt="../_images/Relativity_of_Simultaneity.svg" src="../_images/Relativity_of_Simultaneity.svg" /><figcaption>
+<p><span class="caption-text">Two events in space-time. The green observer sees A and B happening at the same time since the two events happen on the same X time plane for A. For the red observer, B is encountered first, then A second. For the blue observer A happens first, and B second. (Image taken from <a class="reference external" href="http://commons.wikipedia.org/wiki/File:Relativity_of_Simultaneity.*">http://commons.wikipedia.org/wiki/File:Relativity_of_Simultaneity.*</a> under the Creative Commons License.)</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="time-and-computation">
+<h2>Time and Computation<a class="headerlink" href="#time-and-computation" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>This dive into physics is not so much to give a lesson in physics, but to impress upon you the underlying complexity of something most people take for granted every day.</p></li>
 <li><p>In a similar fashion, in computation, the concept of time measurement can be very complicated</p></li>
 <li><p>When building a distributed system, do not take it for granted that you can simply trust the clock on the machine that is executing your code.</p></li>
 <li><p>More complicated solutions are needed to establish the order of events that have occurred or when they will occur in the future.</p></li>
 </ul>
-</div>
-<div class="section" id="physical-clocks">
-<h2>Physical Clocks<a class="headerlink" href="#physical-clocks" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="physical-clocks">
+<h2>Physical Clocks<a class="headerlink" href="#physical-clocks" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Computer Timer: an integrated circuit that contains a precisely machined quartz crystal. When kept under tension the quartz crystal oscillates at a well-defined frequency.</p></li>
 <li><p>Clock Tick: after a predefined number of oscillations, the timer will generate a clock tick. This clock tick generates a hardware interrupt that causes the computer’s operating system to enter a special routine in which it can update the software clock and run the process scheduler.</p></li>
@@ -249,9 +160,9 @@
 </dl>
 </li>
 </ul>
-</div>
-<div class="section" id="physical-clocks-multiple-systems">
-<h2>Physical Clocks - Multiple Systems<a class="headerlink" href="#physical-clocks-multiple-systems" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="physical-clocks-multiple-systems">
+<h2>Physical Clocks - Multiple Systems<a class="headerlink" href="#physical-clocks-multiple-systems" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Unfortunately, it is impossible for each machined quartz crystal in every computer timer to be exactly the same. These differences create clock skew.</p></li>
 <li><p>For example, if a timer interrupts 60 times per second, it should generate 216,000 ticks per hour.</p></li>
@@ -265,9 +176,9 @@
 <li><p>On any two given computers, the drift rate will likely differ.</p></li>
 <li><p>To solve this problem, clock synchronization algorithms are necessary.</p></li>
 </ul>
-</div>
-<div class="section" id="clock-synchronization">
-<h2>Clock Synchronization<a class="headerlink" href="#clock-synchronization" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="clock-synchronization">
+<h2>Clock Synchronization<a class="headerlink" href="#clock-synchronization" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>The common approach to time synchronization has been to have many computers make use of a time server.</p></li>
 <li><p>Typically the time server is equipped with special hardware that provides a more accurate time than does a cheaper computer timer</p></li>
@@ -275,9 +186,9 @@
 <li><p>This delay is not constant for all requests. Some request may be faster and others slower.</p></li>
 <li><p>So how do we solve this problem?</p></li>
 </ul>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../_images/ntp_request_response.jpg" src="../_images/ntp_request_response.jpg" />
-</div>
+</figure>
 <ul class="simple">
 <li><p>The relative time correction C can be calculated as:</p></li>
 </ul>
@@ -290,9 +201,9 @@
 <li><p>If the value of C is negative, then the client must artificially decrease the amount of milliseconds added to its software clock each tick until the offset is cleared.</p></li>
 <li><p>It is always inadvisable to cause the clock to go backwards. Most software that relies on time will not react well to this.</p></li>
 </ul>
-</div>
-<div class="section" id="clocks-synchronization-and-reliability">
-<h2>Clocks Synchronization and Reliability<a class="headerlink" href="#clocks-synchronization-and-reliability" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="clocks-synchronization-and-reliability">
+<h2>Clocks Synchronization and Reliability<a class="headerlink" href="#clocks-synchronization-and-reliability" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Always remember: the goal of clock synchronization is to minimize the difference between the accepted actual time and the time on a given client machine</p></li>
 <li><p>When this is achieved, it can be said that in a given set of computers that synchronize that their clocks are more closely in sync.</p></li>
@@ -301,9 +212,9 @@
 <li><p>Because we have correction of time does not mean that all machines agree on time, it just means they are much closer to each other on average.</p></li>
 <li><p>For some distributed systems, this may be sufficient, for others it may not be.</p></li>
 </ul>
-</div>
-<div class="section" id="lamports-logical-clocks">
-<h2>Lamport’s Logical Clocks<a class="headerlink" href="#lamports-logical-clocks" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="lamports-logical-clocks">
+<h2>Lamport’s Logical Clocks<a class="headerlink" href="#lamports-logical-clocks" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>An important paper to read - “Time, clocks, and the ordering of events in a distributed system” by Lamport (1978).</p></li>
 <li><p>This paper can be looked up on scholar.google.com</p></li>
@@ -328,9 +239,9 @@
 </dl>
 </li>
 </ul>
-</div>
-<div class="section" id="implementing-lamports-logical-clocks">
-<h2>Implementing Lamport’s Logical Clocks<a class="headerlink" href="#implementing-lamports-logical-clocks" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="implementing-lamports-logical-clocks">
+<h2>Implementing Lamport’s Logical Clocks<a class="headerlink" href="#implementing-lamports-logical-clocks" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>When a message is transmitted from P1 to P2, P1 will encode the send time into the message.</p></li>
 <li><p>When P2 receives the message, it will record the time of receipt</p></li>
@@ -338,26 +249,28 @@
 <li><p>If the time at P2 is already greater than the send time, then no action is required for P2</p></li>
 <li><p>With these actions the “happens-before” relationship of the message being sent and received is preserved.</p></li>
 </ul>
-</div>
-<div class="section" id="limitations-of-lamports-logical-clocks">
-<h2>Limitations of Lamport’s Logical Clocks<a class="headerlink" href="#limitations-of-lamports-logical-clocks" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="limitations-of-lamports-logical-clocks">
+<h2>Limitations of Lamport’s Logical Clocks<a class="headerlink" href="#limitations-of-lamports-logical-clocks" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Lamport’s logical clocks lead to a situation where all events in a distributed system are totally ordered. That is, if <span class="math notranslate nohighlight">\(a\)</span> -&gt; <span class="math notranslate nohighlight">\(b\)</span>, then we can say <span class="math notranslate nohighlight">\(C(a) &lt; C(b)\)</span>.</p></li>
 <li><p>Unfortunately, with Lamport’s clocks, nothing can be said about the actual time of a and b. If the logical clock says <span class="math notranslate nohighlight">\(a\)</span> -&gt; <span class="math notranslate nohighlight">\(b\)</span>, that does not mean in reality that a actually happened before b in terms of real time.</p></li>
 </ul>
-<div class="figure align-default" id="id2">
+<figure class="align-default" id="id2">
 <img alt="../_images/lamport_limitations.jpg" src="../_images/lamport_limitations.jpg" />
-<p class="caption"><span class="caption-text">From this diagram, we can see that <span class="math notranslate nohighlight">\(m_1 -&gt; m_3\)</span>. We also know that <span class="math notranslate nohighlight">\(C(m_1) &lt; C(m_3)\)</span>. We can see that <span class="math notranslate nohighlight">\(m_2 -&gt; m_3\)</span> and that <span class="math notranslate nohighlight">\(C(m_2) &lt; C(m_3)\)</span>. What we cannot tell here is whether <span class="math notranslate nohighlight">\(m_1\)</span> or <span class="math notranslate nohighlight">\(m_2\)</span> caused <span class="math notranslate nohighlight">\(m_3\)</span> to be sent.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">From this diagram, we can see that <span class="math notranslate nohighlight">\(m_1 -&gt; m_3\)</span>. We also know that <span class="math notranslate nohighlight">\(C(m_1) &lt; C(m_3)\)</span>. We can see that <span class="math notranslate nohighlight">\(m_2 -&gt; m_3\)</span> and that <span class="math notranslate nohighlight">\(C(m_2) &lt; C(m_3)\)</span>. What we cannot tell here is whether <span class="math notranslate nohighlight">\(m_1\)</span> or <span class="math notranslate nohighlight">\(m_2\)</span> caused <span class="math notranslate nohighlight">\(m_3\)</span> to be sent.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 <ul class="simple">
 <li><p>The problem with Lamport clocks is that they do not capture causality.</p></li>
 <li><p>If we know that a -&gt; c and b -&gt; c we cannot say which action initiated c.</p></li>
 <li><p>This kind of information can be important when trying to replay events in a distributed system (such as when trying to recover after a crash).</p></li>
 <li><p>The theory goes that if one node goes down, if we know the causal relationships between messages, then we can replay those messages and respect the causal relationship to get that node back up to the state it needs to be in.</p></li>
 </ul>
-</div>
-<div class="section" id="vector-clocks">
-<h2>Vector Clocks<a class="headerlink" href="#vector-clocks" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="vector-clocks">
+<h2>Vector Clocks<a class="headerlink" href="#vector-clocks" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Vector clocks allow causality to be captured</p></li>
 <li><dl class="simple">
@@ -377,9 +290,9 @@
 </dl>
 </li>
 </ul>
-</div>
-<div class="section" id="implementing-vector-clocks">
-<h2>Implementing Vector Clocks<a class="headerlink" href="#implementing-vector-clocks" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="implementing-vector-clocks">
+<h2>Implementing Vector Clocks<a class="headerlink" href="#implementing-vector-clocks" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>The first property of the vector clock is accomplished by incrementing <span class="math notranslate nohighlight">\(VC_i[i]\)</span> at each new event that happens at process <span class="math notranslate nohighlight">\(P_i\)</span></p></li>
 <li><dl class="simple">
@@ -392,9 +305,9 @@
 </dl>
 </li>
 </ul>
-</div>
-<div class="section" id="so-what-did-we-get-out-of-all-of-this">
-<h2>So… What Did We Get Out of All of This?<a class="headerlink" href="#so-what-did-we-get-out-of-all-of-this" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="so-what-did-we-get-out-of-all-of-this">
+<h2>So… What Did We Get Out of All of This?<a class="headerlink" href="#so-what-did-we-get-out-of-all-of-this" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>We can say if an event <span class="math notranslate nohighlight">\(a\)</span> has a timestamp <span class="math notranslate nohighlight">\(ts(a)\)</span>, then <span class="math notranslate nohighlight">\(ts(a)[i]-1\)</span> denotes the number of events processed at <span class="math notranslate nohighlight">\(P_i\)</span> that causally precede <span class="math notranslate nohighlight">\(a\)</span></p></li>
 <li><p>This means that when <span class="math notranslate nohighlight">\(P_j\)</span> receives a message from <span class="math notranslate nohighlight">\(P_i\)</span> with timestamp <span class="math notranslate nohighlight">\(ts(m)\)</span>, it knows about the number of events that occured at <span class="math notranslate nohighlight">\(P_i\)</span> that causally preceded the sending of <span class="math notranslate nohighlight">\(m\)</span></p></li>
@@ -402,55 +315,38 @@
 <li><p>So, this means we could achieve a very important capability in a distributed system: we can ensure that a message is delivered only if all messages that causally precede it have also been received as well.</p></li>
 <li><p>We can use this capability to build a truly distributed dataflow graph with dependencies without having a centralized coordinating process.</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../trans/trans.html" class="btn btn-neutral float-right" title="Distributed Transactions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../ci/ci.html" class="btn btn-neutral float-left" title="Continuous Integration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../trans/trans.html" class="btn btn-neutral float-right" title="Distributed Transactions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.
-
-    </p>
+    <p>&#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

@@ -1,76 +1,37 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Hadoop Distributed File System &mdash; Distributed Systems Updated 2021-07-20 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>Hadoop Distributed File System &mdash; Distributed Systems Updated 2021-09-25 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Message Queues" href="../message_queues/message_queues.html" />
     <link rel="prev" title="BitTorrent" href="../bit_torrent/bit_torrent.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> Distributed Systems
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                Updated 2021-07-20
+                Updated 2021-09-25
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,18 +39,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../issues/issues.html">Introduction and Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../networking/networking.html">Networking Primer</a></li>
@@ -158,73 +108,32 @@
 <li class="toctree-l1"><a class="reference internal" href="../election/election.html">Election Algorithms</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Distributed Systems</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Hadoop Distributed File System</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/hadoop/hadoop.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="hadoop-distributed-file-system">
-<h1>Hadoop Distributed File System<a class="headerlink" href="#hadoop-distributed-file-system" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="hadoop-distributed-file-system">
+<h1>Hadoop Distributed File System<a class="headerlink" href="#hadoop-distributed-file-system" title="Permalink to this headline"></a></h1>
 <p>Hadoop is:</p>
 <ul class="simple">
 <li><p>An open source, Java-based software framework</p></li>
@@ -241,8 +150,8 @@
 </dl>
 </li>
 </ul>
-<div class="section" id="hdfs">
-<h2>HDFS<a class="headerlink" href="#hdfs" title="Permalink to this headline">¶</a></h2>
+<section id="hdfs">
+<h2>HDFS<a class="headerlink" href="#hdfs" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>File system component of Hadoop</p></li>
 <li><p>Master/Slave architecture</p></li>
@@ -251,24 +160,28 @@
 <li><p>Stores application data on a number of other servers(Slave), called DataNodes</p></li>
 <li><p>Single NameNode and many DataNodes(100s or 1000s of nodes)</p></li>
 </ul>
-</div>
-<div class="section" id="architecture">
-<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Comprised of interconnected clusters of nodes where files and directories reside</p></li>
 <li><p>A single NameNode, that manages the file system namespace</p></li>
 <li><p>DataNodes store data as blocks within files.</p></li>
 </ul>
-<div class="figure align-center" id="id1">
+<figure class="align-center" id="id1">
 <img alt="High-level architecture of HDFS" src="../_images/highlevel_architecture.png" />
-<p class="caption"><span class="caption-text"><em>(High-level view)</em></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-center" id="id2">
+<figcaption>
+<p><span class="caption-text"><em>(High-level view)</em></span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id2">
 <img alt="HDFS architecture" src="../_images/hdfs_architecture.png" />
-<p class="caption"><span class="caption-text"><em>(HDFS Architecture)</em></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-<div class="section" id="namenode-and-datanodes">
-<h3>NameNode and DataNodes<a class="headerlink" href="#namenode-and-datanodes" title="Permalink to this headline">¶</a></h3>
+<figcaption>
+<p><span class="caption-text"><em>(HDFS Architecture)</em></span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="namenode-and-datanodes">
+<h3>NameNode and DataNodes<a class="headerlink" href="#namenode-and-datanodes" title="Permalink to this headline"></a></h3>
 <ul>
 <li><p><strong>NameNode:</strong></p>
 <blockquote>
@@ -299,9 +212,9 @@
 </div></blockquote>
 </li>
 </ul>
-<div class="figure align-center">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/secondary_namenode.png"><img alt="Secondary NameNode" src="../_images/secondary_namenode.png" style="width: 226.5px; height: 116.5px;" /></a>
-</div>
+</figure>
 <ul>
 <li><p><strong>DataNodes:</strong></p>
 <blockquote>
@@ -316,9 +229,9 @@
 </div></blockquote>
 </li>
 </ul>
-</div>
-<div class="section" id="file-system-namespace">
-<h3>File System Namespace<a class="headerlink" href="#file-system-namespace" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="file-system-namespace">
+<h3>File System Namespace<a class="headerlink" href="#file-system-namespace" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Traditional hierarchical file organization</p></li>
 <li><dl class="simple">
@@ -332,9 +245,9 @@
 </dl>
 </li>
 </ul>
-</div>
-<div class="section" id="file-read-and-write">
-<h3>File Read and Write<a class="headerlink" href="#file-read-and-write" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="file-read-and-write">
+<h3>File Read and Write<a class="headerlink" href="#file-read-and-write" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Single-writer, multiple-reader model</p></li>
 <li><p>An HDFS file consists of blocks</p></li>
@@ -342,33 +255,35 @@
 <li><p>It also determines a list of DataNodes to host replicas of the block</p></li>
 <li><p>The DataNodes forms a pipeline, the order of which minimizes the total network distance from the client to the last DataNode</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="hdfs-client">
-<h2>HDFS Client<a class="headerlink" href="#hdfs-client" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="hdfs-client">
+<h2>HDFS Client<a class="headerlink" href="#hdfs-client" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>User applications access the file system using this client</p></li>
 <li><p>Supports operations to read, write and delete files, and operations to create and delete directories</p></li>
 </ul>
-<div class="section" id="read-operation">
-<h3>Read Operation<a class="headerlink" href="#read-operation" title="Permalink to this headline">¶</a></h3>
+<section id="read-operation">
+<h3>Read Operation<a class="headerlink" href="#read-operation" title="Permalink to this headline"></a></h3>
 <p>When an application reads a file, the HDFS client first asks the NameNode for the list of DataNodes that host replicas of the blocks of the file. It then contacts a DataNode directly and requests the transfer of the desired block</p>
-<div class="figure align-center">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/file_read.png"><img alt="File Read" src="../_images/file_read.png" style="width: 312.0px; height: 188.5px;" /></a>
-</div>
-</div>
-<div class="section" id="write-operation">
-<h3>Write Operation<a class="headerlink" href="#write-operation" title="Permalink to this headline">¶</a></h3>
+</figure>
+</section>
+<section id="write-operation">
+<h3>Write Operation<a class="headerlink" href="#write-operation" title="Permalink to this headline"></a></h3>
 <p>When a client writes, it first asks the NameNode to choose DataNodes to host replicas of the first block of the file. The client organizes a pipeline from node-to-node and sends the data. When the first block is filled, the client requests new DataNodes to be chosen to host replicas of the next block. A new pipeline is organized, and client sends the further bytes of the file</p>
-<div class="figure align-center" id="id3">
+<figure class="align-center" id="id3">
 <a class="reference internal image-reference" href="../_images/client_interaction.png"><img alt="Client Interaction" src="../_images/client_interaction.png" style="width: 359.0px; height: 198.5px;" /></a>
-<p class="caption"><span class="caption-text"><em>(An HDFS client creates a new file by giving its path to the NameNode. For each block of the file, the NameNode returns a list of DataNodes to host its replicas. The client then pipelines data to the chosen DataNodes, which eventually confirm the creation of the block replicas to the NameNode)</em></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><em>(An HDFS client creates a new file by giving its path to the NameNode. For each block of the file, the NameNode returns a list of DataNodes to host its replicas. The client then pipelines data to the chosen DataNodes, which eventually confirm the creation of the block replicas to the NameNode)</em></span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 <p>HDFS provides an API that exposes the locations of a file blocks. This allows applications like the MapReduce framework to schedule a task to where the data are located</p>
-</div>
-</div>
-<div class="section" id="data-replication">
-<h2>4. Data Replication<a class="headerlink" href="#data-replication" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="data-replication">
+<h2>4. Data Replication<a class="headerlink" href="#data-replication" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Blocks of a file are replicated for fault tolerance</p></li>
 <li><p>An application can specify the number of replicas of a file</p></li>
@@ -376,8 +291,8 @@
 <li><p>NameNode periodically receives a Heartbeat and a Block-report from each of the DataNodes in the cluster</p></li>
 <li><p>Heartbeat implies that the DataNode is functioning properly. A Block-report contains a list of all blocks on a DataNode</p></li>
 </ul>
-<div class="section" id="replica-placement">
-<h3>Replica Placement<a class="headerlink" href="#replica-placement" title="Permalink to this headline">¶</a></h3>
+<section id="replica-placement">
+<h3>Replica Placement<a class="headerlink" href="#replica-placement" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>The placement of replicas are critical to HDFS reliability and performance</p></li>
 <li><p>Rack-aware replica placement model is used to improve reliability, availability and network bandwidth utilization</p></li>
@@ -395,22 +310,22 @@
 <li><p>To minimize cost, HDFS put <em>(replication factor is 3)</em> one replica on one node in the local rack, another on a different node in the local rack, and the last on a different node in a different rack</p></li>
 <li><p>Thus 1/3 of replicas are on one node, 2/3 of replicas are on one rack, and the last 1/3 are evenly distributed across the remaining racks</p></li>
 </ul>
-</div>
-<div class="section" id="replica-selection">
-<h3>Replica Selection<a class="headerlink" href="#replica-selection" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="replica-selection">
+<h3>Replica Selection<a class="headerlink" href="#replica-selection" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>To minimize global bandwidth consumption and read latency, HDFS tries to read a block from a replica that is closest to the reader</p></li>
 <li><p>If there is a replica on the reader node, then that replica is referred</p></li>
 <li><p>Else if there is a replica on the same rack as the reader node, then that one is preferred</p></li>
 <li><p>For a HDFS cluster, that may span multiple data centers, replica in the local data center is preferred over the remote one</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="file-system-metadata">
-<h2>File System Metadata<a class="headerlink" href="#file-system-metadata" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-center">
+</section>
+</section>
+<section id="file-system-metadata">
+<h2>File System Metadata<a class="headerlink" href="#file-system-metadata" title="Permalink to this headline"></a></h2>
+<figure class="align-center">
 <img alt="File System Meta-Data" src="../_images/metadata.png" />
-</div>
+</figure>
 <ul class="simple">
 <li><p>HDFS namespace is stored by NameNode</p></li>
 <li><dl class="simple">
@@ -424,9 +339,9 @@
 <li><p>Editlog is stored in the NameNode’s local filesystem</p></li>
 <li><p>Entire filesystem namespace including mapping of blocks to files and file system properties is stored in a file FsImage, stored in NameNode’s local filesystem</p></li>
 </ul>
-</div>
-<div class="section" id="robustness">
-<h2>Robustness<a class="headerlink" href="#robustness" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="robustness">
+<h2>Robustness<a class="headerlink" href="#robustness" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Primary objective of HDFS is to store data reliably even in the presence of failure</p></li>
 <li><dl class="simple">
@@ -439,8 +354,8 @@
 </dl>
 </li>
 </ul>
-<div class="section" id="datanode-failure-and-heartbeat">
-<h3>DataNode failure and Heartbeat<a class="headerlink" href="#datanode-failure-and-heartbeat" title="Permalink to this headline">¶</a></h3>
+<section id="datanode-failure-and-heartbeat">
+<h3>DataNode failure and Heartbeat<a class="headerlink" href="#datanode-failure-and-heartbeat" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>A network partition can cause a subset of DataNodes to lose connectivity with the NameNode</p></li>
 <li><p>NameNode detects this condition by the absence of a Heartbeat message</p></li>
@@ -448,9 +363,9 @@
 <li><p>Any data registered to the failed DataNode is not available to the HDFS</p></li>
 <li><p>Also the death of DataNode may cause replication factor of some data blocks to fall below their specified value</p></li>
 </ul>
-</div>
-<div class="section" id="re-replication">
-<h3>Re-replication<a class="headerlink" href="#re-replication" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="re-replication">
+<h3>Re-replication<a class="headerlink" href="#re-replication" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>NameNode constantly tracks which blocks need to be replicated and initiates replication whenever necessary</p></li>
 <li><dl class="simple">
@@ -464,18 +379,18 @@
 </dl>
 </li>
 </ul>
-</div>
-<div class="section" id="cluster-re-balancing">
-<h3>Cluster Re-balancing<a class="headerlink" href="#cluster-re-balancing" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="cluster-re-balancing">
+<h3>Cluster Re-balancing<a class="headerlink" href="#cluster-re-balancing" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>HDFS architecture is compatible with data re-balancing schemes</p></li>
 <li><p>A scheme might move data from one DataNode to another if the free space on a DataNode falls below a certain threshold</p></li>
 <li><p>In the event of a sudden high demand for a particular file, a scheme might dynamically create additional replicas and re-balance other data in the cluster</p></li>
 <li><p>These types of data re-balancing are not yet implemented</p></li>
 </ul>
-</div>
-<div class="section" id="data-integrity">
-<h3>Data Integrity<a class="headerlink" href="#data-integrity" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="data-integrity">
+<h3>Data Integrity<a class="headerlink" href="#data-integrity" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Consider a situation, a block of data fetched from DataNode arrives corrupted</p></li>
 <li><p>This corruption may occur because of faults in a storage device, network faults, or buggy software</p></li>
@@ -483,9 +398,9 @@
 <li><p>When a clients retrieves the contents of file, it verifies that the corresponding checksums match</p></li>
 <li><p>If does not match, the client can retrieve the block from a replica</p></li>
 </ul>
-</div>
-<div class="section" id="metadata-disk-failure">
-<h3>Metadata Disk Failure<a class="headerlink" href="#metadata-disk-failure" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="metadata-disk-failure">
+<h3>Metadata Disk Failure<a class="headerlink" href="#metadata-disk-failure" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>FsImage and EditLog are central data structures of HDFS</p></li>
 <li><p>A corruption of these files can cause a HDFS instance to be non-functional</p></li>
@@ -497,13 +412,13 @@
 <li><p>The Secondary NameNode help minimize the downtime and loss of data</p></li>
 <li><p>Automatic restart and fail over of NameNode is NOT supported yet! Still a research topic!</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="accessibility">
-<h2>Accessibility<a class="headerlink" href="#accessibility" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="accessibility">
+<h2>Accessibility<a class="headerlink" href="#accessibility" title="Permalink to this headline"></a></h2>
 <p>HDFS can be accessed from applications in many different ways. Natively HDFS provides a Java API for applications to use. In addition a HTTP browser can also be used to browse the files of an HDFS instance.</p>
-<div class="section" id="fs-shell">
-<h3>FS Shell<a class="headerlink" href="#fs-shell" title="Permalink to this headline">¶</a></h3>
+<section id="fs-shell">
+<h3>FS Shell<a class="headerlink" href="#fs-shell" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>HDFS allows user data to be organized in the form of files and directories</p></li>
 <li><p>Provides a command line interface called FS shell that lets a user interact with the data in HDFS</p></li>
@@ -518,9 +433,9 @@
 </dl>
 </li>
 </ul>
-</div>
-<div class="section" id="dfsadmin">
-<h3>DFSAdmin<a class="headerlink" href="#dfsadmin" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="dfsadmin">
+<h3>DFSAdmin<a class="headerlink" href="#dfsadmin" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>The DFSAdmin command set is used for administering an HDFS cluster</p></li>
 <li><p>Used only by an HDFS administrator</p></li>
@@ -533,63 +448,46 @@
 </dl>
 </li>
 </ul>
-</div>
-<div class="section" id="browser-interface">
-<h3>Browser Interface<a class="headerlink" href="#browser-interface" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="browser-interface">
+<h3>Browser Interface<a class="headerlink" href="#browser-interface" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Default HDFS install configures a web server to expose the HDFS namespace through a configurable TCP port</p></li>
 <li><p>Allows the user to navigate the HDFS namespace and view the contents of its files using a web browser</p></li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../message_queues/message_queues.html" class="btn btn-neutral float-right" title="Message Queues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../bit_torrent/bit_torrent.html" class="btn btn-neutral float-left" title="BitTorrent" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../message_queues/message_queues.html" class="btn btn-neutral float-right" title="Message Queues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.
-
-    </p>
+    <p>&#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

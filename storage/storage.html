@@ -1,76 +1,37 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Distributed Systems and Storage &mdash; Distributed Systems Updated 2021-07-20 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>Distributed Systems and Storage &mdash; Distributed Systems Updated 2021-09-25 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Directories and LDAP" href="../directories/directories.html" />
     <link rel="prev" title="Concurrency and Threads" href="../concurrency/concurrency.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> Distributed Systems
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                Updated 2021-07-20
+                Updated 2021-09-25
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,18 +39,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../issues/issues.html">Introduction and Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../networking/networking.html">Networking Primer</a></li>
@@ -170,75 +120,34 @@
 <li class="toctree-l1"><a class="reference internal" href="../election/election.html">Election Algorithms</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Distributed Systems</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Distributed Systems and Storage</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/storage/storage.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="distributed-systems-and-storage">
-<h1>Distributed Systems and Storage<a class="headerlink" href="#distributed-systems-and-storage" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="types-of-non-local-storage">
-<h2>Types of Non-Local Storage<a class="headerlink" href="#types-of-non-local-storage" title="Permalink to this headline">¶</a></h2>
+             
+  <section id="distributed-systems-and-storage">
+<h1>Distributed Systems and Storage<a class="headerlink" href="#distributed-systems-and-storage" title="Permalink to this headline"></a></h1>
+<section id="types-of-non-local-storage">
+<h2>Types of Non-Local Storage<a class="headerlink" href="#types-of-non-local-storage" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>SANs - Storage Area Networks</p></li>
 <li><p>NASs - Network Area Storage</p></li>
@@ -247,9 +156,9 @@
 <li><p>Distributed File Systems</p></li>
 <li><p>Parallel File Systems</p></li>
 </ol>
-</div>
-<div class="section" id="how-do-we-evaluate-storage-systems">
-<h2>How Do We Evaluate Storage Systems?<a class="headerlink" href="#how-do-we-evaluate-storage-systems" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="how-do-we-evaluate-storage-systems">
+<h2>How Do We Evaluate Storage Systems?<a class="headerlink" href="#how-do-we-evaluate-storage-systems" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Latency - How long does a single operation of the smallest fundamental unit take to complete.</p></li>
@@ -261,10 +170,10 @@
 <li><p>Location Transparency</p></li>
 </ul>
 </div></blockquote>
-</div>
-</div>
-<div class="section" id="storage-devices">
-<h1>Storage Devices<a class="headerlink" href="#storage-devices" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section id="storage-devices">
+<h1>Storage Devices<a class="headerlink" href="#storage-devices" title="Permalink to this headline"></a></h1>
 <ul class="simple">
 <li><p>Types of permanent devices:</p>
 <ul>
@@ -281,8 +190,8 @@ memory</p></li>
 </ul>
 </li>
 </ul>
-<div class="section" id="storage-and-failure">
-<h2>Storage and Failure<a class="headerlink" href="#storage-and-failure" title="Permalink to this headline">¶</a></h2>
+<section id="storage-and-failure">
+<h2>Storage and Failure<a class="headerlink" href="#storage-and-failure" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>An excellent paper about hard disk failure rates at Google is
 available here:</p></li>
@@ -297,9 +206,9 @@ available here:</p></li>
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="maximizing-availability-raid">
-<h2>Maximizing Availability - RAID<a class="headerlink" href="#maximizing-availability-raid" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="maximizing-availability-raid">
+<h2>Maximizing Availability - RAID<a class="headerlink" href="#maximizing-availability-raid" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>To prevent the loss of availability of data, the use of RAID
 (Redundant Array of Inexpensive Disks) allows for redundant copies of
@@ -315,9 +224,9 @@ of any lost disk to be recovered. 3 or more disks are needed.</p></li>
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="raid">
-<h2>RAID<a class="headerlink" href="#raid" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="raid">
+<h2>RAID<a class="headerlink" href="#raid" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>RAID has three common implementation approaches:</p>
 <ul>
@@ -335,45 +244,51 @@ storage device.</p></li>
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="raid-0">
-<h2>RAID - 0<a class="headerlink" href="#raid-0" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="raid-0">
+<h2>RAID - 0<a class="headerlink" href="#raid-0" title="Permalink to this headline"></a></h2>
 <blockquote>
-<div><div class="figure align-center" id="id3">
+<div><figure class="align-center" id="id3">
 <img alt="image" src="../_images/raid_0.jpg" />
-<p class="caption"><span class="caption-text">image</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">image</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 </div></blockquote>
-</div>
-<div class="section" id="raid-1">
-<h2>RAID - 1<a class="headerlink" href="#raid-1" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="raid-1">
+<h2>RAID - 1<a class="headerlink" href="#raid-1" title="Permalink to this headline"></a></h2>
 <blockquote>
-<div><div class="figure align-center" id="id4">
+<div><figure class="align-center" id="id4">
 <img alt="image" src="../_images/raid_1.jpg" />
-<p class="caption"><span class="caption-text">image</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">image</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 </div></blockquote>
-</div>
-<div class="section" id="raid-5">
-<h2>RAID - 5<a class="headerlink" href="#raid-5" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="raid-5">
+<h2>RAID - 5<a class="headerlink" href="#raid-5" title="Permalink to this headline"></a></h2>
 <blockquote>
-<div><div class="figure align-center" id="id5">
+<div><figure class="align-center" id="id5">
 <img alt="image" src="../_images/raid_5.jpg" />
-<p class="caption"><span class="caption-text">image</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">image</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 </div></blockquote>
-</div>
-</div>
-<div class="section" id="local-storage">
-<h1>Local Storage<a class="headerlink" href="#local-storage" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section id="local-storage">
+<h1>Local Storage<a class="headerlink" href="#local-storage" title="Permalink to this headline"></a></h1>
 <blockquote>
 <div><ul class="simple">
 <li><p>At the basis of almost any distributed system are the factors involved in local storage systems.</p></li>
 <li><p>The problems presented in local storage are simpler and less composed than in their distributed counter-parts.</p></li>
 </ul>
 </div></blockquote>
-<div class="section" id="implementing-files-and-folders">
-<h2>Implementing Files and Folders<a class="headerlink" href="#implementing-files-and-folders" title="Permalink to this headline">¶</a></h2>
+<section id="implementing-files-and-folders">
+<h2>Implementing Files and Folders<a class="headerlink" href="#implementing-files-and-folders" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>How files and folders are implemented in a storage medium can greatly
 depend upon the physical characteristics and capabilities of that
@@ -389,9 +304,9 @@ folders must be maintained in a more complex way.</p></li>
 <li><p>To manage free-space, objects like bit-maps and linked lists are
 possibilities.</p></li>
 </ul>
-</div>
-<div class="section" id="inodes">
-<h2>Inodes<a class="headerlink" href="#inodes" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="inodes">
+<h2>Inodes<a class="headerlink" href="#inodes" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>inodes are the fundamental structures of a UNIX filesystem</p></li>
 <li><p>inodes have the following attributes:</p>
@@ -406,20 +321,20 @@ contents</p></li>
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="inodes-indirect-blocks">
-<h2>Inodes - Indirect Blocks<a class="headerlink" href="#inodes-indirect-blocks" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="inodes-indirect-blocks">
+<h2>Inodes - Indirect Blocks<a class="headerlink" href="#inodes-indirect-blocks" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>The strategy of using indirect, double indirect, and even triple
 indirect blocks is a very successful implementation strategy</p></li>
 <li><p>This approach is used by ext2 / ext3 / ext4 in Linux.</p></li>
 </ul>
-<div class="figure align-center">
+<figure class="align-center">
 <img alt="image" src="../_images/ext2-inode.jpg" />
-</div>
-</div>
-<div class="section" id="block-caches">
-<h2>Block Caches<a class="headerlink" href="#block-caches" title="Permalink to this headline">¶</a></h2>
+</figure>
+</section>
+<section id="block-caches">
+<h2>Block Caches<a class="headerlink" href="#block-caches" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>To improve the performance of a filesystem, and to make disk
 scheduling algorithms more realizable, most operating systems
@@ -447,9 +362,9 @@ make.</p></li>
 guarantee in the presence of failure that modifications will be
 persisted to disk.</p></li>
 </ul>
-</div>
-<div class="section" id="folders-and-path-traversal">
-<h2>Folders and Path Traversal<a class="headerlink" href="#folders-and-path-traversal" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="folders-and-path-traversal">
+<h2>Folders and Path Traversal<a class="headerlink" href="#folders-and-path-traversal" title="Permalink to this headline"></a></h2>
 <ul>
 <li><p>In all but the most simple filesystems, there is a concept of a
 folder and a path.</p></li>
@@ -463,15 +378,15 @@ invalid.</p></li>
 <li><p>An example of path traversal. When traversing paths, the path may
 cross into different filesystems.</p>
 <blockquote>
-<div><div class="figure align-center">
+<div><figure class="align-center">
 <img alt="image" src="../_images/path_traversal.jpg" />
-</div>
+</figure>
 </div></blockquote>
 </li>
 </ul>
-</div>
-<div class="section" id="virtual-filesystems-vfs">
-<h2>Virtual Filesystems / VFS<a class="headerlink" href="#virtual-filesystems-vfs" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="virtual-filesystems-vfs">
+<h2>Virtual Filesystems / VFS<a class="headerlink" href="#virtual-filesystems-vfs" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Aside from files and folders there are other things like named pipes,
 domain sockets, symbolic and hard links that need to be handled by
@@ -482,9 +397,9 @@ filesystem or VFS.</p></li>
 <li><p>The VFS stands between the OS kernel and the filesystem
 implementation.</p></li>
 </ul>
-</div>
-<div class="section" id="id1">
-<h2>Virtual Filesystems / VFS<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id1">
+<h2>Virtual Filesystems / VFS<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>The VFS can help adapt both foreign filesystems (such as VFAT) by
 producing a contract that these implementations can adapt to.</p></li>
@@ -500,9 +415,9 @@ behavior:</p>
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="virtual-filesystems-and-stacking">
-<h2>Virtual Filesystems and Stacking<a class="headerlink" href="#virtual-filesystems-and-stacking" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="virtual-filesystems-and-stacking">
+<h2>Virtual Filesystems and Stacking<a class="headerlink" href="#virtual-filesystems-and-stacking" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>In some VFS implementations it is possible to stack filesystems on
 top of each other.</p></li>
@@ -513,10 +428,10 @@ UMSDOS can adapt VFAT to be a UNIX-like filesystem</p></li>
 <li><p>Another great example of this is UnionFS. It allows two filesystems
 to be transparently overlaid.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="distributed-filesystems">
-<h1>Distributed Filesystems<a class="headerlink" href="#distributed-filesystems" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section id="distributed-filesystems">
+<h1>Distributed Filesystems<a class="headerlink" href="#distributed-filesystems" title="Permalink to this headline"></a></h1>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -548,8 +463,8 @@ to be transparently overlaid.</p></li>
 </li>
 </ul>
 </div></blockquote>
-<div class="section" id="file-service-model">
-<h2>File Service Model<a class="headerlink" href="#file-service-model" title="Permalink to this headline">¶</a></h2>
+<section id="file-service-model">
+<h2>File Service Model<a class="headerlink" href="#file-service-model" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -578,9 +493,9 @@ to be transparently overlaid.</p></li>
 </li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="directory-service">
-<h2>Directory Service<a class="headerlink" href="#directory-service" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="directory-service">
+<h2>Directory Service<a class="headerlink" href="#directory-service" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -592,9 +507,9 @@ to be transparently overlaid.</p></li>
 </li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="naming-transparency">
-<h2>Naming Transparency<a class="headerlink" href="#naming-transparency" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="naming-transparency">
+<h2>Naming Transparency<a class="headerlink" href="#naming-transparency" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -624,15 +539,15 @@ to be transparently overlaid.</p></li>
 </li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="file-sharing-semantics">
-<h2>File Sharing Semantics<a class="headerlink" href="#file-sharing-semantics" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="file-sharing-semantics">
+<h2>File Sharing Semantics<a class="headerlink" href="#file-sharing-semantics" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>When files are shared (and one or more write) what are the semantics?</p></li>
 </ul>
-</div>
-<div class="section" id="unix-semantics">
-<h2>UNIX Semantics<a class="headerlink" href="#unix-semantics" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="unix-semantics">
+<h2>UNIX Semantics<a class="headerlink" href="#unix-semantics" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>A read is always provided with the last write (system enforces absolute time ordering)</p></li>
@@ -663,9 +578,9 @@ to be transparently overlaid.</p></li>
 </li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="more-semantics">
-<h2>More Semantics<a class="headerlink" href="#more-semantics" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="more-semantics">
+<h2>More Semantics<a class="headerlink" href="#more-semantics" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -689,9 +604,9 @@ to be transparently overlaid.</p></li>
 </li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="distributed-file-system-implementation">
-<h2>Distributed File System Implementation<a class="headerlink" href="#distributed-file-system-implementation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="distributed-file-system-implementation">
+<h2>Distributed File System Implementation<a class="headerlink" href="#distributed-file-system-implementation" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -705,9 +620,9 @@ to be transparently overlaid.</p></li>
 <li><p>Satyanarayan (CMU) of file usage pattern on UNIX</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="system-structure">
-<h2>System Structure<a class="headerlink" href="#system-structure" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="system-structure">
+<h2>System Structure<a class="headerlink" href="#system-structure" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -731,9 +646,9 @@ to be transparently overlaid.</p></li>
 </li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="id2">
-<h2>Directory Service<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id2">
+<h2>Directory Service<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><dl class="simple">
 <dt>Separate</dt><dd><ul>
@@ -747,9 +662,9 @@ to be transparently overlaid.</p></li>
 </li>
 <li><p>Lookup</p></li>
 </ul>
-</div>
-<div class="section" id="stateless-versus-stateful">
-<h2>Stateless versus Stateful<a class="headerlink" href="#stateless-versus-stateful" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="stateless-versus-stateful">
+<h2>Stateless versus Stateful<a class="headerlink" href="#stateless-versus-stateful" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -773,9 +688,9 @@ to be transparently overlaid.</p></li>
 </li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="caching">
-<h2>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="caching">
+<h2>Caching<a class="headerlink" href="#caching" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -788,9 +703,9 @@ to be transparently overlaid.</p></li>
 </li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="caching-server">
-<h2>Caching - Server<a class="headerlink" href="#caching-server" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="caching-server">
+<h2>Caching - Server<a class="headerlink" href="#caching-server" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -841,9 +756,9 @@ to be transparently overlaid.</p></li>
 </li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="caching-client">
-<h2>Caching - Client<a class="headerlink" href="#caching-client" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="caching-client">
+<h2>Caching - Client<a class="headerlink" href="#caching-client" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Client Caching</p></li>
@@ -895,9 +810,9 @@ to be transparently overlaid.</p></li>
 </li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="client-cache-consistency">
-<h2>Client - Cache Consistency<a class="headerlink" href="#client-cache-consistency" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="client-cache-consistency">
+<h2>Client - Cache Consistency<a class="headerlink" href="#client-cache-consistency" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -972,9 +887,9 @@ to be transparently overlaid.</p></li>
 <li><p>Note- semantics have changed for delayed writes</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="client-cache-consistency-other-options">
-<h2>Client - Cache Consistency - Other Options<a class="headerlink" href="#client-cache-consistency-other-options" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="client-cache-consistency-other-options">
+<h2>Client - Cache Consistency - Other Options<a class="headerlink" href="#client-cache-consistency-other-options" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -1005,9 +920,9 @@ to be transparently overlaid.</p></li>
 </li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="replication">
-<h2>Replication<a class="headerlink" href="#replication" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="replication">
+<h2>Replication<a class="headerlink" href="#replication" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -1021,9 +936,9 @@ to be transparently overlaid.</p></li>
 </li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="replication-update-protocols">
-<h2>Replication - Update Protocols<a class="headerlink" href="#replication-update-protocols" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="replication-update-protocols">
+<h2>Replication - Update Protocols<a class="headerlink" href="#replication-update-protocols" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -1053,9 +968,9 @@ to be transparently overlaid.</p></li>
 </li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="replication-voting-algorithm">
-<h2>Replication - Voting Algorithm<a class="headerlink" href="#replication-voting-algorithm" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="replication-voting-algorithm">
+<h2>Replication - Voting Algorithm<a class="headerlink" href="#replication-voting-algorithm" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Requires clients to acquire permission of multiple servers before reading/writing file</p></li>
@@ -1070,9 +985,9 @@ to be transparently overlaid.</p></li>
 </li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="replication-general-quorum-algorithm">
-<h2>Replication - General Quorum Algorithm<a class="headerlink" href="#replication-general-quorum-algorithm" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="replication-general-quorum-algorithm">
+<h2>Replication - General Quorum Algorithm<a class="headerlink" href="#replication-general-quorum-algorithm" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>No of replicas - N</p></li>
@@ -1082,10 +997,10 @@ to be transparently overlaid.</p></li>
 <li><p>Read/write requires participation of the corresponding quorum</p></li>
 </ul>
 </div></blockquote>
-</div>
-</div>
-<div class="section" id="case-study-sun-nfs">
-<h1>Case Study - SUN NFS<a class="headerlink" href="#case-study-sun-nfs" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section id="case-study-sun-nfs">
+<h1>Case Study - SUN NFS<a class="headerlink" href="#case-study-sun-nfs" title="Permalink to this headline"></a></h1>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -1149,8 +1064,8 @@ to be transparently overlaid.</p></li>
 </li>
 </ul>
 </div></blockquote>
-<div class="section" id="sun-nfs-implementation">
-<h2>SUN NFS - Implementation<a class="headerlink" href="#sun-nfs-implementation" title="Permalink to this headline">¶</a></h2>
+<section id="sun-nfs-implementation">
+<h2>SUN NFS - Implementation<a class="headerlink" href="#sun-nfs-implementation" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -1213,55 +1128,38 @@ to be transparently overlaid.</p></li>
 </li>
 </ul>
 </div></blockquote>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../directories/directories.html" class="btn btn-neutral float-right" title="Directories and LDAP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../concurrency/concurrency.html" class="btn btn-neutral float-left" title="Concurrency and Threads" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../directories/directories.html" class="btn btn-neutral float-right" title="Directories and LDAP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.
-
-    </p>
+    <p>&#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

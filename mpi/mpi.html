@@ -1,76 +1,37 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Message Passing Interface &mdash; Distributed Systems Updated 2021-07-20 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>Message Passing Interface &mdash; Distributed Systems Updated 2021-09-25 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="SMTP" href="../smtp/smtp.html" />
     <link rel="prev" title="Distributed Queues" href="../queue/queue.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> Distributed Systems
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                Updated 2021-07-20
+                Updated 2021-09-25
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,18 +39,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../issues/issues.html">Introduction and Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../networking/networking.html">Networking Primer</a></li>
@@ -158,85 +108,44 @@
 <li class="toctree-l1"><a class="reference internal" href="../election/election.html">Election Algorithms</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Distributed Systems</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Message Passing Interface</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/mpi/mpi.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="message-passing-interface">
-<h1>Message Passing Interface<a class="headerlink" href="#message-passing-interface" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="credits">
-<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline">¶</a></h2>
+             
+  <section id="message-passing-interface">
+<h1>Message Passing Interface<a class="headerlink" href="#message-passing-interface" title="Permalink to this headline"></a></h1>
+<section id="credits">
+<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>This lecture was written originally Brian Gathright, a former graduate student. It as since been adapted into this course’s lecture notes</p></li>
 </ul>
-</div>
-<div class="section" id="lecture-code">
-<h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="lecture-code">
+<h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Permalink to this headline"></a></h2>
 <p><a class="reference external" href="code/mpi">MPI Code Samples</a></p>
-</div>
-<div class="section" id="what-is-mpi">
-<h2>What is MPI?<a class="headerlink" href="#what-is-mpi" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="what-is-mpi">
+<h2>What is MPI?<a class="headerlink" href="#what-is-mpi" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>MPI stands for Message Passing Interface.</p></li>
 <li><p>MPI is used to send messages from one process (computer, workstation etc.) to another. These messages can contain data ranging from primitive types (integers, strings and so forth) to actual objects.</p></li>
@@ -258,15 +167,15 @@
 </li>
 <li><p>To summarize: MPI is a message passing library whose implementations are used to send messages (data, instructions, etc.) to other processes in order to perform specific tasks. In this way MPI is very much a Distributed topic.</p></li>
 </ul>
-<div class="section" id="uses-of-mpi">
-<h3>Uses of MPI<a class="headerlink" href="#uses-of-mpi" title="Permalink to this headline">¶</a></h3>
+<section id="uses-of-mpi">
+<h3>Uses of MPI<a class="headerlink" href="#uses-of-mpi" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>MPI is helpful whenever you need several workstations (or clusters) to work together efficiently and effectively.</p></li>
 <li><p>Two examples of such tasks are Parallel Computing and Monte Carlo Simulations.</p></li>
 </ul>
-</div>
-<div class="section" id="parallel-computing">
-<h3>Parallel Computing<a class="headerlink" href="#parallel-computing" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="parallel-computing">
+<h3>Parallel Computing<a class="headerlink" href="#parallel-computing" title="Permalink to this headline"></a></h3>
 <ul>
 <li><p>Parallel computing is a form of computation in which multiple calculations are done at the same time.</p></li>
 <li><p>For example, imagine you want to calculate the sum of a large amount of numbers (as in hundreds of thousands). You could do this several ways.</p>
@@ -279,23 +188,23 @@
 </li>
 <li><p>Luckily, MPI would make this type of problem fairly painless. MPI can make use of collective functions (more on that in a minute), in which one process, the root, can communicate with all other processes. Using an MPI call the root process can assign numbers to the other processes and allot space for where the results should go. Once the other processs receive their numbers they sum them and return the results to the root process. The root process can then simply sum the sums. That’s it. We will look at the code in a bit.</p></li>
 </ul>
-</div>
-<div class="section" id="monte-carlo-simulations">
-<h3>Monte Carlo Simulations<a class="headerlink" href="#monte-carlo-simulations" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="monte-carlo-simulations">
+<h3>Monte Carlo Simulations<a class="headerlink" href="#monte-carlo-simulations" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Briefly, Monte Carlo computations are computations that rely on random simulations that are done repeatably to derive probablities.</p></li>
 <li><p>MPI works great for this! Imagine you want to calculate the approximate value of Pi.</p></li>
 <li><p>One way of doing this is to simulate throwing darts at a circle inside a square. The ratio of darts inside the circle is the approximate value of Pi. Just like the summation problem above, we can do this in a linear fashion.</p></li>
 <li><p>However, MPI would allow us to scale up the number of simulations we do. For example, we could throw 1000 darts at a board, but our results would be much more accurate if we threw 1000 darts at 10 different boards. With MPI we can do that: each operation is done on a different process and in parallel. The results can then be compiled and are much closer.</p></li>
 </ul>
-</div>
-<div class="section" id="the-mpi-programming-model">
-<h3>The MPI Programming Model<a class="headerlink" href="#the-mpi-programming-model" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="the-mpi-programming-model">
+<h3>The MPI Programming Model<a class="headerlink" href="#the-mpi-programming-model" title="Permalink to this headline"></a></h3>
 <p>Now that you see that MPI has uses and benefits, let us talk briefly on the nitty-gritty details of how an implementation of MPI
 looks and works. All implementations of MPI should have the following capabilities.</p>
-</div>
-<div class="section" id="multiple-processes-ranks">
-<h3>Multiple Processes - Ranks<a class="headerlink" href="#multiple-processes-ranks" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="multiple-processes-ranks">
+<h3>Multiple Processes - Ranks<a class="headerlink" href="#multiple-processes-ranks" title="Permalink to this headline"></a></h3>
 <p>As mentioned above, MPI works on multiple processes, that is multiple computers in a workstation or cluster all working together (or all on one machine).
 In MPI, each process is assigned a Rank. Rank is used to split up the work and allow communication between the processes and also
 to allow specific processes to have specific tasks. In our Summation example, the Root process (Rank 0), was responsible for sending
@@ -322,9 +231,9 @@ For instance, the summing example could look like this:</p>
 </div>
 <p>In this way we only have to write the program once, and then the processes will know what to do based on their Rank.
 Each process is running the same program, but is working on different parts of it. We will look back at the Summation problem later on.</p>
-</div>
-<div class="section" id="writing-a-simple-mpi-program">
-<h3>Writing a Simple MPI Program<a class="headerlink" href="#writing-a-simple-mpi-program" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="writing-a-simple-mpi-program">
+<h3>Writing a Simple MPI Program<a class="headerlink" href="#writing-a-simple-mpi-program" title="Permalink to this headline"></a></h3>
 <p>In order to write your own MPI programs you will need an Implementation of MPI for the language you wish to code in.</p>
 <p>We used:</p>
 <ul class="simple">
@@ -350,9 +259,9 @@ In C# the skeleton looks like this:</p>
 </pre></div>
 </div>
 <p>All of your code must go inside the MPI Environment, that way MPI can handle setting up and tearing down the environment for you.</p>
-</div>
-<div class="section" id="hello-world">
-<h3>Hello World<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="hello-world">
+<h3>Hello World<a class="headerlink" href="#hello-world" title="Permalink to this headline"></a></h3>
 <p>Assume we want to write the quintessential Hello World program. We could simply add</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">void</span> <span class="n">Main</span><span class="p">(</span><span class="n">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
 <span class="p">{</span>
@@ -384,9 +293,9 @@ In C# the skeleton looks like this:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="running-the-mpi-program">
-<h3>Running the MPI Program<a class="headerlink" href="#running-the-mpi-program" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="running-the-mpi-program">
+<h3>Running the MPI Program<a class="headerlink" href="#running-the-mpi-program" title="Permalink to this headline"></a></h3>
 <p>We can run the program from the command line using MPI. Most implementations use “mpiexec”, though it might vary slightly.
 For MPI.NET we would write:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;mpiexec.exe ProgramName.exe&quot;</span>
@@ -410,14 +319,14 @@ Hello, World! I am rank 2.
 </div>
 <p>The order the processes print will vary each call. This is due to the fact they are all run concurrently.</p>
 <p>Note: In our examples we only launched processes from our local computer, but this is similar to how it would work on a cluster of computers. In the call to mpiexec.exe you also supply the host and the names of the various workstations.</p>
-</div>
-</div>
-<div class="section" id="communication-is-key">
-<h2>Communication is Key<a class="headerlink" href="#communication-is-key" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="communication-is-key">
+<h2>Communication is Key<a class="headerlink" href="#communication-is-key" title="Permalink to this headline"></a></h2>
 <p>Our Hello World program is technically an MPI program, but there was no actual communication between the different processes. Let’s remedy that.</p>
 <p>MPI allows two major types of communication: Point to Point and Collectives. Before we get to those, let’s briefly discuss the Communicator object.</p>
-<div class="section" id="the-communicator">
-<h3>The Communicator<a class="headerlink" href="#the-communicator" title="Permalink to this headline">¶</a></h3>
+<section id="the-communicator">
+<h3>The Communicator<a class="headerlink" href="#the-communicator" title="Permalink to this headline"></a></h3>
 <p>The Communicator is crucial to MPI projects.
 The Communicator is what allows the different processes to, well, communicate with eachother.
 MPI programs can have several Communicators.
@@ -427,9 +336,9 @@ This Communicator is useful because it keeps track of all the different ranks of
 <p>More advanced projects may have several Communicators each with their own amount of processes.
 Multiple Communicators are needed if you want to section off the processes in your code such that only certain processes receive messages to and from each other.</p>
 <p>You will notice all of our code uses the world communicator for sending and receiving messages. For convenience sake we use the variable comm to refer to Communicator.world.</p>
-</div>
-<div class="section" id="point-to-point">
-<h3>Point to Point<a class="headerlink" href="#point-to-point" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="point-to-point">
+<h3>Point to Point<a class="headerlink" href="#point-to-point" title="Permalink to this headline"></a></h3>
 <p>Point to Point communication is the most basic. This is simply when the processes communicate on a one to one basis. Rank 0 talks to
 Rank 1, Rank 1 talks to Rank 2 etc. or even more simply Rank 0 talks to Rank 1 and Rank 1 talks to Rank 0. Point to Point can have its
 uses, but we will primarily use it to illustrate message sending and then focus on the more exciting Collective Communication.</p>
@@ -582,9 +491,9 @@ add something to the string and print it so we can see the progress of our messa
 <span class="n">If</span> <span class="n">root</span> <span class="n">was</span> <span class="n">blocking</span><span class="p">,</span> <span class="n">it</span> <span class="n">wouldn</span><span class="s1">&#39;t have been able to print until now!</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="collective">
-<h3>Collective<a class="headerlink" href="#collective" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="collective">
+<h3>Collective<a class="headerlink" href="#collective" title="Permalink to this headline"></a></h3>
 <p>The other type of communication we can do is Collective, that is all the processes communicate with each other in one way or another.
 You could probably do all of your coding in Point to Point Communication, but this would get messy pretty quickly. Here are two reasons
 to consider Collective Communication:</p>
@@ -614,9 +523,9 @@ to consider Collective Communication:</p>
 <li><p>combining results: get results from every process and do something with it.
 - uses Reduce</p></li>
 </ul>
-</div>
-<div class="section" id="barriers">
-<h3>Barriers<a class="headerlink" href="#barriers" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="barriers">
+<h3>Barriers<a class="headerlink" href="#barriers" title="Permalink to this headline"></a></h3>
 <p>Barriers are not exclusive to MPI. You might have encountered them before when using threads. A barrier simply blocks all processes
 from going past a certain point in your code until all processes are at that point, hence the name: barrier.</p>
 <p>In MPI its as simple as calling the Barrier function.</p>
@@ -653,9 +562,9 @@ from going past a certain point in your code until all processes are at that poi
 Everyone is on the CHOPPA!
 </pre></div>
 </div>
-</div>
-<div class="section" id="all-to-one">
-<h3>All-to-One<a class="headerlink" href="#all-to-one" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="all-to-one">
+<h3>All-to-One<a class="headerlink" href="#all-to-one" title="Permalink to this headline"></a></h3>
 <p>This type of communication is where one process requests information from all the other processes.</p>
 <p>The Gather and Allgather functions are used.</p>
 <p>Gather has two parameters: (value, rank of destination). The call to Gather returns to the destination an array of whatever the
@@ -697,9 +606,9 @@ to sort the numbers and print them out.</p>
 <span class="mi">979</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="one-to-all">
-<h3>One-to-All<a class="headerlink" href="#one-to-all" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="one-to-all">
+<h3>One-to-All<a class="headerlink" href="#one-to-all" title="Permalink to this headline"></a></h3>
 <p>This type of communication is where one process sends information to all the other processes.</p>
 <p>The Broadcast and Scatter commands are used.</p>
 <p>Broadcast has two parameters (value, rank)
@@ -743,9 +652,9 @@ different info to differnt processes.</p>
 <span class="mi">2</span> <span class="n">was</span> <span class="n">assigned</span> <span class="n">Chapter</span> <span class="mi">2</span><span class="p">:</span> <span class="n">BitCoins</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="all-to-all">
-<h3>All-to-All<a class="headerlink" href="#all-to-all" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="all-to-all">
+<h3>All-to-All<a class="headerlink" href="#all-to-all" title="Permalink to this headline"></a></h3>
 <p>Every process sends to every other process. Again the ith value will be sent to the process with rank i. Each process will in turn
 receive a different array where the jth value will be the value from the process with rank j.</p>
 <p>The command is simply Alltoall</p>
@@ -789,9 +698,9 @@ receive a different array where the jth value will be the value from the process
 <span class="n">This</span> <span class="n">string</span> <span class="n">came</span> <span class="kn">from</span> <span class="nn">Rank</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="combining-results">
-<h3>Combining Results<a class="headerlink" href="#combining-results" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="combining-results">
+<h3>Combining Results<a class="headerlink" href="#combining-results" title="Permalink to this headline"></a></h3>
 <p>This is the most interesting Collective Communication (in our opinion).</p>
 <p>It uses the Reduce function (and usually some kind of Broadcast).</p>
 <p>This is used to sum, multiple, etc the stuff from all the processs and return it all to the process who requested it. Think back to our summation problem.</p>
@@ -857,12 +766,12 @@ receive a different array where the jth value will be the value from the process
 <span class="n">The</span> <span class="n">total</span> <span class="nb">sum</span> <span class="ow">is</span><span class="p">:</span> <span class="mi">4950</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="mpi-and-distributed-topics">
-<h2>MPI and Distributed Topics<a class="headerlink" href="#mpi-and-distributed-topics" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="general-points">
-<h3>General Points<a class="headerlink" href="#general-points" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="mpi-and-distributed-topics">
+<h2>MPI and Distributed Topics<a class="headerlink" href="#mpi-and-distributed-topics" title="Permalink to this headline"></a></h2>
+<section id="general-points">
+<h3>General Points<a class="headerlink" href="#general-points" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Optimized for performance. Algorithms for collective communications are optimized based on the knowledge of the network.</p></li>
 <li><p>Reliable when sending/receiving messages. The use of tags and ranks make sure the right messages are received.</p></li>
@@ -870,16 +779,16 @@ receive a different array where the jth value will be the value from the process
 <li><p>Maintainability and Readability: a lot of the algorithms are done under the hood so in your code you will simply see calls to
 scatter, gather etc, and not have to worry about the inner workings.</p></li>
 </ul>
-</div>
-<div class="section" id="openness">
-<h3>Openness<a class="headerlink" href="#openness" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="openness">
+<h3>Openness<a class="headerlink" href="#openness" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Anyone is welcome to write an MPI implementation for any language or platform.</p></li>
 <li><p>MPI forums are open and publically available as well as many implementations.</p></li>
 </ul>
-</div>
-<div class="section" id="scalability">
-<h3>Scalability<a class="headerlink" href="#scalability" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="scalability">
+<h3>Scalability<a class="headerlink" href="#scalability" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>In one sense MPI scales really well: if you want to add more processes you simply resend the command with more processes.
 On the other hand, some of MPI’s collective communications can cause problems when scaling.</p></li>
@@ -888,9 +797,9 @@ then each process would have a huge array.</p></li>
 <li><p>Also the make up of the processes is generally a graph of some sort. Some of these are not very efficient when handling a lot
 or processes.</p></li>
 </ul>
-</div>
-<div class="section" id="fault-tolerance">
-<h3>Fault Tolerance<a class="headerlink" href="#fault-tolerance" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="fault-tolerance">
+<h3>Fault Tolerance<a class="headerlink" href="#fault-tolerance" title="Permalink to this headline"></a></h3>
 <p>MPI, being an Interface, says very little about Fault Tolerance.
 However implementations of MPI should and to an extend do have some Fault Tolerances Built in.</p>
 <ul class="simple">
@@ -904,64 +813,47 @@ crashing the program. The remaining processes can then do something about it. Fo
 responsible for summing some section of the indexes bombs out, we could write our code to reassign the section.</p></li>
 <li><p>Another example is checkpoints. Putting checkpoints in is expensive, but can be worth it.</p></li>
 </ul>
-</div>
-<div class="section" id="transparency">
-<h3>Transparency<a class="headerlink" href="#transparency" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="transparency">
+<h3>Transparency<a class="headerlink" href="#transparency" title="Permalink to this headline"></a></h3>
 <p>MPI is fairly transparent.</p>
 <p>Access - We can access local or remote processes.</p>
 <p>Location - We do not care / do not need to be aware of where they are being performed.</p>
 <p>Migration - Messages (data) can go from local to remote processes. We can move around an array and edit it between processes. Without the user needing to know.</p>
 <p>Failure - Failures can be concealed and handled inside the code (to an extent).</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../smtp/smtp.html" class="btn btn-neutral float-right" title="SMTP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../queue/queue.html" class="btn btn-neutral float-left" title="Distributed Queues" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../smtp/smtp.html" class="btn btn-neutral float-right" title="SMTP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.
-
-    </p>
+    <p>&#169; Copyright 2013-2019, George K. Thiruvathukal and Sarah Kaylor.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
