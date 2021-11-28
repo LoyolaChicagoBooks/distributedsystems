@@ -43,9 +43,6 @@ Repository
 Releases
    `github.com/LoyolaChicagoBooks/distributedsystems/releases <https://github.com/LoyolaChicagoBooks/distributedsystems/releases>`_
 
-Cite
-   George K. Thiruvathukal and Sarah Kaylor, *Distributed Systems Lecture Notes*, https://github.com/LoyolaChicagoBooks/distributedsystems. (Zenodo entry coming soon.)
-
 Topics
 
 Indices and tables
