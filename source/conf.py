@@ -43,7 +43,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Distributed Systems'
-copyright = u'2013-2019, George K. Thiruvathukal and Sarah Kaylor'
+copyright = u'2013-2019, Distributed Systems Instructors at Loyola University Chicago'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -219,7 +219,7 @@ latex_elements = {
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'DistributedSystems.tex', u'Distributed Systems Documentation',
-   u'George K. Thiruvathukal and Sarah Kaylor', 'manual'),
+   u'Distributed Systems Instructors at Loyola University Chicago', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -249,7 +249,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'distributedsystems', u'Distributed Systems Documentation',
-     [u'George K. Thiruvathukal and Sarah Kaylor'], 1)
+     [u'Distributed Systems Instructors at Loyola University Chicago'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -263,7 +263,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'DistributedSystems', u'Distributed Systems Documentation',
-   u'George K. Thiruvathukal and Sarah Kaylor', 'DistributedSystems', 'One line description of project.',
+   u'Distributed Systems Instructors at Loyola University Chicago', 'DistributedSystems', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -281,9 +281,9 @@ texinfo_documents = [
 
 # Bibliographic Dublin Core info.
 epub_title = u'Distributed Systems'
-epub_author = u'George K. Thiruvathukal and Sarah Kaylor'
-epub_publisher = u'George K. Thiruvathukal and Sarah Kaylor'
-epub_copyright = u'2013, George K. Thiruvathukal and Sarah Kaylor'
+epub_author = u'Distributed Systems Instructors at Loyola University Chicago'
+epub_publisher = u'Distributed Systems Instructors at Loyola University Chicago'
+epub_copyright = u'2013, Distributed Systems Instructors at Loyola University Chicago'
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.
