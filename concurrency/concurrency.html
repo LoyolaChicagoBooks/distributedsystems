@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Concurrency and Threads &mdash; Distributed Systems Updated 2021-09-25 documentation</title>
+  <title>Concurrency and Threads &mdash; Distributed Systems 28 Nov 2021 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -30,7 +30,7 @@
             <a href="../index.html" class="icon icon-home"> Distributed Systems
           </a>
               <div class="version">
-                Updated 2021-09-25
+                28 Nov 2021
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -182,50 +182,6 @@
 </li>
 <li><p>Example Client-Server - a TCP echo server</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>	<span class="n">public</span> <span class="k">class</span> <span class="nc">TcpServer</span>
-<span class="linenos"> 2</span>	<span class="p">{</span>
-<span class="linenos"> 3</span>		<span class="n">private</span> <span class="n">Socket</span> <span class="n">_socket</span><span class="p">;</span>
-<span class="linenos"> 4</span>		<span class="n">private</span> <span class="n">Thread</span> <span class="n">_serverThread</span><span class="p">;</span>
-<span class="linenos"> 5</span>
-<span class="linenos"> 6</span>		<span class="n">public</span> <span class="n">TcpServer</span><span class="p">()</span> <span class="p">{</span>
-<span class="linenos"> 7</span>			<span class="n">_socket</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Socket</span> <span class="p">(</span><span class="n">AddressFamily</span><span class="o">.</span><span class="n">InterNetwork</span><span class="p">,</span> <span class="n">SocketType</span><span class="o">.</span><span class="n">Stream</span><span class="p">,</span> <span class="n">ProtocolType</span><span class="o">.</span><span class="n">Tcp</span><span class="p">);</span>
-<span class="linenos"> 8</span>			<span class="n">_serverThread</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Thread</span> <span class="p">(</span><span class="n">Server</span><span class="p">);</span>
-<span class="linenos"> 9</span>			<span class="n">_serverThread</span><span class="o">.</span><span class="n">Start</span> <span class="p">();</span>
-<span class="linenos">10</span>		<span class="p">}</span>
-<span class="linenos">11</span>
-<span class="linenos">12</span>		<span class="n">private</span> <span class="n">void</span> <span class="n">Server</span><span class="p">()</span> <span class="p">{</span>
-<span class="linenos">13</span>			<span class="n">_socket</span><span class="o">.</span><span class="n">Bind</span> <span class="p">(</span><span class="n">new</span> <span class="n">IPEndPoint</span> <span class="p">(</span><span class="n">IPAddress</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span> <span class="mi">8080</span><span class="p">));</span>
-<span class="linenos">14</span>			<span class="n">_socket</span><span class="o">.</span><span class="n">Listen</span> <span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-<span class="linenos">15</span>			<span class="k">while</span> <span class="p">(</span><span class="n">true</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">16</span>				<span class="n">var</span> <span class="n">serverClientSocket</span> <span class="o">=</span> <span class="n">_socket</span><span class="o">.</span><span class="n">Accept</span> <span class="p">();</span>
-<span class="linenos">17</span>				<span class="n">new</span> <span class="n">Thread</span> <span class="p">(</span><span class="n">Server</span><span class="p">)</span> <span class="p">{</span> <span class="n">IsBackground</span> <span class="o">=</span> <span class="n">true</span> <span class="p">}</span><span class="o">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">serverClientSocket</span><span class="p">);</span>
-<span class="linenos">18</span>			<span class="p">}</span>
-<span class="linenos">19</span>		<span class="p">}</span>
-<span class="linenos">20</span>
-<span class="linenos">21</span>		<span class="n">private</span> <span class="n">void</span> <span class="n">ServerThread</span><span class="p">(</span><span class="n">Object</span> <span class="n">arg</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">22</span>			<span class="k">try</span> <span class="p">{</span>
-<span class="linenos">23</span>				<span class="n">var</span> <span class="n">socket</span> <span class="o">=</span> <span class="p">(</span><span class="n">Socket</span><span class="p">)</span><span class="n">arg</span><span class="p">;</span>
-<span class="linenos">24</span>				<span class="n">socket</span><span class="o">.</span><span class="n">Send</span> <span class="p">(</span><span class="n">Encoding</span><span class="o">.</span><span class="n">UTF8</span><span class="o">.</span><span class="n">GetBytes</span> <span class="p">(</span><span class="s2">&quot;Echo&quot;</span><span class="p">));</span>
-<span class="linenos">25</span>			<span class="p">}</span> <span class="n">catch</span><span class="p">(</span><span class="n">SocketException</span> <span class="n">se</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">26</span>				<span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">se</span><span class="o">.</span><span class="n">Message</span><span class="p">);</span>
-<span class="linenos">27</span>			<span class="p">}</span>
-<span class="linenos">28</span>		<span class="p">}</span>
-<span class="linenos">29</span>	<span class="p">}</span>
-<span class="linenos">30</span>
-<span class="linenos">31</span>	<span class="n">public</span> <span class="k">class</span> <span class="nc">TcpClient</span> <span class="p">{</span>
-<span class="linenos">32</span>		<span class="n">public</span> <span class="n">void</span> <span class="n">ConnectToServer</span><span class="p">()</span> <span class="p">{</span>
-<span class="linenos">33</span>			<span class="n">var</span> <span class="n">socket</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Socket</span> <span class="p">(</span><span class="n">AddressFamily</span><span class="o">.</span><span class="n">InterNetwork</span><span class="p">,</span> <span class="n">SocketType</span><span class="o">.</span><span class="n">Stream</span><span class="p">,</span> <span class="n">ProtocolType</span><span class="o">.</span><span class="n">Tcp</span><span class="p">);</span>
-<span class="linenos">34</span>			<span class="n">socket</span><span class="o">.</span><span class="n">Connect</span> <span class="p">(</span><span class="n">new</span> <span class="n">IPEndPoint</span> <span class="p">(</span><span class="n">IPAddress</span><span class="o">.</span><span class="n">Parse</span><span class="p">(</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">),</span> <span class="mi">8080</span><span class="p">));</span>
-<span class="linenos">35</span>			<span class="n">var</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">new</span> <span class="n">byte</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
-<span class="linenos">36</span>			<span class="n">var</span> <span class="n">receivedBytes</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">Receive</span> <span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
-<span class="linenos">37</span>			<span class="k">if</span> <span class="p">(</span><span class="n">receivedBytes</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">38</span>				<span class="n">Array</span><span class="o">.</span><span class="n">Resize</span> <span class="p">(</span><span class="n">ref</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">receivedBytes</span><span class="p">);</span>
-<span class="linenos">39</span>				<span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="o">.</span><span class="n">Encoding</span><span class="o">.</span><span class="n">UTF8</span><span class="o">.</span><span class="n">GetString</span> <span class="p">(</span><span class="n">buffer</span><span class="p">));</span>
-<span class="linenos">40</span>			<span class="p">}</span>
-<span class="linenos">41</span>		<span class="p">}</span>
-<span class="linenos">42</span>	<span class="p">}</span>
-</pre></div>
-</div>
 <ul>
 <li><dl>
 <dt>Parallel computation:</dt><dd><ul class="simple">
@@ -247,55 +203,6 @@
 <ul class="simple">
 <li><p>Example Parallel Computation - factoring an integer</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>	<span class="n">public</span> <span class="k">class</span> <span class="nc">ParallelComputationWorkItem</span> <span class="p">{</span>
-<span class="linenos"> 2</span>		<span class="n">public</span> <span class="n">readonly</span> <span class="n">long</span> <span class="n">LowerBound</span><span class="p">;</span>
-<span class="linenos"> 3</span>		<span class="n">public</span> <span class="n">readonly</span> <span class="n">long</span> <span class="n">UpperBound</span><span class="p">;</span>
-<span class="linenos"> 4</span>		<span class="n">public</span> <span class="n">readonly</span> <span class="n">long</span> <span class="n">Number</span><span class="p">;</span>
-<span class="linenos"> 5</span>		<span class="n">public</span> <span class="n">readonly</span> <span class="n">ICollection</span><span class="o">&lt;</span><span class="n">long</span><span class="o">&gt;</span> <span class="n">Divisors</span><span class="p">;</span>
-<span class="linenos"> 6</span>		<span class="n">public</span> <span class="n">ParallelComputationWorkItem</span><span class="p">(</span><span class="n">long</span> <span class="n">lower</span><span class="p">,</span> <span class="n">long</span> <span class="n">upper</span><span class="p">,</span> <span class="n">long</span> <span class="n">number</span><span class="p">,</span> <span class="n">ICollection</span><span class="o">&lt;</span><span class="n">long</span><span class="o">&gt;</span> <span class="n">divisors</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 7</span>			<span class="n">LowerBound</span> <span class="o">=</span> <span class="n">lower</span><span class="p">;</span>
-<span class="linenos"> 8</span>			<span class="n">UpperBound</span> <span class="o">=</span> <span class="n">upper</span><span class="p">;</span>
-<span class="linenos"> 9</span>			<span class="n">Number</span> <span class="o">=</span> <span class="n">number</span><span class="p">;</span>
-<span class="linenos">10</span>			<span class="n">Divisors</span> <span class="o">=</span> <span class="n">divisors</span><span class="p">;</span>
-<span class="linenos">11</span>		<span class="p">}</span>
-<span class="linenos">12</span>	<span class="p">}</span>
-<span class="linenos">13</span>
-<span class="linenos">14</span>	<span class="n">public</span> <span class="k">class</span> <span class="nc">ParallelComputation</span> <span class="p">{</span>
-<span class="linenos">15</span>
-<span class="linenos">16</span>		<span class="n">public</span> <span class="n">void</span> <span class="n">PrintFactors</span><span class="p">(</span><span class="n">long</span> <span class="n">number</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">17</span>			<span class="n">var</span> <span class="n">threads</span> <span class="o">=</span> <span class="n">new</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Thread</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="linenos">18</span>			<span class="n">var</span> <span class="n">divisors</span> <span class="o">=</span> <span class="n">new</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">long</span><span class="o">&gt;</span> <span class="p">();</span>
-<span class="linenos">19</span>			<span class="n">var</span> <span class="n">cpuCount</span> <span class="o">=</span> <span class="n">Environment</span><span class="o">.</span><span class="n">ProcessorCount</span><span class="p">;</span>
-<span class="linenos">20</span>			<span class="n">long</span> <span class="n">lower</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="linenos">21</span>			<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">cpuCount</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">22</span>				<span class="n">var</span> <span class="n">thread</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Thread</span> <span class="p">(</span><span class="n">Worker</span><span class="p">);</span>
-<span class="linenos">23</span>				<span class="n">var</span> <span class="n">upper</span> <span class="o">=</span> <span class="n">lower</span> <span class="o">+</span> <span class="p">(</span><span class="n">number</span> <span class="o">/</span> <span class="n">cpuCount</span><span class="p">);</span>
-<span class="linenos">24</span>				<span class="n">thread</span><span class="o">.</span><span class="n">Start</span><span class="p">(</span><span class="n">new</span> <span class="n">ParallelComputationWorkItem</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="n">divisors</span><span class="p">));</span>
-<span class="linenos">25</span>				<span class="n">threads</span><span class="o">.</span><span class="n">Add</span> <span class="p">(</span><span class="n">thread</span><span class="p">);</span>
-<span class="linenos">26</span>				<span class="n">lower</span> <span class="o">=</span> <span class="n">upper</span><span class="p">;</span>
-<span class="linenos">27</span>			<span class="p">}</span>
-<span class="linenos">28</span>			<span class="n">foreach</span> <span class="p">(</span><span class="n">var</span> <span class="n">thread</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">29</span>				<span class="n">thread</span><span class="o">.</span><span class="n">Join</span> <span class="p">();</span>
-<span class="linenos">30</span>			<span class="p">}</span>
-<span class="linenos">31</span>			<span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="s2">&quot;Divisors - &quot;</span><span class="p">);</span>
-<span class="linenos">32</span>			<span class="n">foreach</span> <span class="p">(</span><span class="n">var</span> <span class="n">divisor</span> <span class="ow">in</span> <span class="n">divisors</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">33</span>				<span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">divisor</span><span class="p">);</span>
-<span class="linenos">34</span>			<span class="p">}</span>
-<span class="linenos">35</span>		<span class="p">}</span>
-<span class="linenos">36</span>
-<span class="linenos">37</span>		<span class="n">private</span> <span class="n">void</span> <span class="n">Worker</span><span class="p">(</span><span class="nb">object</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">38</span>			<span class="n">var</span> <span class="n">workItem</span> <span class="o">=</span> <span class="p">(</span><span class="n">ParallelComputationWorkItem</span><span class="p">)</span><span class="n">args</span><span class="p">;</span>
-<span class="linenos">39</span>			<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="n">workItem</span><span class="o">.</span><span class="n">LowerBound</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">workItem</span><span class="o">.</span><span class="n">UpperBound</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">40</span>				<span class="k">if</span> <span class="p">(</span><span class="n">workItem</span><span class="o">.</span><span class="n">Number</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">41</span>					<span class="n">lock</span> <span class="p">(</span><span class="n">workItem</span><span class="o">.</span><span class="n">Divisors</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">42</span>						<span class="n">workItem</span><span class="o">.</span><span class="n">Divisors</span><span class="o">.</span><span class="n">Add</span> <span class="p">(</span><span class="n">i</span><span class="p">);</span>
-<span class="linenos">43</span>					<span class="p">}</span>
-<span class="linenos">44</span>				<span class="p">}</span>
-<span class="linenos">45</span>			<span class="p">}</span>
-<span class="linenos">46</span>		<span class="p">}</span>
-<span class="linenos">47</span>	<span class="p">}</span>
-</pre></div>
-</div>
 <ul>
 <li><dl>
 <dt>Pipeline processing:</dt><dd><ul class="simple">
@@ -310,259 +217,12 @@
 </li>
 <li><p>Example Pipeline Processing - file compression</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span>	<span class="n">public</span> <span class="k">class</span> <span class="nc">PipelineComputation</span> <span class="p">{</span>
-<span class="linenos">  2</span>		<span class="n">private</span> <span class="n">readonly</span> <span class="n">Queue</span><span class="o">&lt;</span><span class="n">byte</span><span class="p">[]</span><span class="o">&gt;</span> <span class="n">_readData</span><span class="p">;</span>
-<span class="linenos">  3</span>		<span class="n">private</span> <span class="n">readonly</span> <span class="n">Queue</span><span class="o">&lt;</span><span class="n">byte</span><span class="p">[]</span><span class="o">&gt;</span> <span class="n">_compressionData</span><span class="p">;</span>
-<span class="linenos">  4</span>		<span class="n">private</span> <span class="n">volatile</span> <span class="nb">bool</span> <span class="n">_reading</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
-<span class="linenos">  5</span>		<span class="n">private</span> <span class="n">volatile</span> <span class="nb">bool</span> <span class="n">_compressing</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
-<span class="linenos">  6</span>
-<span class="linenos">  7</span>		<span class="n">public</span> <span class="n">PipelineComputation</span> <span class="p">()</span> <span class="p">{</span>
-<span class="linenos">  8</span>			<span class="n">_readData</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Queue</span><span class="o">&lt;</span><span class="n">byte</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="linenos">  9</span>			<span class="n">_compressionData</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Queue</span><span class="o">&lt;</span><span class="n">byte</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="linenos"> 10</span>		<span class="p">}</span>
-<span class="linenos"> 11</span>
-<span class="linenos"> 12</span>		<span class="n">public</span> <span class="n">void</span> <span class="n">PerformCompression</span><span class="p">()</span> <span class="p">{</span>
-<span class="linenos"> 13</span>			<span class="n">var</span> <span class="n">readerThread</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Thread</span> <span class="p">(</span><span class="n">FileReader</span><span class="p">);</span>
-<span class="linenos"> 14</span>			<span class="n">var</span> <span class="n">compressThread</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Thread</span> <span class="p">(</span><span class="n">Compression</span><span class="p">);</span>
-<span class="linenos"> 15</span>			<span class="n">var</span> <span class="n">writerThread</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Thread</span> <span class="p">(</span><span class="n">FileWriter</span><span class="p">);</span>
-<span class="linenos"> 16</span>			<span class="n">readerThread</span><span class="o">.</span><span class="n">Start</span> <span class="p">();</span>
-<span class="linenos"> 17</span>			<span class="n">compressThread</span><span class="o">.</span><span class="n">Start</span> <span class="p">();</span>
-<span class="linenos"> 18</span>			<span class="n">writerThread</span><span class="o">.</span><span class="n">Start</span> <span class="p">();</span>
-<span class="linenos"> 19</span>			<span class="n">readerThread</span><span class="o">.</span><span class="n">Join</span> <span class="p">();</span>
-<span class="linenos"> 20</span>			<span class="n">compressThread</span><span class="o">.</span><span class="n">Join</span> <span class="p">();</span>
-<span class="linenos"> 21</span>			<span class="n">writerThread</span><span class="o">.</span><span class="n">Join</span> <span class="p">();</span>
-<span class="linenos"> 22</span>		<span class="p">}</span>
-<span class="linenos"> 23</span>
-<span class="linenos"> 24</span>		<span class="n">private</span> <span class="n">void</span> <span class="n">FileReader</span><span class="p">()</span> <span class="p">{</span>
-<span class="linenos"> 25</span>			<span class="n">using</span> <span class="p">(</span><span class="n">var</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">new</span> <span class="n">FileStream</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">,</span> <span class="n">FileMode</span><span class="o">.</span><span class="n">Open</span><span class="p">,</span> <span class="n">FileAccess</span><span class="o">.</span><span class="n">Read</span><span class="p">))</span> <span class="p">{</span>
-<span class="linenos"> 26</span>				<span class="nb">int</span> <span class="nb">len</span><span class="p">;</span>
-<span class="linenos"> 27</span>				<span class="n">var</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">new</span> <span class="n">byte</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
-<span class="linenos"> 28</span>				<span class="k">while</span> <span class="p">((</span><span class="nb">len</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">Read</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">buffer</span><span class="o">.</span><span class="n">Length</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 29</span>					<span class="k">if</span> <span class="p">(</span><span class="nb">len</span> <span class="o">!=</span> <span class="n">buffer</span><span class="o">.</span><span class="n">Length</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 30</span>						<span class="n">Array</span><span class="o">.</span><span class="n">Resize</span> <span class="p">(</span><span class="n">ref</span> <span class="n">buffer</span><span class="p">,</span> <span class="nb">len</span><span class="p">);</span>
-<span class="linenos"> 31</span>					<span class="p">}</span>
-<span class="linenos"> 32</span>					<span class="n">lock</span> <span class="p">(</span><span class="n">_readData</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 33</span>						<span class="k">while</span> <span class="p">(</span><span class="n">_readData</span><span class="o">.</span><span class="n">Count</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 34</span>							<span class="n">Monitor</span><span class="o">.</span><span class="n">Wait</span> <span class="p">(</span><span class="n">_readData</span><span class="p">);</span>
-<span class="linenos"> 35</span>						<span class="p">}</span>
-<span class="linenos"> 36</span>						<span class="n">_readData</span><span class="o">.</span><span class="n">Enqueue</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
-<span class="linenos"> 37</span>						<span class="n">Monitor</span><span class="o">.</span><span class="n">Pulse</span> <span class="p">(</span><span class="n">_readData</span><span class="p">);</span>
-<span class="linenos"> 38</span>					<span class="p">}</span>
-<span class="linenos"> 39</span>				<span class="p">}</span>
-<span class="linenos"> 40</span>			<span class="p">}</span>
-<span class="linenos"> 41</span>			<span class="n">_reading</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
-<span class="linenos"> 42</span>		<span class="p">}</span>
-<span class="linenos"> 43</span>
-<span class="linenos"> 44</span>		<span class="n">private</span> <span class="n">void</span> <span class="n">Compression</span><span class="p">()</span> <span class="p">{</span>
-<span class="linenos"> 45</span>			<span class="n">var</span> <span class="n">workLeft</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
-<span class="linenos"> 46</span>			<span class="k">while</span> <span class="p">(</span><span class="n">_reading</span> <span class="o">||</span> <span class="n">workLeft</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 47</span>				<span class="n">workLeft</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
-<span class="linenos"> 48</span>				<span class="n">byte</span><span class="p">[]</span> <span class="n">dataToCompress</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
-<span class="linenos"> 49</span>				<span class="n">lock</span> <span class="p">(</span><span class="n">_readData</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 50</span>					<span class="k">while</span> <span class="p">(</span><span class="n">_reading</span> <span class="o">&amp;&amp;</span> <span class="n">_readData</span><span class="o">.</span><span class="n">Count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 51</span>						<span class="n">Monitor</span><span class="o">.</span><span class="n">Wait</span> <span class="p">(</span><span class="n">_readData</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
-<span class="linenos"> 52</span>					<span class="p">}</span>
-<span class="linenos"> 53</span>					<span class="n">workLeft</span> <span class="o">=</span> <span class="n">_readData</span><span class="o">.</span><span class="n">Count</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">;</span>
-<span class="linenos"> 54</span>					<span class="k">if</span> <span class="p">(</span><span class="n">_readData</span><span class="o">.</span><span class="n">Count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 55</span>						<span class="n">dataToCompress</span> <span class="o">=</span> <span class="n">_readData</span><span class="o">.</span><span class="n">Dequeue</span> <span class="p">();</span>
-<span class="linenos"> 56</span>					<span class="p">}</span>
-<span class="linenos"> 57</span>				<span class="p">}</span>
-<span class="linenos"> 58</span>				<span class="k">if</span> <span class="p">(</span><span class="n">dataToCompress</span> <span class="o">!=</span> <span class="n">null</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 59</span>					<span class="n">var</span> <span class="n">compressed</span> <span class="o">=</span> <span class="n">Compress</span><span class="p">(</span><span class="n">dataToCompress</span><span class="p">);</span>
-<span class="linenos"> 60</span>					<span class="n">lock</span> <span class="p">(</span><span class="n">_compressionData</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 61</span>						<span class="k">while</span> <span class="p">(</span><span class="n">_compressionData</span><span class="o">.</span><span class="n">Count</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 62</span>							<span class="n">Monitor</span><span class="o">.</span><span class="n">Wait</span> <span class="p">(</span><span class="n">_compressionData</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
-<span class="linenos"> 63</span>						<span class="p">}</span>
-<span class="linenos"> 64</span>						<span class="n">_compressionData</span><span class="o">.</span><span class="n">Enqueue</span> <span class="p">(</span><span class="n">compressed</span><span class="p">);</span>
-<span class="linenos"> 65</span>						<span class="n">Monitor</span><span class="o">.</span><span class="n">Pulse</span> <span class="p">(</span><span class="n">_compressionData</span><span class="p">);</span>
-<span class="linenos"> 66</span>					<span class="p">}</span>
-<span class="linenos"> 67</span>				<span class="p">}</span>
-<span class="linenos"> 68</span>			<span class="p">}</span>
-<span class="linenos"> 69</span>			<span class="n">_compressing</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
-<span class="linenos"> 70</span>		<span class="p">}</span>
-<span class="linenos"> 71</span>
-<span class="linenos"> 72</span>		<span class="n">private</span> <span class="n">static</span> <span class="n">byte</span><span class="p">[]</span> <span class="n">Compress</span><span class="p">(</span><span class="n">byte</span><span class="p">[]</span> <span class="n">data</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 73</span>			<span class="n">var</span> <span class="n">memStream</span> <span class="o">=</span> <span class="n">new</span> <span class="n">MemoryStream</span> <span class="p">();</span>
-<span class="linenos"> 74</span>			<span class="n">using</span><span class="p">(</span><span class="n">var</span> <span class="n">compressionStream</span> <span class="o">=</span> <span class="n">new</span> <span class="n">GZipStream</span><span class="p">(</span><span class="n">memStream</span><span class="p">,</span> <span class="n">CompressionMode</span><span class="o">.</span><span class="n">Compress</span><span class="p">))</span> <span class="p">{</span>
-<span class="linenos"> 75</span>				<span class="n">compressionStream</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">Length</span><span class="p">);</span>
-<span class="linenos"> 76</span>			<span class="p">}</span>
-<span class="linenos"> 77</span>			<span class="k">return</span> <span class="n">memStream</span><span class="o">.</span><span class="n">ToArray</span> <span class="p">();</span>
-<span class="linenos"> 78</span>		<span class="p">}</span>
-<span class="linenos"> 79</span>
-<span class="linenos"> 80</span>		<span class="n">private</span> <span class="n">void</span> <span class="n">FileWriter</span><span class="p">()</span> <span class="p">{</span>
-<span class="linenos"> 81</span>			<span class="n">using</span> <span class="p">(</span><span class="n">var</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">new</span> <span class="n">FileStream</span><span class="p">(</span><span class="s2">&quot;file.gz&quot;</span><span class="p">,</span> <span class="n">FileMode</span><span class="o">.</span><span class="n">OpenOrCreate</span><span class="p">,</span> <span class="n">FileAccess</span><span class="o">.</span><span class="n">Write</span><span class="p">))</span> <span class="p">{</span>
-<span class="linenos"> 82</span>				<span class="n">var</span> <span class="n">workLeft</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
-<span class="linenos"> 83</span>				<span class="k">while</span> <span class="p">(</span><span class="n">_compressing</span> <span class="o">||</span> <span class="n">workLeft</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 84</span>					<span class="n">workLeft</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
-<span class="linenos"> 85</span>					<span class="n">byte</span><span class="p">[]</span> <span class="n">compressedData</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
-<span class="linenos"> 86</span>					<span class="n">lock</span> <span class="p">(</span><span class="n">_compressionData</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 87</span>						<span class="k">while</span> <span class="p">(</span><span class="n">_compressionData</span><span class="o">.</span><span class="n">Count</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">_compressing</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 88</span>							<span class="n">Monitor</span><span class="o">.</span><span class="n">Wait</span> <span class="p">(</span><span class="n">_compressionData</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
-<span class="linenos"> 89</span>						<span class="p">}</span>
-<span class="linenos"> 90</span>						<span class="n">workLeft</span> <span class="o">=</span> <span class="n">_compressionData</span><span class="o">.</span><span class="n">Count</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">;</span>
-<span class="linenos"> 91</span>						<span class="k">if</span> <span class="p">(</span><span class="n">_compressionData</span><span class="o">.</span><span class="n">Count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 92</span>							<span class="n">compressedData</span> <span class="o">=</span> <span class="n">_compressionData</span><span class="o">.</span><span class="n">Dequeue</span> <span class="p">();</span>
-<span class="linenos"> 93</span>						<span class="p">}</span>
-<span class="linenos"> 94</span>					<span class="p">}</span>
-<span class="linenos"> 95</span>					<span class="k">if</span> <span class="p">(</span><span class="n">compressedData</span> <span class="o">!=</span> <span class="n">null</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 96</span>						<span class="n">stream</span><span class="o">.</span><span class="n">Write</span> <span class="p">(</span><span class="n">compressedData</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">compressedData</span><span class="o">.</span><span class="n">Length</span><span class="p">);</span>
-<span class="linenos"> 97</span>					<span class="p">}</span>
-<span class="linenos"> 98</span>				<span class="p">}</span>
-<span class="linenos"> 99</span>			<span class="p">}</span>
-<span class="linenos">100</span>		<span class="p">}</span>
-<span class="linenos">101</span>	<span class="p">}</span>
-</pre></div>
-</div>
 <ul class="simple">
 <li><p>Example Pipeline Processing - a more concise and language friendly file compression</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>	<span class="n">public</span> <span class="k">class</span> <span class="nc">ConcisePipelineComputation</span>
-<span class="linenos"> 2</span>	<span class="p">{</span>
-<span class="linenos"> 3</span>		<span class="n">public</span> <span class="n">ConcisePipelineComputation</span> <span class="p">()</span> <span class="p">{</span>
-<span class="linenos"> 4</span>		<span class="p">}</span>
-<span class="linenos"> 5</span>
-<span class="linenos"> 6</span>		<span class="n">public</span> <span class="n">void</span> <span class="n">PerformCompression</span><span class="p">()</span> <span class="p">{</span>
-<span class="linenos"> 7</span>			<span class="n">var</span> <span class="n">fileBlocks</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ThreadedList</span><span class="o">&lt;</span><span class="n">byte</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="n">FileReader</span><span class="p">());</span>
-<span class="linenos"> 8</span>			<span class="n">var</span> <span class="n">compressedBlocks</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ThreadedList</span><span class="o">&lt;</span><span class="n">byte</span><span class="p">[]</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">Compression</span><span class="p">(</span><span class="n">fileBlocks</span><span class="p">));</span>
-<span class="linenos"> 9</span>			<span class="n">FileWriter</span> <span class="p">(</span><span class="n">compressedBlocks</span><span class="p">);</span>
-<span class="linenos">10</span>		<span class="p">}</span>
-<span class="linenos">11</span>
-<span class="linenos">12</span>		<span class="n">private</span> <span class="n">IEnumerable</span><span class="o">&lt;</span><span class="n">byte</span><span class="p">[]</span><span class="o">&gt;</span> <span class="n">FileReader</span><span class="p">()</span> <span class="p">{</span>
-<span class="linenos">13</span>			<span class="n">using</span> <span class="p">(</span><span class="n">var</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">new</span> <span class="n">FileStream</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">,</span> <span class="n">FileMode</span><span class="o">.</span><span class="n">Open</span><span class="p">,</span> <span class="n">FileAccess</span><span class="o">.</span><span class="n">Read</span><span class="p">))</span> <span class="p">{</span>
-<span class="linenos">14</span>				<span class="nb">int</span> <span class="nb">len</span><span class="p">;</span>
-<span class="linenos">15</span>				<span class="n">var</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">new</span> <span class="n">byte</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
-<span class="linenos">16</span>				<span class="k">while</span> <span class="p">((</span><span class="nb">len</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">Read</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">buffer</span><span class="o">.</span><span class="n">Length</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">17</span>					<span class="k">if</span> <span class="p">(</span><span class="nb">len</span> <span class="o">!=</span> <span class="n">buffer</span><span class="o">.</span><span class="n">Length</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">18</span>						<span class="n">Array</span><span class="o">.</span><span class="n">Resize</span> <span class="p">(</span><span class="n">ref</span> <span class="n">buffer</span><span class="p">,</span> <span class="nb">len</span><span class="p">);</span>
-<span class="linenos">19</span>					<span class="p">}</span>
-<span class="linenos">20</span>					<span class="k">yield</span> <span class="k">return</span> <span class="n">buffer</span><span class="p">;</span>
-<span class="linenos">21</span>				<span class="p">}</span>
-<span class="linenos">22</span>			<span class="p">}</span>
-<span class="linenos">23</span>		<span class="p">}</span>
-<span class="linenos">24</span>		
-<span class="linenos">25</span>		<span class="n">private</span> <span class="n">IEnumerable</span><span class="o">&lt;</span><span class="n">byte</span><span class="p">[]</span><span class="o">&gt;</span> <span class="n">Compression</span><span class="p">(</span><span class="n">IEnumerable</span><span class="o">&lt;</span><span class="n">byte</span><span class="p">[]</span><span class="o">&gt;</span> <span class="n">readBuffer</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">26</span>			<span class="n">foreach</span> <span class="p">(</span><span class="n">var</span> <span class="n">buffer</span> <span class="ow">in</span> <span class="n">readBuffer</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">27</span>				<span class="k">yield</span> <span class="k">return</span> <span class="n">Compress</span> <span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
-<span class="linenos">28</span>			<span class="p">}</span>
-<span class="linenos">29</span>		<span class="p">}</span>
-<span class="linenos">30</span>
-<span class="linenos">31</span>		<span class="n">private</span> <span class="n">static</span> <span class="n">byte</span><span class="p">[]</span> <span class="n">Compress</span><span class="p">(</span><span class="n">byte</span><span class="p">[]</span> <span class="n">data</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">32</span>			<span class="n">var</span> <span class="n">memStream</span> <span class="o">=</span> <span class="n">new</span> <span class="n">MemoryStream</span> <span class="p">();</span>
-<span class="linenos">33</span>			<span class="n">using</span><span class="p">(</span><span class="n">var</span> <span class="n">compressionStream</span> <span class="o">=</span> <span class="n">new</span> <span class="n">GZipStream</span><span class="p">(</span><span class="n">memStream</span><span class="p">,</span> <span class="n">CompressionMode</span><span class="o">.</span><span class="n">Compress</span><span class="p">))</span> <span class="p">{</span>
-<span class="linenos">34</span>				<span class="n">compressionStream</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">Length</span><span class="p">);</span>
-<span class="linenos">35</span>			<span class="p">}</span>
-<span class="linenos">36</span>			<span class="k">return</span> <span class="n">memStream</span><span class="o">.</span><span class="n">ToArray</span> <span class="p">();</span>
-<span class="linenos">37</span>		<span class="p">}</span>
-<span class="linenos">38</span>
-<span class="linenos">39</span>		<span class="n">private</span> <span class="n">void</span> <span class="n">FileWriter</span><span class="p">(</span><span class="n">IEnumerable</span><span class="o">&lt;</span><span class="n">byte</span><span class="p">[]</span><span class="o">&gt;</span> <span class="n">compressedBuffer</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">40</span>			<span class="n">using</span> <span class="p">(</span><span class="n">var</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">new</span> <span class="n">FileStream</span><span class="p">(</span><span class="s2">&quot;file.gz&quot;</span><span class="p">,</span> <span class="n">FileMode</span><span class="o">.</span><span class="n">OpenOrCreate</span><span class="p">,</span> <span class="n">FileAccess</span><span class="o">.</span><span class="n">Write</span><span class="p">))</span> <span class="p">{</span>
-<span class="linenos">41</span>				<span class="n">foreach</span> <span class="p">(</span><span class="n">var</span> <span class="n">buffer</span> <span class="ow">in</span> <span class="n">compressedBuffer</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">42</span>					<span class="n">stream</span><span class="o">.</span><span class="n">Write</span> <span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">buffer</span><span class="o">.</span><span class="n">Length</span><span class="p">);</span>
-<span class="linenos">43</span>				<span class="p">}</span>
-<span class="linenos">44</span>			<span class="p">}</span>
-<span class="linenos">45</span>		<span class="p">}</span>
-<span class="linenos">46</span>	<span class="p">}</span>
-</pre></div>
-</div>
 <ul class="simple">
 <li><p>Helper class - ThreadedList</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>	public class ThreadedList&lt;T&gt; : IEnumerable&lt;T&gt;
-<span class="linenos"> 2</span>	{
-<span class="linenos"> 3</span>		private readonly IEnumerable&lt;T&gt; _list;
-<span class="linenos"> 4</span>
-<span class="linenos"> 5</span>		public ThreadedList (IEnumerable&lt;T&gt; list){
-<span class="linenos"> 6</span>			_list = list;
-<span class="linenos"> 7</span>		}
-<span class="linenos"> 8</span>
-<span class="linenos"> 9</span>		public IEnumerator&lt;T&gt; GetEnumerator ()
-<span class="linenos">10</span>		{
-<span class="linenos">11</span>			return new ThreadedEnumerator&lt;T&gt;(_list.GetEnumerator ());
-<span class="linenos">12</span>		}
-<span class="linenos">13</span>
-<span class="linenos">14</span>		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator ()
-<span class="linenos">15</span>		{
-<span class="linenos">16</span>			return GetEnumerator ();
-<span class="linenos">17</span>		}
-<span class="linenos">18</span>
-<span class="linenos">19</span>		private class ThreadedEnumerator&lt;S&gt; : IEnumerator&lt;S&gt; {
-<span class="linenos">20</span>
-<span class="linenos">21</span>			private readonly IEnumerator&lt;S&gt; _enumerator;
-<span class="linenos">22</span>			private readonly Queue&lt;S&gt; _queue;
-<span class="linenos">23</span>			private const int _maxQueueSize = 10;
-<span class="linenos">24</span>			private readonly Thread _thread;
-<span class="linenos">25</span>			private volatile bool _keepGoing = true;
-<span class="linenos">26</span>			private volatile bool _finishedEnumerating = false;
-<span class="linenos">27</span>			private S _current;
-<span class="linenos">28</span>
-<span class="linenos">29</span>			public ThreadedEnumerator(IEnumerator&lt;S&gt; enumerator) {
-<span class="linenos">30</span>				_enumerator = enumerator;
-<span class="linenos">31</span>				_thread = new Thread(Enumerate);
-<span class="linenos">32</span>				_thread.Start();
-<span class="linenos">33</span>			}
-<span class="linenos">34</span>
-<span class="linenos">35</span>			private void Enumerate() {
-<span class="linenos">36</span>				while (_keepGoing) {
-<span class="linenos">37</span>					if (_enumerator.MoveNext ()) {
-<span class="linenos">38</span>						var current = _enumerator.Current;
-<span class="linenos">39</span>						lock (_queue) {
-<span class="linenos">40</span>							while (_queue.Count &gt; _maxQueueSize &amp;&amp; _keepGoing) {
-<span class="linenos">41</span>								Monitor.Wait (_queue, 100);
-<span class="linenos">42</span>							}
-<span class="linenos">43</span>							if (_keepGoing) {
-<span class="linenos">44</span>								_queue.Enqueue (current);
-<span class="linenos">45</span>								Monitor.Pulse (_queue);
-<span class="linenos">46</span>							}
-<span class="linenos">47</span>						}
-<span class="linenos">48</span>					} else {
-<span class="linenos">49</span>						break;
-<span class="linenos">50</span>					}
-<span class="linenos">51</span>				}
-<span class="linenos">52</span>				_finishedEnumerating = true;
-<span class="linenos">53</span>			}
-<span class="linenos">54</span>
-<span class="linenos">55</span>			public bool MoveNext ()
-<span class="linenos">56</span>			{
-<span class="linenos">57</span>				lock (_queue) {
-<span class="linenos">58</span>					while (!_finishedEnumerating &amp;&amp; _queue.Count == 0) {
-<span class="linenos">59</span>						Monitor.Wait (_queue, 100);
-<span class="linenos">60</span>					}
-<span class="linenos">61</span>					if (_queue.Count &gt; 0) {
-<span class="linenos">62</span>						_current = _queue.Dequeue ();
-<span class="linenos">63</span>						Monitor.Pulse (_queue);
-<span class="linenos">64</span>						return true;
-<span class="linenos">65</span>					} else {
-<span class="linenos">66</span>						_current = default(S);
-<span class="linenos">67</span>						return false;
-<span class="linenos">68</span>					}
-<span class="linenos">69</span>				}
-<span class="linenos">70</span>			}
-<span class="linenos">71</span>
-<span class="linenos">72</span>			public void Reset () {
-<span class="linenos">73</span>				lock (_queue) {
-<span class="linenos">74</span>					lock (_enumerator) {
-<span class="linenos">75</span>						_enumerator.Reset ();
-<span class="linenos">76</span>						_queue.Clear ();
-<span class="linenos">77</span>					}
-<span class="linenos">78</span>				}
-<span class="linenos">79</span>			}
-<span class="linenos">80</span>
-<span class="linenos">81</span>			object System.Collections.IEnumerator.Current {
-<span class="linenos">82</span>				get { return _current; }
-<span class="linenos">83</span>			}
-<span class="linenos">84</span>
-<span class="linenos">85</span>			public void Dispose () {
-<span class="linenos">86</span>				_keepGoing = false;
-<span class="linenos">87</span>				_thread.Join ();
-<span class="linenos">88</span>			}
-<span class="linenos">89</span>
-<span class="linenos">90</span>			public S Current {
-<span class="linenos">91</span>				get { return _current; }
-<span class="linenos">92</span>			}
-<span class="linenos">93</span>		}
-<span class="linenos">94</span>	}
-</pre></div>
-</div>
 </section>
 <section id="mutual-exclusion">
 <h2>Mutual Exclusion<a class="headerlink" href="#mutual-exclusion" title="Permalink to this headline"></a></h2>
@@ -1048,38 +708,6 @@ Total time: 18.426 secs
 </li>
 <li><p>Example Bound Buffer</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>	<span class="n">public</span> <span class="k">class</span> <span class="nc">BoundBuffer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
-<span class="linenos"> 2</span>		<span class="n">private</span> <span class="n">readonly</span> <span class="n">Semaphore</span> <span class="n">_full</span><span class="p">;</span>
-<span class="linenos"> 3</span>		<span class="n">private</span> <span class="n">readonly</span> <span class="n">Semaphore</span> <span class="n">_empty</span><span class="p">;</span>
-<span class="linenos"> 4</span>		<span class="n">private</span> <span class="n">readonly</span> <span class="n">Semaphore</span> <span class="n">_lock</span><span class="p">;</span>
-<span class="linenos"> 5</span>		<span class="n">private</span> <span class="n">readonly</span> <span class="n">Queue</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">_queue</span><span class="p">;</span>
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span>		<span class="n">public</span> <span class="n">BoundBuffer</span> <span class="p">(</span><span class="nb">int</span> <span class="n">maxCount</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 8</span>			<span class="n">_empty</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Semaphore</span> <span class="p">(</span><span class="n">maxCount</span><span class="p">,</span> <span class="n">maxCount</span><span class="p">);</span>
-<span class="linenos"> 9</span>			<span class="n">_full</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Semaphore</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">maxCount</span><span class="p">);</span>
-<span class="linenos">10</span>			<span class="n">_lock</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Semaphore</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="linenos">11</span>			<span class="n">_queue</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Queue</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">();</span>
-<span class="linenos">12</span>		<span class="p">}</span>
-<span class="linenos">13</span>
-<span class="linenos">14</span>		<span class="n">public</span> <span class="n">void</span> <span class="n">Enqueue</span><span class="p">(</span><span class="n">T</span> <span class="n">item</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">15</span>			<span class="n">_empty</span><span class="o">.</span><span class="n">WaitOne</span> <span class="p">();</span>
-<span class="linenos">16</span>			<span class="n">_lock</span><span class="o">.</span><span class="n">WaitOne</span> <span class="p">();</span>
-<span class="linenos">17</span>			<span class="n">_queue</span><span class="o">.</span><span class="n">Enqueue</span> <span class="p">(</span><span class="n">item</span><span class="p">);</span>
-<span class="linenos">18</span>			<span class="n">_lock</span><span class="o">.</span><span class="n">Release</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="linenos">19</span>			<span class="n">_full</span><span class="o">.</span><span class="n">Release</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="linenos">20</span>		<span class="p">}</span>
-<span class="linenos">21</span>
-<span class="linenos">22</span>		<span class="n">public</span> <span class="n">T</span> <span class="n">Dequeue</span><span class="p">()</span> <span class="p">{</span>
-<span class="linenos">23</span>			<span class="n">_full</span><span class="o">.</span><span class="n">WaitOne</span> <span class="p">();</span>
-<span class="linenos">24</span>			<span class="n">_lock</span><span class="o">.</span><span class="n">WaitOne</span> <span class="p">();</span>
-<span class="linenos">25</span>			<span class="n">var</span> <span class="n">item</span> <span class="o">=</span> <span class="n">_queue</span><span class="o">.</span><span class="n">Dequeue</span> <span class="p">();</span>
-<span class="linenos">26</span>			<span class="n">_lock</span><span class="o">.</span><span class="n">Release</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="linenos">27</span>			<span class="n">_empty</span><span class="o">.</span><span class="n">Release</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="linenos">28</span>			<span class="k">return</span> <span class="n">item</span><span class="p">;</span>
-<span class="linenos">29</span>		<span class="p">}</span>
-<span class="linenos">30</span>	<span class="p">}</span>
-</pre></div>
-</div>
 </section>
 <section id="design-considerations">
 <h2>Design Considerations<a class="headerlink" href="#design-considerations" title="Permalink to this headline"></a></h2>
