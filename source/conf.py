@@ -51,7 +51,7 @@ copyright = u'2013-2019, George K. Thiruvathukal and Sarah Kaylor'
 #
 # The short X.Y version.
 #version = 'v0.1'
-version = date.today().strftime("Updated %Y-%m-%d")
+version = date.today().strftime("%d %b %Y")
 # The full version, including alpha/beta/rc tags.
 release = version
 
