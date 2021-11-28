@@ -40,7 +40,7 @@ jobs:
 
       - name: Get Code Examples for Sphinx literalincludes
         run: |
-          ./get-code-examples.sh
+          ./bin/get-code-examples.sh
 
       - name: Generate HTML using Sphinx
         run: |
