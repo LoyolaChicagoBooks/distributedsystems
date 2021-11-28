@@ -59,7 +59,7 @@ Common Threading Use Cases
 
 - Example Client-Server - a TCP echo server
 
-.. literalinclude:: ../../examples/systems-code-samples/threads_csharp/threads/TcpServer.cs
+.. literalinclude:: ../../examples/systems-code-examples/threads_csharp/threads/TcpServer.cs
    :start-after: begin-class-TcpServer
    :end-before: end-class-TcpServer
    :linenos:
@@ -80,7 +80,7 @@ Common Threading Use Cases
 
 - Example Parallel Computation - factoring an integer
 
-.. literalinclude:: ../../examples/systems-code-samples/threads_csharp/threads/ParallelComputation.cs
+.. literalinclude:: ../../examples/systems-code-examples/threads_csharp/threads/ParallelComputation.cs
    :start-after: begin-class-ParallelComputation
    :end-before: end-class-ParallelComputation
    :linenos:
@@ -97,7 +97,7 @@ Common Threading Use Cases
 - Example Pipeline Processing - file compression
 
 
-.. literalinclude:: ../../examples/systems-code-samples/threads_csharp/threads/PipelineComputation.cs
+.. literalinclude:: ../../examples/systems-code-examples/threads_csharp/threads/PipelineComputation.cs
    :start-after: begin-class-PipelineComputation
    :end-before: end-class-PipelineComputation
    :linenos:
@@ -106,7 +106,7 @@ Common Threading Use Cases
 - Example Pipeline Processing - a more concise and language friendly file compression
 
 
-.. literalinclude:: ../../examples/systems-code-samples/threads_csharp/threads/ConcisePipelineComputation.cs
+.. literalinclude:: ../../examples/systems-code-examples/threads_csharp/threads/ConcisePipelineComputation.cs
    :start-after: begin-class-ConcisePipelineComputation
    :end-before: end-class-ConcisePipelineComputation
    :linenos:
@@ -114,7 +114,7 @@ Common Threading Use Cases
 
 - Helper class - ThreadedList
 
-.. literalinclude:: ../../examples/systems-code-samples/threads_csharp/threads/ThreadedList.cs
+.. literalinclude:: ../../examples/systems-code-examples/threads_csharp/threads/ThreadedList.cs
    :start-after: begin-class-ThreadedList
    :end-before: end-class-ThreadedList
    :linenos:
@@ -379,7 +379,7 @@ Common Data Structures in Concurrent Programming
 
 - Example Bound Buffer
 
-.. literalinclude:: ../../examples/systems-code-samples/threads_csharp/threads/BoundBuffer.cs
+.. literalinclude:: ../../examples/systems-code-examples/threads_csharp/threads/BoundBuffer.cs
    :start-after: begin-class-BoundBuffer
    :end-before: end-class-BoundBuffer
    :linenos:
