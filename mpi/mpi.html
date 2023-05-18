@@ -1,46 +1,80 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+
+<html :class="{'dark': darkMode === 'dark' || (darkMode === 'system' &amp;&amp; window.matchMedia('(prefers-color-scheme: dark)').matches)}" class="scroll-smooth" lang="en" x-data="{ darkMode: localStorage.getItem('darkMode') || localStorage.setItem('darkMode', 'system'), activeSection: '' }" x-init="$watch('darkMode', val =&gt; localStorage.setItem('darkMode', val))">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Message Passing Interface &mdash; Distributed Systems 28 Nov 2021 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-    <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="SMTP" href="../smtp/smtp.html" />
-    <link rel="prev" title="Distributed Queues" href="../queue/queue.html" /> 
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta charset="utf-8"/>
+<meta content="white" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="black" metia="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="Docutils 0.18.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>Message Passing Interface | Distributed Systems: updated 18 May 2023</title>
+<meta content="Message Passing Interface | Distributed Systems: updated 18 May 2023" property="og:title"/>
+<meta content="Message Passing Interface | Distributed Systems: updated 18 May 2023" name="twitter:title"/>
+<link href="../_static/pygments.css" rel="stylesheet"/>
+<link href="../_static/theme.a16405b310edf0713aee.css" rel="stylesheet"/>
+<link href="../search.html" rel="search" title="Search"/>
+<link href="../genindex.html" rel="index" title="Index"/>
+<link href="../smtp/smtp.html" rel="next" title="SMTP"/>
+<link href="../queue/queue.html" rel="prev" title="Distributed Queues"/>
+<script>
+    <!-- Prevent Flash of wrong theme -->
+      const userPreference = localStorage.getItem('darkMode');
+      let mode;
+      if (userPreference === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        mode = 'dark';
+        document.documentElement.classList.add('dark');
+      } else {
+        mode = 'light';
+      }
+      if (!userPreference) {localStorage.setItem('darkMode', mode)}
+    </script>
+<script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+<script src="../_static/doctools.js"></script>
+<script src="../_static/sphinx_highlight.js"></script>
+<script defer="" src="../_static/theme.ad172c0f1249198ea036.js"></script>
 </head>
-
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search"  style="background: #922247" >
-            <a href="../index.html" class="icon icon-home"> Distributed Systems
-          </a>
-              <div class="version">
-                28 Nov 2021
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+<body :class="{ 'overflow-hidden': showSidebar }" class="min-h-screen font-sans antialiased bg-background text-foreground" x-data="{ showSidebar: false }">
+<div @click.self="showSidebar = false" class="fixed inset-0 z-50 overflow-hidden bg-background/80 backdrop-blur-sm" x-cloak="" x-show="showSidebar"></div><div class="relative flex flex-col min-h-screen" id="page"><a class="absolute top-0 left-0 z-[100] block bg-background p-4 text-xl transition -translate-x-full opacity-0 focus:translate-x-0 focus:opacity-100" href="#content">
+      Skip to content
+    </a>
+<header class="sticky top-0 z-40 w-full border-b shadow-sm border-border supports-backdrop-blur:bg-background/60 bg-background/95 backdrop-blur"><div class="container flex items-center h-14">
+<div class="hidden mr-4 md:flex">
+<a class="flex items-center mr-6" href="../index.html"><span class="hidden font-bold sm:inline-block text-clip whitespace-nowrap">Distributed Systems: updated 18 May 2023</span>
+</a></div><button @click="showSidebar = true" class="inline-flex items-center justify-center h-10 px-0 py-2 mr-2 text-base font-medium transition-colors rounded-md hover:text-accent-foreground hover:bg-transparent md:hidden" type="button">
+<svg aria-hidden="true" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M152.587 825.087q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440Zm0-203.587q-19.152 0-32.326-13.174T107.087 576q0-19.152 13.174-32.326t32.326-13.174h320q19.152 0 32.326 13.174T518.087 576q0 19.152-13.174 32.326T472.587 621.5h-320Zm0-203.587q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440ZM708.913 576l112.174 112.174q12.674 12.674 12.674 31.826t-12.674 31.826Q808.413 764.5 789.261 764.5t-31.826-12.674l-144-144Q600 594.391 600 576t13.435-31.826l144-144q12.674-12.674 31.826-12.674t31.826 12.674q12.674 12.674 12.674 31.826t-12.674 31.826L708.913 576Z"></path>
+</svg>
+<span class="sr-only">Toggle navigation menu</span>
+</button>
+<div class="flex items-center justify-between flex-1 space-x-2 sm:space-x-4 md:justify-end">
+<div class="flex-1 w-full md:w-auto md:flex-none">
+<form @keydown.k.window.meta="$refs.search.focus()" action="../search.html" class="relative flex items-center group" id="searchbox" method="get">
+<input aria-label="Search the docs" class="inline-flex items-center font-medium transition-colors bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background border border-input hover:bg-accent focus:bg-accent hover:text-accent-foreground focus:text-accent-foreground hover:placeholder-accent-foreground py-2 px-4 relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64" id="search-input" name="q" placeholder="Search ..." type="search" x-ref="search"/>
+<kbd class="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none text-muted-foreground items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex group-hover:bg-accent group-hover:text-accent-foreground">
+<span class="text-xs">⌘</span>
+      K
+    </kbd>
+</form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+<nav class="flex items-center space-x-1">
+<button @click="darkMode = darkMode === 'light' ? 'dark' : 'light'" class="relative inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md hover:bg-accent hover:text-accent-foreground h-9 w-9" type="button">
+<svg class="absolute transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 685q45.456 0 77.228-31.772Q589 621.456 589 576q0-45.456-31.772-77.228Q525.456 467 480 467q-45.456 0-77.228 31.772Q371 530.544 371 576q0 45.456 31.772 77.228Q434.544 685 480 685Zm0 91q-83 0-141.5-58.5T280 576q0-83 58.5-141.5T480 376q83 0 141.5 58.5T680 576q0 83-58.5 141.5T480 776ZM80 621.5q-19.152 0-32.326-13.174T34.5 576q0-19.152 13.174-32.326T80 530.5h80q19.152 0 32.326 13.174T205.5 576q0 19.152-13.174 32.326T160 621.5H80Zm720 0q-19.152 0-32.326-13.174T754.5 576q0-19.152 13.174-32.326T800 530.5h80q19.152 0 32.326 13.174T925.5 576q0 19.152-13.174 32.326T880 621.5h-80Zm-320-320q-19.152 0-32.326-13.174T434.5 256v-80q0-19.152 13.174-32.326T480 130.5q19.152 0 32.326 13.174T525.5 176v80q0 19.152-13.174 32.326T480 301.5Zm0 720q-19.152 0-32.326-13.17Q434.5 995.152 434.5 976v-80q0-19.152 13.174-32.326T480 850.5q19.152 0 32.326 13.174T525.5 896v80q0 19.152-13.174 32.33-13.174 13.17-32.326 13.17ZM222.174 382.065l-43-42Q165.5 327.391 166 308.239t13.174-33.065q13.435-13.674 32.587-13.674t32.065 13.674l42.239 43q12.674 13.435 12.555 31.706-.12 18.272-12.555 31.946-12.674 13.674-31.445 13.413-18.772-.261-32.446-13.174Zm494 494.761-42.239-43q-12.674-13.435-12.674-32.087t12.674-31.565Q686.609 756.5 705.38 757q18.772.5 32.446 13.174l43 41.761Q794.5 824.609 794 843.761t-13.174 33.065Q767.391 890.5 748.239 890.5t-32.065-13.674Zm-42-494.761Q660.5 369.391 661 350.62q.5-18.772 13.174-32.446l41.761-43Q728.609 261.5 747.761 262t33.065 13.174q13.674 13.435 13.674 32.587t-13.674 32.065l-43 42.239q-13.435 12.674-31.706 12.555-18.272-.12-31.946-12.555Zm-495 494.761Q165.5 863.391 165.5 844.239t13.674-32.065l43-42.239q13.435-12.674 32.087-12.674t31.565 12.674Q299.5 782.609 299 801.38q-.5 18.772-13.174 32.446l-41.761 43Q231.391 890.5 212.239 890t-33.065-13.174ZM480 576Z"></path>
+</svg>
+<svg class="absolute transition-all scale-0 rotate-90 dark:rotate-0 dark:scale-100" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 936q-151 0-255.5-104.5T120 576q0-138 90-239.5T440 218q25-3 39 18t-1 44q-17 26-25.5 55t-8.5 61q0 90 63 153t153 63q31 0 61.5-9t54.5-25q21-14 43-1.5t19 39.5q-14 138-117.5 229T480 936Zm0-80q88 0 158-48.5T740 681q-20 5-40 8t-40 3q-123 0-209.5-86.5T364 396q0-20 3-40t8-40q-78 32-126.5 102T200 576q0 116 82 198t198 82Zm-10-270Z"></path>
+</svg>
+</button>
+</nav>
+</div>
+</div>
+</header>
+<div class="flex-1"><div class="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10"><aside :aria-hidden="!showSidebar" :class="{ 'translate-x-0': showSidebar }" class="fixed inset-y-0 left-0 md:top-14 z-50 md:z-30 bg-background md:bg-transparent transition-all duration-100 -translate-x-full md:translate-x-0 ml-0 p-6 md:p-0 md:-ml-2 md:h-[calc(100vh-3.5rem)] w-5/6 md:w-full shrink-0 overflow-y-auto border-r border-border md:sticky" id="left-sidebar">
+<a class="!justify-start text-sm md:!hidden bg-background" href="../index.html"><span class="font-bold text-clip whitespace-nowrap">Distributed Systems: updated 18 May 2023</span>
+</a>
+<div class="relative overflow-hidden md:overflow-auto my-4 md:my-0 h-[calc(100vh-8rem)] md:h-auto">
+<div class="overflow-y-auto h-full w-full relative pr-6"><nav class="table w-full min-w-full my-6 lg:my-8">
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../issues/issues.html">Introduction and Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../networking/networking.html">Networking Primer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../concurrency/concurrency.html">Concurrency and Threads</a></li>
@@ -73,45 +107,41 @@
 <li class="toctree-l1"><a class="reference internal" href="../iot/iot.html">Internet of Things and Pervasive Systems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../election/election.html">Election Algorithms</a></li>
 </ul>
-
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #922247" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Distributed Systems</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content style-external-links">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Message Passing Interface</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/mpi/mpi.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
+</nav>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  <section id="message-passing-interface">
-<h1>Message Passing Interface<a class="headerlink" href="#message-passing-interface" title="Permalink to this headline"></a></h1>
+</div>
+<button @click="showSidebar = false" class="absolute md:hidden right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100" type="button">
+<svg class="h-4 w-4" fill="currentColor" height="24" stroke="none" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 632 284 828q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536 576l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480 632Z"></path>
+</svg>
+</button>
+</aside>
+<main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+<div class="w-full min-w-0 mx-auto">
+<nav aria-label="breadcrumbs" class="flex items-center mb-4 space-x-1 text-sm text-muted-foreground">
+<a class="overflow-hidden text-ellipsis whitespace-nowrap hover:text-foreground" href="../index.html">
+<span class="hidden md:inline">Distributed Systems: updated 18 May 2023</span>
+<svg aria-label="Home" class="md:hidden" fill="currentColor" height="18" stroke="none" viewbox="0 96 960 960" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M240 856h120V616h240v240h120V496L480 316 240 496v360Zm-80 80V456l320-240 320 240v480H520V696h-80v240H160Zm320-350Z"></path>
+</svg>
+</a>
+<div class="mr-1">/</div><span aria-current="page" class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap">Message Passing Interface</span>
+</nav>
+<div id="content" role="main">
+<section id="message-passing-interface">
+<h1>Message Passing Interface<a class="headerlink" href="#message-passing-interface" title="Permalink to this heading">¶</a></h1>
 <section id="credits">
-<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline"></a></h2>
+<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#credits'">¶</a></h2>
 <ul class="simple">
 <li><p>This lecture was written originally Brian Gathright, a former graduate student. It as since been adapted into this course’s lecture notes</p></li>
 </ul>
 </section>
 <section id="lecture-code">
-<h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Permalink to this headline"></a></h2>
+<h2>Lecture Code<a class="headerlink" href="#lecture-code" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#lecture-code'">¶</a></h2>
 <p><a class="reference external" href="code/mpi">MPI Code Samples</a></p>
 </section>
 <section id="what-is-mpi">
-<h2>What is MPI?<a class="headerlink" href="#what-is-mpi" title="Permalink to this headline"></a></h2>
+<h2>What is MPI?<a class="headerlink" href="#what-is-mpi" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#what-is-mpi'">¶</a></h2>
 <ul class="simple">
 <li><p>MPI stands for Message Passing Interface.</p></li>
 <li><p>MPI is used to send messages from one process (computer, workstation etc.) to another. These messages can contain data ranging from primitive types (integers, strings and so forth) to actual objects.</p></li>
@@ -134,14 +164,14 @@
 <li><p>To summarize: MPI is a message passing library whose implementations are used to send messages (data, instructions, etc.) to other processes in order to perform specific tasks. In this way MPI is very much a Distributed topic.</p></li>
 </ul>
 <section id="uses-of-mpi">
-<h3>Uses of MPI<a class="headerlink" href="#uses-of-mpi" title="Permalink to this headline"></a></h3>
+<h3>Uses of MPI<a class="headerlink" href="#uses-of-mpi" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#uses-of-mpi'">¶</a></h3>
 <ul class="simple">
 <li><p>MPI is helpful whenever you need several workstations (or clusters) to work together efficiently and effectively.</p></li>
 <li><p>Two examples of such tasks are Parallel Computing and Monte Carlo Simulations.</p></li>
 </ul>
 </section>
 <section id="parallel-computing">
-<h3>Parallel Computing<a class="headerlink" href="#parallel-computing" title="Permalink to this headline"></a></h3>
+<h3>Parallel Computing<a class="headerlink" href="#parallel-computing" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#parallel-computing'">¶</a></h3>
 <ul>
 <li><p>Parallel computing is a form of computation in which multiple calculations are done at the same time.</p></li>
 <li><p>For example, imagine you want to calculate the sum of a large amount of numbers (as in hundreds of thousands). You could do this several ways.</p>
@@ -156,7 +186,7 @@
 </ul>
 </section>
 <section id="monte-carlo-simulations">
-<h3>Monte Carlo Simulations<a class="headerlink" href="#monte-carlo-simulations" title="Permalink to this headline"></a></h3>
+<h3>Monte Carlo Simulations<a class="headerlink" href="#monte-carlo-simulations" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#monte-carlo-simulations'">¶</a></h3>
 <ul class="simple">
 <li><p>Briefly, Monte Carlo computations are computations that rely on random simulations that are done repeatably to derive probablities.</p></li>
 <li><p>MPI works great for this! Imagine you want to calculate the approximate value of Pi.</p></li>
@@ -165,12 +195,12 @@
 </ul>
 </section>
 <section id="the-mpi-programming-model">
-<h3>The MPI Programming Model<a class="headerlink" href="#the-mpi-programming-model" title="Permalink to this headline"></a></h3>
+<h3>The MPI Programming Model<a class="headerlink" href="#the-mpi-programming-model" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#the-mpi-programming-model'">¶</a></h3>
 <p>Now that you see that MPI has uses and benefits, let us talk briefly on the nitty-gritty details of how an implementation of MPI
 looks and works. All implementations of MPI should have the following capabilities.</p>
 </section>
 <section id="multiple-processes-ranks">
-<h3>Multiple Processes - Ranks<a class="headerlink" href="#multiple-processes-ranks" title="Permalink to this headline"></a></h3>
+<h3>Multiple Processes - Ranks<a class="headerlink" href="#multiple-processes-ranks" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#multiple-processes-ranks'">¶</a></h3>
 <p>As mentioned above, MPI works on multiple processes, that is multiple computers in a workstation or cluster all working together (or all on one machine).
 In MPI, each process is assigned a Rank. Rank is used to split up the work and allow communication between the processes and also
 to allow specific processes to have specific tasks. In our Summation example, the Root process (Rank 0), was responsible for sending
@@ -199,7 +229,7 @@ For instance, the summing example could look like this:</p>
 Each process is running the same program, but is working on different parts of it. We will look back at the Summation problem later on.</p>
 </section>
 <section id="writing-a-simple-mpi-program">
-<h3>Writing a Simple MPI Program<a class="headerlink" href="#writing-a-simple-mpi-program" title="Permalink to this headline"></a></h3>
+<h3>Writing a Simple MPI Program<a class="headerlink" href="#writing-a-simple-mpi-program" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#writing-a-simple-mpi-program'">¶</a></h3>
 <p>In order to write your own MPI programs you will need an Implementation of MPI for the language you wish to code in.</p>
 <p>We used:</p>
 <ul class="simple">
@@ -227,13 +257,13 @@ In C# the skeleton looks like this:</p>
 <p>All of your code must go inside the MPI Environment, that way MPI can handle setting up and tearing down the environment for you.</p>
 </section>
 <section id="hello-world">
-<h3>Hello World<a class="headerlink" href="#hello-world" title="Permalink to this headline"></a></h3>
+<h3>Hello World<a class="headerlink" href="#hello-world" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#hello-world'">¶</a></h3>
 <p>Assume we want to write the quintessential Hello World program. We could simply add</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">void</span> <span class="n">Main</span><span class="p">(</span><span class="n">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="n">using</span> <span class="p">(</span><span class="n">new</span> <span class="n">MPI</span><span class="o">.</span><span class="n">Environment</span><span class="p">(</span><span class="n">ref</span> <span class="n">args</span><span class="p">))</span>
         <span class="p">{</span>
-                <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">);</span>
+                <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">"Hello, World!"</span><span class="p">);</span>
         <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -244,16 +274,16 @@ In C# the skeleton looks like this:</p>
 <span class="p">{</span>
     <span class="n">using</span> <span class="p">(</span><span class="n">new</span> <span class="n">MPI</span><span class="o">.</span><span class="n">Environment</span><span class="p">(</span><span class="n">ref</span> <span class="n">args</span><span class="p">))</span>
     <span class="p">{</span>
-        <span class="o">//</span><span class="n">root</span><span class="s1">&#39;s instructions</span>
+        <span class="o">//</span><span class="n">root</span><span class="s1">'s instructions</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">Communicator</span><span class="o">.</span><span class="n">world</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Hello, World! I am the root.&quot;</span><span class="p">);</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">"Hello, World! I am the root."</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="o">//</span><span class="n">non</span><span class="o">-</span><span class="n">root</span><span class="s1">&#39;s instructions</span>
+        <span class="o">//</span><span class="n">non</span><span class="o">-</span><span class="n">root</span><span class="s1">'s instructions</span>
         <span class="k">else</span>
         <span class="p">{</span>
-            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Hello, World! I am rank &quot;</span> <span class="o">+</span> <span class="n">Communicator</span><span class="o">.</span><span class="n">world</span><span class="o">.</span><span class="n">Rank</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span><span class="p">);</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">"Hello, World! I am rank "</span> <span class="o">+</span> <span class="n">Communicator</span><span class="o">.</span><span class="n">world</span><span class="o">.</span><span class="n">Rank</span> <span class="o">+</span> <span class="s2">"."</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -261,10 +291,10 @@ In C# the skeleton looks like this:</p>
 </div>
 </section>
 <section id="running-the-mpi-program">
-<h3>Running the MPI Program<a class="headerlink" href="#running-the-mpi-program" title="Permalink to this headline"></a></h3>
+<h3>Running the MPI Program<a class="headerlink" href="#running-the-mpi-program" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#running-the-mpi-program'">¶</a></h3>
 <p>We can run the program from the command line using MPI. Most implementations use “mpiexec”, though it might vary slightly.
 For MPI.NET we would write:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;mpiexec.exe ProgramName.exe&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">"mpiexec.exe ProgramName.exe"</span>
 </pre></div>
 </div>
 <p>However, this would only run with one process and so our output would just be:</p>
@@ -272,7 +302,7 @@ For MPI.NET we would write:</p>
 </pre></div>
 </div>
 <p>MPI makes it easy to launch N processes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;mpiexec.exe -n 5 ProgramName.exe&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">"mpiexec.exe -n 5 ProgramName.exe"</span>
 </pre></div>
 </div>
 <p>would launch 5 processes and so the output would now be something like:</p>
@@ -288,11 +318,11 @@ Hello, World! I am rank 2.
 </section>
 </section>
 <section id="communication-is-key">
-<h2>Communication is Key<a class="headerlink" href="#communication-is-key" title="Permalink to this headline"></a></h2>
+<h2>Communication is Key<a class="headerlink" href="#communication-is-key" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#communication-is-key'">¶</a></h2>
 <p>Our Hello World program is technically an MPI program, but there was no actual communication between the different processes. Let’s remedy that.</p>
 <p>MPI allows two major types of communication: Point to Point and Collectives. Before we get to those, let’s briefly discuss the Communicator object.</p>
 <section id="the-communicator">
-<h3>The Communicator<a class="headerlink" href="#the-communicator" title="Permalink to this headline"></a></h3>
+<h3>The Communicator<a class="headerlink" href="#the-communicator" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#the-communicator'">¶</a></h3>
 <p>The Communicator is crucial to MPI projects.
 The Communicator is what allows the different processes to, well, communicate with eachother.
 MPI programs can have several Communicators.
@@ -304,7 +334,7 @@ Multiple Communicators are needed if you want to section off the processes in yo
 <p>You will notice all of our code uses the world communicator for sending and receiving messages. For convenience sake we use the variable comm to refer to Communicator.world.</p>
 </section>
 <section id="point-to-point">
-<h3>Point to Point<a class="headerlink" href="#point-to-point" title="Permalink to this headline"></a></h3>
+<h3>Point to Point<a class="headerlink" href="#point-to-point" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#point-to-point'">¶</a></h3>
 <p>Point to Point communication is the most basic. This is simply when the processes communicate on a one to one basis. Rank 0 talks to
 Rank 1, Rank 1 talks to Rank 2 etc. or even more simply Rank 0 talks to Rank 1 and Rank 1 talks to Rank 0. Point to Point can have its
 uses, but we will primarily use it to illustrate message sending and then focus on the more exciting Collective Communication.</p>
@@ -351,11 +381,11 @@ add something to the string and print it so we can see the progress of our messa
 
         <span class="k">if</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Root: Let&#39;s play a game of telephone!&quot;</span><span class="p">);</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">"Root: Let's play a game of telephone!"</span><span class="p">);</span>
 
-            <span class="n">string</span> <span class="n">originalMsg</span> <span class="o">=</span> <span class="s2">&quot;chicago&quot;</span><span class="p">;</span>
+            <span class="n">string</span> <span class="n">originalMsg</span> <span class="o">=</span> <span class="s2">"chicago"</span><span class="p">;</span>
 
-            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Root: The inital word is: </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">originalMsg</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">.&quot;</span><span class="p">);</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">"Root: The inital word is: </span><span class="se">\"</span><span class="s2">"</span> <span class="o">+</span> <span class="n">originalMsg</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\"</span><span class="s2">."</span><span class="p">);</span>
             <span class="n">comm</span><span class="o">.</span><span class="n">Send</span><span class="p">(</span><span class="n">originalMsg</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 
             <span class="o">//</span><span class="n">example</span> <span class="n">of</span> <span class="n">a</span> <span class="n">blocking</span> <span class="n">Receieve</span>
@@ -364,11 +394,11 @@ add something to the string and print it so we can see the progress of our messa
             <span class="o">//</span><span class="ow">not</span> <span class="n">printed</span> <span class="n">until</span> <span class="n">the</span> <span class="n">message</span> <span class="ow">is</span> <span class="n">received</span><span class="o">.</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">Equals</span><span class="p">(</span><span class="n">originalMsg</span><span class="p">))</span>
             <span class="p">{</span>
-                <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Root: Good job guys! You got it!&quot;</span><span class="p">);</span>
+                <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">"Root: Good job guys! You got it!"</span><span class="p">);</span>
             <span class="p">}</span>
             <span class="k">else</span>
             <span class="p">{</span>
-                <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Root: Close enough...&quot;</span><span class="p">);</span>
+                <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">"Root: Close enough..."</span><span class="p">);</span>
             <span class="p">}</span>
         <span class="p">}</span>
         <span class="k">else</span>
@@ -378,7 +408,7 @@ add something to the string and print it so we can see the progress of our messa
 
             <span class="n">string</span> <span class="n">newMsg</span> <span class="o">=</span> <span class="n">jumble</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
 
-            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="n">newMsg</span><span class="p">);</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">+</span> <span class="s2">": "</span> <span class="o">+</span> <span class="n">newMsg</span><span class="p">);</span>
 
             <span class="n">comm</span><span class="o">.</span><span class="n">Send</span><span class="p">(</span><span class="n">newMsg</span><span class="p">,</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">comm</span><span class="o">.</span><span class="n">Size</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
         <span class="p">}</span>
@@ -405,8 +435,8 @@ add something to the string and print it so we can see the progress of our messa
 </pre></div>
 </div>
 <p>output with 4 processes and word “chicago”:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Root</span><span class="p">:</span> <span class="n">Let</span><span class="s1">&#39;s play a game of telephone.</span>
-<span class="n">Root</span><span class="p">:</span> <span class="n">The</span> <span class="n">inital</span> <span class="n">word</span> <span class="ow">is</span> <span class="s2">&quot;chicago&quot;</span><span class="o">.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Root</span><span class="p">:</span> <span class="n">Let</span><span class="s1">'s play a game of telephone.</span>
+<span class="n">Root</span><span class="p">:</span> <span class="n">The</span> <span class="n">inital</span> <span class="n">word</span> <span class="ow">is</span> <span class="s2">"chicago"</span><span class="o">.</span>
 <span class="mi">1</span><span class="p">:</span> <span class="n">chicaog</span>
 <span class="mi">2</span><span class="p">:</span> <span class="n">hcicaog</span>
 <span class="mi">3</span><span class="p">:</span> <span class="n">hcciaog</span>
@@ -424,14 +454,14 @@ add something to the string and print it so we can see the progress of our messa
         <span class="o">//</span><span class="n">root</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Root sent a message to Rank 1&quot;</span><span class="p">);</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">"Root sent a message to Rank 1"</span><span class="p">);</span>
 
-            <span class="n">comm</span><span class="o">.</span><span class="n">Send</span><span class="p">(</span><span class="s2">&quot;blah&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+            <span class="n">comm</span><span class="o">.</span><span class="n">Send</span><span class="p">(</span><span class="s2">"blah"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 
             <span class="o">//</span><span class="n">nonblocking</span> <span class="n">receive</span>
             <span class="n">Request</span> <span class="n">receive</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">ImmediateReceive</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 
-            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;We are performing a nonblocking receive, so we can print instantly.&quot;</span><span class="p">);</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">"We are performing a nonblocking receive, so we can print instantly."</span><span class="p">);</span>
             <span class="n">receive</span><span class="o">.</span><span class="n">Wait</span><span class="p">();</span>
         <span class="p">}</span>
         <span class="o">//</span><span class="ow">not</span> <span class="n">the</span> <span class="n">root</span>
@@ -442,9 +472,9 @@ add something to the string and print it so we can see the progress of our messa
             <span class="o">//</span><span class="n">Rank</span> <span class="mi">1</span> <span class="n">will</span> <span class="n">wait</span> <span class="n">half</span> <span class="n">a</span> <span class="n">second</span> <span class="n">before</span> <span class="n">sending</span> <span class="n">response</span>
             <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">Thread</span><span class="o">.</span><span class="n">Sleep</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span>
 
-            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;We waited half a second before sending something to the root.&quot;</span><span class="p">);</span>
-            <span class="n">comm</span><span class="o">.</span><span class="n">Send</span><span class="p">(</span><span class="s2">&quot;blah&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;If root was blocking, it wouldn&#39;t have been able to print until now!&quot;</span><span class="p">);</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">"We waited half a second before sending something to the root."</span><span class="p">);</span>
+            <span class="n">comm</span><span class="o">.</span><span class="n">Send</span><span class="p">(</span><span class="s2">"blah"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">"If root was blocking, it wouldn't have been able to print until now!"</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -454,12 +484,12 @@ add something to the string and print it so we can see the progress of our messa
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Root</span> <span class="n">sent</span> <span class="n">a</span> <span class="n">message</span> <span class="n">to</span> <span class="n">Rank</span> <span class="mi">1</span>
 <span class="n">We</span> <span class="n">are</span> <span class="n">performing</span> <span class="n">a</span> <span class="n">nonblocking</span> <span class="n">receive</span><span class="p">,</span> <span class="n">so</span> <span class="n">we</span> <span class="nb">print</span> <span class="n">instantly</span><span class="o">.</span>
 <span class="n">We</span> <span class="n">waited</span> <span class="n">half</span> <span class="n">a</span> <span class="n">second</span> <span class="n">before</span> <span class="n">sending</span> <span class="n">something</span> <span class="n">to</span> <span class="n">the</span> <span class="n">root</span><span class="o">.</span>
-<span class="n">If</span> <span class="n">root</span> <span class="n">was</span> <span class="n">blocking</span><span class="p">,</span> <span class="n">it</span> <span class="n">wouldn</span><span class="s1">&#39;t have been able to print until now!</span>
+<span class="n">If</span> <span class="n">root</span> <span class="n">was</span> <span class="n">blocking</span><span class="p">,</span> <span class="n">it</span> <span class="n">wouldn</span><span class="s1">'t have been able to print until now!</span>
 </pre></div>
 </div>
 </section>
 <section id="collective">
-<h3>Collective<a class="headerlink" href="#collective" title="Permalink to this headline"></a></h3>
+<h3>Collective<a class="headerlink" href="#collective" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#collective'">¶</a></h3>
 <p>The other type of communication we can do is Collective, that is all the processes communicate with each other in one way or another.
 You could probably do all of your coding in Point to Point Communication, but this would get messy pretty quickly. Here are two reasons
 to consider Collective Communication:</p>
@@ -491,7 +521,7 @@ to consider Collective Communication:</p>
 </ul>
 </section>
 <section id="barriers">
-<h3>Barriers<a class="headerlink" href="#barriers" title="Permalink to this headline"></a></h3>
+<h3>Barriers<a class="headerlink" href="#barriers" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#barriers'">¶</a></h3>
 <p>Barriers are not exclusive to MPI. You might have encountered them before when using threads. A barrier simply blocks all processes
 from going past a certain point in your code until all processes are at that point, hence the name: barrier.</p>
 <p>In MPI its as simple as calling the Barrier function.</p>
@@ -504,7 +534,7 @@ from going past a certain point in your code until all processes are at that poi
 
         <span class="k">if</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Get to the CHOPPA!&quot;</span><span class="p">);</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">"Get to the CHOPPA!"</span><span class="p">);</span>
         <span class="p">}</span>
         <span class="k">else</span>
         <span class="p">{</span>
@@ -516,7 +546,7 @@ from going past a certain point in your code until all processes are at that poi
 
         <span class="k">if</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Everyone is on the CHOPPA!&quot;</span><span class="p">);</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">"Everyone is on the CHOPPA!"</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -530,7 +560,7 @@ Everyone is on the CHOPPA!
 </div>
 </section>
 <section id="all-to-one">
-<h3>All-to-One<a class="headerlink" href="#all-to-one" title="Permalink to this headline"></a></h3>
+<h3>All-to-One<a class="headerlink" href="#all-to-one" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#all-to-one'">¶</a></h3>
 <p>This type of communication is where one process requests information from all the other processes.</p>
 <p>The Gather and Allgather functions are used.</p>
 <p>Gather has two parameters: (value, rank of destination). The call to Gather returns to the destination an array of whatever the
@@ -547,7 +577,7 @@ to sort the numbers and print them out.</p>
         <span class="n">Intracommunicator</span> <span class="n">comm</span> <span class="o">=</span> <span class="n">Communicator</span><span class="o">.</span><span class="n">world</span><span class="p">;</span>
         <span class="n">Random</span> <span class="n">rand</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Random</span><span class="p">();</span>
 
-        <span class="o">//</span><span class="n">root</span><span class="s1">&#39;s array will contain all the values returned by the rand call. all other nodes will have an empty array.</span>
+        <span class="o">//</span><span class="n">root</span><span class="s1">'s array will contain all the values returned by the rand call. all other nodes will have an empty array.</span>
         <span class="nb">int</span><span class="p">[]</span> <span class="n">randomNums</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Gather</span><span class="p">(</span><span class="n">rand</span><span class="o">.</span><span class="n">Next</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1001</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
@@ -574,7 +604,7 @@ to sort the numbers and print them out.</p>
 </div>
 </section>
 <section id="one-to-all">
-<h3>One-to-All<a class="headerlink" href="#one-to-all" title="Permalink to this headline"></a></h3>
+<h3>One-to-All<a class="headerlink" href="#one-to-all" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#one-to-all'">¶</a></h3>
 <p>This type of communication is where one process sends information to all the other processes.</p>
 <p>The Broadcast and Scatter commands are used.</p>
 <p>Broadcast has two parameters (value, rank)
@@ -592,10 +622,10 @@ different info to differnt processes.</p>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="n">root</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">nums</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Chapter 1: MPI&quot;</span><span class="p">;</span>
-            <span class="n">nums</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Chapter 2: BitCoins&quot;</span><span class="p">;</span>
-            <span class="n">nums</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Chapter 3: MongoDB&quot;</span><span class="p">;</span>
-            <span class="n">nums</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Chapter 4: How to Make a Sandwich&quot;</span><span class="p">;</span>
+            <span class="n">nums</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Chapter 1: MPI"</span><span class="p">;</span>
+            <span class="n">nums</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Chapter 2: BitCoins"</span><span class="p">;</span>
+            <span class="n">nums</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Chapter 3: MongoDB"</span><span class="p">;</span>
+            <span class="n">nums</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Chapter 4: How to Make a Sandwich"</span><span class="p">;</span>
 
             <span class="o">//</span><span class="k">if</span> <span class="n">the</span> <span class="n">rank</span> <span class="ow">is</span> <span class="n">yours</span><span class="p">,</span> <span class="n">then</span> <span class="n">you</span> <span class="n">are</span> <span class="n">sending</span> <span class="n">the</span> <span class="n">data</span>
             <span class="n">comm</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">root</span><span class="p">);</span>
@@ -605,7 +635,7 @@ different info to differnt processes.</p>
         <span class="p">{</span>
             <span class="o">//</span><span class="k">if</span> <span class="n">the</span> <span class="n">rank</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">yours</span><span class="p">,</span> <span class="n">then</span> <span class="n">you</span> <span class="n">are</span> <span class="n">receiving</span> <span class="n">data</span>
             <span class="n">string</span> <span class="n">value</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">root</span><span class="p">);</span>
-            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">+</span> <span class="s2">&quot; was assigned &quot;</span> <span class="o">+</span> <span class="n">value</span><span class="p">);</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">+</span> <span class="s2">" was assigned "</span> <span class="o">+</span> <span class="n">value</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -620,7 +650,7 @@ different info to differnt processes.</p>
 </div>
 </section>
 <section id="all-to-all">
-<h3>All-to-All<a class="headerlink" href="#all-to-all" title="Permalink to this headline"></a></h3>
+<h3>All-to-All<a class="headerlink" href="#all-to-all" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#all-to-all'">¶</a></h3>
 <p>Every process sends to every other process. Again the ith value will be sent to the process with rank i. Each process will in turn
 receive a different array where the jth value will be the value from the process with rank j.</p>
 <p>The command is simply Alltoall</p>
@@ -634,7 +664,7 @@ receive a different array where the jth value will be the value from the process
         <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">comm</span><span class="o">.</span><span class="n">Size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="o">//</span><span class="n">each</span> <span class="n">process</span> <span class="n">fills</span> <span class="n">their</span> <span class="n">data</span> <span class="k">with</span> <span class="n">a</span> <span class="n">string</span> <span class="n">marked</span> <span class="k">with</span> <span class="n">their</span> <span class="n">rank</span>
-            <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;This string came from Rank &quot;</span> <span class="o">+</span> <span class="n">comm</span><span class="o">.</span><span class="n">Rank</span><span class="p">;</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"This string came from Rank "</span> <span class="o">+</span> <span class="n">comm</span><span class="o">.</span><span class="n">Rank</span><span class="p">;</span>
         <span class="p">}</span>
 
         <span class="o">//</span><span class="n">each</span> <span class="n">process</span> <span class="n">will</span> <span class="n">have</span> <span class="ow">in</span> <span class="n">order</span> <span class="n">the</span> <span class="n">strings</span> <span class="kn">from</span> <span class="nn">each</span> <span class="n">process</span>
@@ -644,7 +674,7 @@ receive a different array where the jth value will be the value from the process
         <span class="o">//</span><span class="n">prints</span> <span class="n">out</span> <span class="n">the</span> <span class="n">roots</span> <span class="n">contents</span> <span class="n">to</span> <span class="n">show</span> <span class="n">what</span> <span class="n">happened</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;The root&#39;s array contains: &quot;</span><span class="p">);</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">"The root's array contains: "</span><span class="p">);</span>
             <span class="n">foreach</span> <span class="p">(</span><span class="n">string</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">results</span><span class="p">)</span>
             <span class="p">{</span>
                 <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
@@ -655,7 +685,7 @@ receive a different array where the jth value will be the value from the process
 </pre></div>
 </div>
 <p>sample output with N processes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">root</span><span class="s1">&#39;s array contains:</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">root</span><span class="s1">'s array contains:</span>
 <span class="n">This</span> <span class="n">string</span> <span class="n">came</span> <span class="kn">from</span> <span class="nn">Rank</span> <span class="mi">0</span>
 <span class="n">This</span> <span class="n">string</span> <span class="n">came</span> <span class="kn">from</span> <span class="nn">Rank</span> <span class="mi">1</span>
 <span class="n">This</span> <span class="n">string</span> <span class="n">came</span> <span class="kn">from</span> <span class="nn">Rank</span> <span class="mi">2</span>
@@ -666,7 +696,7 @@ receive a different array where the jth value will be the value from the process
 </div>
 </section>
 <section id="combining-results">
-<h3>Combining Results<a class="headerlink" href="#combining-results" title="Permalink to this headline"></a></h3>
+<h3>Combining Results<a class="headerlink" href="#combining-results" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#combining-results'">¶</a></h3>
 <p>This is the most interesting Collective Communication (in our opinion).</p>
 <p>It uses the Reduce function (and usually some kind of Broadcast).</p>
 <p>This is used to sum, multiple, etc the stuff from all the processs and return it all to the process who requested it. Think back to our summation problem.</p>
@@ -697,26 +727,26 @@ receive a different array where the jth value will be the value from the process
         <span class="nb">int</span> <span class="n">startingIndex</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span>
         <span class="nb">int</span> <span class="n">endingIndex</span> <span class="o">=</span> <span class="n">startingIndex</span> <span class="o">+</span> <span class="n">x</span><span class="p">;</span>
 
-        <span class="o">//</span><span class="n">the</span> <span class="n">last</span> <span class="n">process</span> <span class="n">will</span> <span class="n">grab</span> <span class="n">the</span> <span class="n">outliers</span> <span class="k">if</span> <span class="n">the</span> <span class="n">size</span> <span class="n">isn</span><span class="s1">&#39;t divisible</span>
+        <span class="o">//</span><span class="n">the</span> <span class="n">last</span> <span class="n">process</span> <span class="n">will</span> <span class="n">grab</span> <span class="n">the</span> <span class="n">outliers</span> <span class="k">if</span> <span class="n">the</span> <span class="n">size</span> <span class="n">isn</span><span class="s1">'t divisible</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="n">comm</span><span class="o">.</span><span class="n">Size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="n">endingIndex</span> <span class="o">=</span> <span class="n">lotsOfNumbers</span><span class="o">.</span><span class="n">Length</span><span class="p">;</span>
         <span class="p">}</span>
 
-        <span class="o">//</span><span class="n">each</span> <span class="n">process</span> <span class="nb">sum</span><span class="s1">&#39;s its part of the numbers</span>
+        <span class="o">//</span><span class="n">each</span> <span class="n">process</span> <span class="nb">sum</span><span class="s1">'s its part of the numbers</span>
         <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">startingIndex</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">endingIndex</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="nb">sum</span> <span class="o">+=</span> <span class="n">lotsOfNumbers</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
         <span class="p">}</span>
         <span class="o">//</span><span class="nb">print</span> <span class="n">out</span> <span class="n">what</span> <span class="n">process</span> <span class="n">was</span> <span class="ow">and</span> <span class="n">what</span> <span class="n">it</span> <span class="n">was</span> <span class="n">responible</span> <span class="k">for</span> <span class="ow">and</span> <span class="n">what</span> <span class="n">it</span> <span class="n">came</span> <span class="n">up</span> <span class="k">with</span><span class="o">.</span>
-        <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;Rank &quot;</span> <span class="o">+</span> <span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="s2">&quot;summed the numbers from index &quot;</span> <span class="o">+</span> <span class="n">startingIndex</span> <span class="o">+</span> <span class="s2">&quot; to index &quot;</span> <span class="o">+</span> <span class="p">(</span><span class="n">endingIndex</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; and got &quot;</span> <span class="o">+</span> <span class="nb">sum</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span><span class="p">);</span>
+        <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">"Rank "</span> <span class="o">+</span> <span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">+</span> <span class="s2">": "</span> <span class="o">+</span> <span class="s2">"summed the numbers from index "</span> <span class="o">+</span> <span class="n">startingIndex</span> <span class="o">+</span> <span class="s2">" to index "</span> <span class="o">+</span> <span class="p">(</span><span class="n">endingIndex</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" and got "</span> <span class="o">+</span> <span class="nb">sum</span> <span class="o">+</span> <span class="s2">"."</span><span class="p">);</span>
 
         <span class="o">//</span><span class="n">the</span> <span class="n">root</span> <span class="n">gets</span> <span class="n">the</span> <span class="n">total</span> <span class="nb">sum</span><span class="p">,</span> <span class="n">he</span> <span class="n">gets</span> <span class="n">the</span> <span class="nb">sum</span> <span class="n">values</span> <span class="n">of</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">processes</span> <span class="ow">and</span> <span class="n">adds</span> <span class="n">them</span> <span class="n">together</span>
         <span class="nb">int</span> <span class="n">totalSum</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Reduce</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="n">Operation</span><span class="o">&lt;</span><span class="nb">int</span><span class="o">&gt;.</span><span class="n">Add</span><span class="p">,</span> <span class="n">root</span><span class="p">);</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Rank</span> <span class="o">==</span> <span class="n">root</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">&quot;The total sum is: &quot;</span> <span class="o">+</span> <span class="n">totalSum</span><span class="p">);</span>
+            <span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s2">"The total sum is: "</span> <span class="o">+</span> <span class="n">totalSum</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -735,9 +765,9 @@ receive a different array where the jth value will be the value from the process
 </section>
 </section>
 <section id="mpi-and-distributed-topics">
-<h2>MPI and Distributed Topics<a class="headerlink" href="#mpi-and-distributed-topics" title="Permalink to this headline"></a></h2>
+<h2>MPI and Distributed Topics<a class="headerlink" href="#mpi-and-distributed-topics" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#mpi-and-distributed-topics'">¶</a></h2>
 <section id="general-points">
-<h3>General Points<a class="headerlink" href="#general-points" title="Permalink to this headline"></a></h3>
+<h3>General Points<a class="headerlink" href="#general-points" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#general-points'">¶</a></h3>
 <ul class="simple">
 <li><p>Optimized for performance. Algorithms for collective communications are optimized based on the knowledge of the network.</p></li>
 <li><p>Reliable when sending/receiving messages. The use of tags and ranks make sure the right messages are received.</p></li>
@@ -747,14 +777,14 @@ scatter, gather etc, and not have to worry about the inner workings.</p></li>
 </ul>
 </section>
 <section id="openness">
-<h3>Openness<a class="headerlink" href="#openness" title="Permalink to this headline"></a></h3>
+<h3>Openness<a class="headerlink" href="#openness" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#openness'">¶</a></h3>
 <ul class="simple">
 <li><p>Anyone is welcome to write an MPI implementation for any language or platform.</p></li>
 <li><p>MPI forums are open and publically available as well as many implementations.</p></li>
 </ul>
 </section>
 <section id="scalability">
-<h3>Scalability<a class="headerlink" href="#scalability" title="Permalink to this headline"></a></h3>
+<h3>Scalability<a class="headerlink" href="#scalability" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#scalability'">¶</a></h3>
 <ul class="simple">
 <li><p>In one sense MPI scales really well: if you want to add more processes you simply resend the command with more processes.
 On the other hand, some of MPI’s collective communications can cause problems when scaling.</p></li>
@@ -765,7 +795,7 @@ or processes.</p></li>
 </ul>
 </section>
 <section id="fault-tolerance">
-<h3>Fault Tolerance<a class="headerlink" href="#fault-tolerance" title="Permalink to this headline"></a></h3>
+<h3>Fault Tolerance<a class="headerlink" href="#fault-tolerance" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#fault-tolerance'">¶</a></h3>
 <p>MPI, being an Interface, says very little about Fault Tolerance.
 However implementations of MPI should and to an extend do have some Fault Tolerances Built in.</p>
 <ul class="simple">
@@ -781,7 +811,7 @@ responsible for summing some section of the indexes bombs out, we could write ou
 </ul>
 </section>
 <section id="transparency">
-<h3>Transparency<a class="headerlink" href="#transparency" title="Permalink to this headline"></a></h3>
+<h3>Transparency<a class="headerlink" href="#transparency" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#transparency'">¶</a></h3>
 <p>MPI is fairly transparent.</p>
 <p>Access - We can access local or remote processes.</p>
 <p>Location - We do not care / do not need to be aware of where they are being performed.</p>
@@ -790,36 +820,53 @@ responsible for summing some section of the indexes bombs out, we could write ou
 </section>
 </section>
 </section>
-
-
-           </div>
-          </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../queue/queue.html" class="btn btn-neutral float-left" title="Distributed Queues" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../smtp/smtp.html" class="btn btn-neutral float-right" title="SMTP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2013-2019, Distributed Systems Instructors at Loyola University Chicago.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
+</div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
+<div class="sticky top-16 -mt-10 max-h-[calc(var(--vh)-4rem)] overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
+<ul>
+<li><a :data-current="activeSection === '#credits'" class="reference internal" href="#credits">Credits</a></li>
+<li><a :data-current="activeSection === '#lecture-code'" class="reference internal" href="#lecture-code">Lecture Code</a></li>
+<li><a :data-current="activeSection === '#what-is-mpi'" class="reference internal" href="#what-is-mpi">What is MPI?</a><ul>
+<li><a :data-current="activeSection === '#uses-of-mpi'" class="reference internal" href="#uses-of-mpi">Uses of MPI</a></li>
+<li><a :data-current="activeSection === '#parallel-computing'" class="reference internal" href="#parallel-computing">Parallel Computing</a></li>
+<li><a :data-current="activeSection === '#monte-carlo-simulations'" class="reference internal" href="#monte-carlo-simulations">Monte Carlo Simulations</a></li>
+<li><a :data-current="activeSection === '#the-mpi-programming-model'" class="reference internal" href="#the-mpi-programming-model">The MPI Programming Model</a></li>
+<li><a :data-current="activeSection === '#multiple-processes-ranks'" class="reference internal" href="#multiple-processes-ranks">Multiple Processes - Ranks</a></li>
+<li><a :data-current="activeSection === '#writing-a-simple-mpi-program'" class="reference internal" href="#writing-a-simple-mpi-program">Writing a Simple MPI Program</a></li>
+<li><a :data-current="activeSection === '#hello-world'" class="reference internal" href="#hello-world">Hello World</a></li>
+<li><a :data-current="activeSection === '#running-the-mpi-program'" class="reference internal" href="#running-the-mpi-program">Running the MPI Program</a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#communication-is-key'" class="reference internal" href="#communication-is-key">Communication is Key</a><ul>
+<li><a :data-current="activeSection === '#the-communicator'" class="reference internal" href="#the-communicator">The Communicator</a></li>
+<li><a :data-current="activeSection === '#point-to-point'" class="reference internal" href="#point-to-point">Point to Point</a></li>
+<li><a :data-current="activeSection === '#collective'" class="reference internal" href="#collective">Collective</a></li>
+<li><a :data-current="activeSection === '#barriers'" class="reference internal" href="#barriers">Barriers</a></li>
+<li><a :data-current="activeSection === '#all-to-one'" class="reference internal" href="#all-to-one">All-to-One</a></li>
+<li><a :data-current="activeSection === '#one-to-all'" class="reference internal" href="#one-to-all">One-to-All</a></li>
+<li><a :data-current="activeSection === '#all-to-all'" class="reference internal" href="#all-to-all">All-to-All</a></li>
+<li><a :data-current="activeSection === '#combining-results'" class="reference internal" href="#combining-results">Combining Results</a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#mpi-and-distributed-topics'" class="reference internal" href="#mpi-and-distributed-topics">MPI and Distributed Topics</a><ul>
+<li><a :data-current="activeSection === '#general-points'" class="reference internal" href="#general-points">General Points</a></li>
+<li><a :data-current="activeSection === '#openness'" class="reference internal" href="#openness">Openness</a></li>
+<li><a :data-current="activeSection === '#scalability'" class="reference internal" href="#scalability">Scalability</a></li>
+<li><a :data-current="activeSection === '#fault-tolerance'" class="reference internal" href="#fault-tolerance">Fault Tolerance</a></li>
+<li><a :data-current="activeSection === '#transparency'" class="reference internal" href="#transparency">Transparency</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</aside>
+</main>
+</div>
+</div><footer class="py-6 border-t border-border md:py-0">
+<div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+<div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2013-2019, Distributed Systems Instructors at Loyola University Chicago Built with <a class="font-medium underline underline-offset-4" href="https://www.sphinx-doc.org" rel="noreferrer">Sphinx 6.2.1</a></p>
+</div>
+</div>
 </footer>
-        </div>
-      </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
-
+</div>
 </body>
 </html>

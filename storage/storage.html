@@ -1,46 +1,80 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+
+<html :class="{'dark': darkMode === 'dark' || (darkMode === 'system' &amp;&amp; window.matchMedia('(prefers-color-scheme: dark)').matches)}" class="scroll-smooth" lang="en" x-data="{ darkMode: localStorage.getItem('darkMode') || localStorage.setItem('darkMode', 'system'), activeSection: '' }" x-init="$watch('darkMode', val =&gt; localStorage.setItem('darkMode', val))">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Distributed Systems and Storage &mdash; Distributed Systems 28 Nov 2021 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-    <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Directories and LDAP" href="../directories/directories.html" />
-    <link rel="prev" title="Concurrency and Threads" href="../concurrency/concurrency.html" /> 
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta charset="utf-8"/>
+<meta content="white" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="black" metia="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="Docutils 0.18.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>Distributed Systems and Storage | Distributed Systems: updated 18 May 2023</title>
+<meta content="Distributed Systems and Storage | Distributed Systems: updated 18 May 2023" property="og:title"/>
+<meta content="Distributed Systems and Storage | Distributed Systems: updated 18 May 2023" name="twitter:title"/>
+<link href="../_static/pygments.css" rel="stylesheet"/>
+<link href="../_static/theme.a16405b310edf0713aee.css" rel="stylesheet"/>
+<link href="../search.html" rel="search" title="Search"/>
+<link href="../genindex.html" rel="index" title="Index"/>
+<link href="../directories/directories.html" rel="next" title="Directories and LDAP"/>
+<link href="../concurrency/concurrency.html" rel="prev" title="Concurrency and Threads"/>
+<script>
+    <!-- Prevent Flash of wrong theme -->
+      const userPreference = localStorage.getItem('darkMode');
+      let mode;
+      if (userPreference === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        mode = 'dark';
+        document.documentElement.classList.add('dark');
+      } else {
+        mode = 'light';
+      }
+      if (!userPreference) {localStorage.setItem('darkMode', mode)}
+    </script>
+<script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+<script src="../_static/doctools.js"></script>
+<script src="../_static/sphinx_highlight.js"></script>
+<script defer="" src="../_static/theme.ad172c0f1249198ea036.js"></script>
 </head>
-
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search"  style="background: #922247" >
-            <a href="../index.html" class="icon icon-home"> Distributed Systems
-          </a>
-              <div class="version">
-                28 Nov 2021
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+<body :class="{ 'overflow-hidden': showSidebar }" class="min-h-screen font-sans antialiased bg-background text-foreground" x-data="{ showSidebar: false }">
+<div @click.self="showSidebar = false" class="fixed inset-0 z-50 overflow-hidden bg-background/80 backdrop-blur-sm" x-cloak="" x-show="showSidebar"></div><div class="relative flex flex-col min-h-screen" id="page"><a class="absolute top-0 left-0 z-[100] block bg-background p-4 text-xl transition -translate-x-full opacity-0 focus:translate-x-0 focus:opacity-100" href="#content">
+      Skip to content
+    </a>
+<header class="sticky top-0 z-40 w-full border-b shadow-sm border-border supports-backdrop-blur:bg-background/60 bg-background/95 backdrop-blur"><div class="container flex items-center h-14">
+<div class="hidden mr-4 md:flex">
+<a class="flex items-center mr-6" href="../index.html"><span class="hidden font-bold sm:inline-block text-clip whitespace-nowrap">Distributed Systems: updated 18 May 2023</span>
+</a></div><button @click="showSidebar = true" class="inline-flex items-center justify-center h-10 px-0 py-2 mr-2 text-base font-medium transition-colors rounded-md hover:text-accent-foreground hover:bg-transparent md:hidden" type="button">
+<svg aria-hidden="true" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M152.587 825.087q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440Zm0-203.587q-19.152 0-32.326-13.174T107.087 576q0-19.152 13.174-32.326t32.326-13.174h320q19.152 0 32.326 13.174T518.087 576q0 19.152-13.174 32.326T472.587 621.5h-320Zm0-203.587q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440ZM708.913 576l112.174 112.174q12.674 12.674 12.674 31.826t-12.674 31.826Q808.413 764.5 789.261 764.5t-31.826-12.674l-144-144Q600 594.391 600 576t13.435-31.826l144-144q12.674-12.674 31.826-12.674t31.826 12.674q12.674 12.674 12.674 31.826t-12.674 31.826L708.913 576Z"></path>
+</svg>
+<span class="sr-only">Toggle navigation menu</span>
+</button>
+<div class="flex items-center justify-between flex-1 space-x-2 sm:space-x-4 md:justify-end">
+<div class="flex-1 w-full md:w-auto md:flex-none">
+<form @keydown.k.window.meta="$refs.search.focus()" action="../search.html" class="relative flex items-center group" id="searchbox" method="get">
+<input aria-label="Search the docs" class="inline-flex items-center font-medium transition-colors bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background border border-input hover:bg-accent focus:bg-accent hover:text-accent-foreground focus:text-accent-foreground hover:placeholder-accent-foreground py-2 px-4 relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64" id="search-input" name="q" placeholder="Search ..." type="search" x-ref="search"/>
+<kbd class="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none text-muted-foreground items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex group-hover:bg-accent group-hover:text-accent-foreground">
+<span class="text-xs">⌘</span>
+      K
+    </kbd>
+</form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+<nav class="flex items-center space-x-1">
+<button @click="darkMode = darkMode === 'light' ? 'dark' : 'light'" class="relative inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md hover:bg-accent hover:text-accent-foreground h-9 w-9" type="button">
+<svg class="absolute transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 685q45.456 0 77.228-31.772Q589 621.456 589 576q0-45.456-31.772-77.228Q525.456 467 480 467q-45.456 0-77.228 31.772Q371 530.544 371 576q0 45.456 31.772 77.228Q434.544 685 480 685Zm0 91q-83 0-141.5-58.5T280 576q0-83 58.5-141.5T480 376q83 0 141.5 58.5T680 576q0 83-58.5 141.5T480 776ZM80 621.5q-19.152 0-32.326-13.174T34.5 576q0-19.152 13.174-32.326T80 530.5h80q19.152 0 32.326 13.174T205.5 576q0 19.152-13.174 32.326T160 621.5H80Zm720 0q-19.152 0-32.326-13.174T754.5 576q0-19.152 13.174-32.326T800 530.5h80q19.152 0 32.326 13.174T925.5 576q0 19.152-13.174 32.326T880 621.5h-80Zm-320-320q-19.152 0-32.326-13.174T434.5 256v-80q0-19.152 13.174-32.326T480 130.5q19.152 0 32.326 13.174T525.5 176v80q0 19.152-13.174 32.326T480 301.5Zm0 720q-19.152 0-32.326-13.17Q434.5 995.152 434.5 976v-80q0-19.152 13.174-32.326T480 850.5q19.152 0 32.326 13.174T525.5 896v80q0 19.152-13.174 32.33-13.174 13.17-32.326 13.17ZM222.174 382.065l-43-42Q165.5 327.391 166 308.239t13.174-33.065q13.435-13.674 32.587-13.674t32.065 13.674l42.239 43q12.674 13.435 12.555 31.706-.12 18.272-12.555 31.946-12.674 13.674-31.445 13.413-18.772-.261-32.446-13.174Zm494 494.761-42.239-43q-12.674-13.435-12.674-32.087t12.674-31.565Q686.609 756.5 705.38 757q18.772.5 32.446 13.174l43 41.761Q794.5 824.609 794 843.761t-13.174 33.065Q767.391 890.5 748.239 890.5t-32.065-13.674Zm-42-494.761Q660.5 369.391 661 350.62q.5-18.772 13.174-32.446l41.761-43Q728.609 261.5 747.761 262t33.065 13.174q13.674 13.435 13.674 32.587t-13.674 32.065l-43 42.239q-13.435 12.674-31.706 12.555-18.272-.12-31.946-12.555Zm-495 494.761Q165.5 863.391 165.5 844.239t13.674-32.065l43-42.239q13.435-12.674 32.087-12.674t31.565 12.674Q299.5 782.609 299 801.38q-.5 18.772-13.174 32.446l-41.761 43Q231.391 890.5 212.239 890t-33.065-13.174ZM480 576Z"></path>
+</svg>
+<svg class="absolute transition-all scale-0 rotate-90 dark:rotate-0 dark:scale-100" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 936q-151 0-255.5-104.5T120 576q0-138 90-239.5T440 218q25-3 39 18t-1 44q-17 26-25.5 55t-8.5 61q0 90 63 153t153 63q31 0 61.5-9t54.5-25q21-14 43-1.5t19 39.5q-14 138-117.5 229T480 936Zm0-80q88 0 158-48.5T740 681q-20 5-40 8t-40 3q-123 0-209.5-86.5T364 396q0-20 3-40t8-40q-78 32-126.5 102T200 576q0 116 82 198t198 82Zm-10-270Z"></path>
+</svg>
+</button>
+</nav>
+</div>
+</div>
+</header>
+<div class="flex-1"><div class="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10"><aside :aria-hidden="!showSidebar" :class="{ 'translate-x-0': showSidebar }" class="fixed inset-y-0 left-0 md:top-14 z-50 md:z-30 bg-background md:bg-transparent transition-all duration-100 -translate-x-full md:translate-x-0 ml-0 p-6 md:p-0 md:-ml-2 md:h-[calc(100vh-3.5rem)] w-5/6 md:w-full shrink-0 overflow-y-auto border-r border-border md:sticky" id="left-sidebar">
+<a class="!justify-start text-sm md:!hidden bg-background" href="../index.html"><span class="font-bold text-clip whitespace-nowrap">Distributed Systems: updated 18 May 2023</span>
+</a>
+<div class="relative overflow-hidden md:overflow-auto my-4 md:my-0 h-[calc(100vh-8rem)] md:h-auto">
+<div class="overflow-y-auto h-full w-full relative pr-6"><nav class="table w-full min-w-full my-6 lg:my-8">
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../issues/issues.html">Introduction and Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../networking/networking.html">Networking Primer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../concurrency/concurrency.html">Concurrency and Threads</a></li>
@@ -73,35 +107,31 @@
 <li class="toctree-l1"><a class="reference internal" href="../iot/iot.html">Internet of Things and Pervasive Systems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../election/election.html">Election Algorithms</a></li>
 </ul>
-
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #922247" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Distributed Systems</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content style-external-links">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Distributed Systems and Storage</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/storage/storage.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
+</nav>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  <section id="distributed-systems-and-storage">
-<h1>Distributed Systems and Storage<a class="headerlink" href="#distributed-systems-and-storage" title="Permalink to this headline"></a></h1>
+</div>
+<button @click="showSidebar = false" class="absolute md:hidden right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100" type="button">
+<svg class="h-4 w-4" fill="currentColor" height="24" stroke="none" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 632 284 828q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536 576l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480 632Z"></path>
+</svg>
+</button>
+</aside>
+<main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+<div class="w-full min-w-0 mx-auto">
+<nav aria-label="breadcrumbs" class="flex items-center mb-4 space-x-1 text-sm text-muted-foreground">
+<a class="overflow-hidden text-ellipsis whitespace-nowrap hover:text-foreground" href="../index.html">
+<span class="hidden md:inline">Distributed Systems: updated 18 May 2023</span>
+<svg aria-label="Home" class="md:hidden" fill="currentColor" height="18" stroke="none" viewbox="0 96 960 960" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M240 856h120V616h240v240h120V496L480 316 240 496v360Zm-80 80V456l320-240 320 240v480H520V696h-80v240H160Zm320-350Z"></path>
+</svg>
+</a>
+<div class="mr-1">/</div><span aria-current="page" class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap">Distributed Systems and Storage</span>
+</nav>
+<div id="content" role="main">
+<section id="distributed-systems-and-storage">
+<h1>Distributed Systems and Storage<a class="headerlink" href="#distributed-systems-and-storage" title="Permalink to this heading">¶</a></h1>
 <section id="types-of-non-local-storage">
-<h2>Types of Non-Local Storage<a class="headerlink" href="#types-of-non-local-storage" title="Permalink to this headline"></a></h2>
+<h2>Types of Non-Local Storage<a class="headerlink" href="#types-of-non-local-storage" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#types-of-non-local-storage'">¶</a></h2>
 <ol class="arabic simple">
 <li><p>SANs - Storage Area Networks</p></li>
 <li><p>NASs - Network Area Storage</p></li>
@@ -112,7 +142,7 @@
 </ol>
 </section>
 <section id="how-do-we-evaluate-storage-systems">
-<h2>How Do We Evaluate Storage Systems?<a class="headerlink" href="#how-do-we-evaluate-storage-systems" title="Permalink to this headline"></a></h2>
+<h2>How Do We Evaluate Storage Systems?<a class="headerlink" href="#how-do-we-evaluate-storage-systems" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#how-do-we-evaluate-storage-systems'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Latency - How long does a single operation of the smallest fundamental unit take to complete.</p></li>
@@ -127,7 +157,7 @@
 </section>
 </section>
 <section id="storage-devices">
-<h1>Storage Devices<a class="headerlink" href="#storage-devices" title="Permalink to this headline"></a></h1>
+<h1>Storage Devices<a class="headerlink" href="#storage-devices" title="Permalink to this heading">¶</a></h1>
 <ul class="simple">
 <li><p>Types of permanent devices:</p>
 <ul>
@@ -145,7 +175,7 @@ memory</p></li>
 </li>
 </ul>
 <section id="storage-and-failure">
-<h2>Storage and Failure<a class="headerlink" href="#storage-and-failure" title="Permalink to this headline"></a></h2>
+<h2>Storage and Failure<a class="headerlink" href="#storage-and-failure" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#storage-and-failure'">¶</a></h2>
 <ul class="simple">
 <li><p>An excellent paper about hard disk failure rates at Google is
 available here:</p></li>
@@ -162,7 +192,7 @@ available here:</p></li>
 </ul>
 </section>
 <section id="maximizing-availability-raid">
-<h2>Maximizing Availability - RAID<a class="headerlink" href="#maximizing-availability-raid" title="Permalink to this headline"></a></h2>
+<h2>Maximizing Availability - RAID<a class="headerlink" href="#maximizing-availability-raid" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#maximizing-availability-raid'">¶</a></h2>
 <ul class="simple">
 <li><p>To prevent the loss of availability of data, the use of RAID
 (Redundant Array of Inexpensive Disks) allows for redundant copies of
@@ -180,7 +210,7 @@ of any lost disk to be recovered. 3 or more disks are needed.</p></li>
 </ul>
 </section>
 <section id="raid">
-<h2>RAID<a class="headerlink" href="#raid" title="Permalink to this headline"></a></h2>
+<h2>RAID<a class="headerlink" href="#raid" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#raid'">¶</a></h2>
 <ul class="simple">
 <li><p>RAID has three common implementation approaches:</p>
 <ul>
@@ -200,41 +230,41 @@ storage device.</p></li>
 </ul>
 </section>
 <section id="raid-0">
-<h2>RAID - 0<a class="headerlink" href="#raid-0" title="Permalink to this headline"></a></h2>
+<h2>RAID - 0<a class="headerlink" href="#raid-0" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#raid-0'">¶</a></h2>
 <blockquote>
 <div><figure class="align-center" id="id3">
-<img alt="image" src="../_images/raid_0.jpg" />
+<img alt="image" src="../_images/raid_0.jpg"/>
 <figcaption>
-<p><span class="caption-text">image</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+<p><span class="caption-text">image</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div></blockquote>
 </section>
 <section id="raid-1">
-<h2>RAID - 1<a class="headerlink" href="#raid-1" title="Permalink to this headline"></a></h2>
+<h2>RAID - 1<a class="headerlink" href="#raid-1" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#raid-1'">¶</a></h2>
 <blockquote>
 <div><figure class="align-center" id="id4">
-<img alt="image" src="../_images/raid_1.jpg" />
+<img alt="image" src="../_images/raid_1.jpg"/>
 <figcaption>
-<p><span class="caption-text">image</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+<p><span class="caption-text">image</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div></blockquote>
 </section>
 <section id="raid-5">
-<h2>RAID - 5<a class="headerlink" href="#raid-5" title="Permalink to this headline"></a></h2>
+<h2>RAID - 5<a class="headerlink" href="#raid-5" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#raid-5'">¶</a></h2>
 <blockquote>
 <div><figure class="align-center" id="id5">
-<img alt="image" src="../_images/raid_5.jpg" />
+<img alt="image" src="../_images/raid_5.jpg"/>
 <figcaption>
-<p><span class="caption-text">image</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+<p><span class="caption-text">image</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div></blockquote>
 </section>
 </section>
 <section id="local-storage">
-<h1>Local Storage<a class="headerlink" href="#local-storage" title="Permalink to this headline"></a></h1>
+<h1>Local Storage<a class="headerlink" href="#local-storage" title="Permalink to this heading">¶</a></h1>
 <blockquote>
 <div><ul class="simple">
 <li><p>At the basis of almost any distributed system are the factors involved in local storage systems.</p></li>
@@ -242,7 +272,7 @@ storage device.</p></li>
 </ul>
 </div></blockquote>
 <section id="implementing-files-and-folders">
-<h2>Implementing Files and Folders<a class="headerlink" href="#implementing-files-and-folders" title="Permalink to this headline"></a></h2>
+<h2>Implementing Files and Folders<a class="headerlink" href="#implementing-files-and-folders" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#implementing-files-and-folders'">¶</a></h2>
 <ul class="simple">
 <li><p>How files and folders are implemented in a storage medium can greatly
 depend upon the physical characteristics and capabilities of that
@@ -260,7 +290,7 @@ possibilities.</p></li>
 </ul>
 </section>
 <section id="inodes">
-<h2>Inodes<a class="headerlink" href="#inodes" title="Permalink to this headline"></a></h2>
+<h2>Inodes<a class="headerlink" href="#inodes" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#inodes'">¶</a></h2>
 <ul class="simple">
 <li><p>inodes are the fundamental structures of a UNIX filesystem</p></li>
 <li><p>inodes have the following attributes:</p>
@@ -277,18 +307,18 @@ contents</p></li>
 </ul>
 </section>
 <section id="inodes-indirect-blocks">
-<h2>Inodes - Indirect Blocks<a class="headerlink" href="#inodes-indirect-blocks" title="Permalink to this headline"></a></h2>
+<h2>Inodes - Indirect Blocks<a class="headerlink" href="#inodes-indirect-blocks" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#inodes-indirect-blocks'">¶</a></h2>
 <ul class="simple">
 <li><p>The strategy of using indirect, double indirect, and even triple
 indirect blocks is a very successful implementation strategy</p></li>
 <li><p>This approach is used by ext2 / ext3 / ext4 in Linux.</p></li>
 </ul>
 <figure class="align-center">
-<img alt="image" src="../_images/ext2-inode.jpg" />
+<img alt="image" src="../_images/ext2-inode.jpg"/>
 </figure>
 </section>
 <section id="block-caches">
-<h2>Block Caches<a class="headerlink" href="#block-caches" title="Permalink to this headline"></a></h2>
+<h2>Block Caches<a class="headerlink" href="#block-caches" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#block-caches'">¶</a></h2>
 <ul class="simple">
 <li><p>To improve the performance of a filesystem, and to make disk
 scheduling algorithms more realizable, most operating systems
@@ -318,7 +348,7 @@ persisted to disk.</p></li>
 </ul>
 </section>
 <section id="folders-and-path-traversal">
-<h2>Folders and Path Traversal<a class="headerlink" href="#folders-and-path-traversal" title="Permalink to this headline"></a></h2>
+<h2>Folders and Path Traversal<a class="headerlink" href="#folders-and-path-traversal" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#folders-and-path-traversal'">¶</a></h2>
 <ul>
 <li><p>In all but the most simple filesystems, there is a concept of a
 folder and a path.</p></li>
@@ -333,14 +363,14 @@ invalid.</p></li>
 cross into different filesystems.</p>
 <blockquote>
 <div><figure class="align-center">
-<img alt="image" src="../_images/path_traversal.jpg" />
+<img alt="image" src="../_images/path_traversal.jpg"/>
 </figure>
 </div></blockquote>
 </li>
 </ul>
 </section>
 <section id="virtual-filesystems-vfs">
-<h2>Virtual Filesystems / VFS<a class="headerlink" href="#virtual-filesystems-vfs" title="Permalink to this headline"></a></h2>
+<h2>Virtual Filesystems / VFS<a class="headerlink" href="#virtual-filesystems-vfs" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#virtual-filesystems-vfs'">¶</a></h2>
 <ul class="simple">
 <li><p>Aside from files and folders there are other things like named pipes,
 domain sockets, symbolic and hard links that need to be handled by
@@ -353,7 +383,7 @@ implementation.</p></li>
 </ul>
 </section>
 <section id="id1">
-<h2>Virtual Filesystems / VFS<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2>Virtual Filesystems / VFS<a class="headerlink" href="#id1" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id1'">¶</a></h2>
 <ul class="simple">
 <li><p>The VFS can help adapt both foreign filesystems (such as VFAT) by
 producing a contract that these implementations can adapt to.</p></li>
@@ -371,7 +401,7 @@ behavior:</p>
 </ul>
 </section>
 <section id="virtual-filesystems-and-stacking">
-<h2>Virtual Filesystems and Stacking<a class="headerlink" href="#virtual-filesystems-and-stacking" title="Permalink to this headline"></a></h2>
+<h2>Virtual Filesystems and Stacking<a class="headerlink" href="#virtual-filesystems-and-stacking" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#virtual-filesystems-and-stacking'">¶</a></h2>
 <ul class="simple">
 <li><p>In some VFS implementations it is possible to stack filesystems on
 top of each other.</p></li>
@@ -385,7 +415,7 @@ to be transparently overlaid.</p></li>
 </section>
 </section>
 <section id="distributed-filesystems">
-<h1>Distributed Filesystems<a class="headerlink" href="#distributed-filesystems" title="Permalink to this headline"></a></h1>
+<h1>Distributed Filesystems<a class="headerlink" href="#distributed-filesystems" title="Permalink to this heading">¶</a></h1>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -418,7 +448,7 @@ to be transparently overlaid.</p></li>
 </ul>
 </div></blockquote>
 <section id="file-service-model">
-<h2>File Service Model<a class="headerlink" href="#file-service-model" title="Permalink to this headline"></a></h2>
+<h2>File Service Model<a class="headerlink" href="#file-service-model" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#file-service-model'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -449,7 +479,7 @@ to be transparently overlaid.</p></li>
 </div></blockquote>
 </section>
 <section id="directory-service">
-<h2>Directory Service<a class="headerlink" href="#directory-service" title="Permalink to this headline"></a></h2>
+<h2>Directory Service<a class="headerlink" href="#directory-service" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#directory-service'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -463,7 +493,7 @@ to be transparently overlaid.</p></li>
 </div></blockquote>
 </section>
 <section id="naming-transparency">
-<h2>Naming Transparency<a class="headerlink" href="#naming-transparency" title="Permalink to this headline"></a></h2>
+<h2>Naming Transparency<a class="headerlink" href="#naming-transparency" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#naming-transparency'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -495,13 +525,13 @@ to be transparently overlaid.</p></li>
 </div></blockquote>
 </section>
 <section id="file-sharing-semantics">
-<h2>File Sharing Semantics<a class="headerlink" href="#file-sharing-semantics" title="Permalink to this headline"></a></h2>
+<h2>File Sharing Semantics<a class="headerlink" href="#file-sharing-semantics" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#file-sharing-semantics'">¶</a></h2>
 <ul class="simple">
 <li><p>When files are shared (and one or more write) what are the semantics?</p></li>
 </ul>
 </section>
 <section id="unix-semantics">
-<h2>UNIX Semantics<a class="headerlink" href="#unix-semantics" title="Permalink to this headline"></a></h2>
+<h2>UNIX Semantics<a class="headerlink" href="#unix-semantics" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#unix-semantics'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>A read is always provided with the last write (system enforces absolute time ordering)</p></li>
@@ -534,7 +564,7 @@ to be transparently overlaid.</p></li>
 </div></blockquote>
 </section>
 <section id="more-semantics">
-<h2>More Semantics<a class="headerlink" href="#more-semantics" title="Permalink to this headline"></a></h2>
+<h2>More Semantics<a class="headerlink" href="#more-semantics" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#more-semantics'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -560,7 +590,7 @@ to be transparently overlaid.</p></li>
 </div></blockquote>
 </section>
 <section id="distributed-file-system-implementation">
-<h2>Distributed File System Implementation<a class="headerlink" href="#distributed-file-system-implementation" title="Permalink to this headline"></a></h2>
+<h2>Distributed File System Implementation<a class="headerlink" href="#distributed-file-system-implementation" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#distributed-file-system-implementation'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -576,7 +606,7 @@ to be transparently overlaid.</p></li>
 </div></blockquote>
 </section>
 <section id="system-structure">
-<h2>System Structure<a class="headerlink" href="#system-structure" title="Permalink to this headline"></a></h2>
+<h2>System Structure<a class="headerlink" href="#system-structure" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#system-structure'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -602,7 +632,7 @@ to be transparently overlaid.</p></li>
 </div></blockquote>
 </section>
 <section id="id2">
-<h2>Directory Service<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2>Directory Service<a class="headerlink" href="#id2" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#id2'">¶</a></h2>
 <ul class="simple">
 <li><dl class="simple">
 <dt>Separate</dt><dd><ul>
@@ -618,7 +648,7 @@ to be transparently overlaid.</p></li>
 </ul>
 </section>
 <section id="stateless-versus-stateful">
-<h2>Stateless versus Stateful<a class="headerlink" href="#stateless-versus-stateful" title="Permalink to this headline"></a></h2>
+<h2>Stateless versus Stateful<a class="headerlink" href="#stateless-versus-stateful" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#stateless-versus-stateful'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -644,7 +674,7 @@ to be transparently overlaid.</p></li>
 </div></blockquote>
 </section>
 <section id="caching">
-<h2>Caching<a class="headerlink" href="#caching" title="Permalink to this headline"></a></h2>
+<h2>Caching<a class="headerlink" href="#caching" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#caching'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -659,7 +689,7 @@ to be transparently overlaid.</p></li>
 </div></blockquote>
 </section>
 <section id="caching-server">
-<h2>Caching - Server<a class="headerlink" href="#caching-server" title="Permalink to this headline"></a></h2>
+<h2>Caching - Server<a class="headerlink" href="#caching-server" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#caching-server'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -712,7 +742,7 @@ to be transparently overlaid.</p></li>
 </div></blockquote>
 </section>
 <section id="caching-client">
-<h2>Caching - Client<a class="headerlink" href="#caching-client" title="Permalink to this headline"></a></h2>
+<h2>Caching - Client<a class="headerlink" href="#caching-client" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#caching-client'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Client Caching</p></li>
@@ -766,7 +796,7 @@ to be transparently overlaid.</p></li>
 </div></blockquote>
 </section>
 <section id="client-cache-consistency">
-<h2>Client - Cache Consistency<a class="headerlink" href="#client-cache-consistency" title="Permalink to this headline"></a></h2>
+<h2>Client - Cache Consistency<a class="headerlink" href="#client-cache-consistency" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#client-cache-consistency'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -843,7 +873,7 @@ to be transparently overlaid.</p></li>
 </div></blockquote>
 </section>
 <section id="client-cache-consistency-other-options">
-<h2>Client - Cache Consistency - Other Options<a class="headerlink" href="#client-cache-consistency-other-options" title="Permalink to this headline"></a></h2>
+<h2>Client - Cache Consistency - Other Options<a class="headerlink" href="#client-cache-consistency-other-options" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#client-cache-consistency-other-options'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -876,7 +906,7 @@ to be transparently overlaid.</p></li>
 </div></blockquote>
 </section>
 <section id="replication">
-<h2>Replication<a class="headerlink" href="#replication" title="Permalink to this headline"></a></h2>
+<h2>Replication<a class="headerlink" href="#replication" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#replication'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -892,7 +922,7 @@ to be transparently overlaid.</p></li>
 </div></blockquote>
 </section>
 <section id="replication-update-protocols">
-<h2>Replication - Update Protocols<a class="headerlink" href="#replication-update-protocols" title="Permalink to this headline"></a></h2>
+<h2>Replication - Update Protocols<a class="headerlink" href="#replication-update-protocols" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#replication-update-protocols'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -924,7 +954,7 @@ to be transparently overlaid.</p></li>
 </div></blockquote>
 </section>
 <section id="replication-voting-algorithm">
-<h2>Replication - Voting Algorithm<a class="headerlink" href="#replication-voting-algorithm" title="Permalink to this headline"></a></h2>
+<h2>Replication - Voting Algorithm<a class="headerlink" href="#replication-voting-algorithm" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#replication-voting-algorithm'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Requires clients to acquire permission of multiple servers before reading/writing file</p></li>
@@ -941,7 +971,7 @@ to be transparently overlaid.</p></li>
 </div></blockquote>
 </section>
 <section id="replication-general-quorum-algorithm">
-<h2>Replication - General Quorum Algorithm<a class="headerlink" href="#replication-general-quorum-algorithm" title="Permalink to this headline"></a></h2>
+<h2>Replication - General Quorum Algorithm<a class="headerlink" href="#replication-general-quorum-algorithm" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#replication-general-quorum-algorithm'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>No of replicas - N</p></li>
@@ -954,7 +984,7 @@ to be transparently overlaid.</p></li>
 </section>
 </section>
 <section id="case-study-sun-nfs">
-<h1>Case Study - SUN NFS<a class="headerlink" href="#case-study-sun-nfs" title="Permalink to this headline"></a></h1>
+<h1>Case Study - SUN NFS<a class="headerlink" href="#case-study-sun-nfs" title="Permalink to this heading">¶</a></h1>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -1019,7 +1049,7 @@ to be transparently overlaid.</p></li>
 </ul>
 </div></blockquote>
 <section id="sun-nfs-implementation">
-<h2>SUN NFS - Implementation<a class="headerlink" href="#sun-nfs-implementation" title="Permalink to this headline"></a></h2>
+<h2>SUN NFS - Implementation<a class="headerlink" href="#sun-nfs-implementation" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#sun-nfs-implementation'">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -1084,36 +1114,72 @@ to be transparently overlaid.</p></li>
 </div></blockquote>
 </section>
 </section>
-
-
-           </div>
-          </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../concurrency/concurrency.html" class="btn btn-neutral float-left" title="Concurrency and Threads" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../directories/directories.html" class="btn btn-neutral float-right" title="Directories and LDAP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2013-2019, Distributed Systems Instructors at Loyola University Chicago.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
+</div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
+<div class="sticky top-16 -mt-10 max-h-[calc(var(--vh)-4rem)] overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
+<ul>
+<li><ul>
+<li><a :data-current="activeSection === '#types-of-non-local-storage'" class="reference internal" href="#types-of-non-local-storage">Types of Non-Local Storage</a></li>
+<li><a :data-current="activeSection === '#how-do-we-evaluate-storage-systems'" class="reference internal" href="#how-do-we-evaluate-storage-systems">How Do We Evaluate Storage Systems?</a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#storage-devices'" class="reference internal" href="#storage-devices">Storage Devices</a><ul>
+<li><a :data-current="activeSection === '#storage-and-failure'" class="reference internal" href="#storage-and-failure">Storage and Failure</a></li>
+<li><a :data-current="activeSection === '#maximizing-availability-raid'" class="reference internal" href="#maximizing-availability-raid">Maximizing Availability - RAID</a></li>
+<li><a :data-current="activeSection === '#raid'" class="reference internal" href="#raid">RAID</a></li>
+<li><a :data-current="activeSection === '#raid-0'" class="reference internal" href="#raid-0">RAID - 0</a></li>
+<li><a :data-current="activeSection === '#raid-1'" class="reference internal" href="#raid-1">RAID - 1</a></li>
+<li><a :data-current="activeSection === '#raid-5'" class="reference internal" href="#raid-5">RAID - 5</a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#local-storage'" class="reference internal" href="#local-storage">Local Storage</a><ul>
+<li><a :data-current="activeSection === '#implementing-files-and-folders'" class="reference internal" href="#implementing-files-and-folders">Implementing Files and Folders</a></li>
+<li><a :data-current="activeSection === '#inodes'" class="reference internal" href="#inodes">Inodes</a></li>
+<li><a :data-current="activeSection === '#inodes-indirect-blocks'" class="reference internal" href="#inodes-indirect-blocks">Inodes - Indirect Blocks</a></li>
+<li><a :data-current="activeSection === '#block-caches'" class="reference internal" href="#block-caches">Block Caches</a></li>
+<li><a :data-current="activeSection === '#folders-and-path-traversal'" class="reference internal" href="#folders-and-path-traversal">Folders and Path Traversal</a></li>
+<li><a :data-current="activeSection === '#virtual-filesystems-vfs'" class="reference internal" href="#virtual-filesystems-vfs">Virtual Filesystems / VFS</a></li>
+<li><a :data-current="activeSection === '#id1'" class="reference internal" href="#id1">Virtual Filesystems / VFS</a></li>
+<li><a :data-current="activeSection === '#virtual-filesystems-and-stacking'" class="reference internal" href="#virtual-filesystems-and-stacking">Virtual Filesystems and Stacking</a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#distributed-filesystems'" class="reference internal" href="#distributed-filesystems">Distributed Filesystems</a><ul>
+<li><a :data-current="activeSection === '#file-service-model'" class="reference internal" href="#file-service-model">File Service Model</a></li>
+<li><a :data-current="activeSection === '#directory-service'" class="reference internal" href="#directory-service">Directory Service</a></li>
+<li><a :data-current="activeSection === '#naming-transparency'" class="reference internal" href="#naming-transparency">Naming Transparency</a></li>
+<li><a :data-current="activeSection === '#file-sharing-semantics'" class="reference internal" href="#file-sharing-semantics">File Sharing Semantics</a></li>
+<li><a :data-current="activeSection === '#unix-semantics'" class="reference internal" href="#unix-semantics">UNIX Semantics</a></li>
+<li><a :data-current="activeSection === '#more-semantics'" class="reference internal" href="#more-semantics">More Semantics</a></li>
+<li><a :data-current="activeSection === '#distributed-file-system-implementation'" class="reference internal" href="#distributed-file-system-implementation">Distributed File System Implementation</a></li>
+<li><a :data-current="activeSection === '#system-structure'" class="reference internal" href="#system-structure">System Structure</a></li>
+<li><a :data-current="activeSection === '#id2'" class="reference internal" href="#id2">Directory Service</a></li>
+<li><a :data-current="activeSection === '#stateless-versus-stateful'" class="reference internal" href="#stateless-versus-stateful">Stateless versus Stateful</a></li>
+<li><a :data-current="activeSection === '#caching'" class="reference internal" href="#caching">Caching</a></li>
+<li><a :data-current="activeSection === '#caching-server'" class="reference internal" href="#caching-server">Caching - Server</a></li>
+<li><a :data-current="activeSection === '#caching-client'" class="reference internal" href="#caching-client">Caching - Client</a></li>
+<li><a :data-current="activeSection === '#client-cache-consistency'" class="reference internal" href="#client-cache-consistency">Client - Cache Consistency</a></li>
+<li><a :data-current="activeSection === '#client-cache-consistency-other-options'" class="reference internal" href="#client-cache-consistency-other-options">Client - Cache Consistency - Other Options</a></li>
+<li><a :data-current="activeSection === '#replication'" class="reference internal" href="#replication">Replication</a></li>
+<li><a :data-current="activeSection === '#replication-update-protocols'" class="reference internal" href="#replication-update-protocols">Replication - Update Protocols</a></li>
+<li><a :data-current="activeSection === '#replication-voting-algorithm'" class="reference internal" href="#replication-voting-algorithm">Replication - Voting Algorithm</a></li>
+<li><a :data-current="activeSection === '#replication-general-quorum-algorithm'" class="reference internal" href="#replication-general-quorum-algorithm">Replication - General Quorum Algorithm</a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#case-study-sun-nfs'" class="reference internal" href="#case-study-sun-nfs">Case Study - SUN NFS</a><ul>
+<li><a :data-current="activeSection === '#sun-nfs-implementation'" class="reference internal" href="#sun-nfs-implementation">SUN NFS - Implementation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</aside>
+</main>
+</div>
+</div><footer class="py-6 border-t border-border md:py-0">
+<div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+<div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2013-2019, Distributed Systems Instructors at Loyola University Chicago Built with <a class="font-medium underline underline-offset-4" href="https://www.sphinx-doc.org" rel="noreferrer">Sphinx 6.2.1</a></p>
+</div>
+</div>
 </footer>
-        </div>
-      </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
-
+</div>
 </body>
 </html>

@@ -1,46 +1,80 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+
+<html :class="{'dark': darkMode === 'dark' || (darkMode === 'system' &amp;&amp; window.matchMedia('(prefers-color-scheme: dark)').matches)}" class="scroll-smooth" lang="en" x-data="{ darkMode: localStorage.getItem('darkMode') || localStorage.setItem('darkMode', 'system'), activeSection: '' }" x-init="$watch('darkMode', val =&gt; localStorage.setItem('darkMode', val))">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Networking Primer &mdash; Distributed Systems 28 Nov 2021 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-    <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Concurrency and Threads" href="../concurrency/concurrency.html" />
-    <link rel="prev" title="Introduction and Issues" href="../issues/issues.html" /> 
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta charset="utf-8"/>
+<meta content="white" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="black" metia="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="Docutils 0.18.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>Networking Primer | Distributed Systems: updated 18 May 2023</title>
+<meta content="Networking Primer | Distributed Systems: updated 18 May 2023" property="og:title"/>
+<meta content="Networking Primer | Distributed Systems: updated 18 May 2023" name="twitter:title"/>
+<link href="../_static/pygments.css" rel="stylesheet"/>
+<link href="../_static/theme.a16405b310edf0713aee.css" rel="stylesheet"/>
+<link href="../search.html" rel="search" title="Search"/>
+<link href="../genindex.html" rel="index" title="Index"/>
+<link href="../concurrency/concurrency.html" rel="next" title="Concurrency and Threads"/>
+<link href="../issues/issues.html" rel="prev" title="Introduction and Issues"/>
+<script>
+    <!-- Prevent Flash of wrong theme -->
+      const userPreference = localStorage.getItem('darkMode');
+      let mode;
+      if (userPreference === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        mode = 'dark';
+        document.documentElement.classList.add('dark');
+      } else {
+        mode = 'light';
+      }
+      if (!userPreference) {localStorage.setItem('darkMode', mode)}
+    </script>
+<script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+<script src="../_static/doctools.js"></script>
+<script src="../_static/sphinx_highlight.js"></script>
+<script defer="" src="../_static/theme.ad172c0f1249198ea036.js"></script>
 </head>
-
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search"  style="background: #922247" >
-            <a href="../index.html" class="icon icon-home"> Distributed Systems
-          </a>
-              <div class="version">
-                28 Nov 2021
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+<body :class="{ 'overflow-hidden': showSidebar }" class="min-h-screen font-sans antialiased bg-background text-foreground" x-data="{ showSidebar: false }">
+<div @click.self="showSidebar = false" class="fixed inset-0 z-50 overflow-hidden bg-background/80 backdrop-blur-sm" x-cloak="" x-show="showSidebar"></div><div class="relative flex flex-col min-h-screen" id="page"><a class="absolute top-0 left-0 z-[100] block bg-background p-4 text-xl transition -translate-x-full opacity-0 focus:translate-x-0 focus:opacity-100" href="#content">
+      Skip to content
+    </a>
+<header class="sticky top-0 z-40 w-full border-b shadow-sm border-border supports-backdrop-blur:bg-background/60 bg-background/95 backdrop-blur"><div class="container flex items-center h-14">
+<div class="hidden mr-4 md:flex">
+<a class="flex items-center mr-6" href="../index.html"><span class="hidden font-bold sm:inline-block text-clip whitespace-nowrap">Distributed Systems: updated 18 May 2023</span>
+</a></div><button @click="showSidebar = true" class="inline-flex items-center justify-center h-10 px-0 py-2 mr-2 text-base font-medium transition-colors rounded-md hover:text-accent-foreground hover:bg-transparent md:hidden" type="button">
+<svg aria-hidden="true" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M152.587 825.087q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440Zm0-203.587q-19.152 0-32.326-13.174T107.087 576q0-19.152 13.174-32.326t32.326-13.174h320q19.152 0 32.326 13.174T518.087 576q0 19.152-13.174 32.326T472.587 621.5h-320Zm0-203.587q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440ZM708.913 576l112.174 112.174q12.674 12.674 12.674 31.826t-12.674 31.826Q808.413 764.5 789.261 764.5t-31.826-12.674l-144-144Q600 594.391 600 576t13.435-31.826l144-144q12.674-12.674 31.826-12.674t31.826 12.674q12.674 12.674 12.674 31.826t-12.674 31.826L708.913 576Z"></path>
+</svg>
+<span class="sr-only">Toggle navigation menu</span>
+</button>
+<div class="flex items-center justify-between flex-1 space-x-2 sm:space-x-4 md:justify-end">
+<div class="flex-1 w-full md:w-auto md:flex-none">
+<form @keydown.k.window.meta="$refs.search.focus()" action="../search.html" class="relative flex items-center group" id="searchbox" method="get">
+<input aria-label="Search the docs" class="inline-flex items-center font-medium transition-colors bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background border border-input hover:bg-accent focus:bg-accent hover:text-accent-foreground focus:text-accent-foreground hover:placeholder-accent-foreground py-2 px-4 relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64" id="search-input" name="q" placeholder="Search ..." type="search" x-ref="search"/>
+<kbd class="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none text-muted-foreground items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex group-hover:bg-accent group-hover:text-accent-foreground">
+<span class="text-xs">⌘</span>
+      K
+    </kbd>
+</form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+<nav class="flex items-center space-x-1">
+<button @click="darkMode = darkMode === 'light' ? 'dark' : 'light'" class="relative inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md hover:bg-accent hover:text-accent-foreground h-9 w-9" type="button">
+<svg class="absolute transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 685q45.456 0 77.228-31.772Q589 621.456 589 576q0-45.456-31.772-77.228Q525.456 467 480 467q-45.456 0-77.228 31.772Q371 530.544 371 576q0 45.456 31.772 77.228Q434.544 685 480 685Zm0 91q-83 0-141.5-58.5T280 576q0-83 58.5-141.5T480 376q83 0 141.5 58.5T680 576q0 83-58.5 141.5T480 776ZM80 621.5q-19.152 0-32.326-13.174T34.5 576q0-19.152 13.174-32.326T80 530.5h80q19.152 0 32.326 13.174T205.5 576q0 19.152-13.174 32.326T160 621.5H80Zm720 0q-19.152 0-32.326-13.174T754.5 576q0-19.152 13.174-32.326T800 530.5h80q19.152 0 32.326 13.174T925.5 576q0 19.152-13.174 32.326T880 621.5h-80Zm-320-320q-19.152 0-32.326-13.174T434.5 256v-80q0-19.152 13.174-32.326T480 130.5q19.152 0 32.326 13.174T525.5 176v80q0 19.152-13.174 32.326T480 301.5Zm0 720q-19.152 0-32.326-13.17Q434.5 995.152 434.5 976v-80q0-19.152 13.174-32.326T480 850.5q19.152 0 32.326 13.174T525.5 896v80q0 19.152-13.174 32.33-13.174 13.17-32.326 13.17ZM222.174 382.065l-43-42Q165.5 327.391 166 308.239t13.174-33.065q13.435-13.674 32.587-13.674t32.065 13.674l42.239 43q12.674 13.435 12.555 31.706-.12 18.272-12.555 31.946-12.674 13.674-31.445 13.413-18.772-.261-32.446-13.174Zm494 494.761-42.239-43q-12.674-13.435-12.674-32.087t12.674-31.565Q686.609 756.5 705.38 757q18.772.5 32.446 13.174l43 41.761Q794.5 824.609 794 843.761t-13.174 33.065Q767.391 890.5 748.239 890.5t-32.065-13.674Zm-42-494.761Q660.5 369.391 661 350.62q.5-18.772 13.174-32.446l41.761-43Q728.609 261.5 747.761 262t33.065 13.174q13.674 13.435 13.674 32.587t-13.674 32.065l-43 42.239q-13.435 12.674-31.706 12.555-18.272-.12-31.946-12.555Zm-495 494.761Q165.5 863.391 165.5 844.239t13.674-32.065l43-42.239q13.435-12.674 32.087-12.674t31.565 12.674Q299.5 782.609 299 801.38q-.5 18.772-13.174 32.446l-41.761 43Q231.391 890.5 212.239 890t-33.065-13.174ZM480 576Z"></path>
+</svg>
+<svg class="absolute transition-all scale-0 rotate-90 dark:rotate-0 dark:scale-100" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 936q-151 0-255.5-104.5T120 576q0-138 90-239.5T440 218q25-3 39 18t-1 44q-17 26-25.5 55t-8.5 61q0 90 63 153t153 63q31 0 61.5-9t54.5-25q21-14 43-1.5t19 39.5q-14 138-117.5 229T480 936Zm0-80q88 0 158-48.5T740 681q-20 5-40 8t-40 3q-123 0-209.5-86.5T364 396q0-20 3-40t8-40q-78 32-126.5 102T200 576q0 116 82 198t198 82Zm-10-270Z"></path>
+</svg>
+</button>
+</nav>
+</div>
+</div>
+</header>
+<div class="flex-1"><div class="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10"><aside :aria-hidden="!showSidebar" :class="{ 'translate-x-0': showSidebar }" class="fixed inset-y-0 left-0 md:top-14 z-50 md:z-30 bg-background md:bg-transparent transition-all duration-100 -translate-x-full md:translate-x-0 ml-0 p-6 md:p-0 md:-ml-2 md:h-[calc(100vh-3.5rem)] w-5/6 md:w-full shrink-0 overflow-y-auto border-r border-border md:sticky" id="left-sidebar">
+<a class="!justify-start text-sm md:!hidden bg-background" href="../index.html"><span class="font-bold text-clip whitespace-nowrap">Distributed Systems: updated 18 May 2023</span>
+</a>
+<div class="relative overflow-hidden md:overflow-auto my-4 md:my-0 h-[calc(100vh-8rem)] md:h-auto">
+<div class="overflow-y-auto h-full w-full relative pr-6"><nav class="table w-full min-w-full my-6 lg:my-8">
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../issues/issues.html">Introduction and Issues</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Networking Primer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../concurrency/concurrency.html">Concurrency and Threads</a></li>
@@ -73,35 +107,31 @@
 <li class="toctree-l1"><a class="reference internal" href="../iot/iot.html">Internet of Things and Pervasive Systems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../election/election.html">Election Algorithms</a></li>
 </ul>
-
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #922247" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Distributed Systems</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content style-external-links">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Networking Primer</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/networking/networking.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
+</nav>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  <section id="networking-primer">
-<h1>Networking Primer<a class="headerlink" href="#networking-primer" title="Permalink to this headline"></a></h1>
+</div>
+<button @click="showSidebar = false" class="absolute md:hidden right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100" type="button">
+<svg class="h-4 w-4" fill="currentColor" height="24" stroke="none" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 632 284 828q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536 576l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480 632Z"></path>
+</svg>
+</button>
+</aside>
+<main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+<div class="w-full min-w-0 mx-auto">
+<nav aria-label="breadcrumbs" class="flex items-center mb-4 space-x-1 text-sm text-muted-foreground">
+<a class="overflow-hidden text-ellipsis whitespace-nowrap hover:text-foreground" href="../index.html">
+<span class="hidden md:inline">Distributed Systems: updated 18 May 2023</span>
+<svg aria-label="Home" class="md:hidden" fill="currentColor" height="18" stroke="none" viewbox="0 96 960 960" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M240 856h120V616h240v240h120V496L480 316 240 496v360Zm-80 80V456l320-240 320 240v480H520V696h-80v240H160Zm320-350Z"></path>
+</svg>
+</a>
+<div class="mr-1">/</div><span aria-current="page" class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap">Networking Primer</span>
+</nav>
+<div id="content" role="main">
+<section id="networking-primer">
+<h1>Networking Primer<a class="headerlink" href="#networking-primer" title="Permalink to this heading">¶</a></h1>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#overview'">¶</a></h2>
 <ul class="simple">
 <li><p>Introduction to networks</p></li>
 <li><p>Protocols and Layers</p></li>
@@ -111,7 +141,7 @@
 </ul>
 </section>
 <section id="references-and-additional-reading">
-<h2>References and Additional Reading<a class="headerlink" href="#references-and-additional-reading" title="Permalink to this headline"></a></h2>
+<h2>References and Additional Reading<a class="headerlink" href="#references-and-additional-reading" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#references-and-additional-reading'">¶</a></h2>
 <ul class="simple">
 <li><p>Tanenbaum, <em>Computer Networks, 5th Edition</em>, Prentice Hall PTR</p></li>
 <li><p>Coulouris, Dollimore, and Kindberg, Introduction to Distributed
@@ -121,21 +151,21 @@ Systems, 3rd Edition</p></li>
 </ul>
 </section>
 <section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline"></a></h2>
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#methods'">¶</a></h2>
 <ul class="simple">
 <li><p>Sockets</p></li>
 <li><p>RPC</p></li>
 </ul>
 </section>
 <section id="networks">
-<h2>Networks<a class="headerlink" href="#networks" title="Permalink to this headline"></a></h2>
+<h2>Networks<a class="headerlink" href="#networks" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#networks'">¶</a></h2>
 <ul class="simple">
 <li><p>Communication between semi-autonomous computers</p></li>
 <li><p>Attached to host system by an adapter</p></li>
 </ul>
 </section>
 <section id="infrastructure">
-<h2>Infrastructure<a class="headerlink" href="#infrastructure" title="Permalink to this headline"></a></h2>
+<h2>Infrastructure<a class="headerlink" href="#infrastructure" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#infrastructure'">¶</a></h2>
 <p>Communication networks provide an infrastructure for communication in
 distributed systems</p>
 <p>Infrastructure is required at various levels</p>
@@ -149,12 +179,12 @@ managers</p></li>
 <p>The entire collection of the above is a “communication system”.</p>
 </section>
 <section id="many-types-of-networks">
-<h2>Many Types of Networks<a class="headerlink" href="#many-types-of-networks" title="Permalink to this headline"></a></h2>
+<h2>Many Types of Networks<a class="headerlink" href="#many-types-of-networks" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#many-types-of-networks'">¶</a></h2>
 <p>Physical Media - copper wires (Ethernet, RS232-C, V.32, etc.) - fiber
 optics (ATM, FDDI) - air (IR, Radio, micro-wave)</p>
 </section>
 <section id="relative-speeds">
-<h2>Relative Speeds<a class="headerlink" href="#relative-speeds" title="Permalink to this headline"></a></h2>
+<h2>Relative Speeds<a class="headerlink" href="#relative-speeds" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#relative-speeds'">¶</a></h2>
 <p>Speeds (link not aggregate)</p>
 <ul class="simple">
 <li><p>low: modems and pagers</p></li>
@@ -164,7 +194,7 @@ Mbps)</p></li>
 </ul>
 </section>
 <section id="local-area-networks">
-<h2>Local Area Networks<a class="headerlink" href="#local-area-networks" title="Permalink to this headline"></a></h2>
+<h2>Local Area Networks<a class="headerlink" href="#local-area-networks" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#local-area-networks'">¶</a></h2>
 <ul class="simple">
 <li><p>Relatively high-speed (oh yeah!)</p></li>
 <li><p>Normally single building, campus, Office</p></li>
@@ -175,7 +205,7 @@ computers</p></li>
 </ul>
 </section>
 <section id="wide-area-networks">
-<h2>Wide Area Networks<a class="headerlink" href="#wide-area-networks" title="Permalink to this headline"></a></h2>
+<h2>Wide Area Networks<a class="headerlink" href="#wide-area-networks" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#wide-area-networks'">¶</a></h2>
 <ul class="simple">
 <li><p>Msgs at lower speeds between systems separated by large distances</p></li>
 <li><p>Communication circuits connected by “Packet switching” computers,
@@ -185,14 +215,14 @@ that also manage the network</p></li>
 </ul>
 </section>
 <section id="metropolitan-area-networks-mans">
-<h2>Metropolitan Area Networks (MANs)<a class="headerlink" href="#metropolitan-area-networks-mans" title="Permalink to this headline"></a></h2>
+<h2>Metropolitan Area Networks (MANs)<a class="headerlink" href="#metropolitan-area-networks-mans" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#metropolitan-area-networks-mans'">¶</a></h2>
 <ul class="simple">
 <li><p>within cities, towns, use fiber-optics cables</p></li>
 <li><p>recent, to carry voice, video…</p></li>
 </ul>
 </section>
 <section id="internetworks">
-<h2>Internetworks<a class="headerlink" href="#internetworks" title="Permalink to this headline"></a></h2>
+<h2>Internetworks<a class="headerlink" href="#internetworks" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#internetworks'">¶</a></h2>
 <ul class="simple">
 <li><p>Remember - distributed systems require extensibility</p></li>
 <li><p>Must be able to connect/link networks together =&gt; Internetworks</p></li>
@@ -206,7 +236,7 @@ component networks.</p></li>
 </ul>
 </section>
 <section id="performance-issues">
-<h2>Performance Issues<a class="headerlink" href="#performance-issues" title="Permalink to this headline"></a></h2>
+<h2>Performance Issues<a class="headerlink" href="#performance-issues" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#performance-issues'">¶</a></h2>
 <ul class="simple">
 <li><p>Latency - time needed to transfer an empty message between two
 systems - normally measures software delay and transit time</p></li>
@@ -220,7 +250,7 @@ guarantees, reliability and availability guarantees</p></li>
 </ul>
 </section>
 <section id="what-is-software-delay">
-<h2>What is software delay?<a class="headerlink" href="#what-is-software-delay" title="Permalink to this headline"></a></h2>
+<h2>What is software delay?<a class="headerlink" href="#what-is-software-delay" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#what-is-software-delay'">¶</a></h2>
 <ul class="simple">
 <li><p>time to access the network, I.e., put bits on the network from the
 time a message is sent by the application and time to retrieve the
@@ -230,16 +260,16 @@ several layers (later)</p></li>
 </ul>
 </section>
 <section id="example-campus-network">
-<h2>Example: Campus Network<a class="headerlink" href="#example-campus-network" title="Permalink to this headline"></a></h2>
+<h2>Example: Campus Network<a class="headerlink" href="#example-campus-network" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#example-campus-network'">¶</a></h2>
 <figure class="align-default" id="id11">
-<img alt="University of Michigan Network" src="../_images/umich-network.png" />
+<img alt="University of Michigan Network" src="../_images/umich-network.png"/>
 <figcaption>
-<p><span class="caption-text">University of Michigan Network</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+<p><span class="caption-text">University of Michigan Network</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="network-topologies">
-<h2>Network Topologies<a class="headerlink" href="#network-topologies" title="Permalink to this headline"></a></h2>
+<h2>Network Topologies<a class="headerlink" href="#network-topologies" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#network-topologies'">¶</a></h2>
 <p>How are the communicating objects connected</p>
 <ul class="simple">
 <li><p>Fully connected</p>
@@ -265,16 +295,16 @@ other</p></li>
 </ul>
 </section>
 <section id="network-topologies-1">
-<span id="id1"></span><h2>Network Topologies<a class="headerlink" href="#network-topologies-1" title="Permalink to this headline"></a></h2>
+<span id="id1"></span><h2>Network Topologies<a class="headerlink" href="#network-topologies-1" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#network-topologies-1'">¶</a></h2>
 <figure class="align-default" id="id12">
-<img alt="Internet Map" src="../_images/1024px-Internet_map_1024.jpg" />
+<img alt="Internet Map" src="../_images/1024px-Internet_map_1024.jpg"/>
 <figcaption>
-<p><span class="caption-text">Internet Map</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Internet Map</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="a-network-is-not-an-island">
-<h2>A Network is not an Island<a class="headerlink" href="#a-network-is-not-an-island" title="Permalink to this headline"></a></h2>
+<h2>A Network is not an Island<a class="headerlink" href="#a-network-is-not-an-island" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#a-network-is-not-an-island'">¶</a></h2>
 <p>Reason for networks is to share information</p>
 <ul class="simple">
 <li><p>must be able to communicate in a common language</p></li>
@@ -283,7 +313,7 @@ other</p></li>
 </ul>
 </section>
 <section id="protocols">
-<h2>Protocols<a class="headerlink" href="#protocols" title="Permalink to this headline"></a></h2>
+<h2>Protocols<a class="headerlink" href="#protocols" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#protocols'">¶</a></h2>
 <ul class="simple">
 <li><p>must be unambiguous and followed exactly</p></li>
 <li><p>rule of thumb: be rigorous is what you generate, be liberal in what
@@ -293,7 +323,7 @@ services</p></li>
 </ul>
 </section>
 <section id="design-issues-in-layers">
-<h2>Design Issues In Layers<a class="headerlink" href="#design-issues-in-layers" title="Permalink to this headline"></a></h2>
+<h2>Design Issues In Layers<a class="headerlink" href="#design-issues-in-layers" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#design-issues-in-layers'">¶</a></h2>
 <p>Rules for data transmission (Protocol)</p>
 <ul class="simple">
 <li><p>full vs. half duplex</p></li>
@@ -316,7 +346,7 @@ services</p></li>
 </ul>
 </section>
 <section id="protocols-are-divided-into-layers">
-<h2>Protocols are divided into layers<a class="headerlink" href="#protocols-are-divided-into-layers" title="Permalink to this headline"></a></h2>
+<h2>Protocols are divided into layers<a class="headerlink" href="#protocols-are-divided-into-layers" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#protocols-are-divided-into-layers'">¶</a></h2>
 <p>ISO - seven layer reference model</p>
 <ul class="simple">
 <li><p>Application</p></li>
@@ -336,7 +366,7 @@ services</p></li>
 </ul>
 </section>
 <section id="physical-layer">
-<h2>Physical Layer<a class="headerlink" href="#physical-layer" title="Permalink to this headline"></a></h2>
+<h2>Physical Layer<a class="headerlink" href="#physical-layer" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#physical-layer'">¶</a></h2>
 <p>Goal: Raw bits over a communication channel</p>
 <p>Sample Issues</p>
 <ul class="simple">
@@ -353,17 +383,17 @@ services</p></li>
 </ul>
 </section>
 <section id="physical-layer-representing-0-and-1">
-<h2>Physical Layer - Representing 0 and 1<a class="headerlink" href="#physical-layer-representing-0-and-1" title="Permalink to this headline"></a></h2>
+<h2>Physical Layer - Representing 0 and 1<a class="headerlink" href="#physical-layer-representing-0-and-1" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#physical-layer-representing-0-and-1'">¶</a></h2>
 <figure class="align-default" id="id13">
-<img alt="Sqaure Wave" src="../_images/SquareWave-0.jpg" />
+<img alt="Sqaure Wave" src="../_images/SquareWave-0.jpg"/>
 <figcaption>
-<p><span class="caption-text">Square Wave</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Square Wave</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>A more animated version of this can be found at <a class="reference external" href="https://upload.wikimedia.org/wikipedia/commons/f/f8/SquareWave.gif">https://upload.wikimedia.org/wikipedia/commons/f/f8/SquareWave.gif</a>.</p>
 </section>
 <section id="many-types-of-networks-1">
-<span id="id2"></span><h2>Many Types of Networks<a class="headerlink" href="#many-types-of-networks-1" title="Permalink to this headline"></a></h2>
+<span id="id2"></span><h2>Many Types of Networks<a class="headerlink" href="#many-types-of-networks-1" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#many-types-of-networks-1'">¶</a></h2>
 <ul class="simple">
 <li><p>Local Area Networks</p></li>
 <li><p>Wide Area Networks</p></li>
@@ -372,7 +402,7 @@ services</p></li>
 </ul>
 </section>
 <section id="local-area-networks-1">
-<span id="id3"></span><h2>Local Area Networks<a class="headerlink" href="#local-area-networks-1" title="Permalink to this headline"></a></h2>
+<span id="id3"></span><h2>Local Area Networks<a class="headerlink" href="#local-area-networks-1" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#local-area-networks-1'">¶</a></h2>
 <ul class="simple">
 <li><p>Relatively high-speed (oh yeah!)</p></li>
 <li><p>Normally single building, campus, Office</p></li>
@@ -382,7 +412,7 @@ services</p></li>
 Token Ring</p>
 </section>
 <section id="wide-area-networks-1">
-<span id="id4"></span><h2>Wide Area Networks<a class="headerlink" href="#wide-area-networks-1" title="Permalink to this headline"></a></h2>
+<span id="id4"></span><h2>Wide Area Networks<a class="headerlink" href="#wide-area-networks-1" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#wide-area-networks-1'">¶</a></h2>
 <ul class="simple">
 <li><p>Messages at lower speeds between systems separated by large distances</p></li>
 <li><p>Communication circuits connected by “Packet switching” computers,
@@ -392,20 +422,20 @@ that also manage the network</p></li>
 </ul>
 </section>
 <section id="wireless-networks">
-<h2>Wireless Networks<a class="headerlink" href="#wireless-networks" title="Permalink to this headline"></a></h2>
+<h2>Wireless Networks<a class="headerlink" href="#wireless-networks" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#wireless-networks'">¶</a></h2>
 </section>
 <section id="metropolitan-area-networks">
-<h2>Metropolitan Area Networks<a class="headerlink" href="#metropolitan-area-networks" title="Permalink to this headline"></a></h2>
+<h2>Metropolitan Area Networks<a class="headerlink" href="#metropolitan-area-networks" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#metropolitan-area-networks'">¶</a></h2>
 <p>Metropolitan Area Networks (MANs) - within cities, towns, use
 fiber-optics cables - recent, to carry voice, video…</p>
 <p>Not clear whether this type of network is still relevant or just a
 special case of WANs.</p>
 </section>
 <section id="many-types-of-networks-2">
-<span id="id5"></span><h2>Many Types of Networks<a class="headerlink" href="#many-types-of-networks-2" title="Permalink to this headline"></a></h2>
+<span id="id5"></span><h2>Many Types of Networks<a class="headerlink" href="#many-types-of-networks-2" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#many-types-of-networks-2'">¶</a></h2>
 </section>
 <section id="internetworks-1">
-<span id="id6"></span><h2>Internetworks<a class="headerlink" href="#internetworks-1" title="Permalink to this headline"></a></h2>
+<span id="id6"></span><h2>Internetworks<a class="headerlink" href="#internetworks-1" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#internetworks-1'">¶</a></h2>
 <ul class="simple">
 <li><p>Remember - distributed systems require extensibility</p></li>
 <li><p>Must be able to connect/link networks together =&gt; Internetworks</p></li>
@@ -419,7 +449,7 @@ component networks.</p></li>
 </ul>
 </section>
 <section id="data-link-layer">
-<h2>Data Link Layer<a class="headerlink" href="#data-link-layer" title="Permalink to this headline"></a></h2>
+<h2>Data Link Layer<a class="headerlink" href="#data-link-layer" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#data-link-layer'">¶</a></h2>
 <p>Goal: transmit error free frames over the physical link</p>
 <p>Sample Issues:</p>
 <ul class="simple">
@@ -435,7 +465,7 @@ component networks.</p></li>
 </ul>
 </section>
 <section id="the-network-layer">
-<h2>The Network Layer<a class="headerlink" href="#the-network-layer" title="Permalink to this headline"></a></h2>
+<h2>The Network Layer<a class="headerlink" href="#the-network-layer" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#the-network-layer'">¶</a></h2>
 <p>Goal: controlling operations of the subset</p>
 <p>Sample Issues: - how route packets that have to travel several hops? -
 control congestion - too many messages at once - accounting - charge for
@@ -444,7 +474,7 @@ link layer</p>
 <p>Examples: - IP - X.25</p>
 </section>
 <section id="the-transport-layer">
-<h2>The Transport Layer<a class="headerlink" href="#the-transport-layer" title="Permalink to this headline"></a></h2>
+<h2>The Transport Layer<a class="headerlink" href="#the-transport-layer" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#the-transport-layer'">¶</a></h2>
 <p>Goal: accurately transport session data in order</p>
 <ul class="simple">
 <li><p>end points are the sending and receiving machines</p></li>
@@ -462,7 +492,7 @@ link layer</p>
 </ul>
 </section>
 <section id="the-session-presentation-layers">
-<h2>The Session &amp; Presentation Layers<a class="headerlink" href="#the-session-presentation-layers" title="Permalink to this headline"></a></h2>
+<h2>The Session &amp; Presentation Layers<a class="headerlink" href="#the-session-presentation-layers" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#the-session-presentation-layers'">¶</a></h2>
 <p>Goal: common services shared by several applications</p>
 <p>Sample Issues: - network representation of bytes, ints, floats, etc. -
 encryption?? (this point is subject to lots of debate) - synchronization</p>
@@ -472,7 +502,7 @@ encryption?? (this point is subject to lots of debate) - synchronization</p>
 </ul>
 </section>
 <section id="application-layer">
-<h2>Application Layer<a class="headerlink" href="#application-layer" title="Permalink to this headline"></a></h2>
+<h2>Application Layer<a class="headerlink" href="#application-layer" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#application-layer'">¶</a></h2>
 <p>Goal: common types of exchanges standardized</p>
 <p>Sample Issues:</p>
 <ul class="simple">
@@ -492,7 +522,7 @@ encryption?? (this point is subject to lots of debate) - synchronization</p>
 </ul>
 </section>
 <section id="interprocess-communication">
-<h2>Interprocess Communication:<a class="headerlink" href="#interprocess-communication" title="Permalink to this headline"></a></h2>
+<h2>Interprocess Communication:<a class="headerlink" href="#interprocess-communication" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#interprocess-communication'">¶</a></h2>
 <p>Sockets &amp; RPC (Basic operations)</p>
 <ul class="simple">
 <li><p>Send</p></li>
@@ -504,7 +534,7 @@ process (e.g., server)</p></li>
 </ul>
 </section>
 <section id="reliability">
-<h2>Reliability<a class="headerlink" href="#reliability" title="Permalink to this headline"></a></h2>
+<h2>Reliability<a class="headerlink" href="#reliability" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#reliability'">¶</a></h2>
 <ul class="simple">
 <li><p>“Unreliable Message” - single msg sent from sender to recipient
 without acknowledgment (e.g., UDP)</p></li>
@@ -520,7 +550,7 @@ correct/reliable message passing</p></li>
 </ul>
 </section>
 <section id="mapping-data-to-messages">
-<h2>Mapping Data to Messages<a class="headerlink" href="#mapping-data-to-messages" title="Permalink to this headline"></a></h2>
+<h2>Mapping Data to Messages<a class="headerlink" href="#mapping-data-to-messages" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#mapping-data-to-messages'">¶</a></h2>
 <ul class="simple">
 <li><p>Programs have data structures</p></li>
 <li><p>Messages are self-contained sequence of bytes</p></li>
@@ -537,7 +567,7 @@ has been agreed upon between sender and receiver in advance</p></li>
 </ul>
 </section>
 <section id="marshaling">
-<h2>Marshaling<a class="headerlink" href="#marshaling" title="Permalink to this headline"></a></h2>
+<h2>Marshaling<a class="headerlink" href="#marshaling" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#marshaling'">¶</a></h2>
 <ul class="simple">
 <li><p>Process of taking a collection of data items and assembling them into
 a form for transmission</p></li>
@@ -549,19 +579,19 @@ for opposite:</p></li>
 </ul>
 </section>
 <section id="simple-marshalling">
-<h2>Simple Marshalling<a class="headerlink" href="#simple-marshalling" title="Permalink to this headline"></a></h2>
+<h2>Simple Marshalling<a class="headerlink" href="#simple-marshalling" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#simple-marshalling'">¶</a></h2>
 <p>The following shows how to marshall some data using <code class="docutils literal notranslate"><span class="pre">sprintf()</span></code>:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;smith&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">place</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;London&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="n">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1934</span><span class="p">;</span><span class="w"></span>
-<span class="n">sprintf</span><span class="p">(</span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%d %s %d %s %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">name</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">place</span><span class="p">),</span><span class="w"> </span><span class="n">place</span><span class="p">,</span><span class="w"> </span><span class="n">years</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"smith"</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">place</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"London"</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1934</span><span class="p">;</span>
+<span class="n">sprintf</span><span class="p">(</span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="s">"%d %s %d %s %d"</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">name</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">place</span><span class="p">),</span><span class="w"> </span><span class="n">place</span><span class="p">,</span><span class="w"> </span><span class="n">years</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Can you think of how to write the unmarshalling version using
 <code class="docutils literal notranslate"><span class="pre">sscanf()</span></code>?</p>
 </section>
 <section id="case-study-unix-interprocess-communication-ipc">
-<h2>Case Study: UNIX Interprocess Communication (IPC)<a class="headerlink" href="#case-study-unix-interprocess-communication-ipc" title="Permalink to this headline"></a></h2>
+<h2>Case Study: UNIX Interprocess Communication (IPC)<a class="headerlink" href="#case-study-unix-interprocess-communication-ipc" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#case-study-unix-interprocess-communication-ipc'">¶</a></h2>
 <ul class="simple">
 <li><p>IP C provided as systems calls implemented over TCP and UDP</p></li>
 <li><p>Message destinations - Socket addresses (Internet address and port
@@ -574,7 +604,7 @@ descriptor to a socket address</p></li>
 </ul>
 </section>
 <section id="example-simple-tcp-messaging-framework-from-hpjpc">
-<h2>Example - Simple TCP Messaging Framework (from HPJPC)<a class="headerlink" href="#example-simple-tcp-messaging-framework-from-hpjpc" title="Permalink to this headline"></a></h2>
+<h2>Example - Simple TCP Messaging Framework (from HPJPC)<a class="headerlink" href="#example-simple-tcp-messaging-framework-from-hpjpc" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#example-simple-tcp-messaging-framework-from-hpjpc'">¶</a></h2>
 <ul class="simple">
 <li><p>TCP/IP example</p></li>
 <li><p>simple messaging service where the client/server exchange Message
@@ -598,7 +628,7 @@ requests)</p></li>
 </ul>
 </section>
 <section id="example-simple-key-value-messaging">
-<h2>Example: Simple Key-Value Messaging<a class="headerlink" href="#example-simple-key-value-messaging" title="Permalink to this headline"></a></h2>
+<h2>Example: Simple Key-Value Messaging<a class="headerlink" href="#example-simple-key-value-messaging" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#example-simple-key-value-messaging'">¶</a></h2>
 <p>An example we presented as part of the book, High-Performance Java
 Platform Computing, published by Sun Microsystems Press.</p>
 <p>The code for this entire example appears in the
@@ -606,7 +636,7 @@ Platform Computing, published by Sun Microsystems Press.</p>
 package at GitHub.</p>
 </section>
 <section id="example-components">
-<h2>Example: Components<a class="headerlink" href="#example-components" title="Permalink to this headline"></a></h2>
+<h2>Example: Components<a class="headerlink" href="#example-components" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#example-components'">¶</a></h2>
 <ul class="simple">
 <li><p>MessageServer: The server side</p></li>
 <li><p>MessageClient: The client side</p></li>
@@ -617,7 +647,7 @@ day</p></li>
 </ul>
 </section>
 <section id="sockets-communication-using-datagram">
-<h2>Sockets Communication Using Datagram<a class="headerlink" href="#sockets-communication-using-datagram" title="Permalink to this headline"></a></h2>
+<h2>Sockets Communication Using Datagram<a class="headerlink" href="#sockets-communication-using-datagram" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#sockets-communication-using-datagram'">¶</a></h2>
 <ul class="simple">
 <li><p>“socket” call to create and a get a descriptor</p></li>
 <li><p>Bind call to bind socket to socket address (internet address &amp; port
@@ -627,7 +657,7 @@ number)</p></li>
 </ul>
 </section>
 <section id="java-sdk-example-quote-server-with-datagrams">
-<h2>Java SDK Example / Quote Server with Datagrams<a class="headerlink" href="#java-sdk-example-quote-server-with-datagrams" title="Permalink to this headline"></a></h2>
+<h2>Java SDK Example / Quote Server with Datagrams<a class="headerlink" href="#java-sdk-example-quote-server-with-datagrams" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#java-sdk-example-quote-server-with-datagrams'">¶</a></h2>
 <ul class="simple">
 <li><p>The quote server sends back a quote (not a stock quote) to the
 client. This is obtained from a file of one-line quotes.</p></li>
@@ -644,71 +674,71 @@ moment.</p></li>
 <li><p>The client then waits for the server to send a datagram packet in
 response. ß ## Quote Server</p></li>
 </ul>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.io.*</span><span class="p">;</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.*</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">QuoteServer</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
-        <span class="k">new</span> <span class="n">QuoteServerThread</span><span class="p">().</span><span class="na">start</span><span class="p">();</span>
-    <span class="p">}</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">QuoteServer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">QuoteServerThread</span><span class="p">().</span><span class="na">start</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="quote-server-dispatch-thread">
-<h2>Quote Server Dispatch Thread<a class="headerlink" href="#quote-server-dispatch-thread" title="Permalink to this headline"></a></h2>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="nf">QuoteServerThread</span><span class="p">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">(</span><span class="s">&quot;QuoteServer&quot;</span><span class="p">);</span>
+<h2>Quote Server Dispatch Thread<a class="headerlink" href="#quote-server-dispatch-thread" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#quote-server-dispatch-thread'">¶</a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="nf">QuoteServerThread</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">(</span><span class="s">"QuoteServer"</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kd">public</span> <span class="nf">QuoteServerThread</span><span class="p">(</span><span class="n">String</span> <span class="n">name</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
-    <span class="kd">super</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
-    <span class="n">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DatagramSocket</span><span class="p">(</span><span class="mi">4445</span><span class="p">);</span>
+<span class="kd">public</span><span class="w"> </span><span class="nf">QuoteServerThread</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">super</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+<span class="w">    </span><span class="n">socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DatagramSocket</span><span class="p">(</span><span class="mi">4445</span><span class="p">);</span>
 
-    <span class="k">try</span> <span class="p">{</span>
-        <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="p">(</span><span class="k">new</span> <span class="n">FileReader</span><span class="p">(</span><span class="s">&quot;one-liners.txt&quot;</span><span class="p">));</span>
-    <span class="p">}</span>
-    <span class="k">catch</span> <span class="p">(</span><span class="n">FileNotFoundException</span> <span class="n">e</span><span class="p">){</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Couldn&#39;t open quote file.  Serving time instead.&quot;</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedReader</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FileReader</span><span class="p">(</span><span class="s">"one-liners.txt"</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">FileNotFoundException</span><span class="w"> </span><span class="n">e</span><span class="p">){</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Couldn't open quote file.  Serving time instead."</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="quote-client">
-<h2>Quote Client<a class="headerlink" href="#quote-client" title="Permalink to this headline"></a></h2>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">QuoteClient</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+<h2>Quote Client<a class="headerlink" href="#quote-client" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#quote-client'">¶</a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">QuoteClient</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="na">length</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-             <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Usage: java QuoteClient &lt;hostname&gt;&quot;</span><span class="p">);</span>
-             <span class="k">return</span><span class="p">;</span>
-        <span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="na">length</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Usage: java QuoteClient &lt;hostname&gt;"</span><span class="p">);</span>
+<span class="w">             </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 
-            <span class="c1">// get a datagram socket</span>
-        <span class="n">DatagramSocket</span> <span class="n">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DatagramSocket</span><span class="p">();</span>
+<span class="w">            </span><span class="c1">// get a datagram socket</span>
+<span class="w">        </span><span class="n">DatagramSocket</span><span class="w"> </span><span class="n">socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DatagramSocket</span><span class="p">();</span>
 
-            <span class="c1">// send request</span>
-        <span class="kt">byte</span><span class="o">[]</span> <span class="n">buf</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">256</span><span class="o">]</span><span class="p">;</span>
-        <span class="n">InetAddress</span> <span class="n">address</span> <span class="o">=</span> <span class="n">InetAddress</span><span class="p">.</span><span class="na">getByName</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
-        <span class="n">DatagramPacket</span> <span class="n">packet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DatagramPacket</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">buf</span><span class="p">.</span><span class="na">length</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="mi">4445</span><span class="p">);</span>
-        <span class="n">socket</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="n">packet</span><span class="p">);</span>
+<span class="w">            </span><span class="c1">// send request</span>
+<span class="w">        </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">buf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">byte</span><span class="o">[</span><span class="mi">256</span><span class="o">]</span><span class="p">;</span>
+<span class="w">        </span><span class="n">InetAddress</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InetAddress</span><span class="p">.</span><span class="na">getByName</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+<span class="w">        </span><span class="n">DatagramPacket</span><span class="w"> </span><span class="n">packet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DatagramPacket</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="n">buf</span><span class="p">.</span><span class="na">length</span><span class="p">,</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="mi">4445</span><span class="p">);</span>
+<span class="w">        </span><span class="n">socket</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="n">packet</span><span class="p">);</span>
 
-            <span class="c1">// get response</span>
-        <span class="n">packet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DatagramPacket</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">buf</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
-        <span class="n">socket</span><span class="p">.</span><span class="na">receive</span><span class="p">(</span><span class="n">packet</span><span class="p">);</span>
+<span class="w">            </span><span class="c1">// get response</span>
+<span class="w">        </span><span class="n">packet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DatagramPacket</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="n">buf</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
+<span class="w">        </span><span class="n">socket</span><span class="p">.</span><span class="na">receive</span><span class="p">(</span><span class="n">packet</span><span class="p">);</span>
 
-        <span class="c1">// display response</span>
-        <span class="n">String</span> <span class="n">received</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="p">(</span><span class="n">packet</span><span class="p">.</span><span class="na">getData</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">packet</span><span class="p">.</span><span class="na">getLength</span><span class="p">());</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Quote of the Moment: &quot;</span> <span class="o">+</span> <span class="n">received</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// display response</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="n">packet</span><span class="p">.</span><span class="na">getData</span><span class="p">(),</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">packet</span><span class="p">.</span><span class="na">getLength</span><span class="p">());</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Quote of the Moment: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">received</span><span class="p">);</span>
 
-        <span class="n">socket</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-    <span class="p">}</span>
+<span class="w">        </span><span class="n">socket</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="stream-communication">
-<h2>Stream Communication<a class="headerlink" href="#stream-communication" title="Permalink to this headline"></a></h2>
+<h2>Stream Communication<a class="headerlink" href="#stream-communication" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#stream-communication'">¶</a></h2>
 <ul class="simple">
 <li><p>First need to establish a connection between sockets</p></li>
 <li><p>Asymmetric because one would be listening for request for connection
@@ -717,7 +747,7 @@ and the other would be asking</p></li>
 </ul>
 </section>
 <section id="remote-procedure-call">
-<h2>Remote Procedure Call<a class="headerlink" href="#remote-procedure-call" title="Permalink to this headline"></a></h2>
+<h2>Remote Procedure Call<a class="headerlink" href="#remote-procedure-call" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#remote-procedure-call'">¶</a></h2>
 <ul class="simple">
 <li><p>Question: How do me make “distributed computing look like traditional
 (centralized) computing”?</p></li>
@@ -739,30 +769,30 @@ address space</p></li>
 </ul>
 </section>
 <section id="remote-procedure-call-figure">
-<h2>Remote Procedure Call (Figure)<a class="headerlink" href="#remote-procedure-call-figure" title="Permalink to this headline"></a></h2>
+<h2>Remote Procedure Call (Figure)<a class="headerlink" href="#remote-procedure-call-figure" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#remote-procedure-call-figure'">¶</a></h2>
 <figure class="align-default" id="id14">
-<img alt="RPC" src="../_images/rpc-overview.png" />
+<img alt="RPC" src="../_images/rpc-overview.png"/>
 <figcaption>
-<p><span class="caption-text">RPC</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
+<p><span class="caption-text">RPC</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="remote-procedure-call-rpc">
-<h2>Remote Procedure Call (RPC)<a class="headerlink" href="#remote-procedure-call-rpc" title="Permalink to this headline"></a></h2>
+<h2>Remote Procedure Call (RPC)<a class="headerlink" href="#remote-procedure-call-rpc" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#remote-procedure-call-rpc'">¶</a></h2>
 <ul class="simple">
 <li><p>Although no message passing (at user level) - parameters must still
 be passed - results must still be returned!</p></li>
 <li><p>==&gt; Many issues to be addressed - Look at an example to understand
 some issues</p></li>
 </ul>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="n">nbytes</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="n">nbytes</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>In the above: - fd: file handle (int) - buf: array of bytes - nbyes:
 number of bytes</p>
 </section>
 <section id="observations">
-<h2>Observations<a class="headerlink" href="#observations" title="Permalink to this headline"></a></h2>
+<h2>Observations<a class="headerlink" href="#observations" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#observations'">¶</a></h2>
 <ul class="simple">
 <li><p>parameters (in C): call-by-reference OR call-by-value</p></li>
 <li><p>Value parameter (e.g., fd, nbytes) copied onto stack (original value
@@ -779,7 +809,7 @@ passed (buf’s address)</p>
 </ul>
 </section>
 <section id="design-of-rpc">
-<h2>Design of RPC<a class="headerlink" href="#design-of-rpc" title="Permalink to this headline"></a></h2>
+<h2>Design of RPC<a class="headerlink" href="#design-of-rpc" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#design-of-rpc'">¶</a></h2>
 <p>Goal: Make RPC look (as much as possible) like local procedure call,
 that is,</p>
 <ul class="simple">
@@ -801,14 +831,14 @@ operation <code class="docutils literal notranslate"><span class="pre">--&gt;</s
 </ul>
 </section>
 <section id="rpc-mechanisms">
-<h2>RPC Mechanisms<a class="headerlink" href="#rpc-mechanisms" title="Permalink to this headline"></a></h2>
+<h2>RPC Mechanisms<a class="headerlink" href="#rpc-mechanisms" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#rpc-mechanisms'">¶</a></h2>
 <ul class="simple">
 <li><p>Client-stub packs parameters</p></li>
 <li><p>Ships them to “server”</p></li>
 </ul>
 </section>
 <section id="rpc-steps">
-<h2>RPC Steps<a class="headerlink" href="#rpc-steps" title="Permalink to this headline"></a></h2>
+<h2>RPC Steps<a class="headerlink" href="#rpc-steps" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#rpc-steps'">¶</a></h2>
 <ol class="arabic simple">
 <li><p>client calls client stub in normal fashion</p></li>
 <li><p>client stub builds msg and traps to kernel</p></li>
@@ -823,7 +853,7 @@ operation <code class="docutils literal notranslate"><span class="pre">--&gt;</s
 </ol>
 </section>
 <section id="design-issues">
-<h2>Design Issues<a class="headerlink" href="#design-issues" title="Permalink to this headline"></a></h2>
+<h2>Design Issues<a class="headerlink" href="#design-issues" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#design-issues'">¶</a></h2>
 <ul class="simple">
 <li><p>Parameter passing</p></li>
 <li><p>Binding</p></li>
@@ -840,7 +870,7 @@ operation <code class="docutils literal notranslate"><span class="pre">--&gt;</s
 </ul>
 </section>
 <section id="parameter-passing">
-<h2>Parameter Passing<a class="headerlink" href="#parameter-passing" title="Permalink to this headline"></a></h2>
+<h2>Parameter Passing<a class="headerlink" href="#parameter-passing" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#parameter-passing'">¶</a></h2>
 <ul class="simple">
 <li><p>Some issues similar to messages passing</p></li>
 <li><p>Example below- what if clients and servers have different
@@ -848,7 +878,7 @@ representations (Little endian vs big endian)</p></li>
 </ul>
 </section>
 <section id="parameter-passing-1">
-<span id="id7"></span><h2>Parameter Passing<a class="headerlink" href="#parameter-passing-1" title="Permalink to this headline"></a></h2>
+<span id="id7"></span><h2>Parameter Passing<a class="headerlink" href="#parameter-passing-1" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#parameter-passing-1'">¶</a></h2>
 <ul class="simple">
 <li><p>How to solve the problem?</p>
 <ul>
@@ -864,7 +894,7 @@ representations (Little endian vs big endian)</p></li>
 </ul>
 </section>
 <section id="binding">
-<h2>Binding<a class="headerlink" href="#binding" title="Permalink to this headline"></a></h2>
+<h2>Binding<a class="headerlink" href="#binding" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#binding'">¶</a></h2>
 <ol class="upperalpha simple" start="17">
 <li><p>How does a client locate the server?</p></li>
 </ol>
@@ -883,7 +913,7 @@ representations (Little endian vs big endian)</p></li>
 </ul>
 </section>
 <section id="use-of-specification">
-<h2>Use of Specification<a class="headerlink" href="#use-of-specification" title="Permalink to this headline"></a></h2>
+<h2>Use of Specification<a class="headerlink" href="#use-of-specification" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#use-of-specification'">¶</a></h2>
 <ul class="simple">
 <li><p>Input to the stub generator - produces both client and server stub</p>
 <ul>
@@ -901,7 +931,7 @@ ID</strong>, <strong>handle</strong> (e.g. IP address)</p></li>
 </ul>
 </section>
 <section id="locating-the-server">
-<h2>Locating the Server<a class="headerlink" href="#locating-the-server" title="Permalink to this headline"></a></h2>
+<h2>Locating the Server<a class="headerlink" href="#locating-the-server" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#locating-the-server'">¶</a></h2>
 <ul class="simple">
 <li><p>First call to RPC of function</p></li>
 <li><p>Client stub sees not bound to server</p></li>
@@ -926,7 +956,7 @@ for fault tolerance</p></li>
 </ul>
 </section>
 <section id="how-to-handle-failures">
-<h2>How to Handle Failures<a class="headerlink" href="#how-to-handle-failures" title="Permalink to this headline"></a></h2>
+<h2>How to Handle Failures<a class="headerlink" href="#how-to-handle-failures" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#how-to-handle-failures'">¶</a></h2>
 <p>Types of possible failures in RPC systems - client unable to locate
 server - request message from client to server is lost - reply message
 from server to client is lost - server crashes after receiving a request
@@ -935,7 +965,7 @@ from server to client is lost - server crashes after receiving a request
 of transparency?</p>
 </section>
 <section id="client-cannot-locate-server">
-<h2>Client Cannot Locate Server<a class="headerlink" href="#client-cannot-locate-server" title="Permalink to this headline"></a></h2>
+<h2>Client Cannot Locate Server<a class="headerlink" href="#client-cannot-locate-server" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#client-cannot-locate-server'">¶</a></h2>
 <p>Why? - server may be down - new version of server (using new stubs..)
 but older client ==&gt; binder cannot match</p>
 <p>Solutions</p>
@@ -957,7 +987,7 @@ computation?)</p></li>
 </ul>
 </section>
 <section id="lost-request-message">
-<h2>Lost Request Message<a class="headerlink" href="#lost-request-message" title="Permalink to this headline"></a></h2>
+<h2>Lost Request Message<a class="headerlink" href="#lost-request-message" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#lost-request-message'">¶</a></h2>
 <p>Time Out</p>
 <ul class="simple">
 <li><p>Kernel starts timer when request sent</p></li>
@@ -967,7 +997,7 @@ computation?)</p></li>
 </ul>
 </section>
 <section id="lost-reply-message">
-<h2>Lost Reply Message<a class="headerlink" href="#lost-reply-message" title="Permalink to this headline"></a></h2>
+<h2>Lost Reply Message<a class="headerlink" href="#lost-reply-message" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#lost-reply-message'">¶</a></h2>
 <ul class="simple">
 <li><p>More difficult to handle</p></li>
 <li><p>Rely on timer again?</p></li>
@@ -984,7 +1014,7 @@ block from the same position in file–no side effects) - property -
 “idempotent”</p>
 </section>
 <section id="idempotent-property">
-<h2>Idempotent Property<a class="headerlink" href="#idempotent-property" title="Permalink to this headline"></a></h2>
+<h2>Idempotent Property<a class="headerlink" href="#idempotent-property" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#idempotent-property'">¶</a></h2>
 <ul class="simple">
 <li><p>Idempotence is the property of certain operations in mathematics and
 computer science whereby they can be applied multiple times without
@@ -996,7 +1026,7 @@ Wikipedia</a>.</p></li>
 </ul>
 </section>
 <section id="lost-reply-message-1">
-<span id="id8"></span><h2>Lost Reply Message<a class="headerlink" href="#lost-reply-message-1" title="Permalink to this headline"></a></h2>
+<span id="id8"></span><h2>Lost Reply Message<a class="headerlink" href="#lost-reply-message-1" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#lost-reply-message-1'">¶</a></h2>
 <ul class="simple">
 <li><p>What if request is not idempotent?</p>
 <ul>
@@ -1010,7 +1040,7 @@ state) for each request</p></li>
 </ul>
 </section>
 <section id="server-crashes">
-<h2>Server Crashes<a class="headerlink" href="#server-crashes" title="Permalink to this headline"></a></h2>
+<h2>Server Crashes<a class="headerlink" href="#server-crashes" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#server-crashes'">¶</a></h2>
 <ul class="simple">
 <li><p>Depends on when server crashes</p>
 <ul>
@@ -1022,7 +1052,7 @@ state) for each request</p></li>
 </ul>
 </section>
 <section id="server-crashes-1">
-<span id="id9"></span><h2>Server Crashes<a class="headerlink" href="#server-crashes-1" title="Permalink to this headline"></a></h2>
+<span id="id9"></span><h2>Server Crashes<a class="headerlink" href="#server-crashes-1" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#server-crashes-1'">¶</a></h2>
 <ul class="simple">
 <li><p>But the client cannot tell the difference!</p></li>
 <li><p>Solutions?</p>
@@ -1051,7 +1081,7 @@ state) for each request</p></li>
 </ul>
 </section>
 <section id="client-crashes">
-<h2>Client Crashes<a class="headerlink" href="#client-crashes" title="Permalink to this headline"></a></h2>
+<h2>Client Crashes<a class="headerlink" href="#client-crashes" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#client-crashes'">¶</a></h2>
 <ul>
 <li><p>Client sends a request and crashes</p>
 <ul class="simple">
@@ -1078,7 +1108,7 @@ all</p></li>
 </ul>
 </section>
 <section id="client-crashes-1">
-<span id="id10"></span><h2>Client Crashes<a class="headerlink" href="#client-crashes-1" title="Permalink to this headline"></a></h2>
+<span id="id10"></span><h2>Client Crashes<a class="headerlink" href="#client-crashes-1" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#client-crashes-1'">¶</a></h2>
 <ul class="simple">
 <li><p>Reincarnation</p>
 <ul>
@@ -1098,7 +1128,7 @@ detected later</p></li>
 </ul>
 </section>
 <section id="flow-control">
-<h2>Flow Control<a class="headerlink" href="#flow-control" title="Permalink to this headline"></a></h2>
+<h2>Flow Control<a class="headerlink" href="#flow-control" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#flow-control'">¶</a></h2>
 <ul class="simple">
 <li><p>Network Interface Chips (NICs) can send message fast</p></li>
 <li><p>But receiving more difficult due to finite buffer</p></li>
@@ -1121,7 +1151,7 @@ detected later</p></li>
 </ul>
 </section>
 <section id="see-also">
-<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline"></a></h2>
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'">¶</a></h2>
 <p>There are many RPC implementations - <a class="reference external" href="https://www.slideshare.net/PeterREgli/sun-rpc">Sun RPC
 Tutorial</a> -
 <a class="reference external" href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlExample.html">Java/CORBA
@@ -1133,36 +1163,94 @@ Tutorial</a></p>
 understanding of the basic underlying principles, which are unchanged.</p>
 </section>
 </section>
-
-
-           </div>
-          </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../issues/issues.html" class="btn btn-neutral float-left" title="Introduction and Issues" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../concurrency/concurrency.html" class="btn btn-neutral float-right" title="Concurrency and Threads" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2013-2019, Distributed Systems Instructors at Loyola University Chicago.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
+</div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
+<div class="sticky top-16 -mt-10 max-h-[calc(var(--vh)-4rem)] overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
+<ul>
+<li><a :data-current="activeSection === '#overview'" class="reference internal" href="#overview">Overview</a></li>
+<li><a :data-current="activeSection === '#references-and-additional-reading'" class="reference internal" href="#references-and-additional-reading">References and Additional Reading</a></li>
+<li><a :data-current="activeSection === '#methods'" class="reference internal" href="#methods">Methods</a></li>
+<li><a :data-current="activeSection === '#networks'" class="reference internal" href="#networks">Networks</a></li>
+<li><a :data-current="activeSection === '#infrastructure'" class="reference internal" href="#infrastructure">Infrastructure</a></li>
+<li><a :data-current="activeSection === '#many-types-of-networks'" class="reference internal" href="#many-types-of-networks">Many Types of Networks</a></li>
+<li><a :data-current="activeSection === '#relative-speeds'" class="reference internal" href="#relative-speeds">Relative Speeds</a></li>
+<li><a :data-current="activeSection === '#local-area-networks'" class="reference internal" href="#local-area-networks">Local Area Networks</a></li>
+<li><a :data-current="activeSection === '#wide-area-networks'" class="reference internal" href="#wide-area-networks">Wide Area Networks</a></li>
+<li><a :data-current="activeSection === '#metropolitan-area-networks-mans'" class="reference internal" href="#metropolitan-area-networks-mans">Metropolitan Area Networks (MANs)</a></li>
+<li><a :data-current="activeSection === '#internetworks'" class="reference internal" href="#internetworks">Internetworks</a></li>
+<li><a :data-current="activeSection === '#performance-issues'" class="reference internal" href="#performance-issues">Performance Issues</a></li>
+<li><a :data-current="activeSection === '#what-is-software-delay'" class="reference internal" href="#what-is-software-delay">What is software delay?</a></li>
+<li><a :data-current="activeSection === '#example-campus-network'" class="reference internal" href="#example-campus-network">Example: Campus Network</a></li>
+<li><a :data-current="activeSection === '#network-topologies'" class="reference internal" href="#network-topologies">Network Topologies</a></li>
+<li><a :data-current="activeSection === '#network-topologies-1'" class="reference internal" href="#network-topologies-1">Network Topologies</a></li>
+<li><a :data-current="activeSection === '#a-network-is-not-an-island'" class="reference internal" href="#a-network-is-not-an-island">A Network is not an Island</a></li>
+<li><a :data-current="activeSection === '#protocols'" class="reference internal" href="#protocols">Protocols</a></li>
+<li><a :data-current="activeSection === '#design-issues-in-layers'" class="reference internal" href="#design-issues-in-layers">Design Issues In Layers</a></li>
+<li><a :data-current="activeSection === '#protocols-are-divided-into-layers'" class="reference internal" href="#protocols-are-divided-into-layers">Protocols are divided into layers</a></li>
+<li><a :data-current="activeSection === '#physical-layer'" class="reference internal" href="#physical-layer">Physical Layer</a></li>
+<li><a :data-current="activeSection === '#physical-layer-representing-0-and-1'" class="reference internal" href="#physical-layer-representing-0-and-1">Physical Layer - Representing 0 and 1</a></li>
+<li><a :data-current="activeSection === '#many-types-of-networks-1'" class="reference internal" href="#many-types-of-networks-1">Many Types of Networks</a></li>
+<li><a :data-current="activeSection === '#local-area-networks-1'" class="reference internal" href="#local-area-networks-1">Local Area Networks</a></li>
+<li><a :data-current="activeSection === '#wide-area-networks-1'" class="reference internal" href="#wide-area-networks-1">Wide Area Networks</a></li>
+<li><a :data-current="activeSection === '#wireless-networks'" class="reference internal" href="#wireless-networks">Wireless Networks</a></li>
+<li><a :data-current="activeSection === '#metropolitan-area-networks'" class="reference internal" href="#metropolitan-area-networks">Metropolitan Area Networks</a></li>
+<li><a :data-current="activeSection === '#many-types-of-networks-2'" class="reference internal" href="#many-types-of-networks-2">Many Types of Networks</a></li>
+<li><a :data-current="activeSection === '#internetworks-1'" class="reference internal" href="#internetworks-1">Internetworks</a></li>
+<li><a :data-current="activeSection === '#data-link-layer'" class="reference internal" href="#data-link-layer">Data Link Layer</a></li>
+<li><a :data-current="activeSection === '#the-network-layer'" class="reference internal" href="#the-network-layer">The Network Layer</a></li>
+<li><a :data-current="activeSection === '#the-transport-layer'" class="reference internal" href="#the-transport-layer">The Transport Layer</a></li>
+<li><a :data-current="activeSection === '#the-session-presentation-layers'" class="reference internal" href="#the-session-presentation-layers">The Session &amp; Presentation Layers</a></li>
+<li><a :data-current="activeSection === '#application-layer'" class="reference internal" href="#application-layer">Application Layer</a></li>
+<li><a :data-current="activeSection === '#interprocess-communication'" class="reference internal" href="#interprocess-communication">Interprocess Communication:</a></li>
+<li><a :data-current="activeSection === '#reliability'" class="reference internal" href="#reliability">Reliability</a></li>
+<li><a :data-current="activeSection === '#mapping-data-to-messages'" class="reference internal" href="#mapping-data-to-messages">Mapping Data to Messages</a></li>
+<li><a :data-current="activeSection === '#marshaling'" class="reference internal" href="#marshaling">Marshaling</a></li>
+<li><a :data-current="activeSection === '#simple-marshalling'" class="reference internal" href="#simple-marshalling">Simple Marshalling</a></li>
+<li><a :data-current="activeSection === '#case-study-unix-interprocess-communication-ipc'" class="reference internal" href="#case-study-unix-interprocess-communication-ipc">Case Study: UNIX Interprocess Communication (IPC)</a></li>
+<li><a :data-current="activeSection === '#example-simple-tcp-messaging-framework-from-hpjpc'" class="reference internal" href="#example-simple-tcp-messaging-framework-from-hpjpc">Example - Simple TCP Messaging Framework (from HPJPC)</a></li>
+<li><a :data-current="activeSection === '#example-simple-key-value-messaging'" class="reference internal" href="#example-simple-key-value-messaging">Example: Simple Key-Value Messaging</a></li>
+<li><a :data-current="activeSection === '#example-components'" class="reference internal" href="#example-components">Example: Components</a></li>
+<li><a :data-current="activeSection === '#sockets-communication-using-datagram'" class="reference internal" href="#sockets-communication-using-datagram">Sockets Communication Using Datagram</a></li>
+<li><a :data-current="activeSection === '#java-sdk-example-quote-server-with-datagrams'" class="reference internal" href="#java-sdk-example-quote-server-with-datagrams">Java SDK Example / Quote Server with Datagrams</a></li>
+<li><a :data-current="activeSection === '#quote-server-dispatch-thread'" class="reference internal" href="#quote-server-dispatch-thread">Quote Server Dispatch Thread</a></li>
+<li><a :data-current="activeSection === '#quote-client'" class="reference internal" href="#quote-client">Quote Client</a></li>
+<li><a :data-current="activeSection === '#stream-communication'" class="reference internal" href="#stream-communication">Stream Communication</a></li>
+<li><a :data-current="activeSection === '#remote-procedure-call'" class="reference internal" href="#remote-procedure-call">Remote Procedure Call</a></li>
+<li><a :data-current="activeSection === '#remote-procedure-call-figure'" class="reference internal" href="#remote-procedure-call-figure">Remote Procedure Call (Figure)</a></li>
+<li><a :data-current="activeSection === '#remote-procedure-call-rpc'" class="reference internal" href="#remote-procedure-call-rpc">Remote Procedure Call (RPC)</a></li>
+<li><a :data-current="activeSection === '#observations'" class="reference internal" href="#observations">Observations</a></li>
+<li><a :data-current="activeSection === '#design-of-rpc'" class="reference internal" href="#design-of-rpc">Design of RPC</a></li>
+<li><a :data-current="activeSection === '#rpc-mechanisms'" class="reference internal" href="#rpc-mechanisms">RPC Mechanisms</a></li>
+<li><a :data-current="activeSection === '#rpc-steps'" class="reference internal" href="#rpc-steps">RPC Steps</a></li>
+<li><a :data-current="activeSection === '#design-issues'" class="reference internal" href="#design-issues">Design Issues</a></li>
+<li><a :data-current="activeSection === '#parameter-passing'" class="reference internal" href="#parameter-passing">Parameter Passing</a></li>
+<li><a :data-current="activeSection === '#parameter-passing-1'" class="reference internal" href="#parameter-passing-1">Parameter Passing</a></li>
+<li><a :data-current="activeSection === '#binding'" class="reference internal" href="#binding">Binding</a></li>
+<li><a :data-current="activeSection === '#use-of-specification'" class="reference internal" href="#use-of-specification">Use of Specification</a></li>
+<li><a :data-current="activeSection === '#locating-the-server'" class="reference internal" href="#locating-the-server">Locating the Server</a></li>
+<li><a :data-current="activeSection === '#how-to-handle-failures'" class="reference internal" href="#how-to-handle-failures">How to Handle Failures</a></li>
+<li><a :data-current="activeSection === '#client-cannot-locate-server'" class="reference internal" href="#client-cannot-locate-server">Client Cannot Locate Server</a></li>
+<li><a :data-current="activeSection === '#lost-request-message'" class="reference internal" href="#lost-request-message">Lost Request Message</a></li>
+<li><a :data-current="activeSection === '#lost-reply-message'" class="reference internal" href="#lost-reply-message">Lost Reply Message</a></li>
+<li><a :data-current="activeSection === '#idempotent-property'" class="reference internal" href="#idempotent-property">Idempotent Property</a></li>
+<li><a :data-current="activeSection === '#lost-reply-message-1'" class="reference internal" href="#lost-reply-message-1">Lost Reply Message</a></li>
+<li><a :data-current="activeSection === '#server-crashes'" class="reference internal" href="#server-crashes">Server Crashes</a></li>
+<li><a :data-current="activeSection === '#server-crashes-1'" class="reference internal" href="#server-crashes-1">Server Crashes</a></li>
+<li><a :data-current="activeSection === '#client-crashes'" class="reference internal" href="#client-crashes">Client Crashes</a></li>
+<li><a :data-current="activeSection === '#client-crashes-1'" class="reference internal" href="#client-crashes-1">Client Crashes</a></li>
+<li><a :data-current="activeSection === '#flow-control'" class="reference internal" href="#flow-control">Flow Control</a></li>
+<li><a :data-current="activeSection === '#see-also'" class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</div>
+</aside>
+</main>
+</div>
+</div><footer class="py-6 border-t border-border md:py-0">
+<div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+<div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2013-2019, Distributed Systems Instructors at Loyola University Chicago Built with <a class="font-medium underline underline-offset-4" href="https://www.sphinx-doc.org" rel="noreferrer">Sphinx 6.2.1</a></p>
+</div>
+</div>
 </footer>
-        </div>
-      </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
-
+</div>
 </body>
 </html>
